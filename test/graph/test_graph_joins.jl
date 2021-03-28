@@ -148,92 +148,135 @@ function test_join()
     @test PathNode.have_sons(node36_24) == false
 
     #= Check Owners =#
+    list_all_nodes = [node00, node12, node14, node24, node22, node36_22, node36_24]
+    list_all_edges = [edge_00_12, edge_00_14, edge_12_24, edge_14_22, edge_22_36, edge_24_36]
+    list_nodes_12 = [node00, node12, node24, node36_24]
+    list_edges_12 = [edge_00_12, edge_12_24, edge_24_36]
 
+    list_nodes_14 = [node00, node14, node22, node36_22]
+    list_edges_14 = [edge_00_12, edge_14_22, edge_22_36]
     # node00_id
     @test Owners.have(graph_join.owners, Step(0), node00_id)
-    list_all_nodes = [node00, node12, node14, node24, node22, node36_22, node36_24]
+
     for node in list_all_nodes
         PathNode.have_owner(node, Step(0), node00_id)
     end
-
-    list_all_edges = [edge_00_12, edge_00_14, edge_12_24, edge_14_22, edge_22_36, edge_24_36]
     for edge in list_all_edges
         PathEdge.have_owner(edge, Step(0), node00_id)
     end
 
     # node12_id
     @test Owners.have(graph_join.owners, Step(1), node12_id)
-    list_nodes = [node00, node12, node24, node36_24]
-    for node in list_nodes
+    for node in list_nodes_12
         PathNode.have_owner(node, Step(1), node12_id)
     end
-
-    list_edges = [edge_00_12, edge_12_24, edge_24_36]
-    for edge in list_edges
+    for edge in list_edges_12
         PathEdge.have_owner(edge, Step(1), node12_id)
+    end
+
+    for node in list_nodes_14
+        !PathNode.have_owner(node, Step(1), node12_id)
+    end
+    for edge in list_edges_14
+        !PathEdge.have_owner(edge, Step(1), node12_id)
     end
 
     # node24_id
     @test Owners.have(graph_join.owners, Step(2), node24_id)
-    list_nodes = [node00, node12, node24, node36_24]
-    for node in list_nodes
+    for node in list_nodes_12
         PathNode.have_owner(node, Step(2), node24_id)
     end
-
-    list_edges = [edge_00_12, edge_12_24, edge_24_36]
-    for edge in list_edges
+    for edge in list_edges_12
         PathEdge.have_owner(edge, Step(2), node24_id)
+    end
+
+    for node in list_nodes_14
+        !PathNode.have_owner(node, Step(2), node24_id)
+    end
+    for edge in list_edges_14
+        !PathEdge.have_owner(edge, Step(2), node24_id)
     end
 
     # node24_id
     @test Owners.have(graph_join.owners, Step(3), node36_24_id)
-    list_nodes = [node00, node12, node24, node36_24]
-    for node in list_nodes
+    for node in list_nodes_12
         PathNode.have_owner(node, Step(3), node36_24_id)
     end
-
-    list_edges = [edge_00_12, edge_12_24, edge_24_36]
-    for edge in list_edges
+    for edge in list_edges_12
         PathEdge.have_owner(edge, Step(3), node36_24_id)
     end
 
+    for node in list_nodes_14
+        !PathNode.have_owner(node, Step(3), node36_24_id)
+    end
+    for edge in list_edges_14
+        !PathEdge.have_owner(edge, Step(3), node36_24_id)
+    end
 
     # node14_id
     @test Owners.have(graph_join.owners, Step(1), node14_id)
-    list_nodes = [node00, node14, node22, node36_22]
-    for node in list_nodes
+    for node in list_nodes_14
         PathNode.have_owner(node, Step(1), node14_id)
     end
-
-    list_edges = [edge_00_12, edge_14_22, edge_22_36]
-    for edge in list_edges
+    for edge in list_edges_14
         PathEdge.have_owner(edge, Step(1), node14_id)
+    end
+
+    for node in list_nodes_12
+        !PathNode.have_owner(node, Step(1), node14_id)
+    end
+    for edge in list_edges_12
+        !PathEdge.have_owner(edge, Step(1), node14_id)
     end
 
     # node22_id
     @test Owners.have(graph_join.owners, Step(2), node22_id)
-    list_nodes = [node00, node14, node22, node36_22]
-    for node in list_nodes
+    for node in list_nodes_14
         PathNode.have_owner(node, Step(2), node22_id)
     end
-
-    list_edges = [edge_00_12, edge_14_22, edge_22_36]
-    for edge in list_edges
+    for edge in list_edges_14
         PathEdge.have_owner(edge, Step(2), node22_id)
+    end
+
+    for node in list_nodes_12
+        !PathNode.have_owner(node, Step(2), node22_id)
+    end
+    for edge in list_edges_12
+        !PathEdge.have_owner(edge, Step(2), node22_id)
     end
 
     # node36_22_id
     @test Owners.have(graph_join.owners, Step(3), node36_22_id)
-    list_nodes = [node00, node14, node22, node36_22]
-    for node in list_nodes
+    for node in list_nodes_14
         PathNode.have_owner(node, Step(3), node36_22_id)
     end
-
-    list_edges = [edge_00_12, edge_14_22, edge_22_36]
-    for edge in list_edges
+    for edge in list_edges_14
         PathEdge.have_owner(edge, Step(3), node36_22_id)
+    end
+
+    for node in list_nodes_12
+        !PathNode.have_owner(node, Step(3), node36_22_id)
+    end
+    for edge in list_edges_12
+        !PathEdge.have_owner(edge, Step(3), node36_22_id)
     end
 
 end
 
+function test_up_invalid_by_repeted_color()
+    n = Color(10)
+    b = Km(10)
+    action_id_s4_2 = GeneratorIds.get_action_id(Color(n), Km(4), Color(2))
+    graph_join = build_join()
+    PathGraph.up!(graph_join, Color(2), action_id_s4_2)
+    @test graph_join.valid == false
+
+
+    action_id_s4_4 = GeneratorIds.get_action_id(Color(n), Km(4), Color(4))
+    graph_join = build_join()
+    PathGraph.up!(graph_join, Color(4), action_id_s4_4)
+    @test graph_join.valid == false
+end
+
 test_join()
+test_up_invalid_by_repeted_color()

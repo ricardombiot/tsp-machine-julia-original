@@ -78,10 +78,8 @@ end
 function delete_edges_parents!(graph :: Graph, node :: Node)
     if graph.valid
         destine_id = node.id
-        for origin_id in node.parents
-            if have_edge(graph, origin_id, destine_id)
-                delete_edge!(graph, origin_id, destine_id)
-            end
+        for (origin_id, edge_id) in node.parents
+            delete_edge_by_id!(graph, edge_id)
         end
     end
 end
@@ -89,15 +87,13 @@ end
 function delete_edges_sons!(graph :: Graph, node :: Node)
     if graph.valid
         origin_id = node.id
-        for destine_id in node.sons
-            if have_edge(graph, origin_id, destine_id)
-                delete_edge!(graph, origin_id, destine_id)
-            end
+        for (destine_id, edge_id)  in node.sons
+            delete_edge_by_id!(graph, edge_id)
         end
     end
 end
 
-function delete_node_of_table_nodes(graph :: Graph, node :: Node)
+function delete_node_of_table_nodes!(graph :: Graph, node :: Node)
     action_group_node = graph.table_nodes[node.action_id]
     delete!(action_group_node, node.id)
 

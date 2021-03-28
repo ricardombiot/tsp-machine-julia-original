@@ -51,12 +51,18 @@ module PathNode
         node.sons[son_id] = edge_id
     end
 
+    function delete_parent!(node :: Node, parent_node :: Node)
+        delete_parent!(node, parent_node.id)
+    end
     function delete_parent!(node :: Node, parent_id :: NodeId)
         if haskey(node.parents, parent_id)
             delete!(node.parents, parent_id)
         end
     end
 
+    function delete_son!(node :: Node, son_node :: Node)
+        delete_son!(node, son_node.id)
+    end
     function delete_son!(node :: Node, son_id :: NodeId)
         if haskey(node.sons, son_id)
             delete!(node.sons, son_id)
