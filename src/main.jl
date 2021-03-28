@@ -12,6 +12,8 @@ using Main.PathsSet.EdgeIdentity
 using Main.PathsSet.EdgeIdentity: EdgeId, EdgesIdSet
 using Main.PathsSet.PathNode
 using Main.PathsSet.PathNode: Node
+using Main.PathsSet.PathEdge
+using Main.PathsSet.PathEdge: Edge
 
 using Main.PathsSet.OwnersSet
 using Main.PathsSet.OwnersSet: OwnersFixedSet

@@ -15,6 +15,7 @@ end
     include("./graph/components/test_owners_set.jl")
     include("./graph/components/test_owners.jl")
     include("./graph/components/test_node.jl")
+    include("./graph/components/test_edge.jl")
 end
 
 @time @testset "Utils" begin

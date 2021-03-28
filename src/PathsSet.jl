@@ -11,5 +11,6 @@ module PathsSet
     include("graph/components/owners/owners_set.jl")
     include("graph/components/owners/owners.jl")
     include("graph/components/node/node.jl")
+    include("graph/components/edge/edge.jl")
 
 end # module
