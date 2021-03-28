@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-03-28 17:58:55</td>
+            <td class="headerValue">2021-03-28 19:00:19</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -60,7 +60,7 @@
       <td>
 <pre class="sourceHeading">          Line data    Source code</pre>
 <pre class="source">
-<a name="1"><span class="lineNum">       1 </span><span class="lineCov">          6 : module PathGraph</span></a>
+<a name="1"><span class="lineNum">       1 </span><span class="lineCov">          7 : module PathGraph</span></a>
 <a name="2"><span class="lineNum">       2 </span>            :     using Main.PathsSet.Alias: Color, Km, Step, UniqueNodeKey, ActionId</a>
 <a name="3"><span class="lineNum">       3 </span>            : </a>
 <a name="4"><span class="lineNum">       4 </span>            :     using Main.PathsSet.PathEdge</a>
@@ -76,7 +76,7 @@
 <a name="14"><span class="lineNum">      14 </span>            :     using Main.PathsSet.PathNode: Node</a>
 <a name="15"><span class="lineNum">      15 </span>            : </a>
 <a name="16"><span class="lineNum">      16 </span>            :     mutable struct Graph</a>
-<a name="17"><span class="lineNum">      17 </span><span class="lineCov">          3 :         n :: Color</span></a>
+<a name="17"><span class="lineNum">      17 </span><span class="lineCov">          4 :         n :: Color</span></a>
 <a name="18"><span class="lineNum">      18 </span>            :         b :: Km</a>
 <a name="19"><span class="lineNum">      19 </span>            :         next_step :: Step</a>
 <a name="20"><span class="lineNum">      20 </span>            :         color_origin :: Color</a>
@@ -102,9 +102,10 @@
 <a name="40"><span class="lineNum">      40 </span>            :     include(&quot;./graph_owners.jl&quot;)</a>
 <a name="41"><span class="lineNum">      41 </span>            :     include(&quot;./graph_edge.jl&quot;)</a>
 <a name="42"><span class="lineNum">      42 </span>            :     include(&quot;./graph_make_up.jl&quot;)</a>
-<a name="43"><span class="lineNum">      43 </span>            : </a>
+<a name="43"><span class="lineNum">      43 </span>            :     include(&quot;./graph_delete.jl&quot;)</a>
 <a name="44"><span class="lineNum">      44 </span>            : </a>
-<a name="45"><span class="lineNum">      45 </span>            : end</a>
+<a name="45"><span class="lineNum">      45 </span>            : </a>
+<a name="46"><span class="lineNum">      46 </span>            : end</a>
 </pre>
       </td>
     </tr>

@@ -58,4 +58,8 @@ module PathEdge
         Owners.intersect!(edge.owners, owners_graph)
     end
 
+    function join!(edge :: Edge, edge_join :: Edge)
+        Owners.join!(edge.owners, edge_join.owners)
+    end
+
 end

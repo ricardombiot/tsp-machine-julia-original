@@ -30,6 +30,7 @@ module PathGraph
 
         action_parent_id :: Union{ActionId, Nothing}
         nodes_to_delete :: NodesIdSet
+        required_review_ownwers :: Bool
 
         valid :: Bool
     end
@@ -41,6 +42,7 @@ module PathGraph
     include("./graph_edge.jl")
     include("./graph_make_up.jl")
     include("./graph_delete.jl")
+    include("./graph_join.jl")
 
 
 end

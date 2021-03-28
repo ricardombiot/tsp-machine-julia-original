@@ -31,6 +31,10 @@ function pop_owner_in_graph!(graph :: Graph, node_owner :: Node)
     end
 end
 
+function union_owners!(graph :: Graph, graph_join :: Graph)
+    Owners.union!(graph.owners, graph_join.owners)
+end
+
 function make_validation_graph_by_owners!(graph :: Graph)
     graph.valid = graph.owners.valid
 end
@@ -61,7 +65,7 @@ La idea detras de esto es mantener la coherencia en la información, no podemos 
 que no existe.
 =#
 function review_owners!(graph :: Graph)
-    if graph.valid
+    if graph.valid && graph.required_review_ownwers
         for (action_id, table_nodes_action) in graph.table_nodes
             for (node_id, node) in table_nodes_action
                 if !filter_by_intersection_owners!(node, graph)
@@ -75,18 +79,20 @@ function review_owners!(graph :: Graph)
                 delete_edge_by_id!(graph, edge_id)
             end
         end
+
+        graph.required_review_ownwers = false
     end
 end
 
 
 function filter_by_intersection_owners!(node :: Node, graph :: Graph) :: Bool
-    PathNode.intersect_owners!(node, graph)
+    PathNode.intersect_owners!(node, graph.owners)
 
     return node.owners.valid
 end
 
-function filter_by_intersection_owners!(edge :: Node, graph :: Graph) :: Bool
-    PathEdge.intersect_owners!(edge, graph)
+function filter_by_intersection_owners!(edge :: Edge, graph :: Graph) :: Bool
+    PathEdge.intersect_owners!(edge, graph.owners)
 
     return edge.owners.valid
 end

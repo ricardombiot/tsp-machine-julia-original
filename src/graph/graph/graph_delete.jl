@@ -19,6 +19,7 @@ function apply_node_deletes!(graph :: Graph)
         if !isempty(graph.nodes_to_delete)
             node_id = pop!(graph.nodes_to_delete)
             delete_node!(graph, node_id)
+            graph.required_review_ownwers = true
 
             apply_node_deletes!(graph)
         else

@@ -9,6 +9,7 @@ function new(n :: Color, b :: Km, color_origin :: Color, action_id :: ActionId)
     table_edges = Dict{EdgeId, Edge}()
     nodes_to_delete = NodesIdSet()
 
+    required_review_ownwers = false
     valid = true
     action_parent_id = nothing
 
@@ -16,7 +17,7 @@ function new(n :: Color, b :: Km, color_origin :: Color, action_id :: ActionId)
             table_nodes, table_edges,
             table_lines, table_color_nodes,
             action_parent_id,
-            nodes_to_delete, valid)
+            nodes_to_delete, required_review_ownwers, valid)
 
     init!(graph, action_id)
     return graph
