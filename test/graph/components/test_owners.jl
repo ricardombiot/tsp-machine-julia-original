@@ -11,6 +11,8 @@ function test_owners_push_and_pop_key_by_step()
     @test !Owners.isempty(owners, Step(0))
     Owners.pop!(owners, Step(0), node_id)
     @test Owners.isempty(owners, Step(0))
+
+    @test owners.valid == false
 end
 
 #=
@@ -19,6 +21,8 @@ end
 5   3         4
 |   |         |
 4   4         6
+\  /          |
+  1           1
 =#
 function test_operations_owner()
     n= Color(10)
@@ -132,5 +136,60 @@ function test_operations_owner()
 end
 
 
+function test_operations_not_valid_cases()
+    n= Color(10)
+    b= Km(20)
+
+    action_id_s0_2 = GeneratorIds.get_action_id(n, Km(0), Color(2))
+    action_id_s1_3 = GeneratorIds.get_action_id(n, Km(1), Color(3))
+    action_id_s2_4 = GeneratorIds.get_action_id(n, Km(2), Color(4))
+
+    node_id_s0_2_2 = NodeIdentity.new(n, action_id_s0_2, action_id_s0_2)
+    node_id_s1_3_2 = NodeIdentity.new(n, action_id_s1_3, action_id_s0_2)
+    node_id_s2_1_4 = NodeIdentity.new(n, action_id_s2_4, action_id_s1_3)
+
+    bbnn = UniqueNodeKey(b^2*n^2)
+    owners_set_a = Owners.new(bbnn)
+    owners_set_b = Owners.new(bbnn)
+
+    Owners.push!(owners_set_a, Step(0), node_id_s0_2_2)
+    Owners.push!(owners_set_a, Step(2), node_id_s2_1_4)
+
+    @test owners_set_a.valid == false
+
+    Owners.push!(owners_set_b, Step(1), node_id_s2_1_4)
+
+    @test owners_set_b.valid == false
+
+
+    # union!
+
+    owners_set_a_copy = deepcopy(owners_set_a)
+    Owners.union!(owners_set_a_copy, owners_set_b)
+    @test owners_set_a_copy.valid == false
+
+    # intersect!
+
+    owners_set_a_copy = deepcopy(owners_set_a)
+    Owners.intersect!(owners_set_a_copy, owners_set_b)
+    @test owners_set_a_copy.valid == false
+
+    # diff
+
+    owners_set_a_copy = deepcopy(owners_set_a)
+    Owners.diff!(owners_set_a_copy, owners_set_b)
+
+    @test owners_set_a_copy.valid == false
+
+    owners_set_b_copy = deepcopy(owners_set_b)
+    Owners.diff!(owners_set_b_copy, owners_set_a)
+
+    @test owners_set_b_copy.valid == false
+
+end
+
 test_owners_push_and_pop_key_by_step()
 test_operations_owner()
+
+
+test_operations_not_valid_cases()

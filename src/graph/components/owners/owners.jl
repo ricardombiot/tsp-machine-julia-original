@@ -38,10 +38,22 @@ module Owners
         end
     end
 
-    function push!(owners :: OwnersByStep, step :: Step, node_id :: NodeId)
+    function if_dont_existe_create_step(owners :: OwnersByStep, step :: Step)
         if !haskey(owners.dict, step)
             create_step_set(owners, step)
+
+            if step > Step(0)
+                last_step_dont_exist = !haskey(owners.dict, step-1)
+                if last_step_dont_exist
+                    owners.valid = false
+                end
+            end
         end
+    end
+
+    function push!(owners :: OwnersByStep, step :: Step, node_id :: NodeId)
+        if_dont_existe_create_step(owners, step)
+
         step_set = get_step_set(owners, step)
 
         key = node_id.key
@@ -58,6 +70,11 @@ module Owners
         if step_set != nothing
             key = node_id.key
             OwnersSet.pop!(step_set, key)
+
+            if OwnersSet.isempty(step_set)
+                delete!(owners.dict, step)
+                owners.valid = false
+            end
         end
     end
 
@@ -137,9 +154,7 @@ module Owners
                 else
                     OwnersSet.diff!(step_set_a, step_set_b)
 
-                    println("difff $step ")
                     if OwnersSet.isempty(step_set_a)
-                        println("difff $step  isempty")
                         owners_a.valid = false
                         break
                     end
