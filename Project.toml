@@ -1,0 +1,8 @@
+name = "PathsSet"
+uuid = "86fb3035-095f-484d-927d-f9bc604cd8d9"
+authors = ["Ricardo M. Biot "]
+version = "0.1.0"
+
+[deps]
+LocalCoverage = "5f6e1e16-694c-5876-87ef-16b5274f298e"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
