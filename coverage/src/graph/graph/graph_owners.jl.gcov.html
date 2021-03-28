@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-03-28 21:38:27</td>
+            <td class="headerValue">2021-03-28 22:15:53</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -65,9 +65,9 @@
 <a name="3"><span class="lineNum">       3 </span>            : end</a>
 <a name="4"><span class="lineNum">       4 </span>            : </a>
 <a name="5"><span class="lineNum">       5 </span>            : function pop_owner_in_graph!(graph :: Graph, node_owner :: Node)</a>
-<a name="6"><span class="lineNum">       6 </span><span class="lineCov">         24 :     if graph.valid</span></a>
+<a name="6"><span class="lineNum">       6 </span><span class="lineCov">         22 :     if graph.valid</span></a>
 <a name="7"><span class="lineNum">       7 </span><span class="lineCov">         22 :         Owners.pop!(graph.owners, node_owner.step, node_owner.id)</span></a>
-<a name="8"><span class="lineNum">       8 </span><span class="lineCov">         24 :         make_validation_graph_by_owners!(graph)</span></a>
+<a name="8"><span class="lineNum">       8 </span><span class="lineCov">         22 :         make_validation_graph_by_owners!(graph)</span></a>
 <a name="9"><span class="lineNum">       9 </span>            :     end</a>
 <a name="10"><span class="lineNum">      10 </span>            : end</a>
 <a name="11"><span class="lineNum">      11 </span>            : </a>
@@ -89,7 +89,7 @@
 <a name="27"><span class="lineNum">      27 </span>            :     end</a>
 <a name="28"><span class="lineNum">      28 </span>            : </a>
 <a name="29"><span class="lineNum">      29 </span><span class="lineCov">         76 :     for (edge_id, edge) in graph.table_edges</span></a>
-<a name="30"><span class="lineNum">      30 </span><span class="lineCov">         83 :         PathEdge.push_owner!(edge, node_owner)</span></a>
+<a name="30"><span class="lineNum">      30 </span><span class="lineCov">         85 :         PathEdge.push_owner!(edge, node_owner)</span></a>
 <a name="31"><span class="lineNum">      31 </span>            :     end</a>
 <a name="32"><span class="lineNum">      32 </span>            : end</a>
 <a name="33"><span class="lineNum">      33 </span>            : </a>

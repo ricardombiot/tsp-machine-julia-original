@@ -31,13 +31,13 @@
             <td class="headerValue">on branch master</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">92</td>
-            <td class="headerCovTableEntry">95</td>
-            <td class="headerCovTableEntryHi">96.8 %</td>
+            <td class="headerCovTableEntry">87</td>
+            <td class="headerCovTableEntry">100</td>
+            <td class="headerCovTableEntryMed">87.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-03-28 21:38:27</td>
+            <td class="headerValue">2021-03-28 22:15:53</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -66,24 +66,24 @@
 <a name="4"><span class="lineNum">       4 </span>            :     using Main.PathsSet.FBSet128: FixedBinarySet128</a>
 <a name="5"><span class="lineNum">       5 </span>            : </a>
 <a name="6"><span class="lineNum">       6 </span>            :     mutable struct FixedBinarySet</a>
-<a name="7"><span class="lineNum">       7 </span><span class="lineCov">        308 :         n :: Int64</span></a>
+<a name="7"><span class="lineNum">       7 </span><span class="lineCov">        310 :         n :: Int64</span></a>
 <a name="8"><span class="lineNum">       8 </span>            :         n_subsets :: Int64</a>
 <a name="9"><span class="lineNum">       9 </span>            :         subsets :: Dict{Int64, FixedBinarySet128}</a>
 <a name="10"><span class="lineNum">      10 </span>            :     end</a>
 <a name="11"><span class="lineNum">      11 </span>            : </a>
 <a name="12"><span class="lineNum">      12 </span>            :     function new(n :: Int64)</a>
-<a name="13"><span class="lineNum">      13 </span><span class="lineCov">        308 :         n_subsets = Int64(ceil( n / 128 ))</span></a>
-<a name="14"><span class="lineNum">      14 </span><span class="lineCov">        308 :         subsets = Dict{Int64, FixedBinarySet128}()</span></a>
+<a name="13"><span class="lineNum">      13 </span><span class="lineCov">        310 :         n_subsets = Int64(ceil( n / 128 ))</span></a>
+<a name="14"><span class="lineNum">      14 </span><span class="lineCov">        310 :         subsets = Dict{Int64, FixedBinarySet128}()</span></a>
 <a name="15"><span class="lineNum">      15 </span>            : </a>
-<a name="16"><span class="lineNum">      16 </span><span class="lineCov">        308 :         FixedBinarySet(n, n_subsets, subsets)</span></a>
+<a name="16"><span class="lineNum">      16 </span><span class="lineCov">        310 :         FixedBinarySet(n, n_subsets, subsets)</span></a>
 <a name="17"><span class="lineNum">      17 </span>            :     end</a>
 <a name="18"><span class="lineNum">      18 </span>            : </a>
 <a name="19"><span class="lineNum">      19 </span>            :     function get_subset_id(set :: FixedBinarySet, item :: Int64) :: Int64</a>
-<a name="20"><span class="lineNum">      20 </span><span class="lineCov">      31687 :         Int64(ceil(item  / 128))</span></a>
+<a name="20"><span class="lineNum">      20 </span><span class="lineCov">      31689 :         Int64(ceil(item  / 128))</span></a>
 <a name="21"><span class="lineNum">      21 </span>            :     end</a>
 <a name="22"><span class="lineNum">      22 </span>            : </a>
 <a name="23"><span class="lineNum">      23 </span>            :     function get_target_item(item :: Int64) :: Int64</a>
-<a name="24"><span class="lineNum">      24 </span><span class="lineCov">      24430 :         Int64(rem(item-1,128)) + 1</span></a>
+<a name="24"><span class="lineNum">      24 </span><span class="lineCov">      24432 :         Int64(rem(item-1,128)) + 1</span></a>
 <a name="25"><span class="lineNum">      25 </span>            :     end</a>
 <a name="26"><span class="lineNum">      26 </span>            : </a>
 <a name="27"><span class="lineNum">      27 </span><span class="lineNoCov">          0 :     function to_empty!(set :: FixedBinarySet128)</span></a>
@@ -124,10 +124,10 @@
 <a name="62"><span class="lineNum">      62 </span>            :     end</a>
 <a name="63"><span class="lineNum">      63 </span>            : </a>
 <a name="64"><span class="lineNum">      64 </span>            :     function push!(set :: FixedBinarySet, item :: Int64)</a>
-<a name="65"><span class="lineNum">      65 </span><span class="lineCov">      18403 :         if item &gt; 0 &amp;&amp; item &lt;= set.n</span></a>
-<a name="66"><span class="lineNum">      66 </span><span class="lineCov">      18403 :             subset = load_subset!(set, item)</span></a>
-<a name="67"><span class="lineNum">      67 </span><span class="lineCov">      18403 :             item_target = get_target_item(item)</span></a>
-<a name="68"><span class="lineNum">      68 </span><span class="lineCov">      18403 :             FBSet128.push!(subset, item_target)</span></a>
+<a name="65"><span class="lineNum">      65 </span><span class="lineCov">      18405 :         if item &gt; 0 &amp;&amp; item &lt;= set.n</span></a>
+<a name="66"><span class="lineNum">      66 </span><span class="lineCov">      18405 :             subset = load_subset!(set, item)</span></a>
+<a name="67"><span class="lineNum">      67 </span><span class="lineCov">      18405 :             item_target = get_target_item(item)</span></a>
+<a name="68"><span class="lineNum">      68 </span><span class="lineCov">      18405 :             FBSet128.push!(subset, item_target)</span></a>
 <a name="69"><span class="lineNum">      69 </span>            :         end</a>
 <a name="70"><span class="lineNum">      70 </span>            :     end</a>
 <a name="71"><span class="lineNum">      71 </span>            : </a>
@@ -164,118 +164,131 @@
 <a name="102"><span class="lineNum">     102 </span>            : </a>
 <a name="103"><span class="lineNum">     103 </span>            :     function union!(set_a :: FixedBinarySet, set_b :: FixedBinarySet)</a>
 <a name="104"><span class="lineNum">     104 </span><span class="lineCov">         53 :         if set_a.n == set_b.n</span></a>
-<a name="105"><span class="lineNum">     105 </span><span class="lineCov">        106 :             for id in 1:set_a.n_subsets</span></a>
-<a name="106"><span class="lineNum">     106 </span><span class="lineCov">       9487 :                 subset_b = get_subset(set_b, id)</span></a>
-<a name="107"><span class="lineNum">     107 </span>            : </a>
-<a name="108"><span class="lineNum">     108 </span><span class="lineCov">       4880 :                 if subset_b != nothing</span></a>
-<a name="109"><span class="lineNum">     109 </span><span class="lineCov">         91 :                     subset_a = load_subset_by_id!(set_a, id)</span></a>
-<a name="110"><span class="lineNum">     110 </span>            : </a>
-<a name="111"><span class="lineNum">     111 </span><span class="lineCov">         91 :                     FBSet128.union!(subset_a, subset_b)</span></a>
-<a name="112"><span class="lineNum">     112 </span>            :                 end</a>
-<a name="113"><span class="lineNum">     113 </span>            :             end</a>
-<a name="114"><span class="lineNum">     114 </span>            :         end</a>
-<a name="115"><span class="lineNum">     115 </span>            :     end</a>
+<a name="105"><span class="lineNum">     105 </span><span class="lineCov">        106 :             for (id, subset_b) in set_b.subsets</span></a>
+<a name="106"><span class="lineNum">     106 </span><span class="lineCov">         91 :                 subset_a = load_subset_by_id!(set_a, id)</span></a>
+<a name="107"><span class="lineNum">     107 </span><span class="lineCov">         91 :                 FBSet128.union!(subset_a, subset_b)</span></a>
+<a name="108"><span class="lineNum">     108 </span>            :             end</a>
+<a name="109"><span class="lineNum">     109 </span>            :         end</a>
+<a name="110"><span class="lineNum">     110 </span>            :     end</a>
+<a name="111"><span class="lineNum">     111 </span>            : </a>
+<a name="112"><span class="lineNum">     112 </span>            :     function intersect!(set_a :: FixedBinarySet, set_b :: FixedBinarySet)</a>
+<a name="113"><span class="lineNum">     113 </span><span class="lineCov">         38 :         if set_a.n == set_b.n</span></a>
+<a name="114"><span class="lineNum">     114 </span><span class="lineCov">         76 :             for (id, subset_a) in set_a.subsets</span></a>
+<a name="115"><span class="lineNum">     115 </span><span class="lineCov">         79 :                 subset_b = get_subset(set_b, id)</span></a>
 <a name="116"><span class="lineNum">     116 </span>            : </a>
-<a name="117"><span class="lineNum">     117 </span>            :     function intersect!(set_a :: FixedBinarySet, set_b :: FixedBinarySet)</a>
-<a name="118"><span class="lineNum">     118 </span><span class="lineCov">         38 :         if set_a.n == set_b.n</span></a>
-<a name="119"><span class="lineNum">     119 </span><span class="lineCov">         76 :             for id in 1:set_a.n_subsets</span></a>
-<a name="120"><span class="lineNum">     120 </span><span class="lineCov">       7567 :                 subset_a = get_subset(set_a, id)</span></a>
-<a name="121"><span class="lineNum">     121 </span><span class="lineCov">       7568 :                 subset_b = get_subset(set_b, id)</span></a>
-<a name="122"><span class="lineNum">     122 </span>            : </a>
-<a name="123"><span class="lineNum">     123 </span><span class="lineCov">       3884 :                 if subset_a == nothing || subset_b == nothing</span></a>
-<a name="124"><span class="lineNum">     124 </span>            :                     # Si uno de los conjuntos es vacio entonces la intersección será vacia</a>
-<a name="125"><span class="lineNum">     125 </span><span class="lineCov">       3774 :                     if subset_a != nothing</span></a>
-<a name="126"><span class="lineNum">     126 </span>            :                         # Si el subconjunto A, existe entonces tenemos que borrarlo</a>
-<a name="127"><span class="lineNum">     127 </span>            :                         # eso significa que todo el subset es vacio</a>
-<a name="128"><span class="lineNum">     128 </span><span class="lineCov">         12 :                         delete!(set_a.subsets, id)</span></a>
-<a name="129"><span class="lineNum">     129 </span>            :                     end</a>
-<a name="130"><span class="lineNum">     130 </span><span class="lineCov">        110 :                 elseif subset_a != nothing &amp;&amp; subset_b != nothing</span></a>
-<a name="131"><span class="lineNum">     131 </span><span class="lineCov">       3872 :                     FBSet128.intersect!(subset_a, subset_b)</span></a>
-<a name="132"><span class="lineNum">     132 </span>            :                 end</a>
-<a name="133"><span class="lineNum">     133 </span>            :             end</a>
-<a name="134"><span class="lineNum">     134 </span>            :         end</a>
-<a name="135"><span class="lineNum">     135 </span>            :     end</a>
-<a name="136"><span class="lineNum">     136 </span>            : </a>
-<a name="137"><span class="lineNum">     137 </span>            :     function diff!(set_a :: FixedBinarySet, set_b :: FixedBinarySet)</a>
-<a name="138"><span class="lineNum">     138 </span><span class="lineCov">         11 :         if set_a.n == set_b.n</span></a>
-<a name="139"><span class="lineNum">     139 </span><span class="lineCov">         22 :             for id in 1:set_a.n_subsets</span></a>
-<a name="140"><span class="lineNum">     140 </span><span class="lineCov">       2570 :                 subset_a = get_subset(set_a, id)</span></a>
-<a name="141"><span class="lineNum">     141 </span><span class="lineCov">       2574 :                 subset_b = get_subset(set_b, id)</span></a>
-<a name="142"><span class="lineNum">     142 </span>            : </a>
-<a name="143"><span class="lineNum">     143 </span><span class="lineCov">       1342 :                 if subset_a != nothing &amp;&amp; subset_b != nothing</span></a>
-<a name="144"><span class="lineNum">     144 </span><span class="lineCov">         34 :                     subset_a = load_subset_by_id!(set_a, id)</span></a>
-<a name="145"><span class="lineNum">     145 </span><span class="lineCov">         34 :                     FBSet128.diff!(subset_a, subset_b)</span></a>
-<a name="146"><span class="lineNum">     146 </span>            : </a>
-<a name="147"><span class="lineNum">     147 </span><span class="lineCov">         34 :                     if FBSet128.isempty(subset_a)</span></a>
-<a name="148"><span class="lineNum">     148 </span><span class="lineCov">         21 :                         delete!(set_a.subsets, id)</span></a>
-<a name="149"><span class="lineNum">     149 </span>            :                     end</a>
-<a name="150"><span class="lineNum">     150 </span>            :                 end</a>
-<a name="151"><span class="lineNum">     151 </span>            :             end</a>
-<a name="152"><span class="lineNum">     152 </span>            :         end</a>
-<a name="153"><span class="lineNum">     153 </span>            :     end</a>
-<a name="154"><span class="lineNum">     154 </span>            : </a>
-<a name="155"><span class="lineNum">     155 </span>            :     function isequal(set_a :: FixedBinarySet, set_b :: FixedBinarySet) :: Bool</a>
-<a name="156"><span class="lineNum">     156 </span><span class="lineCov">         10 :         if set_a.n == set_b.n</span></a>
-<a name="157"><span class="lineNum">     157 </span><span class="lineCov">          9 :             flag = true</span></a>
-<a name="158"><span class="lineNum">     158 </span>            : </a>
-<a name="159"><span class="lineNum">     159 </span><span class="lineCov">         18 :             for id in 1:set_a.n_subsets</span></a>
-<a name="160"><span class="lineNum">     160 </span><span class="lineCov">         62 :                 if !flag</span></a>
-<a name="161"><span class="lineNum">     161 </span><span class="lineCov">          1 :                     return false</span></a>
-<a name="162"><span class="lineNum">     162 </span>            :                 end</a>
-<a name="163"><span class="lineNum">     163 </span>            : </a>
-<a name="164"><span class="lineNum">     164 </span><span class="lineCov">         82 :                 subset_a = get_subset(set_a, id)</span></a>
-<a name="165"><span class="lineNum">     165 </span><span class="lineCov">         81 :                 subset_b = get_subset(set_b, id)</span></a>
-<a name="166"><span class="lineNum">     166 </span><span class="lineCov">         62 :                 if subset_a == nothing &amp;&amp; subset_b == nothing</span></a>
-<a name="167"><span class="lineNum">     167 </span><span class="lineCov">         20 :                     flag = true</span></a>
-<a name="168"><span class="lineNum">     168 </span><span class="lineCov">         42 :                 elseif subset_a == nothing &amp;&amp; subset_b != nothing</span></a>
-<a name="169"><span class="lineNum">     169 </span><span class="lineCov">          1 :                     flag = false</span></a>
-<a name="170"><span class="lineNum">     170 </span><span class="lineCov">         80 :                 elseif subset_a != nothing &amp;&amp; subset_b == nothing</span></a>
-<a name="171"><span class="lineNum">     171 </span><span class="lineNoCov">          0 :                     flag = false</span></a>
-<a name="172"><span class="lineNum">     172 </span>            :                 else</a>
-<a name="173"><span class="lineNum">     173 </span><span class="lineCov">        154 :                     flag = FBSet128.isequal(subset_a, subset_b)</span></a>
-<a name="174"><span class="lineNum">     174 </span>            :                 end</a>
-<a name="175"><span class="lineNum">     175 </span>            :             end</a>
+<a name="117"><span class="lineNum">     117 </span><span class="lineCov">        122 :                 if subset_b == nothing</span></a>
+<a name="118"><span class="lineNum">     118 </span>            :                     # Si uno de los conjuntos es vacio entonces la intersección será vacia</a>
+<a name="119"><span class="lineNum">     119 </span>            : </a>
+<a name="120"><span class="lineNum">     120 </span>            :                     # Si el subconjunto A, existe entonces tenemos que borrarlo</a>
+<a name="121"><span class="lineNum">     121 </span>            :                     # eso significa que todo el subset es vacio</a>
+<a name="122"><span class="lineNum">     122 </span><span class="lineCov">         12 :                     delete!(set_a.subsets, id)</span></a>
+<a name="123"><span class="lineNum">     123 </span>            :                 else</a>
+<a name="124"><span class="lineNum">     124 </span><span class="lineCov">         67 :                     FBSet128.intersect!(subset_a, subset_b)</span></a>
+<a name="125"><span class="lineNum">     125 </span>            :                 end</a>
+<a name="126"><span class="lineNum">     126 </span>            :             end</a>
+<a name="127"><span class="lineNum">     127 </span>            :         end</a>
+<a name="128"><span class="lineNum">     128 </span>            :     end</a>
+<a name="129"><span class="lineNum">     129 </span>            : </a>
+<a name="130"><span class="lineNum">     130 </span><span class="lineNoCov">          0 :     function intersect_old!(set_a :: FixedBinarySet, set_b :: FixedBinarySet)</span></a>
+<a name="131"><span class="lineNum">     131 </span><span class="lineNoCov">          0 :         if set_a.n == set_b.n</span></a>
+<a name="132"><span class="lineNum">     132 </span><span class="lineNoCov">          0 :             for id in 1:set_a.n_subsets</span></a>
+<a name="133"><span class="lineNum">     133 </span><span class="lineNoCov">          0 :                 subset_a = get_subset(set_a, id)</span></a>
+<a name="134"><span class="lineNum">     134 </span><span class="lineNoCov">          0 :                 subset_b = get_subset(set_b, id)</span></a>
+<a name="135"><span class="lineNum">     135 </span>            : </a>
+<a name="136"><span class="lineNum">     136 </span><span class="lineNoCov">          0 :                 if subset_a == nothing || subset_b == nothing</span></a>
+<a name="137"><span class="lineNum">     137 </span>            :                     # Si uno de los conjuntos es vacio entonces la intersección será vacia</a>
+<a name="138"><span class="lineNum">     138 </span><span class="lineNoCov">          0 :                     if subset_a != nothing</span></a>
+<a name="139"><span class="lineNum">     139 </span>            :                         # Si el subconjunto A, existe entonces tenemos que borrarlo</a>
+<a name="140"><span class="lineNum">     140 </span>            :                         # eso significa que todo el subset es vacio</a>
+<a name="141"><span class="lineNum">     141 </span><span class="lineNoCov">          0 :                         delete!(set_a.subsets, id)</span></a>
+<a name="142"><span class="lineNum">     142 </span>            :                     end</a>
+<a name="143"><span class="lineNum">     143 </span><span class="lineNoCov">          0 :                 elseif subset_a != nothing &amp;&amp; subset_b != nothing</span></a>
+<a name="144"><span class="lineNum">     144 </span><span class="lineNoCov">          0 :                     FBSet128.intersect!(subset_a, subset_b)</span></a>
+<a name="145"><span class="lineNum">     145 </span>            :                 end</a>
+<a name="146"><span class="lineNum">     146 </span>            :             end</a>
+<a name="147"><span class="lineNum">     147 </span>            :         end</a>
+<a name="148"><span class="lineNum">     148 </span>            :     end</a>
+<a name="149"><span class="lineNum">     149 </span>            : </a>
+<a name="150"><span class="lineNum">     150 </span>            :     function diff!(set_a :: FixedBinarySet, set_b :: FixedBinarySet)</a>
+<a name="151"><span class="lineNum">     151 </span><span class="lineCov">         11 :         if set_a.n == set_b.n</span></a>
+<a name="152"><span class="lineNum">     152 </span><span class="lineCov">         22 :             for id in 1:set_a.n_subsets</span></a>
+<a name="153"><span class="lineNum">     153 </span><span class="lineCov">       2570 :                 subset_a = get_subset(set_a, id)</span></a>
+<a name="154"><span class="lineNum">     154 </span><span class="lineCov">       2574 :                 subset_b = get_subset(set_b, id)</span></a>
+<a name="155"><span class="lineNum">     155 </span>            : </a>
+<a name="156"><span class="lineNum">     156 </span><span class="lineCov">       1342 :                 if subset_a != nothing &amp;&amp; subset_b != nothing</span></a>
+<a name="157"><span class="lineNum">     157 </span><span class="lineCov">         34 :                     subset_a = load_subset_by_id!(set_a, id)</span></a>
+<a name="158"><span class="lineNum">     158 </span><span class="lineCov">         34 :                     FBSet128.diff!(subset_a, subset_b)</span></a>
+<a name="159"><span class="lineNum">     159 </span>            : </a>
+<a name="160"><span class="lineNum">     160 </span><span class="lineCov">         34 :                     if FBSet128.isempty(subset_a)</span></a>
+<a name="161"><span class="lineNum">     161 </span><span class="lineCov">         21 :                         delete!(set_a.subsets, id)</span></a>
+<a name="162"><span class="lineNum">     162 </span>            :                     end</a>
+<a name="163"><span class="lineNum">     163 </span>            :                 end</a>
+<a name="164"><span class="lineNum">     164 </span>            :             end</a>
+<a name="165"><span class="lineNum">     165 </span>            :         end</a>
+<a name="166"><span class="lineNum">     166 </span>            :     end</a>
+<a name="167"><span class="lineNum">     167 </span>            : </a>
+<a name="168"><span class="lineNum">     168 </span>            :     function isequal(set_a :: FixedBinarySet, set_b :: FixedBinarySet) :: Bool</a>
+<a name="169"><span class="lineNum">     169 </span><span class="lineCov">         10 :         if set_a.n == set_b.n</span></a>
+<a name="170"><span class="lineNum">     170 </span><span class="lineCov">          9 :             flag = true</span></a>
+<a name="171"><span class="lineNum">     171 </span>            : </a>
+<a name="172"><span class="lineNum">     172 </span><span class="lineCov">         18 :             for id in 1:set_a.n_subsets</span></a>
+<a name="173"><span class="lineNum">     173 </span><span class="lineCov">         62 :                 if !flag</span></a>
+<a name="174"><span class="lineNum">     174 </span><span class="lineCov">          1 :                     return false</span></a>
+<a name="175"><span class="lineNum">     175 </span>            :                 end</a>
 <a name="176"><span class="lineNum">     176 </span>            : </a>
-<a name="177"><span class="lineNum">     177 </span><span class="lineCov">          8 :             return true</span></a>
-<a name="178"><span class="lineNum">     178 </span>            :         else</a>
-<a name="179"><span class="lineNum">     179 </span><span class="lineCov">          1 :             return false</span></a>
-<a name="180"><span class="lineNum">     180 </span>            :         end</a>
-<a name="181"><span class="lineNum">     181 </span>            :     end</a>
-<a name="182"><span class="lineNum">     182 </span>            : </a>
-<a name="183"><span class="lineNum">     183 </span>            : </a>
-<a name="184"><span class="lineNum">     184 </span>            : </a>
-<a name="185"><span class="lineNum">     185 </span>            :     function get_subset(set :: FixedBinarySet, id :: Int64) :: Union{FixedBinarySet128, Nothing}</a>
-<a name="186"><span class="lineNum">     186 </span><span class="lineCov">      15273 :         if haskey(set.subsets, id)</span></a>
-<a name="187"><span class="lineNum">     187 </span><span class="lineCov">      15273 :             return set.subsets[id]</span></a>
-<a name="188"><span class="lineNum">     188 </span>            :         end</a>
-<a name="189"><span class="lineNum">     189 </span>            :     end</a>
-<a name="190"><span class="lineNum">     190 </span>            : </a>
-<a name="191"><span class="lineNum">     191 </span>            :     function clear_subset_if_isempty_by_item!(set :: FixedBinarySet, item :: Int64)</a>
-<a name="192"><span class="lineNum">     192 </span><span class="lineCov">       1257 :         id = get_subset_id(set, item)</span></a>
-<a name="193"><span class="lineNum">     193 </span><span class="lineCov">       1257 :         clear_subset_if_isempty!(set, id)</span></a>
+<a name="177"><span class="lineNum">     177 </span><span class="lineCov">         82 :                 subset_a = get_subset(set_a, id)</span></a>
+<a name="178"><span class="lineNum">     178 </span><span class="lineCov">         81 :                 subset_b = get_subset(set_b, id)</span></a>
+<a name="179"><span class="lineNum">     179 </span><span class="lineCov">         62 :                 if subset_a == nothing &amp;&amp; subset_b == nothing</span></a>
+<a name="180"><span class="lineNum">     180 </span><span class="lineCov">         20 :                     flag = true</span></a>
+<a name="181"><span class="lineNum">     181 </span><span class="lineCov">         42 :                 elseif subset_a == nothing &amp;&amp; subset_b != nothing</span></a>
+<a name="182"><span class="lineNum">     182 </span><span class="lineCov">          1 :                     flag = false</span></a>
+<a name="183"><span class="lineNum">     183 </span><span class="lineCov">         80 :                 elseif subset_a != nothing &amp;&amp; subset_b == nothing</span></a>
+<a name="184"><span class="lineNum">     184 </span><span class="lineNoCov">          0 :                     flag = false</span></a>
+<a name="185"><span class="lineNum">     185 </span>            :                 else</a>
+<a name="186"><span class="lineNum">     186 </span><span class="lineCov">        154 :                     flag = FBSet128.isequal(subset_a, subset_b)</span></a>
+<a name="187"><span class="lineNum">     187 </span>            :                 end</a>
+<a name="188"><span class="lineNum">     188 </span>            :             end</a>
+<a name="189"><span class="lineNum">     189 </span>            : </a>
+<a name="190"><span class="lineNum">     190 </span><span class="lineCov">          8 :             return true</span></a>
+<a name="191"><span class="lineNum">     191 </span>            :         else</a>
+<a name="192"><span class="lineNum">     192 </span><span class="lineCov">          1 :             return false</span></a>
+<a name="193"><span class="lineNum">     193 </span>            :         end</a>
 <a name="194"><span class="lineNum">     194 </span>            :     end</a>
 <a name="195"><span class="lineNum">     195 </span>            : </a>
-<a name="196"><span class="lineNum">     196 </span>            :     function clear_subset_if_isempty!(set :: FixedBinarySet, id :: Int64)</a>
-<a name="197"><span class="lineNum">     197 </span><span class="lineCov">       1257 :         if haskey(set.subsets, id)</span></a>
-<a name="198"><span class="lineNum">     198 </span><span class="lineCov">       1257 :             if FBSet128.isempty(set.subsets[id])</span></a>
-<a name="199"><span class="lineNum">     199 </span><span class="lineCov">       1257 :                 delete!(set.subsets, id)</span></a>
-<a name="200"><span class="lineNum">     200 </span>            :             end</a>
+<a name="196"><span class="lineNum">     196 </span>            : </a>
+<a name="197"><span class="lineNum">     197 </span>            : </a>
+<a name="198"><span class="lineNum">     198 </span>            :     function get_subset(set :: FixedBinarySet, id :: Int64) :: Union{FixedBinarySet128, Nothing}</a>
+<a name="199"><span class="lineNum">     199 </span><span class="lineCov">       2917 :         if haskey(set.subsets, id)</span></a>
+<a name="200"><span class="lineNum">     200 </span><span class="lineCov">       2917 :             return set.subsets[id]</span></a>
 <a name="201"><span class="lineNum">     201 </span>            :         end</a>
 <a name="202"><span class="lineNum">     202 </span>            :     end</a>
 <a name="203"><span class="lineNum">     203 </span>            : </a>
-<a name="204"><span class="lineNum">     204 </span>            :     function load_subset!(set :: FixedBinarySet, item :: Int64) :: Union{FixedBinarySet128, Nothing}</a>
-<a name="205"><span class="lineNum">     205 </span><span class="lineCov">      24430 :         id = get_subset_id(set, item)</span></a>
-<a name="206"><span class="lineNum">     206 </span><span class="lineCov">      24430 :         return load_subset_by_id!(set, id)</span></a>
+<a name="204"><span class="lineNum">     204 </span>            :     function clear_subset_if_isempty_by_item!(set :: FixedBinarySet, item :: Int64)</a>
+<a name="205"><span class="lineNum">     205 </span><span class="lineCov">       1257 :         id = get_subset_id(set, item)</span></a>
+<a name="206"><span class="lineNum">     206 </span><span class="lineCov">       1257 :         clear_subset_if_isempty!(set, id)</span></a>
 <a name="207"><span class="lineNum">     207 </span>            :     end</a>
 <a name="208"><span class="lineNum">     208 </span>            : </a>
-<a name="209"><span class="lineNum">     209 </span>            :     function load_subset_by_id!(set :: FixedBinarySet, id :: Int64) :: Union{FixedBinarySet128, Nothing}</a>
-<a name="210"><span class="lineNum">     210 </span><span class="lineCov">      24555 :         if !haskey(set.subsets, id)</span></a>
-<a name="211"><span class="lineNum">     211 </span><span class="lineCov">       1537 :             set.subsets[id] = FBSet128.new()</span></a>
-<a name="212"><span class="lineNum">     212 </span>            :         end</a>
-<a name="213"><span class="lineNum">     213 </span>            : </a>
-<a name="214"><span class="lineNum">     214 </span><span class="lineCov">      24555 :         return set.subsets[id]</span></a>
+<a name="209"><span class="lineNum">     209 </span>            :     function clear_subset_if_isempty!(set :: FixedBinarySet, id :: Int64)</a>
+<a name="210"><span class="lineNum">     210 </span><span class="lineCov">       1257 :         if haskey(set.subsets, id)</span></a>
+<a name="211"><span class="lineNum">     211 </span><span class="lineCov">       1257 :             if FBSet128.isempty(set.subsets[id])</span></a>
+<a name="212"><span class="lineNum">     212 </span><span class="lineCov">       1257 :                 delete!(set.subsets, id)</span></a>
+<a name="213"><span class="lineNum">     213 </span>            :             end</a>
+<a name="214"><span class="lineNum">     214 </span>            :         end</a>
 <a name="215"><span class="lineNum">     215 </span>            :     end</a>
-<a name="216"><span class="lineNum">     216 </span>            : end</a>
+<a name="216"><span class="lineNum">     216 </span>            : </a>
+<a name="217"><span class="lineNum">     217 </span>            :     function load_subset!(set :: FixedBinarySet, item :: Int64) :: Union{FixedBinarySet128, Nothing}</a>
+<a name="218"><span class="lineNum">     218 </span><span class="lineCov">      24432 :         id = get_subset_id(set, item)</span></a>
+<a name="219"><span class="lineNum">     219 </span><span class="lineCov">      24432 :         return load_subset_by_id!(set, id)</span></a>
+<a name="220"><span class="lineNum">     220 </span>            :     end</a>
+<a name="221"><span class="lineNum">     221 </span>            : </a>
+<a name="222"><span class="lineNum">     222 </span>            :     function load_subset_by_id!(set :: FixedBinarySet, id :: Int64) :: Union{FixedBinarySet128, Nothing}</a>
+<a name="223"><span class="lineNum">     223 </span><span class="lineCov">      24557 :         if !haskey(set.subsets, id)</span></a>
+<a name="224"><span class="lineNum">     224 </span><span class="lineCov">       1541 :             set.subsets[id] = FBSet128.new()</span></a>
+<a name="225"><span class="lineNum">     225 </span>            :         end</a>
+<a name="226"><span class="lineNum">     226 </span>            : </a>
+<a name="227"><span class="lineNum">     227 </span><span class="lineCov">      24557 :         return set.subsets[id]</span></a>
+<a name="228"><span class="lineNum">     228 </span>            :     end</a>
+<a name="229"><span class="lineNum">     229 </span>            : end</a>
 </pre>
       </td>
     </tr>

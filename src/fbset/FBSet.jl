@@ -102,19 +102,32 @@ module FBSet
 
     function union!(set_a :: FixedBinarySet, set_b :: FixedBinarySet)
         if set_a.n == set_b.n
-            for id in 1:set_a.n_subsets
-                subset_b = get_subset(set_b, id)
-
-                if subset_b != nothing
-                    subset_a = load_subset_by_id!(set_a, id)
-
-                    FBSet128.union!(subset_a, subset_b)
-                end
+            for (id, subset_b) in set_b.subsets
+                subset_a = load_subset_by_id!(set_a, id)
+                FBSet128.union!(subset_a, subset_b)
             end
         end
     end
 
     function intersect!(set_a :: FixedBinarySet, set_b :: FixedBinarySet)
+        if set_a.n == set_b.n
+            for (id, subset_a) in set_a.subsets
+                subset_b = get_subset(set_b, id)
+
+                if subset_b == nothing
+                    # Si uno de los conjuntos es vacio entonces la intersección será vacia
+
+                    # Si el subconjunto A, existe entonces tenemos que borrarlo
+                    # eso significa que todo el subset es vacio
+                    delete!(set_a.subsets, id)
+                else
+                    FBSet128.intersect!(subset_a, subset_b)
+                end
+            end
+        end
+    end
+
+    function intersect_old!(set_a :: FixedBinarySet, set_b :: FixedBinarySet)
         if set_a.n == set_b.n
             for id in 1:set_a.n_subsets
                 subset_a = get_subset(set_a, id)
