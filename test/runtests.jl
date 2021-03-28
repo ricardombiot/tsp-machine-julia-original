@@ -20,6 +20,7 @@ end
     include("./graph/test_graph.jl")
     include("./graph/test_graph_delete.jl")
     include("./graph/test_graph_joins.jl")
+    include("./graph/test_graph_multi_join.jl")
 end
 
 @time @testset "Utils" begin

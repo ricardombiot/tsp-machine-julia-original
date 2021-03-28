@@ -1,5 +1,6 @@
 function up!(graph :: Graph, color :: Color, action_id :: ActionId)
     delete_node_by_color!(graph, color)
+    review_owners_all_graph!(graph)
     make_up!(graph, color, action_id)
 end
 

@@ -22,12 +22,6 @@ function apply_node_deletes!(graph :: Graph)
             graph.required_review_ownwers = true
 
             apply_node_deletes!(graph)
-        else
-            review_owners!(graph)
-
-            if !isempty(graph.nodes_to_delete)
-                apply_node_deletes!(graph)
-            end
         end
     end
 end

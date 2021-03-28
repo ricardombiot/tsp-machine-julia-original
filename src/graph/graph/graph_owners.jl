@@ -32,6 +32,18 @@ function push_node_as_new_owner!(graph :: Graph, node_owner :: Node)
 end
 
 
+function review_owners_all_graph!(graph)
+    if graph.valid && graph.required_review_ownwers
+        review_owners!(graph)
+
+        if graph.valid && !isempty(graph.nodes_to_delete)
+            apply_node_deletes!(graph)
+            review_owners_all_graph!(graph)
+        end
+    end
+end
+
+
 #=
 Realizamos una interection mutable de los sets de owners, con la intención de evitar
 que los sets de owners contengan ids de nodos que no existen actualmente en graph.
@@ -44,6 +56,7 @@ que no existe.
 =#
 function review_owners!(graph :: Graph)
     if graph.valid && graph.required_review_ownwers
+        println("review_owners!")
         for (action_id, table_nodes_action) in graph.table_nodes
             for (node_id, node) in table_nodes_action
                 if !filter_by_intersection_owners!(node, graph)
