@@ -6,14 +6,16 @@ function new(n :: Color, b :: Km, color_origin :: Color, action_id :: ActionId)
     table_nodes = Dict{ActionId, Dict{NodeId, Node}}()
     table_color_nodes = Dict{Color, NodesIdSet}()
     table_lines = Dict{Step, NodesIdSet}()
-    table_edges = Dict{EdgeId, EdgeIdSet}()
+    table_edges = Dict{EdgeId, Edge}()
     nodes_to_delete = NodesIdSet()
 
     valid = true
+    action_parent_id = nothing
 
     graph = Graph(n, b, next_step, color_origin, owners,
-            table_nodes, table_color_nodes,
-            table_lines, table_edges,
+            table_nodes, table_edges,
+            table_lines, table_color_nodes,
+            action_parent_id,
             nodes_to_delete, valid)
 
     init!(graph, action_id)

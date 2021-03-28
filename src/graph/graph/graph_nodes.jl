@@ -7,6 +7,7 @@ function add_node!(graph :: Graph, node :: Node)
     graph.table_nodes[node.action_id][node.id] = node
     add_node_color!(graph, node)
     add_node_in_line!(graph, node)
+    push_node_as_new_owner!(graph, node)
 end
 
 function add_node_in_line!(graph :: Graph, node :: Node)

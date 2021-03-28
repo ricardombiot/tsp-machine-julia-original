@@ -14,6 +14,8 @@ using Main.PathsSet.PathNode
 using Main.PathsSet.PathNode: Node
 using Main.PathsSet.PathEdge
 using Main.PathsSet.PathEdge: Edge
+using Main.PathsSet.PathGraph
+using Main.PathsSet.PathGraph: Graph
 
 using Main.PathsSet.OwnersSet
 using Main.PathsSet.OwnersSet: OwnersFixedSet

@@ -1,4 +1,5 @@
 module PathEdge
+    using Main.PathsSet.Alias: Step
 
     using Main.PathsSet.Owners
     using Main.PathsSet.PathNode
@@ -25,6 +26,27 @@ module PathEdge
         PathNode.add_parent!(node_destine, node_origin)
 
         return new(node_origin.id, node_destine.id, node_origin.owners)
+    end
+
+    function push_owner!(edge :: Edge, node_owner :: Node)
+        push_owner!(node, node_owner.step, node_owner.id)
+    end
+    function push_owner!(edge :: Edge, step :: Step, node_id :: NodeId)
+        Owners.push!(edge.owners, step, node_id)
+    end
+
+    function pop_owner!(edge :: Edge, node_owner :: Node)
+        pop_owner!(node, node_owner.step, node_owner.id)
+    end
+    function pop_owner!(edge :: Edge, step :: Step, node_id :: NodeId)
+        Owners.pop!(edge.owners, step, node_id)
+    end
+
+    function have_owner(edge :: Edge, node_owner :: Node) :: Bool
+        have_owner(node, node_owner.step, node_owner.id)
+    end
+    function have_owner(edge :: Edge, step :: Step, node_id :: NodeId) :: Bool
+        Owners.have(edge.owners, step, node_id)
     end
 
 end

@@ -11,6 +11,8 @@ function test_node()
     @test node0.step == Step(0)
     @test isempty(node0.parents)
     @test isempty(node0.sons)
+
+    @test PathNode.is_root(node0)
 end
 
 function test_node_parents_and_sons()
