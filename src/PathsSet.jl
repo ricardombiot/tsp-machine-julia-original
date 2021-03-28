@@ -7,8 +7,9 @@ module PathsSet
     include("fbset/FBSet.jl")
 
     include("graph/components/node/node_identity.jl")
+    include("graph/components/edge/edge_identity.jl")
     include("graph/components/owners/owners_set.jl")
     include("graph/components/owners/owners.jl")
-
+    include("graph/components/node/node.jl")
 
 end # module

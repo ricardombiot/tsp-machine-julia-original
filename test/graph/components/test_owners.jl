@@ -8,10 +8,12 @@ function test_owners_push_and_pop_key_by_step()
 
     @test Owners.isempty(owners, Step(0))
     Owners.push!(owners, Step(0), node_id)
+    @test Owners.have(owners, Step(0), node_id) == true
     @test !Owners.isempty(owners, Step(0))
-    Owners.pop!(owners, Step(0), node_id)
-    @test Owners.isempty(owners, Step(0))
 
+    Owners.pop!(owners, Step(0), node_id)
+    @test Owners.have(owners, Step(0), node_id) == false
+    @test Owners.isempty(owners, Step(0))
     @test owners.valid == false
 end
 
@@ -164,7 +166,8 @@ function test_operations_not_valid_cases()
 
     # union!
 
-    owners_set_a_copy = deepcopy(owners_set_a)
+    #owners_set_a_copy = deepcopy(owners_set_a) or derive
+    owners_set_a_copy = Owners.derive(owners_set_a)
     Owners.union!(owners_set_a_copy, owners_set_b)
     @test owners_set_a_copy.valid == false
 

@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-03-28 09:41:50</td>
+            <td class="headerValue">2021-03-28 09:48:59</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -118,10 +118,10 @@
 <a name="56"><span class="lineNum">      56 </span>            :     end</a>
 <a name="57"><span class="lineNum">      57 </span>            : </a>
 <a name="58"><span class="lineNum">      58 </span>            :     function have(set :: FixedBinarySet128, item :: Int64) :: Bool</a>
-<a name="59"><span class="lineNum">      59 </span><span class="lineCov">       4807 :         if item &gt; 0 &amp;&amp; item &lt;= 128</span></a>
-<a name="60"><span class="lineNum">      60 </span><span class="lineCov">       4805 :             target = UInt128(1) &lt;&lt; (item - 1)</span></a>
-<a name="61"><span class="lineNum">      61 </span><span class="lineCov">       4805 :             filter_bit = (set.content &amp; target) &gt;&gt;&gt; (item - 1)</span></a>
-<a name="62"><span class="lineNum">      62 </span><span class="lineCov">       4805 :             return filter_bit == UInt128(1)</span></a>
+<a name="59"><span class="lineNum">      59 </span><span class="lineCov">       4808 :         if item &gt; 0 &amp;&amp; item &lt;= 128</span></a>
+<a name="60"><span class="lineNum">      60 </span><span class="lineCov">       4806 :             target = UInt128(1) &lt;&lt; (item - 1)</span></a>
+<a name="61"><span class="lineNum">      61 </span><span class="lineCov">       4806 :             filter_bit = (set.content &amp; target) &gt;&gt;&gt; (item - 1)</span></a>
+<a name="62"><span class="lineNum">      62 </span><span class="lineCov">       4806 :             return filter_bit == UInt128(1)</span></a>
 <a name="63"><span class="lineNum">      63 </span>            :         else</a>
 <a name="64"><span class="lineNum">      64 </span><span class="lineCov">          2 :             return false</span></a>
 <a name="65"><span class="lineNum">      65 </span>            :         end</a>

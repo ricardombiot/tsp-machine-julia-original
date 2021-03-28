@@ -106,12 +106,7 @@ module Owners
                 step_set_a = get_step_set(owners_a, step)
                 step_set_b = get_step_set(owners_b, step)
 
-                if step_set_a == nothing || step_set_b == nothing
-                    owners_a.valid = false
-                    break
-                else
-                    OwnersSet.union!(step_set_a, step_set_b)
-                end
+                OwnersSet.union!(step_set_a, step_set_b)
             end
         else
             owners_a.valid = false
@@ -124,16 +119,11 @@ module Owners
                 step_set_a = get_step_set(owners_a, step)
                 step_set_b = get_step_set(owners_b, step)
 
-                if step_set_a == nothing || step_set_b == nothing
+                OwnersSet.intersect!(step_set_a, step_set_b)
+
+                if OwnersSet.isempty(step_set_a)
                     owners_a.valid = false
                     break
-                else
-                    OwnersSet.intersect!(step_set_a, step_set_b)
-
-                    if OwnersSet.isempty(step_set_a)
-                        owners_a.valid = false
-                        break
-                    end
                 end
             end
         else
@@ -147,17 +137,11 @@ module Owners
                 step_set_a = get_step_set(owners_a, step)
                 step_set_b = get_step_set(owners_b, step)
 
+                OwnersSet.diff!(step_set_a, step_set_b)
 
-                if step_set_a == nothing || step_set_b == nothing
+                if OwnersSet.isempty(step_set_a)
                     owners_a.valid = false
                     break
-                else
-                    OwnersSet.diff!(step_set_a, step_set_b)
-
-                    if OwnersSet.isempty(step_set_a)
-                        owners_a.valid = false
-                        break
-                    end
                 end
             end
         else

@@ -1,6 +1,6 @@
 module EdgeIdentity
 
-    using Main.PathsSets.NodeIdentity: NodeId
+    using Main.PathsSet.NodeIdentity: NodeId
 
     struct EdgeId
         origin_id :: NodeId
