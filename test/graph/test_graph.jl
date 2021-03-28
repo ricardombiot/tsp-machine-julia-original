@@ -88,5 +88,82 @@ function test_up_graph()
 end
 
 
+function test_second_up()
+    n = Color(6)
+    b = Km(6)
+    action_id_s0_0 = GeneratorIds.get_action_id(Color(n), Km(0), Color(0))
+    action_id_s1_2 = GeneratorIds.get_action_id(Color(n), Km(1), Color(2))
+    action_id_s2_4 = GeneratorIds.get_action_id(Color(n), Km(2), Color(4))
+    ## Create graph
+    graph = PathGraph.new(n, b, Color(0), action_id_s0_0)
+    PathGraph.make_up!(graph, Color(2), action_id_s1_2)
+    PathGraph.make_up!(graph, Color(4), action_id_s2_4)
+    @test graph.next_step == Step(3)
+
+    ## Testing
+    node0_id = NodeIdentity.new(n, b, action_id_s0_0)
+    node2_id = NodeIdentity.new(n, b, action_id_s1_2, action_id_s0_0)
+    node4_id = NodeIdentity.new(n, b, action_id_s2_4, action_id_s1_2)
+
+    ## Edges
+
+    edge_02 = PathGraph.get_edge(graph, node0_id, node2_id)
+    @test edge_02.id.origin_id == node0_id
+    @test edge_02.id.destine_id == node2_id
+
+    edge_24 = PathGraph.get_edge(graph, node2_id, node4_id)
+    @test edge_24.id.origin_id == node2_id
+    @test edge_24.id.destine_id == node4_id
+
+    ## Nodes
+
+    node0 = PathGraph.get_node(graph, node0_id)
+    @test PathNode.have_parents(node0) == false
+    @test PathNode.have_sons(node0) == true
+    @test haskey(node0.sons, node2_id) == true
+    @test node0.sons[node2_id] == edge_02.id
+
+    node2 = PathGraph.get_node(graph, node2_id)
+    @test PathNode.have_parents(node2) == true
+    @test haskey(node2.parents, node0_id) == true
+    @test node2.parents[node0_id] == edge_02.id
+    @test PathNode.have_sons(node2) == true
+    @test haskey(node2.sons, node4_id) == true
+    @test node2.sons[node4_id] == edge_24.id
+
+    node4 = PathGraph.get_node(graph, node4_id)
+    @test PathNode.have_parents(node4) == true
+    @test haskey(node4.parents, node2_id) == true
+    @test node4.parents[node2_id] == edge_24.id
+    @test PathNode.have_sons(node4) == false
+
+
+    ## Check Owners
+
+    @test Owners.have(graph.owners, Step(0), node0_id)
+    @test PathNode.have_owner(node0, Step(0), node0_id)
+    @test PathNode.have_owner(node2, Step(0), node0_id)
+    @test PathNode.have_owner(node4, Step(0), node0_id)
+    @test PathEdge.have_owner(edge_02, Step(0), node0_id)
+    @test PathEdge.have_owner(edge_24, Step(0), node0_id)
+
+    @test Owners.have(graph.owners, Step(1), node2_id)
+    @test PathNode.have_owner(node0, Step(1), node2_id)
+    @test PathNode.have_owner(node2, Step(1), node2_id)
+    @test PathNode.have_owner(node4, Step(1), node2_id)
+    @test PathEdge.have_owner(edge_02, Step(1), node2_id)
+    @test PathEdge.have_owner(edge_24, Step(1), node2_id)
+
+    @test Owners.have(graph.owners, Step(2), node4_id)
+    @test PathNode.have_owner(node0, Step(2), node4_id)
+    @test PathNode.have_owner(node2, Step(2), node4_id)
+    @test PathNode.have_owner(node4, Step(2), node4_id)
+    @test PathEdge.have_owner(edge_02, Step(2), node4_id)
+    @test PathEdge.have_owner(edge_24, Step(2), node4_id)
+
+end
+
+
 test_init_graph()
 test_up_graph()
+test_second_up()
