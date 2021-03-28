@@ -40,6 +40,7 @@ module PathGraph
     include("./graph_owners.jl")
     include("./graph_edge.jl")
     include("./graph_make_up.jl")
+    include("./graph_delete.jl")
 
 
 end

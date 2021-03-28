@@ -28,6 +28,11 @@ module PathEdge
         return new(node_origin.id, node_destine.id, node_origin.owners)
     end
 
+    function destroy!(node_origin :: Node, node_destine :: Node)
+        PathNode.delete_son!(node_origin, node_destine)
+        PathNode.delete_parent!(node_destine, node_origin)
+    end
+
     function push_owner!(edge :: Edge, node_owner :: Node)
         push_owner!(edge, node_owner.step, node_owner.id)
     end
@@ -47,6 +52,10 @@ module PathEdge
     end
     function have_owner(edge :: Edge, step :: Step, node_id :: NodeId) :: Bool
         Owners.have(edge.owners, step, node_id)
+    end
+
+    function intersect_owners!(edge :: Edge, owners_graph :: OwnersByStep)
+        Owners.intersect!(edge.owners, owners_graph)
     end
 
 end

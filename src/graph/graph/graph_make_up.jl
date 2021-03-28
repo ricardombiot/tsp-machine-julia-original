@@ -1,3 +1,8 @@
+function up!(graph :: Graph, color :: Color, action_id :: ActionId)
+    delete_node_by_color!(graph, color)
+    make_up!(graph, color, action_id)
+end
+
 function make_up!(graph :: Graph, color :: Color, action_id :: ActionId)
     last_step = graph.next_step - 1
     node = new_node(graph, color, action_id)
