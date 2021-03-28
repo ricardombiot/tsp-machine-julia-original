@@ -1,3 +1,6 @@
+function new_node(graph :: Graph, color_up :: Color, action_id :: ActionId) :: Node
+    return PathNode.new(graph.n, graph.b, graph.next_step, color_up, graph.owners, action_id, graph.action_parent_id)
+end
 
 function add_node!(graph :: Graph, node :: Node)
     if !haskey(graph.table_nodes, node.action_id)
@@ -7,7 +10,9 @@ function add_node!(graph :: Graph, node :: Node)
     graph.table_nodes[node.action_id][node.id] = node
     add_node_color!(graph, node)
     add_node_in_line!(graph, node)
-    push_node_as_new_owner!(graph, node)
+
+    push_owner_myself_as_owner_of_me!(node)
+    push_owner_in_graph!(graph, node)
 end
 
 function add_node_in_line!(graph :: Graph, node :: Node)
@@ -47,4 +52,8 @@ function get_node(graph :: Graph, node_id :: NodeId) :: Union{Node,Nothing}
     end
 
     return nothing
+end
+
+function push_owner_myself_as_owner_of_me!(node :: Node)
+    PathNode.push_owner!(node, node)
 end

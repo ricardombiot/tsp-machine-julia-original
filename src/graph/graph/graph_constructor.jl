@@ -28,7 +28,7 @@ function new_graph_owners(n :: Color, b :: Km) :: OwnersByStep
 end
 
 function init!(graph :: Graph, action_id :: ActionId)
-    node = PathNode.new(graph.n, graph.b, graph.next_step, graph.color_origin, graph.owners , action_id, nothing)
+    node = new_node(graph, graph.color_origin, action_id)
     add_line!(graph)
     graph.next_step += 1
     graph.action_parent_id = action_id

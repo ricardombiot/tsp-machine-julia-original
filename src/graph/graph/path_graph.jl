@@ -4,6 +4,7 @@ module PathGraph
     using Main.PathsSet.PathEdge
     using Main.PathsSet.PathNode
     using Main.PathsSet.Owners
+    using Main.PathsSet.EdgeIdentity
 
     using Main.PathsSet.Owners: OwnersByStep
     using Main.PathsSet.NodeIdentity: NodeId, NodesIdSet
@@ -37,6 +38,8 @@ module PathGraph
     include("./graph_lines.jl")
     include("./graph_nodes.jl")
     include("./graph_owners.jl")
+    include("./graph_edge.jl")
+    include("./graph_make_up.jl")
 
 
 end
