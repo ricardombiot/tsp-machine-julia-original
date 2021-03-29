@@ -84,6 +84,45 @@ function test_execute()
     @test action3.props_parents == [ActionId(1)]
     @test action3.props_graph != nothing
 
+
+    test_memory_database_manager_free(db)
+end
+
+function test_memory_database_manager_free(db)
+    controller = DatabaseMemoryController.new()
+
+    action_id2 = ActionId(13)
+    action2 = DatabaseActions.get_action(db, action_id2)
+    @test action2 != nothing
+    DatabaseMemoryController.register!(controller, action_id2, Km(4))
+
+    action_id3 = ActionId(14)
+    action3 = DatabaseActions.get_action(db, action_id3)
+    @test action3 != nothing
+    DatabaseMemoryController.register!(controller, action_id3, Km(5))
+
+
+    # km 3
+
+    DatabaseMemoryController.free_memory_actions_step!(controller, Km(3), db)
+    action2 = DatabaseActions.get_action(db, action_id2)
+    @test action2 != nothing
+    action3 = DatabaseActions.get_action(db, action_id3)
+    @test action3 != nothing
+
+    # km 4
+    DatabaseMemoryController.free_memory_actions_step!(controller, Km(4), db)
+    action2 = DatabaseActions.get_action(db, action_id2)
+    @test action2 == nothing
+    action3 = DatabaseActions.get_action(db, action_id3)
+    @test action3 != nothing
+
+    # km 5
+    DatabaseMemoryController.free_memory_actions_step!(controller, Km(5), db)
+    action2 = DatabaseActions.get_action(db, action_id2)
+    @test action2 == nothing
+    action3 = DatabaseActions.get_action(db, action_id3)
+    @test action3 == nothing
 end
 
 test_execute()

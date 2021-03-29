@@ -5,9 +5,10 @@ module Actions
     using Main.PathsSet.NodeIdentity: NodeId
     using Main.PathsSet.PathGraph
     using Main.PathsSet.PathGraph: Graph
-    const DictOfGraphsByLenght = Dict{Step, Graph}
-    const DictOfUpGraphsByLenght = Dict{Step, Dict{NodeId,Graph}}
+
     using Main.PathsSet.GeneratorIds
+
+    const DictOfGraphsByLenght = Dict{Step, Graph}
 
     mutable struct Action
         id :: ActionId
@@ -17,7 +18,6 @@ module Actions
 
         props_parents :: Array{ActionId, 1}
         props_graph :: Union{DictOfGraphsByLenght, Nothing}
-        props_up_graphs :: Union{DictOfUpGraphsByLenght, Nothing}
         max_length_graph :: Step
         # Is valid after add a valid graph
         valid :: Bool
@@ -26,9 +26,8 @@ module Actions
 
     function new(id :: ActionId, km :: Km, up_color :: Color, parents :: Array{ActionId, 1})
         props_graph = nothing
-        props_up_graphs = nothing
         max_length_graph = Step(0)
-        Action(id, km, up_color, parents, props_graph, props_up_graphs, max_length_graph, false)
+        Action(id, km, up_color, parents, props_graph, max_length_graph, false)
     end
 
     function new_init(n :: Color, b :: Km, color_origin :: Color)
@@ -39,9 +38,8 @@ module Actions
         max_length_graph = Step(0)
         parents = Array{ActionId, 1}()
         props_graph = nothing
-        props_up_graphs = nothing
 
-        action = Action(id, km, color_origin, parents, props_graph, props_up_graphs, max_length_graph, false)
+        action = Action(id, km, color_origin, parents, props_graph, max_length_graph, false)
 
         graph = PathGraph.new(n, b, color_origin, id)
         init_props_graphs!(action)
@@ -62,17 +60,12 @@ module Actions
         return action.props_graph[action.max_length_graph]
     end
 
-    function get_up_graph(action :: Action, step :: Step, node_id :: NodeId) :: Graph
-        return action.props_up_graphs[step][node_id]
-    end
-
     function was_execute(action :: Action) :: Bool
         get_graph(action) != nothing
     end
 
     function init_props_graphs!(action :: Action)
         action.props_graph = DictOfGraphsByLenght()
-        action.props_up_graphs = DictOfUpGraphsByLenght()
     end
 
     function push_graph_by_lenght!(action :: Action, graph :: Graph)
@@ -90,20 +83,7 @@ module Actions
             else
                 action.props_graph[length] = graph
             end
-
-            # Desactivo para ahorrar memoria...
-            #push_up_graph!(action, graph)
         end
-    end
-
-    function push_up_graph!(action :: Action, graph :: Graph)
-        length = PathGraph.get_lenght(graph)
-        if !haskey(action.props_up_graphs, length)
-            action.props_up_graphs[length] = Dict{NodeId,Graph}()
-        end
-
-        node_id = PathGraph.get_last_id_node(graph)
-        action.props_up_graphs[length][node_id] = deepcopy(graph)
     end
 
 end
