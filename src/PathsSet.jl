@@ -21,4 +21,7 @@ module PathsSet
     include("actions/database_interface.jl")
     include("actions/database_memory_controller.jl")
     include("actions/execute.jl")
+
+    include("machine/grafo/graf.jl")
+    include("machine/grafo/graf_generator.jl")
 end # module

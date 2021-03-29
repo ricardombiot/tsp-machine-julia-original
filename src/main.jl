@@ -1,5 +1,5 @@
 include("./PathsSet.jl")
-using Main.PathsSet.Alias: ActionId, Color, Step, Km, UniqueNodeKey
+using Main.PathsSet.Alias: ActionId, Color, Step, Km, UniqueNodeKey, Weight
 
 using Main.PathsSet.FBSet
 using Main.PathsSet.FBSet: FixedBinarySet
@@ -28,13 +28,15 @@ using Main.PathsSet.Actions
 using Main.PathsSet.Actions: Action
 using Main.PathsSet.DatabaseActions
 using Main.PathsSet.DatabaseActions: DBActions
-
 using Main.PathsSet.DatabaseActionsDisk
 using Main.PathsSet.DatabaseActionsDisk: DBActionsDisk
 using Main.PathsSet.DatabaseInterface
 using Main.PathsSet.DatabaseInterface: IDBActions
-
 using Main.PathsSet.DatabaseMemoryController
 using Main.PathsSet.DatabaseMemoryController: DBMemoryController
-
 using Main.PathsSet.ExecuteActions
+
+
+using Main.PathsSet.Graf
+using Main.PathsSet.Graf: Grafo
+using Main.PathsSet.GrafGenerator
