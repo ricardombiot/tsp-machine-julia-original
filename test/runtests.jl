@@ -23,6 +23,13 @@ end
     include("./graph/test_graph_multi_join.jl")
 end
 
+@time @testset "Actions" begin
+    include("./actions/test_actions.jl")
+    include("./actions/test_database_actions.jl")
+    include("./actions/test_database_actions_disk.jl")
+end
+
+
 @time @testset "Utils" begin
     include("./utils/test_generator_ids.jl")
 end
