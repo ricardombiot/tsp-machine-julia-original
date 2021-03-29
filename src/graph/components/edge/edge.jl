@@ -40,16 +40,18 @@ module PathEdge
         Owners.push!(edge.owners, step, node_id)
     end
 
+    #=
     function pop_owner!(edge :: Edge, node_owner :: Node)
         pop_owner!(edge, node_owner.step, node_owner.id)
     end
     function pop_owner!(edge :: Edge, step :: Step, node_id :: NodeId)
         Owners.pop!(edge.owners, step, node_id)
     end
-
     function have_owner(edge :: Edge, node_owner :: Node) :: Bool
         have_owner(edge, node_owner.step, node_owner.id)
     end
+    =#
+
     function have_owner(edge :: Edge, step :: Step, node_id :: NodeId) :: Bool
         Owners.have(edge.owners, step, node_id)
     end

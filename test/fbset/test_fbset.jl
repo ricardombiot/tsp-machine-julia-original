@@ -41,6 +41,14 @@ function build_fbset_full(n)
 end
 
 
+function test_full_to_empty()
+    set_full = build_fbset_full(1000)
+
+    @test !FBSet.isempty(set_full)
+    FBSet.to_empty!(set_full)
+    @test FBSet.isempty(set_full)
+end
+
 function test_full_1k()
     set_full = build_fbset_full(1000)
 
@@ -333,12 +341,14 @@ end
 test_push_item()
 test_out_index()
 test_full_1k()
+test_full_to_empty()
 test_push_and_pop_item()
 
 test_equals()
 test_not_full_middle()
 test_not_full_one_subset()
 test_not_full_last_subset()
+
 
 test_union_sets_1k()
 test_intersection_sets_1k()

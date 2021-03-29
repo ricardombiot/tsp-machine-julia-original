@@ -18,15 +18,6 @@ module NodeIdentity
         NodeId(key, action_id, action_parent_id)
     end
 
-    function new_using_parent(n :: Color, b :: Km, action_id :: ActionId, parent_identity :: Union{NodeId, Nothing})
-        action_parent_id = nothing
-        if parent_identity != nothing
-            action_parent_id = parent_node_id.action_id
-        end
-
-        new(n, b, action_id, action_parent_id)
-    end
-
     function is_root(node_id :: NodeId) :: Bool
         node_id.action_id == node_id.action_parent_id
     end

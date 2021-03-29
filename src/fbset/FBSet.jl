@@ -24,7 +24,7 @@ module FBSet
         Int64(rem(item-1,128)) + 1
     end
 
-    function to_empty!(set :: FixedBinarySet128)
+    function to_empty!(set :: FixedBinarySet)
         set.subsets = Dict{Int64, FixedBinarySet128}()
     end
 
@@ -127,34 +127,12 @@ module FBSet
         end
     end
 
-    function intersect_old!(set_a :: FixedBinarySet, set_b :: FixedBinarySet)
-        if set_a.n == set_b.n
-            for id in 1:set_a.n_subsets
-                subset_a = get_subset(set_a, id)
-                subset_b = get_subset(set_b, id)
-
-                if subset_a == nothing || subset_b == nothing
-                    # Si uno de los conjuntos es vacio entonces la intersección será vacia
-                    if subset_a != nothing
-                        # Si el subconjunto A, existe entonces tenemos que borrarlo
-                        # eso significa que todo el subset es vacio
-                        delete!(set_a.subsets, id)
-                    end
-                elseif subset_a != nothing && subset_b != nothing
-                    FBSet128.intersect!(subset_a, subset_b)
-                end
-            end
-        end
-    end
-
     function diff!(set_a :: FixedBinarySet, set_b :: FixedBinarySet)
         if set_a.n == set_b.n
-            for id in 1:set_a.n_subsets
-                subset_a = get_subset(set_a, id)
+            for (id, subset_a) in set_a.subsets
                 subset_b = get_subset(set_b, id)
 
-                if subset_a != nothing && subset_b != nothing
-                    subset_a = load_subset_by_id!(set_a, id)
+                if subset_b != nothing
                     FBSet128.diff!(subset_a, subset_b)
 
                     if FBSet128.isempty(subset_a)
