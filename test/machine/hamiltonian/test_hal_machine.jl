@@ -32,13 +32,14 @@ function test_create_machine_k(n :: Color)
     color_origin = Color(0)
     machine = HalMachine.new(graf, color_origin)
 
-    HalMachine.execute!(machine)
-
+    println("Start execution... k$n ")
+    time_execution = @timev HalMachine.execute!(machine)
+    println("Time execution  k$n: $time_execution ")
     graph = get_one_solution_graph(machine)
 
     #println(graph)
     #println(pwd())
-    #Graphviz.to_png(graph,"solucion_k$n","./machine/hamiltonian/visual_graphs/grafo_kn")
+    Graphviz.to_png(graph,"solucion_k$n","./machine/hamiltonian/visual_graphs/grafo_kn")
 
 
     #path = PathSolution.load!(graph)
@@ -46,5 +47,6 @@ function test_create_machine_k(n :: Color)
 end
 
 #test_create_machine()
-test_create_machine_k(Color(5))
+
+test_create_machine_k(Color(4))
 #test_create_machine_k(Color(8))

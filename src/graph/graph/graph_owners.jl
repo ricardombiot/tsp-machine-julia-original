@@ -56,7 +56,7 @@ que no existe.
 =#
 function review_owners!(graph :: Graph)
     if graph.valid && graph.required_review_ownwers
-        println("review_owners!")
+        #println("review_owners!")
         for (action_id, table_nodes_action) in graph.table_nodes
             for (node_id, node) in table_nodes_action
                 if !filter_by_intersection_owners!(node, graph)

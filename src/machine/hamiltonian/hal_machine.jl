@@ -63,7 +63,7 @@ module HalMachine
             for (origin, cell) in line
                 if is_valid_origin(machine, origin)
                     (is_valid, action_id) = TableTimeline.execute!(machine.timeline, machine.db, machine.actual_km, origin)
-                    println("Execute KM:$(machine.actual_km) Cell: $origin -> OP: $action_id ($is_valid)")
+                    #println("Execute KM:$(machine.actual_km) Cell: $origin -> OP: $action_id ($is_valid)")
                     if is_valid
                          send_destines!(machine, origin)
                     end
