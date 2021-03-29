@@ -61,7 +61,7 @@ module PathEdge
     end
 
     function join!(edge :: Edge, edge_join :: Edge)
-        Owners.join!(edge.owners, edge_join.owners)
+        Owners.union!(edge.owners, edge_join.owners)
     end
 
 end

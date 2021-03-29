@@ -13,6 +13,7 @@ module PathsSet
     include("graph/components/node/node.jl")
     include("graph/components/edge/edge.jl")
     include("graph/graph/path_graph.jl")
+    include("graph/graphviz/graphviz.jl")
 
 
     include("actions/actions.jl")
@@ -24,4 +25,10 @@ module PathsSet
 
     include("machine/grafo/graf.jl")
     include("machine/grafo/graf_generator.jl")
+
+    include("machine/timeline/timeline_cell.jl")
+    include("machine/timeline/timeline_table.jl")
+
+    include("machine/hamiltonian/hal_machine.jl")
+    include("machine/hamiltonian/hal_solver.jl")
 end # module

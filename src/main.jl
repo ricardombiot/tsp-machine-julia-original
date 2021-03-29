@@ -16,6 +16,7 @@ using Main.PathsSet.PathEdge
 using Main.PathsSet.PathEdge: Edge
 using Main.PathsSet.PathGraph
 using Main.PathsSet.PathGraph: Graph
+using Main.PathsSet.Graphviz
 
 using Main.PathsSet.OwnersSet
 using Main.PathsSet.OwnersSet: OwnersFixedSet
@@ -40,3 +41,13 @@ using Main.PathsSet.ExecuteActions
 using Main.PathsSet.Graf
 using Main.PathsSet.Graf: Grafo
 using Main.PathsSet.GrafGenerator
+
+using Main.PathsSet.Cell
+using Main.PathsSet.Cell: TimelineCell
+using Main.PathsSet.TableTimeline
+using Main.PathsSet.TableTimeline: Timeline
+
+
+using Main.PathsSet.HalMachine
+using Main.PathsSet.HalMachine: HamiltonianMachine
+using Main.PathsSet.HalSolver

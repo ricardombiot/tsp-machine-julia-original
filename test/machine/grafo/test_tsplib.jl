@@ -17,6 +17,5 @@ function test_read_grafo_tsplib_Qatar()
 end
 
 test_read_grafo_tsplib()
-
-test_read_grafo_tsplib_Western_Sahara()
-test_read_grafo_tsplib_Qatar()
+#test_read_grafo_tsplib_Western_Sahara()
+#test_read_grafo_tsplib_Qatar()
