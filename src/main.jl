@@ -17,6 +17,8 @@ using Main.PathsSet.PathEdge: Edge
 using Main.PathsSet.PathGraph
 using Main.PathsSet.PathGraph: Graph
 using Main.PathsSet.Graphviz
+using Main.PathsSet.PathReader
+using Main.PathsSet.PathReader: PathSolutionReader
 
 using Main.PathsSet.OwnersSet
 using Main.PathsSet.OwnersSet: OwnersFixedSet
@@ -50,8 +52,7 @@ using Main.PathsSet.TableTimeline: Timeline
 
 using Main.PathsSet.HalMachine
 using Main.PathsSet.HalMachine: HamiltonianMachine
-using Main.PathsSet.HalSolver
 
 using Main.PathsSet.InterfaceMachine
 using Main.PathsSet.InterfaceMachine: IMachine
-using Main.PathsSet.SolutionReader
+using Main.PathsSet.SolutionGraphReader

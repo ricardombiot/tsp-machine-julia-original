@@ -29,7 +29,7 @@ module FBSet
     end
 
     function isempty(set :: FixedBinarySet) :: Bool
-        return length(set.subsets) == 0
+        return Base.isempty(set.subsets)
     end
 
     function isfull(set :: FixedBinarySet) :: Bool
@@ -122,6 +122,10 @@ module FBSet
                     delete!(set_a.subsets, id)
                 else
                     FBSet128.intersect!(subset_a, subset_b)
+
+                    if FBSet128.isempty(subset_a)
+                        delete!(set_a.subsets, id)
+                    end
                 end
             end
         end
@@ -203,5 +207,23 @@ module FBSet
         end
 
         return set.subsets[id]
+    end
+
+
+    function to_string(set :: FixedBinarySet) :: String
+        txt = ""
+        for id in 1:set.n_subsets-1
+            subset = get_subset(set, id)
+
+            content128 = UInt128(0)
+            if subset != nothing
+                content128 = subset.content
+            end
+
+            content = bitstring(content128)
+            txt *= "$content"
+        end
+
+        return txt
     end
 end

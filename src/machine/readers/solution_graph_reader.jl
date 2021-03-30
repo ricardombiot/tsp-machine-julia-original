@@ -1,4 +1,4 @@
-module SolutionReader
+module SolutionGraphReader
     using Main.PathsSet.Alias: Km, Color, ActionId
 
     using Main.PathsSet.Graf

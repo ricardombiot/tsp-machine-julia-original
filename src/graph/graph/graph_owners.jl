@@ -59,14 +59,16 @@ function review_owners!(graph :: Graph)
         #println("review_owners!")
         for (action_id, table_nodes_action) in graph.table_nodes
             for (node_id, node) in table_nodes_action
-                if !filter_by_intersection_owners!(node, graph)
+                if !filter_by_intersection_owners!(node, graph.owners)
+                    #println("-> save_node_to_delete")
                     save_to_delete_node!(graph, node_id)
                 end
             end
         end
 
         for (edge_id, edge) in graph.table_edges
-            if !filter_by_intersection_owners!(edge, graph)
+            if !filter_by_intersection_owners!(edge, graph.owners)
+                #println("-> delete_id")
                 delete_edge_by_id!(graph, edge_id)
             end
         end
@@ -76,14 +78,14 @@ function review_owners!(graph :: Graph)
 end
 
 
-function filter_by_intersection_owners!(node :: Node, graph :: Graph) :: Bool
-    PathNode.intersect_owners!(node, graph.owners)
+function filter_by_intersection_owners!(node :: Node, owners :: OwnersByStep) :: Bool
+    PathNode.intersect_owners!(node, owners)
 
     return node.owners.valid
 end
 
-function filter_by_intersection_owners!(edge :: Edge, graph :: Graph) :: Bool
-    PathEdge.intersect_owners!(edge, graph.owners)
+function filter_by_intersection_owners!(edge :: Edge, owners :: OwnersByStep) :: Bool
+    PathEdge.intersect_owners!(edge, owners)
 
     return edge.owners.valid
 end
