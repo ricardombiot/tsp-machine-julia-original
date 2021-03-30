@@ -27,7 +27,7 @@ function test_hal_grafo_simple()
    println("## Calculating Graph Simple")
    HalMachine.execute!(machine)
 
-   graph = HalSolver.get_one_solution_graph(machine)
+   graph = SolutionReader.get_one_solution_graph(machine)
    #println(graph)
 
    Graphviz.to_png(graph,"solucion_grafo_simple","./machine/hamiltonian/visual_graphs")

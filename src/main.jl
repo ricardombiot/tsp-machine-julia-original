@@ -51,3 +51,7 @@ using Main.PathsSet.TableTimeline: Timeline
 using Main.PathsSet.HalMachine
 using Main.PathsSet.HalMachine: HamiltonianMachine
 using Main.PathsSet.HalSolver
+
+using Main.PathsSet.InterfaceMachine
+using Main.PathsSet.InterfaceMachine: IMachine
+using Main.PathsSet.SolutionReader

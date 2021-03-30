@@ -1,14 +1,3 @@
-
-function get_one_solution_graph(machine)
-    cell_origin = HalMachine.get_cell_origin(machine)
-    parents = cell_origin.parents
-    parent_1 = pop!(parents)
-    action_solution = HalMachine.get_action(machine, parent_1)
-    graph = Actions.get_max_graph(action_solution)
-
-    return graph
-end
-
 function test_create_machine()
     n = Color(3)
     graf = GrafGenerator.completo(n)
@@ -20,7 +9,7 @@ function test_create_machine()
     @test HalMachine.make_step!(machine) == true
     @test machine.actual_km == Km(3)
 
-    graph = get_one_solution_graph(machine)
+    graph = SolutionReader.get_one_solution_graph(machine)
 
     #println(pwd())
     Graphviz.to_png(graph,"solucion_k3","./machine/hamiltonian/visual_graphs/k3")
@@ -35,7 +24,7 @@ function test_create_machine_k(n :: Color)
     println("Start execution... k$n ")
     time_execution = @timev HalMachine.execute!(machine)
     println("Time execution  k$n: $time_execution ")
-    graph = get_one_solution_graph(machine)
+    graph = SolutionReader.get_one_solution_graph(machine)
 
     #println(graph)
     #println(pwd())

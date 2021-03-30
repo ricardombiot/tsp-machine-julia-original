@@ -31,4 +31,7 @@ module PathsSet
 
     include("machine/hamiltonian/hal_machine.jl")
     include("machine/hamiltonian/hal_solver.jl")
+
+    include("machine/readers/imachine.jl")
+    include("machine/readers/solution_reader.jl")
 end # module
