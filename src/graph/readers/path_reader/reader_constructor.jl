@@ -1,4 +1,4 @@
-function new(n :: Color, b :: Km, graph :: Graph)
+function new(n :: Color, b :: Km, graph :: Graph, is_origin_join :: Bool = false)
     step = Step(0)
     route = Array{Color, 1}()
 
@@ -6,7 +6,7 @@ function new(n :: Color, b :: Km, graph :: Graph)
     owners = get_init_owners(graph)
     graph_copy = deepcopy(graph)
 
-    path = PathSolutionReader(step, route, next_node_id, owners, graph_copy)
+    path = PathSolutionReader(step, route, next_node_id, owners, graph_copy, is_origin_join)
 
     return path
 end

@@ -7,7 +7,10 @@ function calc!(path :: PathSolutionReader)
 end
 
 function close_path(path :: PathSolutionReader)
-    push!(path.route, path.graph.color_origin)
+    if !path.is_origin_join
+        push!(path.route, path.graph.color_origin)
+        path.step += 1
+    end
 end
 
 function next_step!(path :: PathSolutionReader) :: Bool

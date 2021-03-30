@@ -30,13 +30,16 @@ function test_hal_grafo_simple()
    graph = SolutionGraphReader.get_one_solution_graph(machine)
    #println(graph)
 
-   Graphviz.to_png(graph,"solucion_grafo_simple","./machine/hamiltonian/visual_graphs")
-   #=
-   println("## LOAD SOLUTION GRAPH SIMPLE")
-   path_solution = PathSolution.load!(graph)
-   println("### Solucion: Grafo Simple ###")
-   println(path_solution)
-   =#
+   Graphviz.to_png(graph,"solucion_grafo_simple","./machine/hamiltonian/visual_graphs/grafo_simple")
+
+   b = Km(graf.n)
+   (tour, path) = PathReader.load!(graf.n, b, graph)
+   println(tour)
+   @test path.step == graf.n+1
+
+   optimal = Weight(graf.n)
+   checker = PathChecker.new(graf, path, optimal)
+   @test PathChecker.check!(checker)
 end
 
 function test_multiples_solutions_grafo_simple()
@@ -47,22 +50,45 @@ function test_multiples_solutions_grafo_simple()
 
    HalMachine.execute!(machine)
 
-   for (parent_id, graph) in HalSolver.get_all_solution_graph(machine)
+   b = Km(graf.n)
+   for (parent_id, graph) in SolutionGraphReader.get_all_solution_graph(machine)
       Graphviz.to_png(graph,"sol$parent_id","./machine/hamiltonian/visual_graphs/grafo_simple")
 
-      #if graph.valid
-      #   println("# Is valid graph $parent_id")
-      #   println("[  ] Labels: $(graph.labels)")
-      #end
+      (tour, path) = PathReader.load!(graf.n, b, graph)
+      println(tour)
+      @test path.step == graf.n+1
 
-      path_solution = PathSolution.load!(graph)
-      println("### Solucion: Using $parent_id ###")
-      println(path_solution)
+      optimal = Weight(graf.n)
+      checker = PathChecker.new(graf, path, optimal)
+      @test PathChecker.check!(checker)
    end
 
 end
 
 
+function test_join_graph_solution_grafo_simple()
+   graf = create_grafo()
+
+   color_origin = Color(0)
+   machine = HalMachine.new(graf, color_origin)
+
+   HalMachine.execute!(machine)
+   graph_join = SolutionGraphReader.get_graph_join_origin(machine)
+
+
+   Graphviz.to_png(graph_join,"join_solution","./machine/hamiltonian/visual_graphs/grafo_simple")
+
+   b = Km(graf.n)
+   (tour, path) = PathReader.load!(graf.n, b, graph_join, true)
+   println(tour)
+   @test path.step == graf.n+1
+
+   optimal = Weight(graf.n)
+   checker = PathChecker.new(graf, path, optimal)
+   @test PathChecker.check!(checker)
+end
+
 
 test_hal_grafo_simple()
-#test_multiples_solutions_grafo_simple()
+test_multiples_solutions_grafo_simple()
+test_join_graph_solution_grafo_simple()

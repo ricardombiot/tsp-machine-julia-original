@@ -34,4 +34,5 @@ module PathsSet
 
     include("machine/readers/imachine.jl")
     include("machine/readers/solution_graph_reader.jl")
+    include("machine/readers/path_checker.jl")
 end # module

@@ -17,6 +17,7 @@ module PathReader
         owners :: OwnersByStep
 
         graph :: Graph
+        is_origin_join :: Bool
     end
 
     include("./reader_constructor.jl")
@@ -25,11 +26,12 @@ module PathReader
     include("./reader_reduce_graph.jl")
 
 
-    function load!(n :: Color, b :: Km, graph :: Graph) :: String
-        path = new(n, b, graph :: Graph)
+    function load!(n :: Color, b :: Km, graph :: Graph, is_origin_join :: Bool = false) :: Tuple{String, PathSolutionReader}
+        path = new(n, b, graph, is_origin_join)
         calc!(path)
         txt_path = print_path(path)
-        return "Longitud: $(path.step) Path: $txt_path"
+        txt_path = "Longitud: $(path.step) Path: $txt_path"
+        return (txt_path, path)
     end
 
     function print_path(path :: PathSolutionReader) :: String

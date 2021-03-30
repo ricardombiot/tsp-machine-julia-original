@@ -57,34 +57,9 @@ function test_create_machine_k(n :: Color)
     Graphviz.to_png(graph,"solucion_k$n","./machine/hamiltonian/visual_graphs/grafo_kn")
 
     b = Km(n)
-    #
-
-    path = PathReader.new(n, b, graph)
-    println(Owners.to_string(graph.owners))
-    println(graph.owners.valid)
-
-
-
-
-    println("START CALC! PATH")
-    for step in 0:n
-        PathReader.next_step!(path)
-        Graphviz.to_png(path.graph,"solucion_k$(n)_step$(step)","./machine/hamiltonian/visual_graphs/grafo_kn/pathreader")
-
-        ##write_log_owners(path.graph, "solucion_k$(n)_step$(step)_owners","./machine/hamiltonian/visual_graphs/grafo_kn/pathreader")
-        #=
-        println("Owner Path $(path.owners.valid)")
-        println(Owners.to_string(path.owners))
-
-        println("Owner graph $(path.graph.owners.valid)")
-        println(Owners.to_string(path.graph.owners))
-        =#
-    end
-
-    println(path.route)
-
-    tour = PathReader.load!(n, b, graph)
+    (tour, path) = PathReader.load!(n, b, graph)
     println(tour)
+    @test path.step == graf.n+1
 end
 
 #test_create_machine()

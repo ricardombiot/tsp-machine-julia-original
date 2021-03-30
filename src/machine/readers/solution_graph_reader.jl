@@ -47,7 +47,7 @@ module SolutionGraphReader
 
     function get_graph_join_origin(machine :: IMachine) :: Union{Graph, Nothing}
         db = InterfaceMachine.get_db(machine)
-        km_actual = InterfaceMachine.get_actual_km(machine)
+        actual_km = InterfaceMachine.get_actual_km(machine)
         color_origin = InterfaceMachine.get_color_origin(machine)
 
         color_origin = machine.color_origin
