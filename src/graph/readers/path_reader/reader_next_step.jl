@@ -16,6 +16,7 @@ end
 function next_step!(path :: PathSolutionReader) :: Bool
     if path.next_node_id != nothing
         push_step!(path)
+        fixed_next!(path, node)
         clear_graph_by_owners!(path)
         return true
     else
@@ -35,5 +36,4 @@ function push_step!(path :: PathSolutionReader)
     Owners.push!(path.owners, path.step, path.next_node_id)
 
     path.step += 1
-    fixed_next!(path, node)
 end

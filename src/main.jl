@@ -19,6 +19,9 @@ using Main.PathsSet.PathGraph: Graph
 using Main.PathsSet.Graphviz
 using Main.PathsSet.PathReader
 using Main.PathsSet.PathReader: PathSolutionReader
+using Main.PathsSet.PathExpReader
+using Main.PathsSet.PathExpReader: PathSolutionExpReader
+
 using Main.PathsSet.PathChecker
 using Main.PathsSet.PathChecker: Checker
 

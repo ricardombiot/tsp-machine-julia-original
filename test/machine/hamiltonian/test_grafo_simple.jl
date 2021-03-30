@@ -89,6 +89,24 @@ function test_join_graph_solution_grafo_simple()
 end
 
 
-test_hal_grafo_simple()
-test_multiples_solutions_grafo_simple()
-test_join_graph_solution_grafo_simple()
+function test_exp_exploration_grafo_simple()
+   graf = create_grafo()
+
+   color_origin = Color(0)
+   machine = HalMachine.new(graf, color_origin)
+
+   HalMachine.execute!(machine)
+   graph_join = SolutionGraphReader.get_graph_join_origin(machine)
+
+   limit = UInt128(100)
+   b = Km(graf.n)
+   reader_exp = PathExpReader.new(graf.n, b, graph_join, limit, true)
+   PathExpReader.calc!(reader_exp)
+
+   PathExpReader.print_solutions(reader_exp)
+end
+
+#test_hal_grafo_simple()
+#test_multiples_solutions_grafo_simple()
+#test_join_graph_solution_grafo_simple()
+test_exp_exploration_grafo_simple()

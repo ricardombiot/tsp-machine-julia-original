@@ -15,6 +15,7 @@ module PathsSet
     include("graph/graph/path_graph.jl")
     include("graph/graphviz/graphviz.jl")
     include("graph/readers/path_reader/path_reader.jl")
+    include("graph/readers/path_exp_reader/path_exp_reader.jl")
 
 
     include("actions/actions.jl")
@@ -35,4 +36,5 @@ module PathsSet
     include("machine/readers/imachine.jl")
     include("machine/readers/solution_graph_reader.jl")
     include("machine/readers/path_checker.jl")
+
 end # module

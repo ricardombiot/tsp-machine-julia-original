@@ -3,10 +3,14 @@ function fixed_next!(path :: PathSolutionReader, node :: Node)
 end
 
 function selected_next(path :: PathSolutionReader, node :: Node) :: Union{NodeId,Nothing}
-    if !isempty(node.sons)
-        (node_id, edge_id) = first(node.sons)
-        return node_id
-    end
+    if path.graph.valid
+        if !isempty(node.sons)
+            (node_id, edge_id) = first(node.sons)
+            return node_id
+        end
 
-    return nothing
+        return nothing
+    else
+        return nothing
+    end
 end
