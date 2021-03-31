@@ -64,7 +64,7 @@ module SolutionGraphReader
                 if graph_join == nothing
                     graph_join = copy_graph_solution
                 else
-                    PathGraph.join!(graph_join, copy_graph_solution)
+                    PathGraph.join!(graph_join, copy_graph_solution, false)
                 end
             end
         end

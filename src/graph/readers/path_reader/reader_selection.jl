@@ -1,4 +1,5 @@
-function fixed_next!(path :: PathSolutionReader, node :: Node)
+function fixed_next!(path :: PathSolutionReader)
+    node = PathGraph.get_node(path.graph, path.next_node_id)
     path.next_node_id = selected_next(path, node)
 end
 

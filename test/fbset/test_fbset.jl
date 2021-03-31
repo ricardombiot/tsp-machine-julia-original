@@ -37,6 +37,8 @@ function build_fbset_full(n)
         FBSet.push!(set, i)
     end
 
+    @test FBSet.count(set) == n
+
     return set
 end
 
@@ -58,7 +60,7 @@ function test_full_1k()
 
     @test !FBSet.isempty(set_full)
     @test FBSet.isfull(set_full)
-
+    @test FBSet.count(set_full) == 1000
 
 end
 
@@ -74,6 +76,8 @@ function test_equals()
 
     set_empty = FBSet.new(1000)
     @test FBSet.isequal(set_empty, set_full) == false
+
+    @test FBSet.count(set_empty) == 0
 end
 
 function test_not_full_last_subset()

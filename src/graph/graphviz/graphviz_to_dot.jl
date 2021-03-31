@@ -46,6 +46,7 @@ function action_id_to_dot(graph :: Graph, action_id :: ActionId) :: String
         color = node.color
         sons_nodes_txt = sons_to_text(node)
         parents_nodes_txt = parents_to_text(node)
+        owners_html = owners_to_text(graph, node)
 
         id_txt = NodeIdentity.to_string(node.id,"_")
         node_id_txt = NodeIdentity.to_string(node.id)
@@ -53,6 +54,7 @@ function action_id_to_dot(graph :: Graph, action_id :: ActionId) :: String
         node_label_html = "<$color<BR /><FONT POINT-SIZE=\"8\">ID: $node_id_txt</FONT>"
         node_label_html *= "<BR /><FONT POINT-SIZE=\"8\">Parents: $parents_nodes_txt</FONT>"
         node_label_html *= "<BR /><FONT POINT-SIZE=\"8\">Sons: $sons_nodes_txt</FONT>"
+        node_label_html *= owners_html
         node_label_html *= ">"
         node_definition =  "$name [label=$node_label_html]"
 

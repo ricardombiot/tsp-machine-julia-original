@@ -10,6 +10,8 @@ module Graphviz
     using Main.PathsSet.NodeIdentity
     using Main.PathsSet.NodeIdentity: NodeId, NodesIdSet
 
+    using Main.PathsSet.Owners
+
     include("./graphviz_read_info_graph.jl")
     include("./graphviz_to_text.jl")
     include("./graphviz_to_dot.jl")

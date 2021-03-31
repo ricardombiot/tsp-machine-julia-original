@@ -1,15 +1,17 @@
 using Test
 include("./../src/main.jl")
 
-#=
+
 @time @testset "PathsSet" begin
     include("test_hello.jl")
 end
+
 
 @time @testset "FBSet" begin
     include("./fbset/test_fbset.jl")
     include("./fbset/test_fixed_binary_set128.jl")
 end
+
 
 @time @testset "Graphs" begin
     include("./graph/components/test_node_identify.jl")
@@ -24,6 +26,7 @@ end
     include("./graph/test_graph_multi_join.jl")
 end
 
+#=
 @time @testset "Actions" begin
     include("./actions/test_actions.jl")
     include("./actions/test_database_actions.jl")
@@ -48,7 +51,9 @@ end
         #include("machine/hamiltonian/test_grafo_simple.jl")
         #include("machine/hamiltonian/test_hal_machine.jl")
         #include("machine/hamiltonian/test_grafo_dode.jl")
-        include("machine/hamiltonian/test_grafo_dode_exp.jl")
+        #include("machine/hamiltonian/test_grafo_dode_exp.jl")
+
+        #include("machine/hamiltonian/test_grafo_dode_steps.jl")
     end
 end
 

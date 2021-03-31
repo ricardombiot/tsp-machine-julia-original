@@ -21,6 +21,10 @@ module OwnersSet
         FBSet.pop!(owners_set.fbset, key)
     end
 
+    function count(owners_set :: OwnersFixedSet) :: Int64
+        FBSet.count(owners_set.fbset)
+    end
+
     function to_empty!(owners_set :: OwnersFixedSet)
         FBSet.to_empty!(owners_set.fbset)
     end

@@ -1,9 +1,9 @@
-function new(n :: Color, b :: Km, graph :: Graph, limit :: UInt128 , is_origin_join :: Bool = false, dir :: String = "")
+function new(n :: Color, b :: Km, graph :: Graph, limit :: UInt128 , is_origin_join :: Bool = false)
     step = Step(0)
     paths_solvers = Array{PathSolutionReader,1}()
     paths_solution = Array{PathSolutionReader,1}()
 
-    exp_solver = PathSolutionExpReader(n, b, step, limit, paths_solvers, paths_solution, is_origin_join, dir)
+    exp_solver = PathSolutionExpReader(n, b, step, limit, paths_solvers, paths_solution, is_origin_join)
     init_generar_paths_semillas!(exp_solver, graph)
 
     return exp_solver

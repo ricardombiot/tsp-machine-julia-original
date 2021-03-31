@@ -8,19 +8,20 @@ function test_dode_calc()
    println("## Calc. Dode...")
    HalMachine.execute!(machine)
 
-   println("## Plot join solution.. ")
+   #println("## Plot join solution.. ")
    graph_join = SolutionGraphReader.get_graph_join_origin(machine)
-   Graphviz.to_png(graph_join,"graph_join_solutions","./machine/hamiltonian/visual_graphs/grafo_dode")
+   #Graphviz.to_png(graph_join,"graph_join_solutions","./machine/hamiltonian/visual_graphs/grafo_dode")
 
    println("## Search all solutions.. ")
-   limit = UInt128(100)
+   dir = "./machine/hamiltonian/visual_graphs/exp_dode"
+   limit = UInt128(10)
    b = Km(graf.n)
-   reader_exp = PathExpReader.new(graf.n, b, graph_join, limit, true)
+   reader_exp = PathExpReader.new(graf.n, b, graph_join, limit, true, dir)
    PathExpReader.calc!(reader_exp)
 
    PathExpReader.print_solutions(reader_exp)
 
-   total = PathExpReader.get_total_solutions_found(exp_solver)
+   total = PathExpReader.get_total_solutions_found(reader_exp)
    println("Solutions found: $total")
    #=b = Km(graf.n)
    (tour, path) = PathReader.load!(graf.n, b, graph)

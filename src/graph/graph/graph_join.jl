@@ -1,4 +1,4 @@
-function join!(graph :: Graph, inmutable_graph_join :: Graph) :: Bool
+function join!(graph :: Graph, inmutable_graph_join :: Graph, avoid_eq_color :: Bool = true) :: Bool
     if is_valid_join(graph, inmutable_graph_join)
         graph_join = deepcopy(inmutable_graph_join)
 
@@ -7,6 +7,15 @@ function join!(graph :: Graph, inmutable_graph_join :: Graph) :: Bool
         join_lines!(graph, graph_join)
         join_color_nodes!(graph, graph_join)
         join_edges!(graph, graph_join)
+
+
+        graph.required_review_ownwers = true
+        #review_owners!(graph)
+        #=
+        if avoid_eq_color
+            remove_equal_color_owners_node!(graph)
+        end
+        =#
 
         return true
     else

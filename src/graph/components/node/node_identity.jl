@@ -41,9 +41,11 @@ module NodeIdentity
 
     function to_string(node_id :: NodeId, point :: String = ".") :: String
         if is_root(node_id)
-            return "$(node_id.action_id)"*"$point"*"Rt"
+            #return "K$(node_id.key)"*"$point"*"$(node_id.action_id)"*"$point"*"Rt"
+            return "K$(node_id.key)"
         else
-            return "$(node_id.action_id)"*"$point"*"$(node_id.action_parent_id)"
+            #return "K$(node_id.key)"*"$point"*"$(node_id.action_id)"*"$point"*"$(node_id.action_parent_id)"
+            return "K$(node_id.key)"
         end
     end
 

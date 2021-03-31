@@ -108,5 +108,5 @@ end
 
 #test_hal_grafo_simple()
 #test_multiples_solutions_grafo_simple()
-#test_join_graph_solution_grafo_simple()
-test_exp_exploration_grafo_simple()
+test_join_graph_solution_grafo_simple()
+#test_exp_exploration_grafo_simple()

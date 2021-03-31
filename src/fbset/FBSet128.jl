@@ -25,6 +25,10 @@ module FBSet128
         return set.content == UInt128(0xffffffffffffffffffffffffffffffff)
     end
 
+    function count(set :: FixedBinarySet128) :: Int64
+        return count_ones(set.content)
+    end
+
     function push!(set :: FixedBinarySet128, list_items :: Array{Int64,1})
         for item in list_items
             push!(set, item)

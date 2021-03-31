@@ -118,9 +118,26 @@ module Owners
     end
 
     function intersect!(owners_a :: OwnersByStep, owners_b :: OwnersByStep)
+        if can_be_valid_operation(owners_a, owners_b)
+            for step in Step(0):owners_a.max_step
+                step_set_a = get_step_set(owners_a, step)
+                step_set_b = get_step_set(owners_b, step)
+
+                OwnersSet.intersect!(step_set_a, step_set_b)
+
+                if OwnersSet.isempty(step_set_a)
+                    owners_a.valid = false
+                end
+            end
+        else
+            owners_a.valid = false
+        end
+    end
+
+    function intersect_min!(owners_a :: OwnersByStep, owners_b :: OwnersByStep)
         max_step = min(owners_a.max_step, owners_b.max_step)
         if both_valids(owners_a, owners_b)
-            for step in Step(0):max_step
+            for step in Step(0):Step(max_step)
                 step_set_a = get_step_set(owners_a, step)
                 step_set_b = get_step_set(owners_b, step)
 
@@ -178,6 +195,16 @@ module Owners
         end
 
         return txt
+    end
+
+    function count(owners :: OwnersByStep, step :: Step) :: Int64
+        step_set = get_step_set(owners, step)
+
+        if step_set != nothing
+            return OwnersSet.count(step_set)
+        else
+            return 0
+        end
     end
 
 end

@@ -37,11 +37,13 @@ function review_owners_all_graph!(graph)
         review_owners!(graph)
 
         if graph.valid && !isempty(graph.nodes_to_delete)
+            graph.required_review_ownwers = true
             apply_node_deletes!(graph)
             review_owners_all_graph!(graph)
         end
     end
 end
+
 
 
 #=
@@ -56,9 +58,9 @@ que no existe.
 =#
 function review_owners!(graph :: Graph)
     if graph.valid && graph.required_review_ownwers
-        #println("review_owners!")
+        println("review_owners!")
         for (action_id, table_nodes_action) in graph.table_nodes
-            for (node_id, node) in table_nodes_action
+            for (node_id, node) in table_nodes_action    
                 if !filter_by_intersection_owners!(node, graph.owners)
                     #println("-> save_node_to_delete")
                     save_to_delete_node!(graph, node_id)
@@ -89,3 +91,33 @@ function filter_by_intersection_owners!(edge :: Edge, owners :: OwnersByStep) ::
 
     return edge.owners.valid
 end
+
+#=
+Evitar que al realizar joins nodos tengan owners con el mismo color.
+
+function remove_equal_color_owners_node!(graph :: Graph)
+    if graph.valid
+        for (color, set_nodes) in graph.table_color_nodes
+            for selected_node_id in set_nodes
+                selected_node = get_node(graph, selected_node_id)
+                for target_node_id in set_nodes
+                    if selected_node_id != target_node_id
+
+                        target_node = get_node(graph, target_node_id)
+                        if PathNode.have_owner(selected_node, target_node)
+                            PathNode.pop_owner!(selected_node, target_node)
+
+                            for (node_id, edge_id) in selected_node.sons
+                                edge = get_edge(graph, edge_id)
+
+                                PathEdge.pop_owner!(edge, target_node)
+                            end
+                        end
+                    end
+                end
+            end
+        end
+
+    end
+end
+=#
