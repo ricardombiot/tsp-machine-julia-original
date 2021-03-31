@@ -5,8 +5,24 @@ end
 function pop_owner_in_graph!(graph :: Graph, node_owner :: Node)
     if graph.valid
         Owners.pop!(graph.owners, node_owner.step, node_owner.id)
+        graph.required_review_ownwers = true
         make_validation_graph_by_owners!(graph)
     end
+end
+
+function rebuild_owners(graph :: Graph)
+    owners_new = Owners.empty_derive(graph.owners)
+    for step in Step(0):Step(graph.next_step-1)
+        if haskey(graph.table_lines, step)
+            nodes = graph.table_lines[step]
+            for node_id in nodes
+                Owners.push!(owners_new, step, node_id)
+            end
+        end
+    end
+
+    graph.owners = owners_new
+    make_validation_graph_by_owners!(graph)
 end
 
 function union_owners!(graph :: Graph, graph_join :: Graph)
@@ -18,8 +34,6 @@ function make_validation_graph_by_owners!(graph :: Graph)
 end
 
 function push_node_as_new_owner!(graph :: Graph, node_owner :: Node)
-    push_owner_in_graph!(graph, node_owner)
-
     for (action_id, table_nodes_action) in graph.table_nodes
         for (node_id, node) in table_nodes_action
             PathNode.push_owner!(node, node_owner)
@@ -34,6 +48,7 @@ end
 
 function review_owners_all_graph!(graph)
     if graph.valid && graph.required_review_ownwers
+        rebuild_owners(graph)
         review_owners!(graph)
 
         if graph.valid && !isempty(graph.nodes_to_delete)
@@ -58,9 +73,9 @@ que no existe.
 =#
 function review_owners!(graph :: Graph)
     if graph.valid && graph.required_review_ownwers
-        println("review_owners!")
+        #println("review_owners!")
         for (action_id, table_nodes_action) in graph.table_nodes
-            for (node_id, node) in table_nodes_action    
+            for (node_id, node) in table_nodes_action
                 if !filter_by_intersection_owners!(node, graph.owners)
                     #println("-> save_node_to_delete")
                     save_to_delete_node!(graph, node_id)
@@ -121,3 +136,33 @@ function remove_equal_color_owners_node!(graph :: Graph)
     end
 end
 =#
+
+
+function log_owners_write(graph :: Graph, name :: String, path :: String )
+    input_file = "$path/$(name).txt"
+    txt = log_to_string_nodes_owners(graph)
+    open(input_file, "w") do io
+        print(io, txt)
+    end
+end
+
+function log_to_string_nodes_owners(graph :: Graph) :: String
+    txt = ""
+    txt *= "Graph Owners"
+    txt *= Owners.to_string_list(graph.owners)
+    txt *= "\n\n"
+
+    for (step, nodes) in graph.table_lines
+        txt *= "LINE $step \n"
+        for node_id in nodes
+            node = get_node(graph, node_id)
+            txt *= "OWNERS NODE: $(node.step), $(node.color)"
+            txt *= "\n"
+            txt *= Owners.to_string_list(node.owners)
+            txt *= "\n"
+        end
+        txt *= "\n"
+    end
+
+    return txt
+end

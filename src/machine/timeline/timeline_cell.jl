@@ -1,5 +1,5 @@
 module Cell
-    using Main.PathsSet.Alias: Km, Color, ActionId
+    using Main.PathsSet.Alias: Km, Color, ActionId, SetActions
 
     using Main.PathsSet.Actions
     using Main.PathsSet.Actions: Action
@@ -11,14 +11,14 @@ module Cell
     mutable struct TimelineCell
         km :: Km
         color :: Color
-        parents :: Array{ActionId, 1}
+        parents :: SetActions
         action_id :: Union{ActionId, Nothing}
 
         valid :: Bool
     end
 
     function new(km :: Km, color :: Color, action_id :: Union{ActionId, Nothing} = nothing)
-        parents = Array{ActionId, 1}()
+        parents = SetActions()
         TimelineCell(km, color, parents, action_id, true)
     end
 

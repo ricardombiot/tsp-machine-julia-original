@@ -8,15 +8,6 @@ function join!(graph :: Graph, inmutable_graph_join :: Graph, avoid_eq_color :: 
         join_color_nodes!(graph, graph_join)
         join_edges!(graph, graph_join)
 
-
-        graph.required_review_ownwers = true
-        #review_owners!(graph)
-        #=
-        if avoid_eq_color
-            remove_equal_color_owners_node!(graph)
-        end
-        =#
-
         return true
     else
         return false

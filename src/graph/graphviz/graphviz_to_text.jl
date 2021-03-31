@@ -23,14 +23,24 @@ function owners_to_text(graph :: Graph, node :: Node) :: String
     for step in Step(0):node.owners.max_step
         vacio = Owners.isempty(node.owners, step)
         list = list_owners_to_text(graph, step, node)
+        tolist = make_to_list(step, node)
         count = Owners.count(node.owners, step)
         owners_txt *= "<BR /><FONT POINT-SIZE=\"8\"> Km: $step: $list [$count|$vacio]"
+        owners_txt *= "<BR /> $tolist"
         owners_txt *= "</FONT>"
     end
 
     return owners_txt
 end
 
+
+function make_to_list(step :: Step, node :: Node)
+    owners_txt = ""
+    for key in Owners.to_list(node.owners, step)
+        owners_txt *= "K$key"
+    end
+    return owners_txt
+end
 
 function list_owners_to_text(graph :: Graph, step :: Step, node :: Node) :: String
     owners_txt = ""

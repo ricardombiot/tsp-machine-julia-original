@@ -42,6 +42,16 @@ function build_fbset_full(n)
     return set
 end
 
+function test_to_list()
+    set_full = build_fbset_full(250)
+
+    list_expected = Array{Int64,1}()
+    for item in 1:250
+        push!(list_expected, item)
+    end
+
+    @test FBSet.to_list(set_full) == list_expected
+end
 
 function test_full_to_empty()
     set_full = build_fbset_full(1000)
@@ -364,6 +374,8 @@ test_diff_sets_subsets_1k()
 test_diff_equal_fbsets()
 
 test_operaciones_conjuntos()
+
+test_to_list()
 
 #=
 println("##### FBSet: ##### ")

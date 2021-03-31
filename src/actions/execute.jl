@@ -1,5 +1,5 @@
 module ExecuteActions
-    using Main.PathsSet.Alias: ActionId
+    using Main.PathsSet.Alias: ActionId, SetActions
     using Main.PathsSet.PathGraph
     using Main.PathsSet.Actions
     using Main.PathsSet.DatabaseActions

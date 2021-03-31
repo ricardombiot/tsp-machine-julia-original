@@ -29,6 +29,19 @@ module FBSet128
         return count_ones(set.content)
     end
 
+    function to_list(set :: FixedBinarySet128, item_start :: Int64 = 0) :: Array{Int64,1}
+        list = Array{Int64,1}()
+        for item in 1:128
+            if have(set, item)
+                item_value = item_start + item
+
+                Base.push!(list, item_value)
+            end
+        end
+
+        return list
+    end
+
     function push!(set :: FixedBinarySet128, list_items :: Array{Int64,1})
         for item in list_items
             push!(set, item)

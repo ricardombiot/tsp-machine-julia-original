@@ -185,13 +185,34 @@ module Owners
         owners_a.valid == true && owners_b.valid == true
     end
 
+
+
     function to_string(owners :: OwnersByStep) :: String
         txt = ""
         for step in Step(0):owners.max_step
             step_set = get_step_set(owners, step)
 
-            txt *= OwnersSet.to_string(step_set)
+            txt = OwnersSet.to_string(step_set)
             txt *= "\n"
+            txt *= "[$step] $txt"
+            txt *= "\n"
+        end
+
+        return txt
+    end
+
+    function to_string_list(owners :: OwnersByStep) :: String
+        txt = ""
+        for step in Step(0):owners.max_step
+            step_set = get_step_set(owners, step)
+
+            list = OwnersSet.to_list(step_set)
+            txt *= "\n"
+            txt *= "[$step]"
+            txt *= "\n"
+            for key in list
+                txt *= "K$key"
+            end
         end
 
         return txt
@@ -204,6 +225,16 @@ module Owners
             return OwnersSet.count(step_set)
         else
             return 0
+        end
+    end
+
+    function to_list(owners :: OwnersByStep, step :: Step) :: Array{Int64,1}
+        step_set = get_step_set(owners, step)
+
+        if step_set != nothing
+            return OwnersSet.to_list(step_set)
+        else
+            return Array{Int64,1}()
         end
     end
 

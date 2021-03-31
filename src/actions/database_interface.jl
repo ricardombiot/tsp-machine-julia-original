@@ -1,5 +1,5 @@
 module DatabaseInterface
-    using Main.PathsSet.Alias: ActionId, Km , Color
+    using Main.PathsSet.Alias: ActionId, Km , Color, SetActions
     using Main.PathsSet.Actions: Action
 
     using Main.PathsSet.DatabaseActionsDisk
@@ -9,10 +9,10 @@ module DatabaseInterface
 
     const IDBActions = Union{DBActions, DBActionsDisk}
 
-    function register_up!(db :: DBActionsDisk, km :: Km, up_color :: Color, parents :: Array{ActionId, 1}) :: ActionId
+    function register_up!(db :: DBActionsDisk, km :: Km, up_color :: Color, parents :: SetActions) :: ActionId
         return DatabaseActionsDisk.register_up!(db, km, up_color, parents)
     end
-    function register_up!(db :: DBActions, km :: Km, up_color :: Color, parents :: Array{ActionId, 1}) :: ActionId
+    function register_up!(db :: DBActions, km :: Km, up_color :: Color, parents :: SetActions) :: ActionId
         return DatabaseActions.register_up!(db, km, up_color, parents)
     end
 

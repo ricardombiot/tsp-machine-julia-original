@@ -22,6 +22,7 @@ function test_push_item()
         @test binary_txt[bit_number] == '1'
         @test FBSet128.have(set, item)
         @test FBSet128.count(set) == 1
+        @test FBSet128.to_list(set) == [item]
     end
 
 end

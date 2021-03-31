@@ -35,7 +35,7 @@ end
 function derive_path_next_step!(exp_solver :: PathSolutionExpReader, path :: PathSolutionReader, next_solvers :: Array{PathSolutionReader,1})
     PathReader.push_step!(path)
     copy_path = deepcopy(path)
-    graph_plot(exp_solver, copy_path)
+    #graph_plot(exp_solver, copy_path)
 
     if path.graph.valid
         if exp_solver.limit > 0

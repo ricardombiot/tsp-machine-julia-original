@@ -14,7 +14,7 @@ function test_dode_calc()
 
    println("## Search all solutions.. ")
    dir = "./machine/hamiltonian/visual_graphs/exp_dode"
-   limit = UInt128(10)
+   limit = UInt128(100)
    b = Km(graf.n)
    reader_exp = PathExpReader.new(graf.n, b, graph_join, limit, true, dir)
    PathExpReader.calc!(reader_exp)

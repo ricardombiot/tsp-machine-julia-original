@@ -31,6 +31,22 @@ module FBSet
         set.active_subsets = 0
     end
 
+    function to_list(set :: FixedBinarySet) :: Array{Int64,1}
+        lista = Array{Int64,1}()
+        item_start = 0
+        for id in 1:set.n_subsets
+            subset = get_subset(set, id)
+            if subset != nothing
+                sublista = FBSet128.to_list(subset, item_start)
+                lista = [lista; sublista]
+            end
+
+            item_start += 128
+        end
+
+        return lista
+    end
+
     function count(set :: FixedBinarySet) :: Int64
         total = 0
         for (id, subset) in set.subsets
