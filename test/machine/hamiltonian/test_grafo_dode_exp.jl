@@ -22,8 +22,7 @@ function test_dode_calc()
    PathExpReader.print_solutions(reader_exp)
 
    total = PathExpReader.get_total_solutions_found(reader_exp)
-   println("Solutions found: $total")
-
+   println("Solutions found: $total with a actual limit: $(reader_exp.limit)/$limit")
 
    optimal = Weight(20)
    @test PathChecker.check_all!(graf, reader_exp.paths_solution, optimal)
