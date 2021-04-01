@@ -4,7 +4,7 @@ include("./../src/main.jl")
 
 function test_bench()
 
-   for n in 8:12
+   for n in [3,4,14]
       n_color = Color(n)
       color_origin = Color(0)
       graf = GrafGenerator.completo(n_color)

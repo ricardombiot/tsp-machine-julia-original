@@ -42,7 +42,7 @@ module HalMachine
 
     function execute!(machine :: HamiltonianMachine)
         if make_step!(machine)
-            #println("#KM: $(machine.actual_km)/$(machine.n)")
+            println("#KM: $(machine.actual_km)/$(machine.n)")
             execute!(machine)
         end
     end
