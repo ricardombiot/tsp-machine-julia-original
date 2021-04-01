@@ -5,9 +5,9 @@ function delete_node_by_color!(graph :: Graph, color :: Color)
             save_to_delete_node!(graph, node_id)
 
             # Lazy optimization
-            if !graph.valid
-                break
-            end
+            #if !graph.valid
+            #    break
+            #end
         end
 
         apply_node_deletes!(graph)
@@ -37,6 +37,7 @@ end
 
 function make_delete_node!(graph :: Graph, node :: Node)
     if graph.valid
+        pop_owner_in_graph!(graph, node)
         delete_node_of_line!(graph, node)
         delete_node_of_table_colors!(graph, node)
         delete_edges_parents!(graph, node)
@@ -50,11 +51,6 @@ function delete_node_of_line!(graph :: Graph, node :: Node)
         nodes_in_line = graph.table_lines[node.step]
         if node.id in nodes_in_line
             pop!(nodes_in_line, node.id)
-
-            # Cover by owners
-            #if isempty(nodes_in_line)
-            #    graph.valid = false
-            #end
         end
     end
 end

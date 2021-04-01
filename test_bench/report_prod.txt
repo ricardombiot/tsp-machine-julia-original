@@ -1,0 +1,9 @@
+#### Time K8
+Trial(5.441 s)
+#### Time K9
+Trial(19.238 s)
+#### Time K10
+Trial(68.260 s)
+#### Time K11
+Trial(227.990 s)
+#### Time K12

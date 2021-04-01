@@ -6,14 +6,16 @@ module FBSet
     mutable struct FixedBinarySet
         n :: Int64
         n_subsets :: Int64
+        active_subsets :: Int64
         subsets :: Dict{Int64, FixedBinarySet128}
     end
 
     function new(n :: Int64)
         n_subsets = Int64(ceil( n / 128 ))
         subsets = Dict{Int64, FixedBinarySet128}()
+        active_subsets = 0
 
-        FixedBinarySet(n, n_subsets, subsets)
+        FixedBinarySet(n, n_subsets, active_subsets, subsets)
     end
 
     function get_subset_id(set :: FixedBinarySet, item :: Int64) :: Int64
@@ -26,10 +28,36 @@ module FBSet
 
     function to_empty!(set :: FixedBinarySet)
         set.subsets = Dict{Int64, FixedBinarySet128}()
+        set.active_subsets = 0
+    end
+
+    function to_list(set :: FixedBinarySet) :: Array{Int64,1}
+        lista = Array{Int64,1}()
+        item_start = 0
+        for id in 1:set.n_subsets
+            subset = get_subset(set, id)
+            if subset != nothing
+                sublista = FBSet128.to_list(subset, item_start)
+                lista = [lista; sublista]
+            end
+
+            item_start += 128
+        end
+
+        return lista
+    end
+
+    function count(set :: FixedBinarySet) :: Int64
+        total = 0
+        for (id, subset) in set.subsets
+            total += FBSet128.count(subset)
+        end
+
+        return total
     end
 
     function isempty(set :: FixedBinarySet) :: Bool
-        return length(set.subsets) == 0
+        return set.active_subsets == 0
     end
 
     function isfull(set :: FixedBinarySet) :: Bool
@@ -120,8 +148,14 @@ module FBSet
                     # Si el subconjunto A, existe entonces tenemos que borrarlo
                     # eso significa que todo el subset es vacio
                     delete!(set_a.subsets, id)
+                    set_a.active_subsets -= 1
                 else
                     FBSet128.intersect!(subset_a, subset_b)
+
+                    if FBSet128.isempty(subset_a)
+                        delete!(set_a.subsets, id)
+                        set_a.active_subsets -= 1
+                    end
                 end
             end
         end
@@ -137,6 +171,7 @@ module FBSet
 
                     if FBSet128.isempty(subset_a)
                         delete!(set_a.subsets, id)
+                        set_a.active_subsets -= 1
                     end
                 end
             end
@@ -188,6 +223,7 @@ module FBSet
         if haskey(set.subsets, id)
             if FBSet128.isempty(set.subsets[id])
                 delete!(set.subsets, id)
+                set.active_subsets -= 1
             end
         end
     end
@@ -200,8 +236,27 @@ module FBSet
     function load_subset_by_id!(set :: FixedBinarySet, id :: Int64) :: Union{FixedBinarySet128, Nothing}
         if !haskey(set.subsets, id)
             set.subsets[id] = FBSet128.new()
+            set.active_subsets+= 1
         end
 
         return set.subsets[id]
+    end
+
+
+    function to_string(set :: FixedBinarySet) :: String
+        txt = ""
+        for id in 1:set.n_subsets-1
+            subset = get_subset(set, id)
+
+            content128 = UInt128(0)
+            if subset != nothing
+                content128 = subset.content
+            end
+
+            content = bitstring(content128)
+            txt *= "$content"
+        end
+
+        return txt
     end
 end

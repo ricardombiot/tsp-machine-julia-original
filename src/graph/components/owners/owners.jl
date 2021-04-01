@@ -23,7 +23,11 @@ module Owners
     end
 
     function derive(owners :: OwnersByStep) :: OwnersByStep
-        deepcopy(owners)
+        return deepcopy(owners)
+    end
+
+    function empty_derive(owners :: OwnersByStep) :: OwnersByStep
+        return new(owners.bbnn)
     end
 
     function create_step_set(owners :: OwnersByStep, step :: Step) :: OwnersFixedSet
@@ -123,7 +127,28 @@ module Owners
 
                 if OwnersSet.isempty(step_set_a)
                     owners_a.valid = false
-                    break
+                end
+            end
+        else
+            owners_a.valid = false
+        end
+    end
+
+    function intersect_min!(owners_a :: OwnersByStep, owners_b :: OwnersByStep)
+        max_step = min(owners_a.max_step, owners_b.max_step)
+        if both_valids(owners_a, owners_b)
+            for step in Step(0):Step(max_step)
+                step_set_a = get_step_set(owners_a, step)
+                step_set_b = get_step_set(owners_b, step)
+
+                if step_set_a != nothing && step_set_b != nothing
+                    OwnersSet.intersect!(step_set_a, step_set_b)
+
+                    if OwnersSet.isempty(step_set_a)
+                        owners_a.valid = false
+                    end
+                else
+                    owners_a.valid = false
                 end
             end
         else
@@ -154,6 +179,63 @@ module Owners
         both_eq_max_step = owners_a.max_step == owners_b.max_step
 
         both_valids && both_eq_max_step
+    end
+
+    function both_valids(owners_a :: OwnersByStep, owners_b :: OwnersByStep) :: Bool
+        owners_a.valid == true && owners_b.valid == true
+    end
+
+
+
+    function to_string(owners :: OwnersByStep) :: String
+        txt = ""
+        for step in Step(0):owners.max_step
+            step_set = get_step_set(owners, step)
+
+            txt = OwnersSet.to_string(step_set)
+            txt *= "\n"
+            txt *= "[$step] $txt"
+            txt *= "\n"
+        end
+
+        return txt
+    end
+
+    function to_string_list(owners :: OwnersByStep) :: String
+        txt = ""
+        for step in Step(0):owners.max_step
+            step_set = get_step_set(owners, step)
+
+            list = OwnersSet.to_list(step_set)
+            txt *= "\n"
+            txt *= "[$step]"
+            txt *= "\n"
+            for key in list
+                txt *= "K$key"
+            end
+        end
+
+        return txt
+    end
+
+    function count(owners :: OwnersByStep, step :: Step) :: Int64
+        step_set = get_step_set(owners, step)
+
+        if step_set != nothing
+            return OwnersSet.count(step_set)
+        else
+            return 0
+        end
+    end
+
+    function to_list(owners :: OwnersByStep, step :: Step) :: Array{Int64,1}
+        step_set = get_step_set(owners, step)
+
+        if step_set != nothing
+            return OwnersSet.to_list(step_set)
+        else
+            return Array{Int64,1}()
+        end
     end
 
 end

@@ -21,6 +21,18 @@ module OwnersSet
         FBSet.pop!(owners_set.fbset, key)
     end
 
+    function to_list(owners_set :: OwnersFixedSet) :: Array{Int64,1}
+        FBSet.to_list(owners_set.fbset)
+    end
+
+    function count(owners_set :: OwnersFixedSet) :: Int64
+        FBSet.count(owners_set.fbset)
+    end
+
+    function to_empty!(owners_set :: OwnersFixedSet)
+        FBSet.to_empty!(owners_set.fbset)
+    end
+
     function isempty(owners_set :: OwnersFixedSet) :: Bool
         return FBSet.isempty(owners_set.fbset)
     end
@@ -41,19 +53,7 @@ module OwnersSet
         FBSet.diff!(owners_set_a.fbset, owners_set_b.fbset)
     end
 
-    #=
-    function new(derive_fbset :: FixedBinarySet)
-        fbset = deepcopy(derive_fbset)
-        OwnersFixedSet(fbset)
+    function to_string(owners :: OwnersFixedSet) :: String
+        FBSet.to_string(owners.fbset)
     end
-
-    function new_empty(derive_fbset :: FixedBinarySet)
-        fbset = deepcopy(derive_fbset)
-        if !FBSet.isempty(fbset)
-            FBSet.to_empty!(fbset)
-        end
-
-        OwnersFixedSet(fbset)
-    end
-    =#
 end

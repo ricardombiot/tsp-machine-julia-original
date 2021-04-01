@@ -21,6 +21,8 @@ function test_push_item()
         bit_number = 128 - (item-1)
         @test binary_txt[bit_number] == '1'
         @test FBSet128.have(set, item)
+        @test FBSet128.count(set) == 1
+        @test FBSet128.to_list(set) == [item]
     end
 
 end
@@ -32,6 +34,7 @@ function build_full_set()
         FBSet128.push!(set, item)
     end
 
+    @test FBSet128.count(set) == 128
     return set
 end
 

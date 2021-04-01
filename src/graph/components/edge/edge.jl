@@ -40,7 +40,7 @@ module PathEdge
         Owners.push!(edge.owners, step, node_id)
     end
 
-    #=
+
     function pop_owner!(edge :: Edge, node_owner :: Node)
         pop_owner!(edge, node_owner.step, node_owner.id)
     end
@@ -50,7 +50,7 @@ module PathEdge
     function have_owner(edge :: Edge, node_owner :: Node) :: Bool
         have_owner(edge, node_owner.step, node_owner.id)
     end
-    =#
+    #==#
 
     function have_owner(edge :: Edge, step :: Step, node_id :: NodeId) :: Bool
         Owners.have(edge.owners, step, node_id)
@@ -61,7 +61,7 @@ module PathEdge
     end
 
     function join!(edge :: Edge, edge_join :: Edge)
-        Owners.join!(edge.owners, edge_join.owners)
+        Owners.union!(edge.owners, edge_join.owners)
     end
 
 end

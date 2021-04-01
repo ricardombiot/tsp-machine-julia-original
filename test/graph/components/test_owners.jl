@@ -11,10 +11,14 @@ function test_owners_push_and_pop_key_by_step()
     @test Owners.have(owners, Step(0), node_id) == true
     @test !Owners.isempty(owners, Step(0))
 
+    @test Owners.count(owners, Step(0)) == 1
+
     Owners.pop!(owners, Step(0), node_id)
     @test Owners.have(owners, Step(0), node_id) == false
     @test Owners.isempty(owners, Step(0))
     @test owners.valid == false
+
+    @test Owners.count(owners, Step(0)) == 0
 end
 
 #=
@@ -100,6 +104,10 @@ function test_operations_owner()
     @test Owners.have(owners_set_a_copy, Step(2), node_id_s2_6_4)
     @test Owners.have(owners_set_a_copy, Step(3), node_id_s3_1_6)
 
+    @test Owners.count(owners_set_a_copy, Step(0)) == 1
+    @test Owners.count(owners_set_a_copy, Step(1)) == 3
+    @test Owners.count(owners_set_a_copy, Step(2)) == 3
+    @test Owners.count(owners_set_a_copy, Step(3)) == 2
 
     # intersect!
 
@@ -118,7 +126,12 @@ function test_operations_owner()
     @test Owners.have(owners_set_a_copy, Step(2), node_id_s2_6_4) == false
     @test Owners.have(owners_set_a_copy, Step(3), node_id_s3_1_6) == false
 
+    @test Owners.count(owners_set_a_copy, Step(0)) == 1
+    @test Owners.count(owners_set_a_copy, Step(1)) == 0
+    @test Owners.count(owners_set_a_copy, Step(2)) == 0
+    @test Owners.count(owners_set_a_copy, Step(3)) == 0
 
+    @test owners_set_a_copy.valid == false
     # diff! a / b
 
     owners_set_a_copy = deepcopy(owners_set_a)

@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - on branch master - src/graph/graph/graph_make_up.jl</title>
+  <title>LCOV - on branch integration - src/graph/graph/graph_make_up.jl</title>
   <link rel="stylesheet" type="text/css" href="../../../gcov.css">
 </head>
 
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">on branch master</td>
+            <td class="headerValue">on branch integration</td>
             <td></td>
             <td class="headerItem">Lines:</td>
             <td class="headerCovTableEntry">12</td>
@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-03-29 19:50:52</td>
+            <td class="headerValue">2021-03-30 09:32:25</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -61,24 +61,24 @@
 <pre class="sourceHeading">          Line data    Source code</pre>
 <pre class="source">
 <a name="1"><span class="lineNum">       1 </span>            : function up!(graph :: Graph, color :: Color, action_id :: ActionId)</a>
-<a name="2"><span class="lineNum">       2 </span><span class="lineCov">         33 :     delete_node_by_color!(graph, color)</span></a>
-<a name="3"><span class="lineNum">       3 </span><span class="lineCov">         33 :     review_owners_all_graph!(graph)</span></a>
-<a name="4"><span class="lineNum">       4 </span><span class="lineCov">         33 :     make_up!(graph, color, action_id)</span></a>
+<a name="2"><span class="lineNum">       2 </span><span class="lineCov">         15 :     delete_node_by_color!(graph, color)</span></a>
+<a name="3"><span class="lineNum">       3 </span><span class="lineCov">         15 :     review_owners_all_graph!(graph)</span></a>
+<a name="4"><span class="lineNum">       4 </span><span class="lineCov">         15 :     make_up!(graph, color, action_id)</span></a>
 <a name="5"><span class="lineNum">       5 </span>            : end</a>
 <a name="6"><span class="lineNum">       6 </span>            : </a>
 <a name="7"><span class="lineNum">       7 </span>            : function make_up!(graph :: Graph, color :: Color, action_id :: ActionId)</a>
-<a name="8"><span class="lineNum">       8 </span><span class="lineCov">         38 :     last_step = graph.next_step - 1</span></a>
-<a name="9"><span class="lineNum">       9 </span><span class="lineCov">         76 :     node = new_node(graph, color, action_id)</span></a>
-<a name="10"><span class="lineNum">      10 </span><span class="lineCov">         38 :     graph.action_parent_id = action_id</span></a>
-<a name="11"><span class="lineNum">      11 </span><span class="lineCov">         38 :     add_line!(graph)</span></a>
-<a name="12"><span class="lineNum">      12 </span><span class="lineCov">         38 :     add_node!(graph, node)</span></a>
+<a name="8"><span class="lineNum">       8 </span><span class="lineCov">         15 :     last_step = graph.next_step - 1</span></a>
+<a name="9"><span class="lineNum">       9 </span><span class="lineCov">         30 :     node = new_node(graph, color, action_id)</span></a>
+<a name="10"><span class="lineNum">      10 </span><span class="lineCov">         15 :     graph.action_parent_id = action_id</span></a>
+<a name="11"><span class="lineNum">      11 </span><span class="lineCov">         15 :     add_line!(graph)</span></a>
+<a name="12"><span class="lineNum">      12 </span><span class="lineCov">         15 :     add_node!(graph, node)</span></a>
 <a name="13"><span class="lineNum">      13 </span>            : </a>
-<a name="14"><span class="lineNum">      14 </span><span class="lineCov">         76 :     for parent_id in graph.table_lines[last_step]</span></a>
-<a name="15"><span class="lineNum">      15 </span><span class="lineCov">         80 :         add_edge!(graph, parent_id, node.id)</span></a>
+<a name="14"><span class="lineNum">      14 </span><span class="lineCov">         30 :     for parent_id in graph.table_lines[last_step]</span></a>
+<a name="15"><span class="lineNum">      15 </span><span class="lineCov">         30 :         add_edge!(graph, parent_id, node.id)</span></a>
 <a name="16"><span class="lineNum">      16 </span>            :     end</a>
 <a name="17"><span class="lineNum">      17 </span>            : </a>
-<a name="18"><span class="lineNum">      18 </span><span class="lineCov">         38 :     push_node_as_new_owner!(graph, node)</span></a>
-<a name="19"><span class="lineNum">      19 </span><span class="lineCov">         38 :     graph.next_step += 1</span></a>
+<a name="18"><span class="lineNum">      18 </span><span class="lineCov">         15 :     push_node_as_new_owner!(graph, node)</span></a>
+<a name="19"><span class="lineNum">      19 </span><span class="lineCov">         15 :     graph.next_step += 1</span></a>
 <a name="20"><span class="lineNum">      20 </span>            : end</a>
 </pre>
       </td>
