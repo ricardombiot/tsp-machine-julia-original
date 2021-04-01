@@ -1,0 +1,351 @@
+digraph G {
+subgraph cluster_info {
+        subgraph cluster_0 {
+        style=filled;
+        color=lightgrey;
+        node [style=filled,color=white];
+        subgraph cluster_act_1 {
+label = "Action: 1"step_1_Rt [label=<0<BR /><FONT POINT-SIZE="8">ID: 1.Rt</FONT><BR /><FONT POINT-SIZE="8">Parents: </FONT><BR /><FONT POINT-SIZE="8">Sons: 10.1,11.1,12.1,9.1</FONT>>]
+}
+
+        fontsize="10"
+        label = "Line 0";
+        }
+
+        subgraph cluster_4 {
+        style=filled;
+        color=lightgrey;
+        node [style=filled,color=white];
+        subgraph cluster_act_29 {
+label = "Action: 29"step_29_22 [label=<4<BR /><FONT POINT-SIZE="8">ID: 29.22</FONT><BR /><FONT POINT-SIZE="8">Parents: 22.18,22.15</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.29</FONT>>]
+step_29_21 [label=<4<BR /><FONT POINT-SIZE="8">ID: 29.21</FONT><BR /><FONT POINT-SIZE="8">Parents: 21.16,21.18</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.29</FONT>>]
+step_29_24 [label=<4<BR /><FONT POINT-SIZE="8">ID: 29.24</FONT><BR /><FONT POINT-SIZE="8">Parents: 24.15,24.16</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.29</FONT>>]
+}
+subgraph cluster_act_28 {
+label = "Action: 28"step_28_24 [label=<3<BR /><FONT POINT-SIZE="8">ID: 28.24</FONT><BR /><FONT POINT-SIZE="8">Parents: 24.15,24.17</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.28</FONT>>]
+step_28_23 [label=<3<BR /><FONT POINT-SIZE="8">ID: 28.23</FONT><BR /><FONT POINT-SIZE="8">Parents: 23.18,23.15</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.28</FONT>>]
+step_28_21 [label=<3<BR /><FONT POINT-SIZE="8">ID: 28.21</FONT><BR /><FONT POINT-SIZE="8">Parents: 21.17,21.18</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.28</FONT>>]
+}
+subgraph cluster_act_29 {
+label = "Action: 29"step_29_22 [label=<4<BR /><FONT POINT-SIZE="8">ID: 29.22</FONT><BR /><FONT POINT-SIZE="8">Parents: 22.18,22.15</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.29</FONT>>]
+step_29_21 [label=<4<BR /><FONT POINT-SIZE="8">ID: 29.21</FONT><BR /><FONT POINT-SIZE="8">Parents: 21.16,21.18</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.29</FONT>>]
+step_29_24 [label=<4<BR /><FONT POINT-SIZE="8">ID: 29.24</FONT><BR /><FONT POINT-SIZE="8">Parents: 24.15,24.16</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.29</FONT>>]
+}
+subgraph cluster_act_30 {
+label = "Action: 30"step_30_23 [label=<5<BR /><FONT POINT-SIZE="8">ID: 30.23</FONT><BR /><FONT POINT-SIZE="8">Parents: 23.15,23.16</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.30</FONT>>]
+step_30_21 [label=<5<BR /><FONT POINT-SIZE="8">ID: 30.21</FONT><BR /><FONT POINT-SIZE="8">Parents: 21.17,21.16</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.30</FONT>>]
+step_30_22 [label=<5<BR /><FONT POINT-SIZE="8">ID: 30.22</FONT><BR /><FONT POINT-SIZE="8">Parents: 22.17,22.15</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.30</FONT>>]
+}
+subgraph cluster_act_27 {
+label = "Action: 27"step_27_23 [label=<2<BR /><FONT POINT-SIZE="8">ID: 27.23</FONT><BR /><FONT POINT-SIZE="8">Parents: 23.18,23.16</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.27</FONT>>]
+step_27_22 [label=<2<BR /><FONT POINT-SIZE="8">ID: 27.22</FONT><BR /><FONT POINT-SIZE="8">Parents: 22.18,22.17</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.27</FONT>>]
+step_27_24 [label=<2<BR /><FONT POINT-SIZE="8">ID: 27.24</FONT><BR /><FONT POINT-SIZE="8">Parents: 24.16,24.17</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.27</FONT>>]
+}
+subgraph cluster_act_30 {
+label = "Action: 30"step_30_23 [label=<5<BR /><FONT POINT-SIZE="8">ID: 30.23</FONT><BR /><FONT POINT-SIZE="8">Parents: 23.15,23.16</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.30</FONT>>]
+step_30_21 [label=<5<BR /><FONT POINT-SIZE="8">ID: 30.21</FONT><BR /><FONT POINT-SIZE="8">Parents: 21.17,21.16</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.30</FONT>>]
+step_30_22 [label=<5<BR /><FONT POINT-SIZE="8">ID: 30.22</FONT><BR /><FONT POINT-SIZE="8">Parents: 22.17,22.15</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.30</FONT>>]
+}
+subgraph cluster_act_30 {
+label = "Action: 30"step_30_23 [label=<5<BR /><FONT POINT-SIZE="8">ID: 30.23</FONT><BR /><FONT POINT-SIZE="8">Parents: 23.15,23.16</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.30</FONT>>]
+step_30_21 [label=<5<BR /><FONT POINT-SIZE="8">ID: 30.21</FONT><BR /><FONT POINT-SIZE="8">Parents: 21.17,21.16</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.30</FONT>>]
+step_30_22 [label=<5<BR /><FONT POINT-SIZE="8">ID: 30.22</FONT><BR /><FONT POINT-SIZE="8">Parents: 22.17,22.15</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.30</FONT>>]
+}
+subgraph cluster_act_27 {
+label = "Action: 27"step_27_23 [label=<2<BR /><FONT POINT-SIZE="8">ID: 27.23</FONT><BR /><FONT POINT-SIZE="8">Parents: 23.18,23.16</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.27</FONT>>]
+step_27_22 [label=<2<BR /><FONT POINT-SIZE="8">ID: 27.22</FONT><BR /><FONT POINT-SIZE="8">Parents: 22.18,22.17</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.27</FONT>>]
+step_27_24 [label=<2<BR /><FONT POINT-SIZE="8">ID: 27.24</FONT><BR /><FONT POINT-SIZE="8">Parents: 24.16,24.17</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.27</FONT>>]
+}
+subgraph cluster_act_27 {
+label = "Action: 27"step_27_23 [label=<2<BR /><FONT POINT-SIZE="8">ID: 27.23</FONT><BR /><FONT POINT-SIZE="8">Parents: 23.18,23.16</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.27</FONT>>]
+step_27_22 [label=<2<BR /><FONT POINT-SIZE="8">ID: 27.22</FONT><BR /><FONT POINT-SIZE="8">Parents: 22.18,22.17</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.27</FONT>>]
+step_27_24 [label=<2<BR /><FONT POINT-SIZE="8">ID: 27.24</FONT><BR /><FONT POINT-SIZE="8">Parents: 24.16,24.17</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.27</FONT>>]
+}
+subgraph cluster_act_29 {
+label = "Action: 29"step_29_22 [label=<4<BR /><FONT POINT-SIZE="8">ID: 29.22</FONT><BR /><FONT POINT-SIZE="8">Parents: 22.18,22.15</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.29</FONT>>]
+step_29_21 [label=<4<BR /><FONT POINT-SIZE="8">ID: 29.21</FONT><BR /><FONT POINT-SIZE="8">Parents: 21.16,21.18</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.29</FONT>>]
+step_29_24 [label=<4<BR /><FONT POINT-SIZE="8">ID: 29.24</FONT><BR /><FONT POINT-SIZE="8">Parents: 24.15,24.16</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.29</FONT>>]
+}
+subgraph cluster_act_28 {
+label = "Action: 28"step_28_24 [label=<3<BR /><FONT POINT-SIZE="8">ID: 28.24</FONT><BR /><FONT POINT-SIZE="8">Parents: 24.15,24.17</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.28</FONT>>]
+step_28_23 [label=<3<BR /><FONT POINT-SIZE="8">ID: 28.23</FONT><BR /><FONT POINT-SIZE="8">Parents: 23.18,23.15</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.28</FONT>>]
+step_28_21 [label=<3<BR /><FONT POINT-SIZE="8">ID: 28.21</FONT><BR /><FONT POINT-SIZE="8">Parents: 21.17,21.18</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.28</FONT>>]
+}
+subgraph cluster_act_28 {
+label = "Action: 28"step_28_24 [label=<3<BR /><FONT POINT-SIZE="8">ID: 28.24</FONT><BR /><FONT POINT-SIZE="8">Parents: 24.15,24.17</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.28</FONT>>]
+step_28_23 [label=<3<BR /><FONT POINT-SIZE="8">ID: 28.23</FONT><BR /><FONT POINT-SIZE="8">Parents: 23.18,23.15</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.28</FONT>>]
+step_28_21 [label=<3<BR /><FONT POINT-SIZE="8">ID: 28.21</FONT><BR /><FONT POINT-SIZE="8">Parents: 21.17,21.18</FONT><BR /><FONT POINT-SIZE="8">Sons: 32.28</FONT>>]
+}
+
+        fontsize="10"
+        label = "Line 4";
+        }
+
+        subgraph cluster_2 {
+        style=filled;
+        color=lightgrey;
+        node [style=filled,color=white];
+        subgraph cluster_act_16 {
+label = "Action: 16"step_16_9 [label=<3<BR /><FONT POINT-SIZE="8">ID: 16.9</FONT><BR /><FONT POINT-SIZE="8">Parents: 9.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 23.16,24.16</FONT>>]
+step_16_11 [label=<3<BR /><FONT POINT-SIZE="8">ID: 16.11</FONT><BR /><FONT POINT-SIZE="8">Parents: 11.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 24.16,21.16</FONT>>]
+step_16_12 [label=<3<BR /><FONT POINT-SIZE="8">ID: 16.12</FONT><BR /><FONT POINT-SIZE="8">Parents: 12.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 23.16,21.16</FONT>>]
+}
+subgraph cluster_act_17 {
+label = "Action: 17"step_17_10 [label=<4<BR /><FONT POINT-SIZE="8">ID: 17.10</FONT><BR /><FONT POINT-SIZE="8">Parents: 10.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 21.17,24.17</FONT>>]
+step_17_12 [label=<4<BR /><FONT POINT-SIZE="8">ID: 17.12</FONT><BR /><FONT POINT-SIZE="8">Parents: 12.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 21.17,22.17</FONT>>]
+step_17_9 [label=<4<BR /><FONT POINT-SIZE="8">ID: 17.9</FONT><BR /><FONT POINT-SIZE="8">Parents: 9.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 22.17,24.17</FONT>>]
+}
+subgraph cluster_act_15 {
+label = "Action: 15"step_15_10 [label=<2<BR /><FONT POINT-SIZE="8">ID: 15.10</FONT><BR /><FONT POINT-SIZE="8">Parents: 10.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 24.15,23.15</FONT>>]
+step_15_11 [label=<2<BR /><FONT POINT-SIZE="8">ID: 15.11</FONT><BR /><FONT POINT-SIZE="8">Parents: 11.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 24.15,22.15</FONT>>]
+step_15_12 [label=<2<BR /><FONT POINT-SIZE="8">ID: 15.12</FONT><BR /><FONT POINT-SIZE="8">Parents: 12.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 23.15,22.15</FONT>>]
+}
+subgraph cluster_act_15 {
+label = "Action: 15"step_15_10 [label=<2<BR /><FONT POINT-SIZE="8">ID: 15.10</FONT><BR /><FONT POINT-SIZE="8">Parents: 10.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 24.15,23.15</FONT>>]
+step_15_11 [label=<2<BR /><FONT POINT-SIZE="8">ID: 15.11</FONT><BR /><FONT POINT-SIZE="8">Parents: 11.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 24.15,22.15</FONT>>]
+step_15_12 [label=<2<BR /><FONT POINT-SIZE="8">ID: 15.12</FONT><BR /><FONT POINT-SIZE="8">Parents: 12.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 23.15,22.15</FONT>>]
+}
+subgraph cluster_act_18 {
+label = "Action: 18"step_18_9 [label=<5<BR /><FONT POINT-SIZE="8">ID: 18.9</FONT><BR /><FONT POINT-SIZE="8">Parents: 9.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 23.18,22.18</FONT>>]
+step_18_11 [label=<5<BR /><FONT POINT-SIZE="8">ID: 18.11</FONT><BR /><FONT POINT-SIZE="8">Parents: 11.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 22.18,21.18</FONT>>]
+step_18_10 [label=<5<BR /><FONT POINT-SIZE="8">ID: 18.10</FONT><BR /><FONT POINT-SIZE="8">Parents: 10.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 23.18,21.18</FONT>>]
+}
+subgraph cluster_act_16 {
+label = "Action: 16"step_16_9 [label=<3<BR /><FONT POINT-SIZE="8">ID: 16.9</FONT><BR /><FONT POINT-SIZE="8">Parents: 9.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 23.16,24.16</FONT>>]
+step_16_11 [label=<3<BR /><FONT POINT-SIZE="8">ID: 16.11</FONT><BR /><FONT POINT-SIZE="8">Parents: 11.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 24.16,21.16</FONT>>]
+step_16_12 [label=<3<BR /><FONT POINT-SIZE="8">ID: 16.12</FONT><BR /><FONT POINT-SIZE="8">Parents: 12.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 23.16,21.16</FONT>>]
+}
+subgraph cluster_act_18 {
+label = "Action: 18"step_18_9 [label=<5<BR /><FONT POINT-SIZE="8">ID: 18.9</FONT><BR /><FONT POINT-SIZE="8">Parents: 9.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 23.18,22.18</FONT>>]
+step_18_11 [label=<5<BR /><FONT POINT-SIZE="8">ID: 18.11</FONT><BR /><FONT POINT-SIZE="8">Parents: 11.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 22.18,21.18</FONT>>]
+step_18_10 [label=<5<BR /><FONT POINT-SIZE="8">ID: 18.10</FONT><BR /><FONT POINT-SIZE="8">Parents: 10.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 23.18,21.18</FONT>>]
+}
+subgraph cluster_act_17 {
+label = "Action: 17"step_17_10 [label=<4<BR /><FONT POINT-SIZE="8">ID: 17.10</FONT><BR /><FONT POINT-SIZE="8">Parents: 10.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 21.17,24.17</FONT>>]
+step_17_12 [label=<4<BR /><FONT POINT-SIZE="8">ID: 17.12</FONT><BR /><FONT POINT-SIZE="8">Parents: 12.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 21.17,22.17</FONT>>]
+step_17_9 [label=<4<BR /><FONT POINT-SIZE="8">ID: 17.9</FONT><BR /><FONT POINT-SIZE="8">Parents: 9.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 22.17,24.17</FONT>>]
+}
+subgraph cluster_act_16 {
+label = "Action: 16"step_16_9 [label=<3<BR /><FONT POINT-SIZE="8">ID: 16.9</FONT><BR /><FONT POINT-SIZE="8">Parents: 9.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 23.16,24.16</FONT>>]
+step_16_11 [label=<3<BR /><FONT POINT-SIZE="8">ID: 16.11</FONT><BR /><FONT POINT-SIZE="8">Parents: 11.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 24.16,21.16</FONT>>]
+step_16_12 [label=<3<BR /><FONT POINT-SIZE="8">ID: 16.12</FONT><BR /><FONT POINT-SIZE="8">Parents: 12.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 23.16,21.16</FONT>>]
+}
+subgraph cluster_act_15 {
+label = "Action: 15"step_15_10 [label=<2<BR /><FONT POINT-SIZE="8">ID: 15.10</FONT><BR /><FONT POINT-SIZE="8">Parents: 10.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 24.15,23.15</FONT>>]
+step_15_11 [label=<2<BR /><FONT POINT-SIZE="8">ID: 15.11</FONT><BR /><FONT POINT-SIZE="8">Parents: 11.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 24.15,22.15</FONT>>]
+step_15_12 [label=<2<BR /><FONT POINT-SIZE="8">ID: 15.12</FONT><BR /><FONT POINT-SIZE="8">Parents: 12.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 23.15,22.15</FONT>>]
+}
+subgraph cluster_act_18 {
+label = "Action: 18"step_18_9 [label=<5<BR /><FONT POINT-SIZE="8">ID: 18.9</FONT><BR /><FONT POINT-SIZE="8">Parents: 9.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 23.18,22.18</FONT>>]
+step_18_11 [label=<5<BR /><FONT POINT-SIZE="8">ID: 18.11</FONT><BR /><FONT POINT-SIZE="8">Parents: 11.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 22.18,21.18</FONT>>]
+step_18_10 [label=<5<BR /><FONT POINT-SIZE="8">ID: 18.10</FONT><BR /><FONT POINT-SIZE="8">Parents: 10.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 23.18,21.18</FONT>>]
+}
+subgraph cluster_act_17 {
+label = "Action: 17"step_17_10 [label=<4<BR /><FONT POINT-SIZE="8">ID: 17.10</FONT><BR /><FONT POINT-SIZE="8">Parents: 10.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 21.17,24.17</FONT>>]
+step_17_12 [label=<4<BR /><FONT POINT-SIZE="8">ID: 17.12</FONT><BR /><FONT POINT-SIZE="8">Parents: 12.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 21.17,22.17</FONT>>]
+step_17_9 [label=<4<BR /><FONT POINT-SIZE="8">ID: 17.9</FONT><BR /><FONT POINT-SIZE="8">Parents: 9.1</FONT><BR /><FONT POINT-SIZE="8">Sons: 22.17,24.17</FONT>>]
+}
+
+        fontsize="10"
+        label = "Line 2";
+        }
+
+        subgraph cluster_3 {
+        style=filled;
+        color=lightgrey;
+        node [style=filled,color=white];
+        subgraph cluster_act_22 {
+label = "Action: 22"step_22_18 [label=<3<BR /><FONT POINT-SIZE="8">ID: 22.18</FONT><BR /><FONT POINT-SIZE="8">Parents: 18.9,18.11</FONT><BR /><FONT POINT-SIZE="8">Sons: 29.22,27.22</FONT>>]
+step_22_17 [label=<3<BR /><FONT POINT-SIZE="8">ID: 22.17</FONT><BR /><FONT POINT-SIZE="8">Parents: 17.12,17.9</FONT><BR /><FONT POINT-SIZE="8">Sons: 27.22,30.22</FONT>>]
+step_22_15 [label=<3<BR /><FONT POINT-SIZE="8">ID: 22.15</FONT><BR /><FONT POINT-SIZE="8">Parents: 15.11,15.12</FONT><BR /><FONT POINT-SIZE="8">Sons: 29.22,30.22</FONT>>]
+}
+subgraph cluster_act_24 {
+label = "Action: 24"step_24_15 [label=<5<BR /><FONT POINT-SIZE="8">ID: 24.15</FONT><BR /><FONT POINT-SIZE="8">Parents: 15.10,15.11</FONT><BR /><FONT POINT-SIZE="8">Sons: 28.24,29.24</FONT>>]
+step_24_16 [label=<5<BR /><FONT POINT-SIZE="8">ID: 24.16</FONT><BR /><FONT POINT-SIZE="8">Parents: 16.9,16.11</FONT><BR /><FONT POINT-SIZE="8">Sons: 29.24,27.24</FONT>>]
+step_24_17 [label=<5<BR /><FONT POINT-SIZE="8">ID: 24.17</FONT><BR /><FONT POINT-SIZE="8">Parents: 17.10,17.9</FONT><BR /><FONT POINT-SIZE="8">Sons: 28.24,27.24</FONT>>]
+}
+subgraph cluster_act_23 {
+label = "Action: 23"step_23_18 [label=<4<BR /><FONT POINT-SIZE="8">ID: 23.18</FONT><BR /><FONT POINT-SIZE="8">Parents: 18.9,18.10</FONT><BR /><FONT POINT-SIZE="8">Sons: 27.23,28.23</FONT>>]
+step_23_16 [label=<4<BR /><FONT POINT-SIZE="8">ID: 23.16</FONT><BR /><FONT POINT-SIZE="8">Parents: 16.9,16.12</FONT><BR /><FONT POINT-SIZE="8">Sons: 30.23,27.23</FONT>>]
+step_23_15 [label=<4<BR /><FONT POINT-SIZE="8">ID: 23.15</FONT><BR /><FONT POINT-SIZE="8">Parents: 15.10,15.12</FONT><BR /><FONT POINT-SIZE="8">Sons: 30.23,28.23</FONT>>]
+}
+subgraph cluster_act_21 {
+label = "Action: 21"step_21_17 [label=<2<BR /><FONT POINT-SIZE="8">ID: 21.17</FONT><BR /><FONT POINT-SIZE="8">Parents: 17.10,17.12</FONT><BR /><FONT POINT-SIZE="8">Sons: 30.21,28.21</FONT>>]
+step_21_16 [label=<2<BR /><FONT POINT-SIZE="8">ID: 21.16</FONT><BR /><FONT POINT-SIZE="8">Parents: 16.11,16.12</FONT><BR /><FONT POINT-SIZE="8">Sons: 30.21,29.21</FONT>>]
+step_21_18 [label=<2<BR /><FONT POINT-SIZE="8">ID: 21.18</FONT><BR /><FONT POINT-SIZE="8">Parents: 18.11,18.10</FONT><BR /><FONT POINT-SIZE="8">Sons: 29.21,28.21</FONT>>]
+}
+subgraph cluster_act_22 {
+label = "Action: 22"step_22_18 [label=<3<BR /><FONT POINT-SIZE="8">ID: 22.18</FONT><BR /><FONT POINT-SIZE="8">Parents: 18.9,18.11</FONT><BR /><FONT POINT-SIZE="8">Sons: 29.22,27.22</FONT>>]
+step_22_17 [label=<3<BR /><FONT POINT-SIZE="8">ID: 22.17</FONT><BR /><FONT POINT-SIZE="8">Parents: 17.12,17.9</FONT><BR /><FONT POINT-SIZE="8">Sons: 27.22,30.22</FONT>>]
+step_22_15 [label=<3<BR /><FONT POINT-SIZE="8">ID: 22.15</FONT><BR /><FONT POINT-SIZE="8">Parents: 15.11,15.12</FONT><BR /><FONT POINT-SIZE="8">Sons: 29.22,30.22</FONT>>]
+}
+subgraph cluster_act_23 {
+label = "Action: 23"step_23_18 [label=<4<BR /><FONT POINT-SIZE="8">ID: 23.18</FONT><BR /><FONT POINT-SIZE="8">Parents: 18.9,18.10</FONT><BR /><FONT POINT-SIZE="8">Sons: 27.23,28.23</FONT>>]
+step_23_16 [label=<4<BR /><FONT POINT-SIZE="8">ID: 23.16</FONT><BR /><FONT POINT-SIZE="8">Parents: 16.9,16.12</FONT><BR /><FONT POINT-SIZE="8">Sons: 30.23,27.23</FONT>>]
+step_23_15 [label=<4<BR /><FONT POINT-SIZE="8">ID: 23.15</FONT><BR /><FONT POINT-SIZE="8">Parents: 15.10,15.12</FONT><BR /><FONT POINT-SIZE="8">Sons: 30.23,28.23</FONT>>]
+}
+subgraph cluster_act_24 {
+label = "Action: 24"step_24_15 [label=<5<BR /><FONT POINT-SIZE="8">ID: 24.15</FONT><BR /><FONT POINT-SIZE="8">Parents: 15.10,15.11</FONT><BR /><FONT POINT-SIZE="8">Sons: 28.24,29.24</FONT>>]
+step_24_16 [label=<5<BR /><FONT POINT-SIZE="8">ID: 24.16</FONT><BR /><FONT POINT-SIZE="8">Parents: 16.9,16.11</FONT><BR /><FONT POINT-SIZE="8">Sons: 29.24,27.24</FONT>>]
+step_24_17 [label=<5<BR /><FONT POINT-SIZE="8">ID: 24.17</FONT><BR /><FONT POINT-SIZE="8">Parents: 17.10,17.9</FONT><BR /><FONT POINT-SIZE="8">Sons: 28.24,27.24</FONT>>]
+}
+subgraph cluster_act_23 {
+label = "Action: 23"step_23_18 [label=<4<BR /><FONT POINT-SIZE="8">ID: 23.18</FONT><BR /><FONT POINT-SIZE="8">Parents: 18.9,18.10</FONT><BR /><FONT POINT-SIZE="8">Sons: 27.23,28.23</FONT>>]
+step_23_16 [label=<4<BR /><FONT POINT-SIZE="8">ID: 23.16</FONT><BR /><FONT POINT-SIZE="8">Parents: 16.9,16.12</FONT><BR /><FONT POINT-SIZE="8">Sons: 30.23,27.23</FONT>>]
+step_23_15 [label=<4<BR /><FONT POINT-SIZE="8">ID: 23.15</FONT><BR /><FONT POINT-SIZE="8">Parents: 15.10,15.12</FONT><BR /><FONT POINT-SIZE="8">Sons: 30.23,28.23</FONT>>]
+}
+subgraph cluster_act_24 {
+label = "Action: 24"step_24_15 [label=<5<BR /><FONT POINT-SIZE="8">ID: 24.15</FONT><BR /><FONT POINT-SIZE="8">Parents: 15.10,15.11</FONT><BR /><FONT POINT-SIZE="8">Sons: 28.24,29.24</FONT>>]
+step_24_16 [label=<5<BR /><FONT POINT-SIZE="8">ID: 24.16</FONT><BR /><FONT POINT-SIZE="8">Parents: 16.9,16.11</FONT><BR /><FONT POINT-SIZE="8">Sons: 29.24,27.24</FONT>>]
+step_24_17 [label=<5<BR /><FONT POINT-SIZE="8">ID: 24.17</FONT><BR /><FONT POINT-SIZE="8">Parents: 17.10,17.9</FONT><BR /><FONT POINT-SIZE="8">Sons: 28.24,27.24</FONT>>]
+}
+subgraph cluster_act_22 {
+label = "Action: 22"step_22_18 [label=<3<BR /><FONT POINT-SIZE="8">ID: 22.18</FONT><BR /><FONT POINT-SIZE="8">Parents: 18.9,18.11</FONT><BR /><FONT POINT-SIZE="8">Sons: 29.22,27.22</FONT>>]
+step_22_17 [label=<3<BR /><FONT POINT-SIZE="8">ID: 22.17</FONT><BR /><FONT POINT-SIZE="8">Parents: 17.12,17.9</FONT><BR /><FONT POINT-SIZE="8">Sons: 27.22,30.22</FONT>>]
+step_22_15 [label=<3<BR /><FONT POINT-SIZE="8">ID: 22.15</FONT><BR /><FONT POINT-SIZE="8">Parents: 15.11,15.12</FONT><BR /><FONT POINT-SIZE="8">Sons: 29.22,30.22</FONT>>]
+}
+subgraph cluster_act_21 {
+label = "Action: 21"step_21_17 [label=<2<BR /><FONT POINT-SIZE="8">ID: 21.17</FONT><BR /><FONT POINT-SIZE="8">Parents: 17.10,17.12</FONT><BR /><FONT POINT-SIZE="8">Sons: 30.21,28.21</FONT>>]
+step_21_16 [label=<2<BR /><FONT POINT-SIZE="8">ID: 21.16</FONT><BR /><FONT POINT-SIZE="8">Parents: 16.11,16.12</FONT><BR /><FONT POINT-SIZE="8">Sons: 30.21,29.21</FONT>>]
+step_21_18 [label=<2<BR /><FONT POINT-SIZE="8">ID: 21.18</FONT><BR /><FONT POINT-SIZE="8">Parents: 18.11,18.10</FONT><BR /><FONT POINT-SIZE="8">Sons: 29.21,28.21</FONT>>]
+}
+subgraph cluster_act_21 {
+label = "Action: 21"step_21_17 [label=<2<BR /><FONT POINT-SIZE="8">ID: 21.17</FONT><BR /><FONT POINT-SIZE="8">Parents: 17.10,17.12</FONT><BR /><FONT POINT-SIZE="8">Sons: 30.21,28.21</FONT>>]
+step_21_16 [label=<2<BR /><FONT POINT-SIZE="8">ID: 21.16</FONT><BR /><FONT POINT-SIZE="8">Parents: 16.11,16.12</FONT><BR /><FONT POINT-SIZE="8">Sons: 30.21,29.21</FONT>>]
+step_21_18 [label=<2<BR /><FONT POINT-SIZE="8">ID: 21.18</FONT><BR /><FONT POINT-SIZE="8">Parents: 18.11,18.10</FONT><BR /><FONT POINT-SIZE="8">Sons: 29.21,28.21</FONT>>]
+}
+
+        fontsize="10"
+        label = "Line 3";
+        }
+
+        subgraph cluster_5 {
+        style=filled;
+        color=lightgrey;
+        node [style=filled,color=white];
+        subgraph cluster_act_32 {
+label = "Action: 32"step_32_30 [label=<1<BR /><FONT POINT-SIZE="8">ID: 32.30</FONT><BR /><FONT POINT-SIZE="8">Parents: 30.23,30.21,30.22</FONT><BR /><FONT POINT-SIZE="8">Sons: </FONT>>]
+step_32_29 [label=<1<BR /><FONT POINT-SIZE="8">ID: 32.29</FONT><BR /><FONT POINT-SIZE="8">Parents: 29.22,29.21,29.24</FONT><BR /><FONT POINT-SIZE="8">Sons: </FONT>>]
+step_32_27 [label=<1<BR /><FONT POINT-SIZE="8">ID: 32.27</FONT><BR /><FONT POINT-SIZE="8">Parents: 27.23,27.22,27.24</FONT><BR /><FONT POINT-SIZE="8">Sons: </FONT>>]
+step_32_28 [label=<1<BR /><FONT POINT-SIZE="8">ID: 32.28</FONT><BR /><FONT POINT-SIZE="8">Parents: 28.24,28.23,28.21</FONT><BR /><FONT POINT-SIZE="8">Sons: </FONT>>]
+}
+subgraph cluster_act_32 {
+label = "Action: 32"step_32_30 [label=<1<BR /><FONT POINT-SIZE="8">ID: 32.30</FONT><BR /><FONT POINT-SIZE="8">Parents: 30.23,30.21,30.22</FONT><BR /><FONT POINT-SIZE="8">Sons: </FONT>>]
+step_32_29 [label=<1<BR /><FONT POINT-SIZE="8">ID: 32.29</FONT><BR /><FONT POINT-SIZE="8">Parents: 29.22,29.21,29.24</FONT><BR /><FONT POINT-SIZE="8">Sons: </FONT>>]
+step_32_27 [label=<1<BR /><FONT POINT-SIZE="8">ID: 32.27</FONT><BR /><FONT POINT-SIZE="8">Parents: 27.23,27.22,27.24</FONT><BR /><FONT POINT-SIZE="8">Sons: </FONT>>]
+step_32_28 [label=<1<BR /><FONT POINT-SIZE="8">ID: 32.28</FONT><BR /><FONT POINT-SIZE="8">Parents: 28.24,28.23,28.21</FONT><BR /><FONT POINT-SIZE="8">Sons: </FONT>>]
+}
+subgraph cluster_act_32 {
+label = "Action: 32"step_32_30 [label=<1<BR /><FONT POINT-SIZE="8">ID: 32.30</FONT><BR /><FONT POINT-SIZE="8">Parents: 30.23,30.21,30.22</FONT><BR /><FONT POINT-SIZE="8">Sons: </FONT>>]
+step_32_29 [label=<1<BR /><FONT POINT-SIZE="8">ID: 32.29</FONT><BR /><FONT POINT-SIZE="8">Parents: 29.22,29.21,29.24</FONT><BR /><FONT POINT-SIZE="8">Sons: </FONT>>]
+step_32_27 [label=<1<BR /><FONT POINT-SIZE="8">ID: 32.27</FONT><BR /><FONT POINT-SIZE="8">Parents: 27.23,27.22,27.24</FONT><BR /><FONT POINT-SIZE="8">Sons: </FONT>>]
+step_32_28 [label=<1<BR /><FONT POINT-SIZE="8">ID: 32.28</FONT><BR /><FONT POINT-SIZE="8">Parents: 28.24,28.23,28.21</FONT><BR /><FONT POINT-SIZE="8">Sons: </FONT>>]
+}
+subgraph cluster_act_32 {
+label = "Action: 32"step_32_30 [label=<1<BR /><FONT POINT-SIZE="8">ID: 32.30</FONT><BR /><FONT POINT-SIZE="8">Parents: 30.23,30.21,30.22</FONT><BR /><FONT POINT-SIZE="8">Sons: </FONT>>]
+step_32_29 [label=<1<BR /><FONT POINT-SIZE="8">ID: 32.29</FONT><BR /><FONT POINT-SIZE="8">Parents: 29.22,29.21,29.24</FONT><BR /><FONT POINT-SIZE="8">Sons: </FONT>>]
+step_32_27 [label=<1<BR /><FONT POINT-SIZE="8">ID: 32.27</FONT><BR /><FONT POINT-SIZE="8">Parents: 27.23,27.22,27.24</FONT><BR /><FONT POINT-SIZE="8">Sons: </FONT>>]
+step_32_28 [label=<1<BR /><FONT POINT-SIZE="8">ID: 32.28</FONT><BR /><FONT POINT-SIZE="8">Parents: 28.24,28.23,28.21</FONT><BR /><FONT POINT-SIZE="8">Sons: </FONT>>]
+}
+
+        fontsize="10"
+        label = "Line 5";
+        }
+
+        subgraph cluster_1 {
+        style=filled;
+        color=lightgrey;
+        node [style=filled,color=white];
+        subgraph cluster_act_10 {
+label = "Action: 10"step_10_1 [label=<3<BR /><FONT POINT-SIZE="8">ID: 10.1</FONT><BR /><FONT POINT-SIZE="8">Parents: 1.Rt</FONT><BR /><FONT POINT-SIZE="8">Sons: 17.10,15.10,18.10</FONT>>]
+}
+subgraph cluster_act_11 {
+label = "Action: 11"step_11_1 [label=<4<BR /><FONT POINT-SIZE="8">ID: 11.1</FONT><BR /><FONT POINT-SIZE="8">Parents: 1.Rt</FONT><BR /><FONT POINT-SIZE="8">Sons: 15.11,16.11,18.11</FONT>>]
+}
+subgraph cluster_act_12 {
+label = "Action: 12"step_12_1 [label=<5<BR /><FONT POINT-SIZE="8">ID: 12.1</FONT><BR /><FONT POINT-SIZE="8">Parents: 1.Rt</FONT><BR /><FONT POINT-SIZE="8">Sons: 17.12,15.12,16.12</FONT>>]
+}
+subgraph cluster_act_9 {
+label = "Action: 9"step_9_1 [label=<2<BR /><FONT POINT-SIZE="8">ID: 9.1</FONT><BR /><FONT POINT-SIZE="8">Parents: 1.Rt</FONT><BR /><FONT POINT-SIZE="8">Sons: 18.9,16.9,17.9</FONT>>]
+}
+
+        fontsize="10"
+        label = "Line 1";
+        }
+step_22_15 -> step_30_22; 
+step_16_11 -> step_21_16; 
+step_23_16 -> step_27_23; 
+step_27_24 -> step_32_27; 
+step_17_12 -> step_22_17; 
+step_30_22 -> step_32_30; 
+step_16_12 -> step_23_16; 
+step_12_1 -> step_16_12; 
+step_16_9 -> step_24_16; 
+step_17_9 -> step_22_17; 
+step_21_17 -> step_30_21; 
+step_22_18 -> step_29_22; 
+step_22_15 -> step_29_22; 
+step_10_1 -> step_18_10; 
+step_1_Rt -> step_11_1; 
+step_23_18 -> step_27_23; 
+step_9_1 -> step_18_9; 
+step_17_12 -> step_21_17; 
+step_30_23 -> step_32_30; 
+step_24_16 -> step_29_24; 
+step_18_9 -> step_23_18; 
+step_17_10 -> step_24_17; 
+step_29_24 -> step_32_29; 
+step_24_16 -> step_27_24; 
+step_21_16 -> step_29_21; 
+step_11_1 -> step_15_11; 
+step_11_1 -> step_16_11; 
+step_1_Rt -> step_12_1; 
+step_29_21 -> step_32_29; 
+step_21_18 -> step_28_21; 
+step_15_11 -> step_22_15; 
+step_23_15 -> step_30_23; 
+step_21_16 -> step_30_21; 
+step_18_11 -> step_22_18; 
+step_18_10 -> step_21_18; 
+step_9_1 -> step_17_9; 
+step_15_10 -> step_24_15; 
+step_12_1 -> step_15_12; 
+step_24_17 -> step_28_24; 
+step_10_1 -> step_15_10; 
+step_18_11 -> step_21_18; 
+step_21_18 -> step_29_21; 
+step_15_12 -> step_22_15; 
+step_22_17 -> step_27_22; 
+step_17_9 -> step_24_17; 
+step_16_9 -> step_23_16; 
+step_30_21 -> step_32_30; 
+step_27_22 -> step_32_27; 
+step_23_16 -> step_30_23; 
+step_11_1 -> step_18_11; 
+step_1_Rt -> step_10_1; 
+step_28_21 -> step_32_28; 
+step_1_Rt -> step_9_1; 
+step_16_12 -> step_21_16; 
+step_10_1 -> step_17_10; 
+step_15_11 -> step_24_15; 
+step_22_17 -> step_30_22; 
+step_17_10 -> step_21_17; 
+step_24_15 -> step_28_24; 
+step_18_10 -> step_23_18; 
+step_28_23 -> step_32_28; 
+step_24_17 -> step_27_24; 
+step_22_18 -> step_27_22; 
+step_27_23 -> step_32_27; 
+step_21_17 -> step_28_21; 
+step_24_15 -> step_29_24; 
+step_29_22 -> step_32_29; 
+step_23_15 -> step_28_23; 
+step_16_11 -> step_24_16; 
+step_12_1 -> step_17_12; 
+step_15_12 -> step_23_15; 
+step_28_24 -> step_32_28; 
+step_15_10 -> step_23_15; 
+step_9_1 -> step_16_9; 
+step_23_18 -> step_28_23; 
+step_18_9 -> step_22_18; 
+}}
