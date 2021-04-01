@@ -39,10 +39,11 @@ function push_node_as_new_owner!(graph :: Graph, node_owner :: Node)
             PathNode.push_owner!(node, node_owner)
         end
     end
-
+    #=
     for (edge_id, edge) in graph.table_edges
         PathEdge.push_owner!(edge, node_owner)
     end
+    =#
 end
 
 
@@ -87,13 +88,14 @@ function review_owners!(graph :: Graph)
         @TODO Pendiente de estudio eliminar los owners de edges
         ya que los edges tienen los owners del nodo padre de forma
         que evolucionan de la misma forma que los owners del nodo padre.
-        =#
+
         for (edge_id, edge) in graph.table_edges
             if !filter_by_intersection_owners!(edge, graph.owners)
                 #println("-> delete_id")
                 delete_edge_by_id!(graph, edge_id)
             end
         end
+        =#
 
 
         graph.required_review_ownwers = false
