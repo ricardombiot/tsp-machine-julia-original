@@ -44,6 +44,7 @@ module PathGraph
     include("./graph_delete.jl")
     include("./graph_join.jl")
     include("./graph_getters.jl")
+    include("./graph_log.jl")
 
 
 end

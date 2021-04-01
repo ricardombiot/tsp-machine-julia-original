@@ -83,12 +83,18 @@ function review_owners!(graph :: Graph)
             end
         end
 
+        #=
+        @TODO Pendiente de estudio eliminar los owners de edges
+        ya que los edges tienen los owners del nodo padre de forma
+        que evolucionan de la misma forma que los owners del nodo padre.
+        =#
         for (edge_id, edge) in graph.table_edges
             if !filter_by_intersection_owners!(edge, graph.owners)
                 #println("-> delete_id")
                 delete_edge_by_id!(graph, edge_id)
             end
         end
+
 
         graph.required_review_ownwers = false
     end
@@ -105,64 +111,4 @@ function filter_by_intersection_owners!(edge :: Edge, owners :: OwnersByStep) ::
     PathEdge.intersect_owners!(edge, owners)
 
     return edge.owners.valid
-end
-
-#=
-Evitar que al realizar joins nodos tengan owners con el mismo color.
-
-function remove_equal_color_owners_node!(graph :: Graph)
-    if graph.valid
-        for (color, set_nodes) in graph.table_color_nodes
-            for selected_node_id in set_nodes
-                selected_node = get_node(graph, selected_node_id)
-                for target_node_id in set_nodes
-                    if selected_node_id != target_node_id
-
-                        target_node = get_node(graph, target_node_id)
-                        if PathNode.have_owner(selected_node, target_node)
-                            PathNode.pop_owner!(selected_node, target_node)
-
-                            for (node_id, edge_id) in selected_node.sons
-                                edge = get_edge(graph, edge_id)
-
-                                PathEdge.pop_owner!(edge, target_node)
-                            end
-                        end
-                    end
-                end
-            end
-        end
-
-    end
-end
-=#
-
-
-function log_owners_write(graph :: Graph, name :: String, path :: String )
-    input_file = "$path/$(name).txt"
-    txt = log_to_string_nodes_owners(graph)
-    open(input_file, "w") do io
-        print(io, txt)
-    end
-end
-
-function log_to_string_nodes_owners(graph :: Graph) :: String
-    txt = ""
-    txt *= "Graph Owners"
-    txt *= Owners.to_string_list(graph.owners)
-    txt *= "\n\n"
-
-    for (step, nodes) in graph.table_lines
-        txt *= "LINE $step \n"
-        for node_id in nodes
-            node = get_node(graph, node_id)
-            txt *= "OWNERS NODE: $(node.step), $(node.color)"
-            txt *= "\n"
-            txt *= Owners.to_string_list(node.owners)
-            txt *= "\n"
-        end
-        txt *= "\n"
-    end
-
-    return txt
 end

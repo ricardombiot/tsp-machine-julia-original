@@ -104,9 +104,12 @@ function test_exp_exploration_grafo_simple()
    PathExpReader.calc!(reader_exp)
 
    PathExpReader.print_solutions(reader_exp)
+
+   optimal = Weight(graf.n)
+   @test PathChecker.check_all!(graf, reader_exp.paths_solution, optimal)
 end
 
-#test_hal_grafo_simple()
-#test_multiples_solutions_grafo_simple()
+test_hal_grafo_simple()
+test_multiples_solutions_grafo_simple()
 test_join_graph_solution_grafo_simple()
-#test_exp_exploration_grafo_simple()
+test_exp_exploration_grafo_simple()

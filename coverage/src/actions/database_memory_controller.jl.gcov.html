@@ -61,23 +61,23 @@
 <pre class="sourceHeading">          Line data    Source code</pre>
 <pre class="source">
 <a name="1"><span class="lineNum">       1 </span>            : module DatabaseMemoryController</a>
-<a name="2"><span class="lineNum">       2 </span>            :     using Main.PathsSet.Alias: Km, ActionId, SetActions</a>
+<a name="2"><span class="lineNum">       2 </span>            :     using Main.PathsSet.Alias: Km, ActionId, ActionsIdSet</a>
 <a name="3"><span class="lineNum">       3 </span>            : </a>
 <a name="4"><span class="lineNum">       4 </span>            :     using Main.PathsSet.DatabaseActions</a>
 <a name="5"><span class="lineNum">       5 </span>            :     using Main.PathsSet.DatabaseActions: DBActions</a>
 <a name="6"><span class="lineNum">       6 </span>            : </a>
 <a name="7"><span class="lineNum">       7 </span>            :     mutable struct DBMemoryController</a>
-<a name="8"><span class="lineNum">       8 </span>            :         table :: Dict{Km, SetActions}</a>
+<a name="8"><span class="lineNum">       8 </span>            :         table :: Dict{Km, ActionsIdSet}</a>
 <a name="9"><span class="lineNum">       9 </span>            :     end</a>
 <a name="10"><span class="lineNum">      10 </span>            : </a>
 <a name="11"><span class="lineNum">      11 </span><span class="lineNoCov">          0 :     function new()</span></a>
-<a name="12"><span class="lineNum">      12 </span><span class="lineNoCov">          0 :         table = Dict{Km, SetActions}()</span></a>
+<a name="12"><span class="lineNum">      12 </span><span class="lineNoCov">          0 :         table = Dict{Km, ActionsIdSet}()</span></a>
 <a name="13"><span class="lineNum">      13 </span><span class="lineNoCov">          0 :         DBMemoryController(table)</span></a>
 <a name="14"><span class="lineNum">      14 </span>            :     end</a>
 <a name="15"><span class="lineNum">      15 </span>            : </a>
 <a name="16"><span class="lineNum">      16 </span><span class="lineNoCov">          0 :     function register!(controller :: DBMemoryController, action_id :: ActionId, km_last_use :: Km)</span></a>
 <a name="17"><span class="lineNum">      17 </span><span class="lineNoCov">          0 :         if !haskey(controller.table, km_last_use)</span></a>
-<a name="18"><span class="lineNum">      18 </span><span class="lineNoCov">          0 :             controller.table[km_last_use] = SetActions()</span></a>
+<a name="18"><span class="lineNum">      18 </span><span class="lineNoCov">          0 :             controller.table[km_last_use] = ActionsIdSet()</span></a>
 <a name="19"><span class="lineNum">      19 </span>            :         end</a>
 <a name="20"><span class="lineNum">      20 </span>            : </a>
 <a name="21"><span class="lineNum">      21 </span><span class="lineNoCov">          0 :         push!(controller.table[km_last_use], action_id)</span></a>

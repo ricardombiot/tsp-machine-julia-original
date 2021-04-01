@@ -1,5 +1,5 @@
 module DatabaseActionsDisk
-    using Main.PathsSet.Alias: Step, Km, Color, ActionId
+    using Main.PathsSet.Alias: Step, ActionsIdSet, Km, Color, ActionId
 
     using Main.PathsSet.PathGraph
     using Main.PathsSet.Actions
@@ -44,7 +44,7 @@ module DatabaseActionsDisk
         return GeneratorIds.get_action_id(db.n, km, up_color)
     end
 
-    function register_up!(db :: DBActionsDisk, km :: Km, up_color :: Color, parents :: Array{ActionId, 1}) :: ActionId
+    function register_up!(db :: DBActionsDisk, km :: Km, up_color :: Color, parents :: ActionsIdSet) :: ActionId
         action_id = generate_action_id(db, km, up_color)
         action = Actions.new(action_id, km, up_color, parents)
         register_action!(db, action)

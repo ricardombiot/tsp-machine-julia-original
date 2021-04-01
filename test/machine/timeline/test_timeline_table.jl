@@ -19,7 +19,7 @@ function test_init_timeline()
 
     @test cell.km == Km(0)
     @test cell.color == Color(0)
-    @test cell.parents == []
+    @test cell.parents == ActionsIdSet([])
     @test cell.action_id == ActionId(1)
 end
 
@@ -34,7 +34,7 @@ function test_push_parent_timeline()
 
     @test cell.km == Km(20)
     @test cell.color == Color(10)
-    @test cell.parents == [ActionId(10)]
+    @test cell.parents == ActionsIdSet([ActionId(10)])
     @test cell.action_id == nothing
 end
 

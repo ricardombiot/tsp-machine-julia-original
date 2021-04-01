@@ -1,21 +1,21 @@
 module DatabaseMemoryController
-    using Main.PathsSet.Alias: Km, ActionId, SetActions
+    using Main.PathsSet.Alias: Km, ActionId, ActionsIdSet
 
     using Main.PathsSet.DatabaseActions
     using Main.PathsSet.DatabaseActions: DBActions
 
     mutable struct DBMemoryController
-        table :: Dict{Km, SetActions}
+        table :: Dict{Km, ActionsIdSet}
     end
 
     function new()
-        table = Dict{Km, SetActions}()
+        table = Dict{Km, ActionsIdSet}()
         DBMemoryController(table)
     end
 
     function register!(controller :: DBMemoryController, action_id :: ActionId, km_last_use :: Km)
         if !haskey(controller.table, km_last_use)
-            controller.table[km_last_use] = SetActions()
+            controller.table[km_last_use] = ActionsIdSet()
         end
 
         push!(controller.table[km_last_use], action_id)

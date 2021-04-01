@@ -1,5 +1,5 @@
 module Actions
-    using Main.PathsSet.Alias: Step, Color, Km, ActionId, UniqueNodeKey, SetActions
+    using Main.PathsSet.Alias: Step, Color, Km, ActionId, UniqueNodeKey, ActionsIdSet
 
     using Main.PathsSet.NodeIdentity: NodeId
     using Main.PathsSet.PathGraph
@@ -15,7 +15,7 @@ module Actions
         km :: Km
         up_color :: Color
 
-        props_parents :: SetActions
+        props_parents :: ActionsIdSet
         props_graph :: Union{DictOfGraphsByLenght, Nothing}
         max_length_graph :: Step
         # Is valid after add a valid graph
@@ -23,7 +23,7 @@ module Actions
     end
 
 
-    function new(id :: ActionId, km :: Km, up_color :: Color, parents :: SetActions)
+    function new(id :: ActionId, km :: Km, up_color :: Color, parents :: ActionsIdSet)
         props_graph = nothing
         max_length_graph = Step(0)
         Action(id, km, up_color, parents, props_graph, max_length_graph, false)
@@ -35,7 +35,7 @@ module Actions
         id = GeneratorIds.get_action_id(n, km, color_origin)
 
         max_length_graph = Step(0)
-        parents = SetActions()
+        parents = ActionsIdSet()
         props_graph = nothing
 
         action = Action(id, km, color_origin, parents, props_graph, max_length_graph, false)
@@ -47,7 +47,7 @@ module Actions
         return action
     end
 
-    function get_parents(action :: Action) :: SetActions
+    function get_parents(action :: Action) :: ActionsIdSet
         action.props_parents
     end
 

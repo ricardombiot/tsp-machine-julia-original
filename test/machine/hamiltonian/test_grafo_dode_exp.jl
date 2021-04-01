@@ -23,6 +23,11 @@ function test_dode_calc()
 
    total = PathExpReader.get_total_solutions_found(reader_exp)
    println("Solutions found: $total")
+
+
+   optimal = Weight(20)
+   @test PathChecker.check_all!(graf, reader_exp.paths_solution, optimal)
+
    #=b = Km(graf.n)
    (tour, path) = PathReader.load!(graf.n, b, graph)
    println(tour)

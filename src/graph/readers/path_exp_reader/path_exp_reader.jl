@@ -7,7 +7,7 @@ module PathExpReader
     using Main.PathsSet.PathReader: PathSolutionReader
 
     using Main.PathsSet.Graphviz
-    
+
     mutable struct PathSolutionExpReader
         n :: Color
         b :: Km
@@ -24,8 +24,6 @@ module PathExpReader
     include("./reader_exp_next_step.jl")
     include("./reader_exp_getters.jl")
     include("./reader_exp_plot.jl")
-
-
 
 
 end

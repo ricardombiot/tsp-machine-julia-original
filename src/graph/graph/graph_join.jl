@@ -1,4 +1,4 @@
-function join!(graph :: Graph, inmutable_graph_join :: Graph, avoid_eq_color :: Bool = true) :: Bool
+function join!(graph :: Graph, inmutable_graph_join :: Graph) :: Bool
     if is_valid_join(graph, inmutable_graph_join)
         graph_join = deepcopy(inmutable_graph_join)
 

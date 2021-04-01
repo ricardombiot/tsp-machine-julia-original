@@ -28,12 +28,12 @@ module Alias
     # ActionId = (Km, Color)
     # (ActionId(KmDestine, ColorDestine),ActionIdParent(KmOrigin, ColorOrigin))
     # 4 Dimensions = B^2 * N^2
-    # (km_origin*(b*n^2)) + (color_origin*b*n) + (km_destine*n) + (color_destine) 
+    # (km_origin*(b*n^2)) + (color_origin*b*n) + (km_destine*n) + (color_destine)
     =#
     const UniqueNodeKey = Int64
     #@TODO Modificar FBSet con UInt128
 
-    const SetActions = Set{ActionId}
+    const ActionsIdSet = Set{ActionId}
     const SetSteps = Set{Step}
     const SetColors = Set{Color}
 
