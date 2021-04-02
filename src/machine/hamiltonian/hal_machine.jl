@@ -10,6 +10,9 @@ module HalMachine
     using Main.PathsSet.Cell: TimelineCell
     using Main.PathsSet.TableTimeline: Timeline
     using Main.PathsSet.DatabaseActions: DBActions
+    using Main.PathsSet.DatabaseMemoryController
+    using Main.PathsSet.DatabaseMemoryController: DBMemoryController
+
 
     mutable struct HamiltonianMachine
         n :: Color
@@ -18,6 +21,7 @@ module HalMachine
         graf :: Grafo
         timeline :: Timeline
         db :: DBActions
+        db_controller :: DBMemoryController
     end
 
     function new(graf :: Grafo, color_origin :: Color = Color(0))
@@ -28,7 +32,8 @@ module HalMachine
 
 
         db = DatabaseActions.new(n, b, color_origin)
-        machine = HamiltonianMachine(n, actual_km, color_origin, graf, timeline, db)
+        db_controller = DatabaseMemoryController.new()
+        machine = HamiltonianMachine(n, actual_km, color_origin, graf, timeline, db, db_controller)
         init!(machine)
 
         return machine
@@ -50,6 +55,7 @@ module HalMachine
     function make_step!(machine :: HamiltonianMachine) :: Bool
         if machine.actual_km < machine.n
             execute_line!(machine :: HamiltonianMachine)
+            free_memory!(machine)
             machine.actual_km += Km(1)
             return true
         else
@@ -77,12 +83,24 @@ module HalMachine
 
         if action != nothing && action.valid
             parent_id = action.id
+            km_destine_max = nothing
             for (destine, weight) in Graf.get_destines(machine.graf, origin)
                 if is_valid_destine(machine, action, destine)
                     #println("--> Destine $destine")
                     km_destine = machine.actual_km + Km(weight)
+
+                    if km_destine_max == nothing
+                        km_destine_max = km_destine
+                    elseif km_destine > km_destine_max
+                        km_destine_max = km_destine
+                    end
+
                     TableTimeline.push_parent!(machine.timeline, km_destine, destine, parent_id)
                 end
+            end
+
+            if km_destine_max != nothing
+                DatabaseMemoryController.register!(machine.db_controller, action.id, km_destine_max)
             end
         end
     end
@@ -103,6 +121,15 @@ module HalMachine
             return have_arista_to_origin
         else
             return true
+        end
+    end
+
+    function free_memory!(machine :: HamiltonianMachine)
+        if machine.actual_km > 1
+            clear_km = machine.actual_km - 1
+            DatabaseMemoryController.free_memory_actions_step!(machine.db_controller, clear_km, machine.db)
+            TableTimeline.remove!(machine.timeline, clear_km)
+            #println(" Free memory km: $(clear_km)")
         end
     end
 

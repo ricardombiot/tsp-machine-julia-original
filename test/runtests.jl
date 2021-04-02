@@ -1,7 +1,7 @@
 using Test
 include("./../src/main.jl")
 
-#==#
+#=
 @time @testset "PathsSet" begin
     include("test_hello.jl")
 end
@@ -32,6 +32,7 @@ end
     include("./actions/test_database_actions.jl")
     include("./actions/test_database_actions_disk.jl")
 end
+=#
 
 
 @time @testset "Machine" begin
