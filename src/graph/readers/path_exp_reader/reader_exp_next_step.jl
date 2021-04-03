@@ -89,13 +89,13 @@ function update_limit(exp_solver :: PathSolutionExpReader, total_sons :: Int64)
 
     if total_sons > exp_solver.limit
         if exp_solver.limit == 1
-            son  = first(sons)
-            sons = [son]
+            #son  = first(sons)
+            #sons = [son]
 
             exp_solver.limit -= 1
         else
             limit = Int64(exp_solver.limit)
-            sons = sons[1:limit]
+            #sons = sons[1:limit]
 
             exp_solver.limit = UInt128(0)
         end

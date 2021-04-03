@@ -53,6 +53,8 @@ function join_edges!(graph :: Graph, graph_join :: Graph)
     for (edge_id, edge) in graph_join.table_edges
         if !haskey(graph.table_edges, edge_id)
             graph.table_edges[edge_id] = edge
+        else
+            PathEdge.join!(graph.table_edges[edge_id], edge)
         end
     end
 end

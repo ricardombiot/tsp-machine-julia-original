@@ -120,13 +120,25 @@ function test_hal_grafo_reduce3sat()
 
    println("## Calculating Graph Reduce3sat")
    HalMachine.execute!(machine)
-
+   #=
    println("## Graph parent")
    graph = SolutionGraphReader.get_one_solution_graph(machine)
    graph_join = graph
    Graphviz.to_png(graph_join,"graph_parent","./machine/hamiltonian/visual_graphs/grafo_reduce3sat")
+   =#
 
-   limit = UInt128(100)
+   println("## Building join")
+   graph_join = SolutionGraphReader.get_graph_join_origin(machine)
+   println("## Plot join")
+   Graphviz.to_png(graph_join,"graph_join","./machine/hamiltonian/visual_graphs/grafo_reduce3sat")
+
+   graph_join.required_review_ownwers = true
+   PathGraph.review_owners_all_graph!(graph_join)
+   println("## Plot join: after review")
+   Graphviz.to_png(graph_join,"graph_join_review","./machine/hamiltonian/visual_graphs/grafo_reduce3sat")
+
+
+   limit = UInt128(5)
    b = Km(graf.n)
    println("## Searching paths")
    reader_exp = PathExpReader.new(graf.n, b, graph_join, limit, true, dir)

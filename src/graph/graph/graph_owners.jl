@@ -51,7 +51,9 @@ function review_owners_all_graph!(graph)
     if graph.valid && graph.required_review_ownwers
         rebuild_owners(graph)
         review_owners!(graph)
+        review_relationship_owners!(graph)
 
+        graph.required_review_ownwers = false
         if graph.valid && !isempty(graph.nodes_to_delete)
             #println("ReReview_owners !!")
             graph.required_review_ownwers = true
@@ -78,8 +80,8 @@ function review_owners!(graph :: Graph)
         #println("review_owners!")
         for (action_id, table_nodes_action) in graph.table_nodes
             for (node_id, node) in table_nodes_action
-                if !filter_by_intersection_owners!(node, graph.owners)
-                    #println("-> save_node_to_delete")
+                if filter_by_intersection_owners!(node, graph.owners)
+                    println("-> save_node_to_delete")
                     save_to_delete_node!(graph, node_id)
                 end
             end
@@ -91,15 +93,29 @@ function review_owners!(graph :: Graph)
         que evolucionan de la misma forma que los owners del nodo padre.
 
         for (edge_id, edge) in graph.table_edges
-            if !filter_by_intersection_owners!(edge, graph.owners)
+            if filter_by_intersection_owners!(edge, graph.owners)
                 #println("-> delete_id")
                 delete_edge_by_id!(graph, edge_id)
             end
         end
+
         =#
 
 
-        graph.required_review_ownwers = false
+    end
+end
+
+
+function review_relationship_owners!(graph :: Graph)
+    if graph.valid && graph.required_review_ownwers
+        for (action_id, table_nodes_action) in graph.table_nodes
+            for (node_id, node) in table_nodes_action
+                if filter_by_unique_son_intersection_owners!(graph, node)
+                    println("-> delete node unique son incoherent")
+                    save_to_delete_node!(graph, node_id)
+                end
+            end
+        end
     end
 end
 
@@ -107,11 +123,31 @@ end
 function filter_by_intersection_owners!(node :: Node, owners :: OwnersByStep) :: Bool
     PathNode.intersect_owners!(node, owners)
 
-    return node.owners.valid
+    return !node.owners.valid
 end
 
 function filter_by_intersection_owners!(edge :: Edge, owners :: OwnersByStep) :: Bool
     PathEdge.intersect_owners!(edge, owners)
 
-    return edge.owners.valid
+    return !edge.owners.valid
+end
+
+#=
+IDEA: Si solo voy a un hijo entonces, es un color fijo dentro del camino,
+los owners que tenga no pueden contenter solapamientos incoherentes con el padre.
+=#
+function filter_by_unique_son_intersection_owners!(graph :: Graph, node :: Node) :: Bool
+    total_sons = length(node.sons)
+    have_unique_son = total_sons == 1
+    if have_unique_son
+        edge_id = first(values(node.sons))
+        son_node_id = edge_id.destine_id
+        son_node = get_node(graph, son_node_id)
+
+        PathNode.intersect_owners!(node, son_node.owners)
+
+        return !node.owners.valid
+    else
+        return false
+    end
 end
