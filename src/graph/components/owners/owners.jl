@@ -117,7 +117,7 @@ module Owners
         end
     end
 
-    function intersect!(owners_a :: OwnersByStep, owners_b :: OwnersByStep)
+    function intersect_old!(owners_a :: OwnersByStep, owners_b :: OwnersByStep)
         if can_be_valid_operation(owners_a, owners_b)
             for step in Step(0):owners_a.max_step
                 step_set_a = get_step_set(owners_a, step)
@@ -134,7 +134,7 @@ module Owners
         end
     end
 
-    function intersect_min!(owners_a :: OwnersByStep, owners_b :: OwnersByStep)
+    function intersect!(owners_a :: OwnersByStep, owners_b :: OwnersByStep)
         max_step = min(owners_a.max_step, owners_b.max_step)
         if both_valids(owners_a, owners_b)
             for step in Step(0):Step(max_step)

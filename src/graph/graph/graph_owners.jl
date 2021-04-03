@@ -53,6 +53,7 @@ function review_owners_all_graph!(graph)
         review_owners!(graph)
 
         if graph.valid && !isempty(graph.nodes_to_delete)
+            #println("ReReview_owners !!")
             graph.required_review_ownwers = true
             apply_node_deletes!(graph)
             review_owners_all_graph!(graph)

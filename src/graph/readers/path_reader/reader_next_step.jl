@@ -35,5 +35,6 @@ function push_step!(path :: PathSolutionReader)
     push!(path.route, node.color)
     Owners.push!(path.owners, path.step, path.next_node_id)
 
+    println("[$(path.step)] Push step: $(path.next_node_id.key) ($(node.color))")
     path.step += 1
 end

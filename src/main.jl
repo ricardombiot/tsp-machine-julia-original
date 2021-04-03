@@ -1,5 +1,5 @@
 include("./PathsSet.jl")
-using Main.PathsSet.Alias: ActionId, ActionsIdSet, Color, Step, Km, UniqueNodeKey, Weight
+using Main.PathsSet.Alias: ActionId, ActionsIdSet, Color, Step, Km, UniqueNodeKey, Weight, SetColors
 
 using Main.PathsSet.FBSet
 using Main.PathsSet.FBSet: FixedBinarySet

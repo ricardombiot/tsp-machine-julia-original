@@ -9,7 +9,7 @@ end
 function remove_all_nodes_dont_selected_line(path :: PathSolutionReader)
     for node_id in PathGraph.get_line_nodes(path.graph, path.step)
         if node_id != path.next_node_id
-            #println("Remove node in line... ")
+            println("[$(path.step)] Remove node in line... $(node_id.key) ")
             PathGraph.save_to_delete_node!(path.graph, node_id)
         end
     end
