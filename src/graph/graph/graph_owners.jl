@@ -81,7 +81,7 @@ function review_owners!(graph :: Graph)
         for (action_id, table_nodes_action) in graph.table_nodes
             for (node_id, node) in table_nodes_action
                 if filter_by_intersection_owners!(node, graph.owners)
-                    println("-> save_node_to_delete")
+                    #println("-> save_node_to_delete")
                     save_to_delete_node!(graph, node_id)
                 end
             end
@@ -111,7 +111,7 @@ function review_relationship_owners!(graph :: Graph)
         for (action_id, table_nodes_action) in graph.table_nodes
             for (node_id, node) in table_nodes_action
                 if filter_by_unique_son_intersection_owners!(graph, node)
-                    println("-> delete node unique son incoherent")
+                    #println("-> delete node unique son incoherent")
                     save_to_delete_node!(graph, node_id)
                 end
             end

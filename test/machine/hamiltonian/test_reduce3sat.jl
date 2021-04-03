@@ -132,21 +132,25 @@ function test_hal_grafo_reduce3sat()
    println("## Plot join")
    Graphviz.to_png(graph_join,"graph_join","./machine/hamiltonian/visual_graphs/grafo_reduce3sat")
 
-   graph_join.required_review_ownwers = true
-   PathGraph.review_owners_all_graph!(graph_join)
-   println("## Plot join: after review")
-   Graphviz.to_png(graph_join,"graph_join_review","./machine/hamiltonian/visual_graphs/grafo_reduce3sat")
+   #graph_join.required_review_ownwers = true
+   #PathGraph.review_owners_all_graph!(graph_join)
+   #println("## Plot join: after review")
+   #Graphviz.to_png(graph_join,"graph_join_review","./machine/hamiltonian/visual_graphs/grafo_reduce3sat")
 
 
-   limit = UInt128(5)
+   limit = UInt128(100)
    b = Km(graf.n)
    println("## Searching paths")
    reader_exp = PathExpReader.new(graf.n, b, graph_join, limit, true, dir)
    PathExpReader.calc!(reader_exp)
 
    PathExpReader.print_solutions(reader_exp)
+   total = PathExpReader.get_total_solutions_found(reader_exp)
+   println("Solutions found: $total with a actual limit: $(reader_exp.limit)/$limit")
 
-
+   println("## Cheking paths")
+   optimal = Weight(graf.n)
+   @test PathChecker.check_all!(graf, reader_exp.paths_solution, optimal)
 
    #println(graph)
    #println("## Building join")
@@ -174,11 +178,9 @@ function test_hal_grafo_reduce3sat()
    PathExpReader.calc!(reader_exp)
 
    PathExpReader.print_solutions(reader_exp)
+   =#
 
-   println("## Cheking paths")
-   optimal = Weight(graf.n)
-   @test PathChecker.check_all!(graf, reader_exp.paths_solution, optimal)
-   =#   #==#
+   #==#
 end
 
 

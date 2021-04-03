@@ -10,15 +10,16 @@ module PathChecker
         actual :: Union{Color, Nothing}
         route :: Array{Color, 1}
         graf :: Grafo
-        weight :: Weight
+        weight :: Union{Weight, Nothing}
         weight_check :: Weight
         valid :: Bool
     end
 
     function new(graf :: Grafo, path :: PathSolutionReader, weight_check :: Weight)
         route = deepcopy(path.route)
+        route = reverse!(route)
         actual = pop!(route)
-        weight = Weight(0)
+        weight = nothing
         valid = true
         Checker(actual, route, graf, weight, weight_check, valid)
     end
@@ -52,10 +53,12 @@ module PathChecker
 
     function go_to_next!(checker :: Checker)
         next = pop!(checker.route)
+        #println("Checker step: $(checker.actual) to $next")
 
         if Graf.have_arista(checker.graf, checker.actual, next)
             weight_arista = Graf.get_weight(checker.graf, checker.actual, next)
-            checker.weight += weight_arista
+            #println(" WEIGHT: $weight_arista")
+            add_weight!(checker, weight_arista)
             checker.actual = next
 
             if checker.weight > checker.weight_check
@@ -66,4 +69,12 @@ module PathChecker
         end
     end
 
+
+    function add_weight!(checker :: Checker, weight_arista :: Weight)
+        if checker.weight == nothing
+            checker.weight = weight_arista
+        else
+            checker.weight += weight_arista
+        end
+    end
 end
