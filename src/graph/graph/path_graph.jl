@@ -36,15 +36,19 @@ module PathGraph
     end
 
     include("./graph_constructor.jl")
+    include("./graph_init.jl")
     include("./graph_lines.jl")
     include("./graph_nodes.jl")
+    include("./graph_add_node.jl")
     include("./graph_owners.jl")
+    include("./graph_owners_review.jl")
     include("./graph_edge.jl")
     include("./graph_make_up.jl")
     include("./graph_delete.jl")
+    include("./graph_delete_edge.jl")
+    include("./graph_delete_node.jl")
     include("./graph_join.jl")
     include("./graph_getters.jl")
     include("./graph_log.jl")
-
 
 end

@@ -21,14 +21,6 @@ module OwnersSet
         FBSet.pop!(owners_set.fbset, key)
     end
 
-    function to_list(owners_set :: OwnersFixedSet) :: Array{Int64,1}
-        FBSet.to_list(owners_set.fbset)
-    end
-
-    function count(owners_set :: OwnersFixedSet) :: Int64
-        FBSet.count(owners_set.fbset)
-    end
-
     function to_empty!(owners_set :: OwnersFixedSet)
         FBSet.to_empty!(owners_set.fbset)
     end
@@ -51,6 +43,14 @@ module OwnersSet
 
     function diff!(owners_set_a :: OwnersFixedSet, owners_set_b :: OwnersFixedSet)
         FBSet.diff!(owners_set_a.fbset, owners_set_b.fbset)
+    end
+
+    function to_list(owners_set :: OwnersFixedSet) :: Array{Int64,1}
+        FBSet.to_list(owners_set.fbset)
+    end
+
+    function count(owners_set :: OwnersFixedSet) :: Int64
+        FBSet.count(owners_set.fbset)
     end
 
     function to_string(owners :: OwnersFixedSet) :: String

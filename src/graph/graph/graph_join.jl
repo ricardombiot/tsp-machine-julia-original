@@ -14,6 +14,9 @@ function join!(graph :: Graph, inmutable_graph_join :: Graph) :: Bool
     end
 end
 
+function union_owners!(graph :: Graph, graph_join :: Graph)
+    Owners.union!(graph.owners, graph_join.owners)
+end
 
 function join_nodes!(graph :: Graph, graph_join :: Graph)
     for (action_id, dict) in graph_join.table_nodes

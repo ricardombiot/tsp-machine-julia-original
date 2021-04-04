@@ -1,5 +1,5 @@
 module GeneratorIds
-    using Main.PathsSet.Alias: Color, Km, ActionId, UniqueNodeKey
+    using Main.PathsSet.Alias: Color, Km, ActionId
 
     function get_action_id(n :: Color, km :: Km, up_color :: Color) :: ActionId
         row = (km * n)
