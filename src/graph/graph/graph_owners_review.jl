@@ -2,13 +2,10 @@
 function review_owners_all_graph!(graph)
     if graph.valid && graph.required_review_ownwers
         rebuild_owners(graph)
-        #review_owners!(graph)
-        #review_relationship_owners!(graph)
         review_owners_nodes_and_relationships!(graph)
 
         graph.required_review_ownwers = false
         if graph.valid && !isempty(graph.nodes_to_delete)
-            #println("ReReview_owners !!")
             graph.required_review_ownwers = true
             apply_node_deletes!(graph)
             review_owners_all_graph!(graph)
@@ -69,58 +66,10 @@ function review_owners_nodes_and_relationships!(graph :: Graph)
     end
 end
 
-
-#=
-Realizamos una interection mutable de los sets de owners, con la intención de evitar
-que los sets de owners contengan ids de nodos que no existen actualmente en graph.
-
-Si posteriormente se demuestra que esos owners son correctos entonces, se acaban recuperando
-al realizar un join con otro graph.
-
-La idea detras de esto es mantener la coherencia en la información, no podemos tener un owner
-que no existe.
-=#
-function review_owners!(graph :: Graph)
-    if graph.valid && graph.required_review_ownwers
-        #println("review_owners!")
-        for (action_id, table_nodes_action) in graph.table_nodes
-            for (node_id, node) in table_nodes_action
-                if filter_by_intersection_owners!(node, graph.owners)
-                    #println("-> save_node_to_delete")
-                    save_to_delete_node!(graph, node_id)
-                end
-            end
-        end
-
-
-    end
-end
-
-
-function review_relationship_owners!(graph :: Graph)
-    if graph.valid && graph.required_review_ownwers
-        for (action_id, table_nodes_action) in graph.table_nodes
-            for (node_id, node) in table_nodes_action
-                if filter_by_unique_son_intersection_owners!(graph, node)
-                    #println("-> delete node unique son incoherent")
-                    save_to_delete_node!(graph, node_id)
-                end
-            end
-        end
-    end
-end
-
-
 function filter_by_intersection_owners!(node :: Node, owners :: OwnersByStep) :: Bool
     PathNode.intersect_owners!(node, owners)
 
     return !node.owners.valid
-end
-
-function filter_by_intersection_owners!(edge :: Edge, owners :: OwnersByStep) :: Bool
-    PathEdge.intersect_owners!(edge, owners)
-
-    return !edge.owners.valid
 end
 
 #=
@@ -137,8 +86,22 @@ function filter_by_unique_son_intersection_owners!(graph :: Graph, node :: Node)
 
         PathNode.intersect_owners!(node, son_node.owners)
 
-        return !node.owners.valid
+        if node.owners.valid
+            remove_parents_edges_arent_owner_node!(graph, node)
+            return false
+        else
+            return true
+        end
     else
         return false
+    end
+end
+
+function remove_parents_edges_arent_owner_node!(graph :: Graph, node :: Node)
+    for (origin_id, edge_id) in node.parents
+        node_parent = get_node(graph, origin_id)
+        if !PathNode.have_owner(node, node_parent)
+            delete_edge_by_id!(graph, edge_id)
+        end
     end
 end

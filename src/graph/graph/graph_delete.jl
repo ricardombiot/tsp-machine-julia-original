@@ -13,10 +13,6 @@ function delete_node_by_color!(graph :: Graph, color :: Color)
     end
 end
 
-function save_to_delete_node!(graph :: Graph, node :: Node)
-    pop_owner_in_graph!(graph, node)
-    push!(graph.nodes_to_delete, node.id)
-end
 function save_to_delete_node!(graph :: Graph, node_id :: NodeId)
     if graph.valid
         node = get_node(graph, node_id)
@@ -25,6 +21,22 @@ function save_to_delete_node!(graph :: Graph, node_id :: NodeId)
             save_to_delete_node!(graph, node)
         end
     end
+end
+function save_to_delete_node!(graph :: Graph, node :: Node)
+    pop_owner_in_graph!(graph, node)
+    push!(graph.nodes_to_delete, node.id)
+end
+
+function pop_owner_in_graph!(graph :: Graph, node_owner :: Node)
+    if graph.valid
+        Owners.pop!(graph.owners, node_owner.step, node_owner.id)
+        graph.required_review_ownwers = true
+        make_validation_graph_by_owners!(graph)
+    end
+end
+
+function make_validation_graph_by_owners!(graph :: Graph)
+    graph.valid = graph.owners.valid
 end
 
 function apply_node_deletes!(graph :: Graph)

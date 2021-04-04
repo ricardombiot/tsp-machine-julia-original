@@ -18,3 +18,22 @@ function make_up!(graph :: Graph, color :: Color, action_id :: ActionId)
     push_node_as_new_owner!(graph, node)
     graph.next_step += 1
 end
+
+function add_edge!(graph :: Graph, origin_id :: NodeId, destine_id :: NodeId)
+    if have_node(graph, origin_id) && have_node(graph, destine_id)
+        node_origin = get_node(graph, origin_id)
+        node_destine = get_node(graph, destine_id)
+
+        edge = PathEdge.build!(node_origin, node_destine)
+
+        graph.table_edges[edge.id] = edge
+    end
+end
+
+function push_node_as_new_owner!(graph :: Graph, node_owner :: Node)
+    for (action_id, table_nodes_action) in graph.table_nodes
+        for (node_id, node) in table_nodes_action
+            PathNode.push_owner!(node, node_owner)
+        end
+    end
+end
