@@ -1,7 +1,7 @@
 using Test
 include("./../src/main.jl")
 
-#=
+
 @time @testset "PathsSet" begin
     include("test_hello.jl")
 end
@@ -32,7 +32,7 @@ end
     include("./actions/test_database_actions.jl")
     include("./actions/test_database_actions_disk.jl")
 end
-=#
+#==#
 
 
 @time @testset "Machine" begin
@@ -54,7 +54,7 @@ end
         #include("machine/hamiltonian/test_grafo_dode.jl")
         #include("machine/hamiltonian/test_grafo_dode_exp.jl")
 
-        include("machine/hamiltonian/test_reduce3sat.jl")
+        #include("machine/hamiltonian/test_reduce3sat.jl")
         #include("machine/hamiltonian/test_reduce3sat_steps.jl")
         #include("machine/hamiltonian/test_reduce3sat_steps_unvalid.jl")
         #include("machine/hamiltonian/test_reduce3sat_undirected.jl")

@@ -14,7 +14,7 @@ module PathEdge
         id :: EdgeId
     end
 
-    function new(origin_id :: NodeId, destine_id :: NodeId, owners_origin :: OwnersByStep) :: Edge
+    function new(origin_id :: NodeId, destine_id :: NodeId) :: Edge
         id = EdgeIdentity.new(origin_id, destine_id)
         Edge(id)
     end
@@ -23,7 +23,7 @@ module PathEdge
         PathNode.add_son!(node_origin, node_destine)
         PathNode.add_parent!(node_destine, node_origin)
 
-        return new(node_origin.id, node_destine.id, node_origin.owners)
+        return new(node_origin.id, node_destine.id)
     end
 
     function destroy!(node_origin :: Node, node_destine :: Node)
