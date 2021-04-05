@@ -1,7 +1,17 @@
 
-function review_owners_all_graph!(graph)
+# Maximum theoretical O(N^9/128)
+# Most probable during construction O(N^6/128) * O(less than n)
+# Complete graphs during construction O(N^6/128) * O(1)
+function review_owners_all_graph!(graph :: Graph)
+    #=
+    # Maxim cost of execute O(N^6/128) * O(Nodes to delete)
+    # -> theoretical If we execute after remove each node O(N^3) * O(N^6/128)
+    # in the practise the executions dependes of the deletes stages required
+    # to be valid or invalid but in all cases is a expensive but polynomial
     if graph.valid && graph.required_review_ownwers
+        #O(N^3)
         rebuild_owners(graph)
+        #O(N^6/128)
         review_owners_nodes_and_relationships!(graph)
 
         graph.required_review_ownwers = false
@@ -11,13 +21,40 @@ function review_owners_all_graph!(graph)
             review_owners_all_graph!(graph)
         end
     end
+    =#
+
+    recursive_review_owners_all_graph!(graph, 1)
 end
 
+function recursive_review_owners_all_graph!(graph :: Graph, stage :: Int64)
+    # Maxim cost of execute O(N^6/128) * O(Nodes to delete)
+    # -> theoretical If we execute after remove each node O(N^3) * O(N^6/128)
+    # in the practise the executions dependes of the deletes stages required
+    # to be valid or invalid but in all cases is a expensive but polynomial
+    if graph.valid && graph.required_review_ownwers
+        println("review_owners_all_graph $stage")
+        #O(N^3)
+        rebuild_owners(graph)
+        #O(N^6/128)
+        review_owners_nodes_and_relationships!(graph)
+
+        graph.required_review_ownwers = false
+        if graph.valid && !isempty(graph.nodes_to_delete)
+            graph.required_review_ownwers = true
+            apply_node_deletes!(graph)
+            recursive_review_owners_all_graph!(graph, stage + 1)
+        end
+    end
+end
+
+#O(N^3)
 function rebuild_owners(graph :: Graph)
     owners_new = Owners.empty_derive(graph.owners)
+    # O(N steps)
     for step in Step(0):Step(graph.next_step-1)
         if haskey(graph.table_lines, step)
             nodes = graph.table_lines[step]
+            # O(N^2 nodes by step)
             for node_id in nodes
                 Owners.push!(owners_new, step, node_id)
             end
@@ -42,16 +79,23 @@ Target: We want avoid the existence of incoherent relationships into a paths,
 between the parent and son.
 
 Nota: All this incoherents can be produce in the join process.
+
+O(N^6/128)
 =#
 function review_owners_nodes_and_relationships!(graph :: Graph)
+    # O(step) * O(N^2 nodes by step) * O(N^3/128) = O(N^6/128)
     if graph.valid && graph.required_review_ownwers
         step = Step(graph.next_step-1)
         stop_while = false
+        # O(N steps)
         while !stop_while
+            # O(N^2 nodes by step)
             for node_id in graph.table_lines[Step(step)]
                 node = get_node(graph, node_id)
+                # O(N^3/128)
                 if filter_by_intersection_owners!(node, graph.owners)
                     save_to_delete_node!(graph, node_id)
+                # O(N^3/128)
                 elseif filter_by_unique_son_intersection_owners!(graph, node)
                     save_to_delete_node!(graph, node_id)
                 end
@@ -66,7 +110,9 @@ function review_owners_nodes_and_relationships!(graph :: Graph)
     end
 end
 
+# O(N^3/128)
 function filter_by_intersection_owners!(node :: Node, owners :: OwnersByStep) :: Bool
+    # with fixed binary set O(step) * O(N^2 nodes by step) / 128 bits
     PathNode.intersect_owners!(node, owners)
 
     return !node.owners.valid
@@ -75,8 +121,11 @@ end
 #=
 IDEA: Si solo voy a un hijo entonces, es un color fijo dentro del camino,
 los owners que tenga no pueden contenter solapamientos incoherentes con el padre.
+
+O(N^3/128)
 =#
 function filter_by_unique_son_intersection_owners!(graph :: Graph, node :: Node) :: Bool
+    # O(N)
     total_sons = length(node.sons)
     have_unique_son = total_sons == 1
     if have_unique_son
@@ -84,9 +133,11 @@ function filter_by_unique_son_intersection_owners!(graph :: Graph, node :: Node)
         son_node_id = edge_id.destine_id
         son_node = get_node(graph, son_node_id)
 
+        # O(N^3/128)
         PathNode.intersect_owners!(node, son_node.owners)
 
         if node.owners.valid
+            #O(N)
             remove_parents_edges_arent_owner_node!(graph, node)
             return false
         else
@@ -98,6 +149,7 @@ function filter_by_unique_son_intersection_owners!(graph :: Graph, node :: Node)
 end
 
 function remove_parents_edges_arent_owner_node!(graph :: Graph, node :: Node)
+    #O(N)
     for (origin_id, edge_id) in node.parents
         node_parent = get_node(graph, origin_id)
         if !PathNode.have_owner(node, node_parent)

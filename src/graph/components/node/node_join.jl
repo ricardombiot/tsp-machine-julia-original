@@ -5,6 +5,7 @@ function join!(node :: Node, node_join :: Node)
     Owners.union!(node.owners, node_join.owners)
 end
 
+# O(N)
 function union_parents!(node :: Node, node_join :: Node)
     for (parent_id, edge_id) in node_join.parents
         if !haskey(node.parents, parent_id)
@@ -13,6 +14,7 @@ function union_parents!(node :: Node, node_join :: Node)
     end
 end
 
+# O(N)
 function union_sons!(node :: Node, node_join :: Node)
     for (son_id, edge_id) in node_join.sons
         if !haskey(node.sons, son_id)
