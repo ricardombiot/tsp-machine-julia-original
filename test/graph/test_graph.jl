@@ -1,7 +1,7 @@
 function test_init_graph()
     n = Color(10)
     b = Km(20)
-    node_id = NodeIdentity.new(n, b, ActionId(1), nothing)
+    node_id = NodeIdentity.new(n, b, Step(0), ActionId(1), nothing)
 
     ## Create graph
     graph = PathGraph.new(n, b, Color(0), ActionId(1))
@@ -37,8 +37,8 @@ function test_up_graph()
     @test graph.next_step == Step(2)
 
     ## Testing
-    node0_id = NodeIdentity.new(n, b, action_id_s0_0)
-    node2_id = NodeIdentity.new(n, b, action_id_s1_2, action_id_s0_0)
+    node0_id = NodeIdentity.new(n, b, Step(0), action_id_s0_0)
+    node2_id = NodeIdentity.new(n, b, Step(1), action_id_s1_2, action_id_s0_0)
 
     @test graph.table_color_nodes[Color(0)] == NodesIdSet([node0_id])
     @test graph.table_lines[Step(0)] == NodesIdSet([node0_id])
@@ -101,9 +101,9 @@ function test_second_up()
     @test graph.next_step == Step(3)
 
     ## Testing
-    node0_id = NodeIdentity.new(n, b, action_id_s0_0)
-    node2_id = NodeIdentity.new(n, b, action_id_s1_2, action_id_s0_0)
-    node4_id = NodeIdentity.new(n, b, action_id_s2_4, action_id_s1_2)
+    node0_id = NodeIdentity.new(n, b, Step(0), action_id_s0_0)
+    node2_id = NodeIdentity.new(n, b, Step(1), action_id_s1_2, action_id_s0_0)
+    node4_id = NodeIdentity.new(n, b, Step(2), action_id_s2_4, action_id_s1_2)
 
     ## Edges
 

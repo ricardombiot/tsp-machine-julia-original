@@ -1,9 +1,10 @@
 module NodeIdentity
-    using Main.PathsSet.Alias: ActionId, Km, Color, UniqueNodeKey
+    using Main.PathsSet.Alias: ActionId, Km, Color, Step, UniqueNodeKey
     using Main.PathsSet.GeneratorIds
 
     struct NodeId
         key :: UniqueNodeKey
+        step :: Step
         action_id :: ActionId
         action_parent_id :: ActionId
     end

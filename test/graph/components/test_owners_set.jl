@@ -6,9 +6,9 @@
 function test_push_and_pop_key()
     n= Color(4)
     b= Km(10)
-    bbnn = UniqueNodeKey(b^2*n^2)
+    bbnn = UniqueNodeKey(b^2*n^3)
     owners_set = OwnersSet.new(bbnn)
-    key = NodeIdentity.calc_key(n, b, ActionId(1), ActionId(1))
+    key = NodeIdentity.calc_key(n, b, Step(0), ActionId(1), ActionId(1))
 
     @test OwnersSet.isempty(owners_set)
     OwnersSet.push!(owners_set, key)
@@ -22,13 +22,13 @@ function test_operationes_owner_set()
     n= Color(10)
     b= Km(20)
 
-    key1_1 = NodeIdentity.calc_key(n, b, ActionId(1), ActionId(1))
-    key2_1 = NodeIdentity.calc_key(n, b, ActionId(2), ActionId(1))
-    key3_1 = NodeIdentity.calc_key(n, b, ActionId(3), ActionId(1))
-    key4_1 = NodeIdentity.calc_key(n, b, ActionId(4), ActionId(1))
-    key6_1 = NodeIdentity.calc_key(n, b, ActionId(6), ActionId(1))
+    key1_1 = NodeIdentity.calc_key(n, b, Step(0), ActionId(1), ActionId(1))
+    key2_1 = NodeIdentity.calc_key(n, b, Step(1), ActionId(2), ActionId(1))
+    key3_1 = NodeIdentity.calc_key(n, b, Step(1), ActionId(3), ActionId(1))
+    key4_1 = NodeIdentity.calc_key(n, b, Step(2), ActionId(4), ActionId(1))
+    key6_1 = NodeIdentity.calc_key(n, b, Step(3), ActionId(6), ActionId(1))
 
-    bbnn = UniqueNodeKey(b^2*n^2)
+    bbnn = UniqueNodeKey(b^2*n^3)
     owners_set_a = OwnersSet.new(bbnn)
     owners_set_b = OwnersSet.new(bbnn)
 
@@ -100,37 +100,40 @@ end
 
 
 function test_not_colisions_keys_in_owner_set(n :: Color, b :: Km)
-    bbnn = UniqueNodeKey(b^2*n^2)
+    bbnn = UniqueNodeKey(b^2*n^3)
     owners_set = OwnersSet.new(bbnn)
     total_keys = 0
-    total_keys_expected = b^2*n^2
+    max_keys_expected = b^2*n^3
     for km_origin in 0:b-1
         for color_origin in 0:n-1
+            for step in 0:n-1
 
-            action_id_parent = GeneratorIds.get_action_id(Color(n), Km(km_origin), Color(color_origin))
-            #print(" $action_id_parent [")
-            for km_destine in km_origin:b-1
-                for color_destine in 0:n-1
-                    action_id= GeneratorIds.get_action_id(Color(n), Km(km_destine), Color(color_destine))
+                action_id_parent = GeneratorIds.get_action_id(Color(n), Km(km_origin), Color(color_origin))
+                #print(" $action_id_parent [")
+                for km_destine in km_origin:b-1
+                    for color_destine in 0:n-1
+                        action_id= GeneratorIds.get_action_id(Color(n), Km(km_destine), Color(color_destine))
 
-                    key = NodeIdentity.calc_key(n, b, action_id, action_id_parent)
+                        key = NodeIdentity.calc_key(n, b, Step(step), action_id, action_id_parent)
 
-                    if OwnersSet.have(owners_set, key)
-                        @test false
-                    else
-                        @test true
-                        OwnersSet.push!(owners_set, key)
-                        total_keys+= 1
+                        if OwnersSet.have(owners_set, key)
+                            @test false
+                        else
+                            @test true
+                            OwnersSet.push!(owners_set, key)
+                            total_keys+= 1
+                        end
+
+                        #print(" $key ($action_id, $action_id_parent) ")
                     end
-
-                    #print(" $key ($action_id, $action_id_parent) ")
                 end
+                #println("]")
+
             end
-            #println("]")
         end
     end
 
-    @test total_keys < total_keys_expected
+    @test total_keys < max_keys_expected
 end
 
 function test_not_collision_keys_hamiltonian_in_owner_set()

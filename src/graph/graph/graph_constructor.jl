@@ -27,7 +27,8 @@ function new_graph_owners(n :: Color, b :: Km) :: OwnersByStep
     # Para poder hacer un join con origin
     # tenemos que añadir un km más
     b = b + 1
+    n = n + 1
 
-    bbnn = Int64(b^2*n^2)
-    return Owners.new(bbnn)
+    bbnnn = Int64(b^2*n^3)
+    return Owners.new(bbnnn)
 end

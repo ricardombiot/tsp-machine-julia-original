@@ -3,26 +3,6 @@
 # Most probable during construction O(N^6/128) * O(less than n)
 # Complete graphs during construction O(N^6/128) * O(1)
 function review_owners_all_graph!(graph :: Graph)
-    #=
-    # Maxim cost of execute O(N^6/128) * O(Nodes to delete)
-    # -> theoretical If we execute after remove each node O(N^3) * O(N^6/128)
-    # in the practise the executions dependes of the deletes stages required
-    # to be valid or invalid but in all cases is a expensive but polynomial
-    if graph.valid && graph.required_review_ownwers
-        #O(N^3)
-        rebuild_owners(graph)
-        #O(N^6/128)
-        review_owners_nodes_and_relationships!(graph)
-
-        graph.required_review_ownwers = false
-        if graph.valid && !isempty(graph.nodes_to_delete)
-            graph.required_review_ownwers = true
-            apply_node_deletes!(graph)
-            review_owners_all_graph!(graph)
-        end
-    end
-    =#
-
     recursive_review_owners_all_graph!(graph, 1)
 end
 
@@ -32,7 +12,7 @@ function recursive_review_owners_all_graph!(graph :: Graph, stage :: Int64)
     # in the practise the executions dependes of the deletes stages required
     # to be valid or invalid but in all cases is a expensive but polynomial
     if graph.valid && graph.required_review_ownwers
-        println("review_owners_all_graph $stage")
+        #println("review_owners_all_graph $stage")
         #O(N^3)
         rebuild_owners(graph)
         #O(N^6/128)

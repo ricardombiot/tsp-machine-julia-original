@@ -13,7 +13,7 @@ end
 
 function get_fisrt_node_id(n :: Color, b :: Km, graph :: Graph) :: NodeId
     action_id_init = PathGraph.get_action_id_origin(graph)
-    return NodeIdentity.new(n, b, action_id_init, nothing)
+    return NodeIdentity.new(n, b, Step(0), action_id_init, nothing)
 end
 
 function get_init_owners(graph :: Graph) :: OwnersByStep

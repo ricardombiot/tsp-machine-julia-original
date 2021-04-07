@@ -19,11 +19,7 @@ end
 
 function delete_node_of_line!(graph :: Graph, node :: Node)
     if haskey(graph.table_lines, node.step) && graph.valid
-        nodes_in_line = graph.table_lines[node.step]
-
-        if node.id in nodes_in_line
-            pop!(nodes_in_line, node.id)
-        end
+        delete!(graph.table_lines[node.step], node.id)
     end
 end
 

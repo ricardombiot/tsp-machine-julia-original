@@ -11,9 +11,9 @@ function test_lazy_delete_nodes()
     @test graph.next_step == Step(3)
 
     ## Testing
-    node0_id = NodeIdentity.new(n, b, action_id_s0_0)
-    node2_id = NodeIdentity.new(n, b, action_id_s1_2, action_id_s0_0)
-    node4_id = NodeIdentity.new(n, b, action_id_s2_4, action_id_s1_2)
+    node0_id = NodeIdentity.new(n, b, Step(0), action_id_s0_0)
+    node2_id = NodeIdentity.new(n, b, Step(1), action_id_s1_2, action_id_s0_0)
+    node4_id = NodeIdentity.new(n, b, Step(2), action_id_s2_4, action_id_s1_2)
 
 
     PathGraph.save_to_delete_node!(graph, node2_id)
@@ -53,9 +53,9 @@ function test_lazy_delete_nodes_by_color()
     @test isempty(graph.nodes_to_delete) == false
 
     ## Testing
-    node0_id = NodeIdentity.new(n, b, action_id_s0_0)
-    node2_id = NodeIdentity.new(n, b, action_id_s1_2, action_id_s0_0)
-    node4_id = NodeIdentity.new(n, b, action_id_s2_4, action_id_s1_2)
+    node0_id = NodeIdentity.new(n, b, Step(0), action_id_s0_0)
+    node2_id = NodeIdentity.new(n, b, Step(1), action_id_s1_2, action_id_s0_0)
+    node4_id = NodeIdentity.new(n, b, Step(2), action_id_s2_4, action_id_s1_2)
 
     # Lazy detection unvalid graph before deletions
     @test graph.nodes_to_delete == NodesIdSet([node2_id])

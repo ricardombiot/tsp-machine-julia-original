@@ -48,15 +48,15 @@ function test_join()
     action_id_s2_2 = GeneratorIds.get_action_id(Color(n), Km(2), Color(2))
     action_id_s3_6 = GeneratorIds.get_action_id(Color(n), Km(3), Color(6))
 
-    node00_id = NodeIdentity.new(n, b, action_id_s0_0)
-    node12_id = NodeIdentity.new(n, b, action_id_s1_2, action_id_s0_0)
-    node14_id = NodeIdentity.new(n, b, action_id_s1_4, action_id_s0_0)
+    node00_id = NodeIdentity.new(n, b, Step(0), action_id_s0_0)
+    node12_id = NodeIdentity.new(n, b, Step(1),action_id_s1_2, action_id_s0_0)
+    node14_id = NodeIdentity.new(n, b, Step(1), action_id_s1_4, action_id_s0_0)
 
-    node24_id = NodeIdentity.new(n, b, action_id_s2_4, action_id_s1_2)
-    node22_id = NodeIdentity.new(n, b, action_id_s2_2, action_id_s1_4)
+    node24_id = NodeIdentity.new(n, b, Step(2),action_id_s2_4, action_id_s1_2)
+    node22_id = NodeIdentity.new(n, b, Step(2),action_id_s2_2, action_id_s1_4)
 
-    node36_22_id = NodeIdentity.new(n, b, action_id_s3_6, action_id_s2_2)
-    node36_24_id = NodeIdentity.new(n, b, action_id_s3_6, action_id_s2_4)
+    node36_22_id = NodeIdentity.new(n, b, Step(3),action_id_s3_6, action_id_s2_2)
+    node36_24_id = NodeIdentity.new(n, b, Step(3),action_id_s3_6, action_id_s2_4)
 
     ## Join
     graph_join = build_join()
