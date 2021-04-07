@@ -33,6 +33,10 @@ module PathsSet
 
     include("machine/hamiltonian/hal_machine.jl")
 
+    include("machine/subset_sum/subset_sum_program.jl")
+    include("machine/subset_sum/subset_sum_machine.jl")
+    include("machine/subset_sum/subset_sum_solver.jl")
+
     include("machine/readers/imachine.jl")
     include("machine/readers/solution_graph_reader.jl")
     include("machine/readers/path_checker.jl")

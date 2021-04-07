@@ -26,6 +26,12 @@ module PathReader
     include("./reader_reduce_graph.jl")
 
 
+    function read!(n :: Color, b :: Km, graph :: Graph, is_origin_join :: Bool = false) :: PathSolutionReader
+        path = new(n, b, graph, is_origin_join)
+        calc!(path)
+        return path
+    end
+
     function load!(n :: Color, b :: Km, graph :: Graph, is_origin_join :: Bool = false) :: Tuple{String, PathSolutionReader}
         path = new(n, b, graph, is_origin_join)
         calc!(path)

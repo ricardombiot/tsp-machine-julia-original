@@ -61,3 +61,10 @@ using Main.PathsSet.HalMachine: HamiltonianMachine
 using Main.PathsSet.InterfaceMachine
 using Main.PathsSet.InterfaceMachine: IMachine
 using Main.PathsSet.SolutionGraphReader
+
+using Main.PathsSet.SubsetSumProgram
+using Main.PathsSet.SubsetSumProgram: SumProgram
+
+using Main.PathsSet.SubsetSumMachine
+using Main.PathsSet.SubsetSumMachine: SumMachine
+using Main.PathsSet.SubsetSumSolver

@@ -59,11 +59,17 @@ end
     end
 
     @testset "Hamiltonian-reduce3sat" begin
-        include("machine/hamiltonian/reduce3sat/test_reduce3sat.jl")
+        #include("machine/hamiltonian/reduce3sat/test_reduce3sat.jl")
 
         #include("machine/hamiltonian/reduce3sat/test_reduce3sat_steps.jl")
         #include("machine/hamiltonian/reduce3sat/test_reduce3sat_steps_unvalid.jl")
         #include("machine/hamiltonian/reduce3sat/test_reduce3sat_undirected.jl")
+    end
+
+    @testset "Subset-Sum" begin
+        include("subset_sum/test_sum_program.jl")
+        include("subset_sum/test_sum_machine.jl")
+        #include("subset_sum/test_subset_sum.jl")
     end
 end
 
