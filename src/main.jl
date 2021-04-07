@@ -59,6 +59,7 @@ using Main.PathsSet.HalMachine
 using Main.PathsSet.HalMachine: HamiltonianMachine
 using Main.PathsSet.TSPMachine
 using Main.PathsSet.TSPMachine: TravellingSalesmanMachine
+using Main.PathsSet.TSPMachineParallel
 
 using Main.PathsSet.InterfaceMachine
 using Main.PathsSet.InterfaceMachine: IMachine

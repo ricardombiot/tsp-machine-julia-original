@@ -47,8 +47,9 @@ function test_get_one_solution(n , b, machine)
 
    optimal_solution = Weight(70)
    checker = PathChecker.new(machine.graf, path, optimal_solution)
-   @test PathChecker.check!(checker)
-   println("# Checked the solution [OK]")
+   result_check = PathChecker.check!(checker)
+   @test result_check
+   println("# Checked the solution [$result_check]")
 end
 
 function test_explore_solutions(n , b, machine)
