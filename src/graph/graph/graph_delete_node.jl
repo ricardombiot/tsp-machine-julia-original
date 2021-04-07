@@ -6,7 +6,7 @@ function delete_node!(graph :: Graph, node_id :: NodeId)
     end
 end
 
-# O(N)
+# $ O(N) $
 function make_delete_node!(graph :: Graph, node :: Node)
     if graph.valid
         delete_node_of_line!(graph, node)
@@ -33,23 +33,23 @@ function delete_node_of_table_colors!(graph :: Graph, node :: Node)
     end
 end
 
-# O(N)
+# $ O(N) $
 function delete_edges_parents!(graph :: Graph, node :: Node)
     if graph.valid
         destine_id = node.id
 
-        # each node can have O(N-2 parents)
+        # each node can have $ O(N-2) $  parents
         for (origin_id, edge_id) in node.parents
             delete_edge_by_id!(graph, edge_id)
         end
     end
 end
 
-# O(N)
+# $ O(N) $
 function delete_edges_sons!(graph :: Graph, node :: Node)
     if graph.valid
         origin_id = node.id
-        # each node can have O(N-1 sons)
+        # each node can have $ O(N-1) $ sons
         for (destine_id, edge_id) in node.sons
             delete_edge_by_id!(graph, edge_id)
         end
