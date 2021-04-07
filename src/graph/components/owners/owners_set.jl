@@ -41,10 +41,6 @@ module OwnersSet
         FBSet.intersect!(owners_set_a.fbset, owners_set_b.fbset)
     end
 
-    function diff!(owners_set_a :: OwnersFixedSet, owners_set_b :: OwnersFixedSet)
-        FBSet.diff!(owners_set_a.fbset, owners_set_b.fbset)
-    end
-
     function to_list(owners_set :: OwnersFixedSet) :: Array{Int64,1}
         FBSet.to_list(owners_set.fbset)
     end

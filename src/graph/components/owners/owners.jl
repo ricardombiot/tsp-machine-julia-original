@@ -6,12 +6,13 @@ module Owners
     using Main.PathsSet.NodeIdentity: NodeId
 
     mutable struct OwnersByStep
+        # The space of all possible keys
         bbnn :: UniqueNodeKey
-
+        # Group of set of nodes id key by step
         dict :: Dict{Step, OwnersFixedSet}
-
+        # The last step
         max_step :: Step
-        # Si algun step es vacio entonces es invalido
+        # If any step have a empty step then is invalid
         valid :: Bool
     end
 
@@ -117,23 +118,6 @@ module Owners
         end
     end
 
-    function intersect_old!(owners_a :: OwnersByStep, owners_b :: OwnersByStep)
-        if can_be_valid_operation(owners_a, owners_b)
-            for step in Step(0):owners_a.max_step
-                step_set_a = get_step_set(owners_a, step)
-                step_set_b = get_step_set(owners_b, step)
-
-                OwnersSet.intersect!(step_set_a, step_set_b)
-
-                if OwnersSet.isempty(step_set_a)
-                    owners_a.valid = false
-                end
-            end
-        else
-            owners_a.valid = false
-        end
-    end
-
     function intersect!(owners_a :: OwnersByStep, owners_b :: OwnersByStep)
         max_step = min(owners_a.max_step, owners_b.max_step)
         if both_valids(owners_a, owners_b)
@@ -149,24 +133,6 @@ module Owners
                     end
                 else
                     owners_a.valid = false
-                end
-            end
-        else
-            owners_a.valid = false
-        end
-    end
-
-    function diff!(owners_a :: OwnersByStep, owners_b :: OwnersByStep)
-        if can_be_valid_operation(owners_a, owners_b)
-            for step in Step(0):owners_a.max_step
-                step_set_a = get_step_set(owners_a, step)
-                step_set_b = get_step_set(owners_b, step)
-
-                OwnersSet.diff!(step_set_a, step_set_b)
-
-                if OwnersSet.isempty(step_set_a)
-                    owners_a.valid = false
-                    break
                 end
             end
         else

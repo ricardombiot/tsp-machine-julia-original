@@ -132,6 +132,8 @@ function test_operations_owner()
     @test Owners.count(owners_set_a_copy, Step(3)) == 0
 
     @test owners_set_a_copy.valid == false
+
+    #=
     # diff! a / b
 
     owners_set_a_copy = deepcopy(owners_set_a)
@@ -147,7 +149,7 @@ function test_operations_owner()
 
     @test Owners.have(owners_set_b_copy, Step(0), node_id_s0_2_2) == false
     @test owners_set_b_copy.valid == false
-
+    =#
 end
 
 
@@ -190,8 +192,8 @@ function test_operations_not_valid_cases()
     Owners.intersect!(owners_set_a_copy, owners_set_b)
     @test owners_set_a_copy.valid == false
 
+    #=
     # diff
-
     owners_set_a_copy = deepcopy(owners_set_a)
     Owners.diff!(owners_set_a_copy, owners_set_b)
 
@@ -201,6 +203,8 @@ function test_operations_not_valid_cases()
     Owners.diff!(owners_set_b_copy, owners_set_a)
 
     @test owners_set_b_copy.valid == false
+
+    =#
 
 end
 

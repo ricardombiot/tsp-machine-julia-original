@@ -74,6 +74,7 @@ function test_operationes_owner_set()
     @test OwnersSet.have(owners_set_a_copy, key4_1) == true
     @test OwnersSet.have(owners_set_a_copy, key6_1) == false
 
+    #=
     # diff! a / b
 
     owners_set_a_copy = deepcopy(owners_set_a)
@@ -95,7 +96,7 @@ function test_operationes_owner_set()
     @test OwnersSet.have(owners_set_b_copy, key3_1) == false
     @test OwnersSet.have(owners_set_b_copy, key4_1) == false
     @test OwnersSet.have(owners_set_b_copy, key6_1) == true
-
+    =#
 end
 
 
