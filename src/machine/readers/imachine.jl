@@ -3,8 +3,10 @@ module InterfaceMachine
 
     using Main.PathsSet.HalMachine
     using Main.PathsSet.HalMachine: HamiltonianMachine
+    using Main.PathsSet.TSPMachine
+    using Main.PathsSet.TSPMachine: TravellingSalesmanMachine
 
-    const IMachine = HamiltonianMachine
+    const IMachine = Union{HamiltonianMachine, TravellingSalesmanMachine}
 
     using Main.PathsSet.Cell: TimelineCell
     using Main.PathsSet.Actions: Action
@@ -12,5 +14,6 @@ module InterfaceMachine
 
 
     include("./ihal_machine.jl")
+    include("./itsp_machine.jl")
 
 end

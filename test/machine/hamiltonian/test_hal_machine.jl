@@ -35,7 +35,7 @@ function test_create_machine()
     @test HalMachine.make_step!(machine) == true
     @test machine.actual_km == Km(3)
 
-    graph = SolutionReader.get_one_solution_graph(machine)
+    graph = SolutionGraphReader.get_one_solution_graph(machine)
 
     #println(pwd())
     Graphviz.to_png(graph,"solucion_k3","./machine/hamiltonian/visual_graphs/k3")

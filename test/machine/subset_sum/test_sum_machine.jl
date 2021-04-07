@@ -15,7 +15,7 @@ function test_mochilla_machine_negatives()
     i = 1
     for graph in list_graphs
         name = "graph_$i"
-        Graphviz.to_png(graph,name,"./subset_sum/visual_graphs/simple")
+        Graphviz.to_png(graph,name,"./machine/subset_sum/visual_graphs/simple")
         subset = SubsetSumSolver.get_subset_solution_of_graph(machine, graph)
         println("plot graph solution $name")
         println(subset)

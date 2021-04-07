@@ -32,6 +32,7 @@ module PathsSet
     include("machine/timeline/timeline_table.jl")
 
     include("machine/hamiltonian/hal_machine.jl")
+    include("machine/tsp/tsp_machine.jl")
 
     include("machine/subset_sum/subset_sum_program.jl")
     include("machine/subset_sum/subset_sum_machine.jl")

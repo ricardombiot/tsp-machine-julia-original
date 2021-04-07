@@ -67,10 +67,19 @@ end
     end
 
     @testset "Subset-Sum" begin
-        include("subset_sum/test_sum_program.jl")
-        include("subset_sum/test_sum_machine.jl")
+        #include("machine/subset_sum/test_sum_program.jl")
+        #include("machine/subset_sum/test_sum_machine.jl")
         #include("subset_sum/test_subset_sum.jl")
     end
+
+    @testset "TSP" begin
+        include("machine/tsp/test_tsp_machine.jl")
+        #include("machine/tsp/test_tsp_machine_completo.jl")
+        #include("machine/tsp/test_tsp_machine_parallel_completo.jl")
+    end
+
+
+
 end
 
 
