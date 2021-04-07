@@ -51,17 +51,19 @@ end
     @testset "Hamiltonian" begin
         #include("machine/hamiltonian/test_grafo_simple.jl")
         #include("machine/hamiltonian/test_hal_machine.jl")
-        include("machine/hamiltonian/test_grafo_dode.jl")
+        #include("machine/hamiltonian/test_grafo_dode.jl")
         #include("machine/hamiltonian/test_grafo_dode_exp.jl")
-
-        #include("machine/hamiltonian/test_reduce3sat.jl")
-
-        #include("machine/hamiltonian/test_reduce3sat_steps.jl")
-        #include("machine/hamiltonian/test_reduce3sat_steps_unvalid.jl")
-        #include("machine/hamiltonian/test_reduce3sat_undirected.jl")
 
         # ONLY FOR DEBUGING
         #include("machine/hamiltonian/test_grafo_dode_steps.jl")
+    end
+
+    @testset "Hamiltonian-reduce3sat" begin
+        include("machine/hamiltonian/reduce3sat/test_reduce3sat.jl")
+
+        #include("machine/hamiltonian/reduce3sat/test_reduce3sat_steps.jl")
+        #include("machine/hamiltonian/reduce3sat/test_reduce3sat_steps_unvalid.jl")
+        #include("machine/hamiltonian/reduce3sat/test_reduce3sat_undirected.jl")
     end
 end
 
