@@ -14,7 +14,6 @@ module ExecuteActions
         action = DatabaseInterface.get_action(db, id)
 
         if action != nothing && !Actions.was_execute(action)
-            #println("reduce_map_up_parents!")
             Actions.init_props_graphs!(action)
             reduce_map_up_parents!(db, action)
             DatabaseInterface.finished_execution!(db, action)

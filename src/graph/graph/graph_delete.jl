@@ -47,7 +47,8 @@ end
 # $ O(N^4) $
 function apply_node_deletes!(graph :: Graph)
     # It will be execute less than $ O(N^3) $ delete total nodes
-    # after will be detected that graph is unvalid.
+    # before will detected that graph is unvalid and avoid
+    # the execution of delete nodes.
     if graph.valid
         if !isempty(graph.nodes_to_delete)
             node_id = pop!(graph.nodes_to_delete)

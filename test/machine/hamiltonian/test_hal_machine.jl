@@ -50,19 +50,20 @@ function test_create_machine_k(n :: Color)
     println("Start execution... k$n ")
     time_execution = @timev HalMachine.execute!(machine)
     println("Time execution  k$n: $time_execution ")
-    graph = SolutionGraphReader.get_one_solution_graph(machine)
+    #graph = SolutionGraphReader.get_one_solution_graph(machine)
 
     #println(graph)
     #println(pwd())
-    Graphviz.to_png(graph,"solucion_k$n","./machine/hamiltonian/visual_graphs/grafo_kn")
+    graph_join = SolutionGraphReader.get_graph_join_origin(machine)
+    Graphviz.to_png(graph_join,"join_graph_with_owners_k$n","./machine/hamiltonian/visual_graphs/grafo_kn")
 
     b = Km(n)
-    (tour, path) = PathReader.load!(n, b, graph)
+    (tour, path) = PathReader.load!(n, b, graph_join, true)
     println(tour)
     @test path.step == graf.n+1
 end
 
 #test_create_machine()
 
-test_create_machine_k(Color(10))
+test_create_machine_k(Color(4))
 #test_create_machine_k(Color(8))

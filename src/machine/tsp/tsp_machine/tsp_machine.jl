@@ -1,4 +1,4 @@
-module HalMachine
+module TSPMachine
     using Main.PathsSet.Alias: Km, Color, ActionId
 
     using Main.PathsSet.DatabaseActions
@@ -13,10 +13,11 @@ module HalMachine
     using Main.PathsSet.DatabaseMemoryController
     using Main.PathsSet.DatabaseMemoryController: DBMemoryController
 
-
-    mutable struct HamiltonianMachine
+    mutable struct TravellingSalesmanMachine
         n :: Color
         actual_km :: Km
+        km_b :: Km
+        km_solution_recived :: Union{Km, Nothing}
         color_origin :: Color
         graf :: Grafo
         timeline :: Timeline
@@ -24,9 +25,9 @@ module HalMachine
         db_controller :: DBMemoryController
     end
 
-    include("./hal_machine_constructor.jl")
-    include("./hal_machine_send_destines.jl")
-    include("./hal_machine_execute.jl")
-    include("./hal_machine_getters.jl")
+    include("./tsp_machine_constructor.jl")
+    include("./tsp_machine_send_destines.jl")
+    include("./tsp_machine_execute.jl")
+    include("./tsp_machine_getters.jl")
 
 end

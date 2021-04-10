@@ -9,9 +9,8 @@ function add_node!(graph :: Graph, node :: Node)
     add_node_in_line!(graph, node)
 
     push_owner_myself_as_owner_of_me!(node)
-    push_node_as_new_owner!(graph, node)
-
     # $ O(N^3) $
+    push_node_as_new_owner!(graph, node)
     push_owner_in_graph!(graph, node)
 end
 
