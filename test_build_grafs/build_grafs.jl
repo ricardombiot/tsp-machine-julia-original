@@ -23,7 +23,7 @@ module BuildGraf
             return false
         end
 
-        return builder.num_graf < builder.limit
+        return builder.num_graf > builder.limit-1
     end
 
     function generate_graf!(builder :: Builder)

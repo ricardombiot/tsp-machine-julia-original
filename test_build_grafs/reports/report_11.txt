@@ -1,0 +1,8 @@
+Directory: ./data/grafs11
+######################
+Grafs Nodes: 11
+TOTAL: 11
+TOTAL OK: 11
+DETECTION RATE: 100.0%
+TOTAL TIME TEST: 1 second, 439 milliseconds
+AVG TIME MACHINE EXECUTION: 89.45454545454545 ms

@@ -72,7 +72,7 @@ end
     end
 
     @testset "TSP" begin
-        include("machine/tsp/test_tsp_machine.jl")
+        #include("machine/tsp/test_tsp_machine.jl")
         #include("machine/tsp/test_tsp_machine_completo.jl")
         #include("machine/tsp/test_tsp_machine_parallel_completo.jl")
     end

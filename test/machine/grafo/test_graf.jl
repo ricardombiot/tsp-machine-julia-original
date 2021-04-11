@@ -75,9 +75,47 @@ function test_grafo_completo_weight()
     @test Graf.get_weight(graf, Color(2),  Color(0)) == Weight(10)
 end
 
+function test_grafo_cycle()
+    graf = GrafGenerator.cycle(Color(4), Weight(10))
+
+    @test graf.count_aristas == (4 * 2)
+
+    @test Graf.get_weight(graf, Color(0),  Color(1)) == Weight(10)
+    @test Graf.get_weight(graf, Color(1),  Color(2)) == Weight(10)
+    @test Graf.get_weight(graf, Color(2),  Color(3)) == Weight(10)
+    @test Graf.get_weight(graf, Color(3),  Color(0)) == Weight(10)
+
+    @test Graf.get_weight(graf, Color(1),  Color(0)) == Weight(10)
+    @test Graf.get_weight(graf, Color(2),  Color(1)) == Weight(10)
+    @test Graf.get_weight(graf, Color(3),  Color(2)) == Weight(10)
+    @test Graf.get_weight(graf, Color(0),  Color(3)) == Weight(10)
+
+    graf = GrafGenerator.cycle(Color(6), Weight(10))
+    @test graf.count_aristas == (6 * 2)
+    @test Graf.get_weight(graf, Color(0),  Color(1)) == Weight(10)
+    @test Graf.get_weight(graf, Color(1),  Color(0)) == Weight(10)
+
+    @test Graf.get_weight(graf, Color(1),  Color(2)) == Weight(10)
+    @test Graf.get_weight(graf, Color(2),  Color(1)) == Weight(10)
+
+    @test Graf.get_weight(graf, Color(2),  Color(3)) == Weight(10)
+    @test Graf.get_weight(graf, Color(3),  Color(2)) == Weight(10)
+
+    @test Graf.get_weight(graf, Color(3),  Color(4)) == Weight(10)
+    @test Graf.get_weight(graf, Color(4),  Color(3)) == Weight(10)
+
+    @test Graf.get_weight(graf, Color(4),  Color(5)) == Weight(10)
+    @test Graf.get_weight(graf, Color(5),  Color(4)) == Weight(10)
+
+    @test Graf.get_weight(graf, Color(5),  Color(0)) == Weight(10)
+    @test Graf.get_weight(graf, Color(0),  Color(5)) == Weight(10)
+
+end
+
 test_create_graf()
 test_is_valid_index()
 test_add()
 test_create_subdict_destines()
 test_grafo_completo()
 test_grafo_completo_weight()
+test_grafo_cycle()

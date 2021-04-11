@@ -18,6 +18,20 @@ module GrafGenerator
         return g
     end
 
+    function cycle(n :: Color, peso :: Weight = Weight(1)) :: Grafo
+        g = Graf.new(n)
+        for i in 0:n-1
+            next = i+1
+            if next > n-1
+                next = 0
+            end
+
+            Graf.add_bidirectional!(g, Color(i), Color(next), peso)
+        end
+
+        return g
+    end
+
     function read_tsplib_file(name :: String, path :: String = "./../../../tsplib") :: Grafo
         file_path = "$path/$name.tsp"
         lib = readTSP(joinpath(@__DIR__, file_path))
