@@ -30,6 +30,7 @@ module PathsSet
 
     include("machine/timeline/timeline_cell.jl")
     include("machine/timeline/timeline_table.jl")
+    include("machine/timeline/table_disk/timeline_table_disk.jl")
 
     include("machine/hamiltonian/hal_machine.jl")
     include("machine/tsp/tsp_machine/tsp_machine.jl")

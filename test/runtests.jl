@@ -46,6 +46,10 @@ end
         include("machine/timeline/test_timeline_table.jl")
     end
 
+    @testset "TimelineDisk" begin
+        include("machine/timeline/test_timeline_table_disk.jl")
+    end
+
 
     @testset "Hamiltonian" begin
         #include("machine/hamiltonian/test_grafo_simple.jl")
