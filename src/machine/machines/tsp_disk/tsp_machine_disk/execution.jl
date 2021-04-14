@@ -11,7 +11,9 @@ end
 
 function rules_to_halt_machine(machine :: TravellingSalesmanMachineDisk) :: Bool
     km_to_halt = get_km_target(machine)
-    return km_to_halt-1 == machine.info.actual_km
+    # la maquina de saltos tiene no tiene que procesar soluciones
+    #return km_to_halt-1 == machine.info.actual_km
+    return km_to_halt == machine.info.actual_km
 end
 
 function make_step!(machine :: TravellingSalesmanMachineDisk) :: Bool
@@ -21,7 +23,9 @@ function make_step!(machine :: TravellingSalesmanMachineDisk) :: Bool
         TSPMachineInfoDisk.jump!(machine.info)
         #machine.info.actual_km += Km(1)
         save_info!(machine)
-        return true
+
+        #return true
+        return !machine.info.finished
     else
         machine.info.finished = true
         save_info!(machine)

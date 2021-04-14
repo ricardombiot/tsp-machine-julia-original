@@ -1,0 +1,100 @@
+#### Time K3
+./data/disk/db
+#KM: 10/40
+Execute KM:10 Cell: 1 -> OP: 32 (true)
+Execute KM:10 Cell: 2 -> OP: 33 (true)
+#KM: 20/40
+Execute KM:20 Cell: 1 -> OP: 62 (true)
+Execute KM:20 Cell: 2 -> OP: 63 (true)
+#KM: 30/30
+## Search solution.. 
+## Read tour.. 
+Longitud: 4 Path: 0, 1, 2, 0,
+## Checking tour.. true
+Trial(3.069 s)
+#### Time K4
+./data/disk/db
+#KM: 10/50
+Execute KM:10 Cell: 1 -> OP: 42 (true)
+Execute KM:10 Cell: 2 -> OP: 43 (true)
+Execute KM:10 Cell: 3 -> OP: 44 (true)
+#KM: 20/50
+Execute KM:20 Cell: 1 -> OP: 82 (true)
+Execute KM:20 Cell: 2 -> OP: 83 (true)
+Execute KM:20 Cell: 3 -> OP: 84 (true)
+#KM: 30/50
+Execute KM:30 Cell: 1 -> OP: 122 (true)
+Execute KM:30 Cell: 2 -> OP: 123 (true)
+Execute KM:30 Cell: 3 -> OP: 124 (true)
+#KM: 40/40
+## Search solution.. 
+## Read tour.. 
+Longitud: 5 Path: 0, 2, 1, 3, 0,
+## Checking tour.. true
+Trial(878.789 ms)
+#### Time K5
+./data/disk/db
+#KM: 10/60
+Execute KM:10 Cell: 1 -> OP: 52 (true)
+Execute KM:10 Cell: 2 -> OP: 53 (true)
+Execute KM:10 Cell: 3 -> OP: 54 (true)
+Execute KM:10 Cell: 4 -> OP: 55 (true)
+#KM: 20/60
+Execute KM:20 Cell: 1 -> OP: 102 (true)
+Execute KM:20 Cell: 2 -> OP: 103 (true)
+Execute KM:20 Cell: 3 -> OP: 104 (true)
+Execute KM:20 Cell: 4 -> OP: 105 (true)
+#KM: 30/60
+Execute KM:30 Cell: 1 -> OP: 152 (true)
+Execute KM:30 Cell: 2 -> OP: 153 (true)
+Execute KM:30 Cell: 3 -> OP: 154 (true)
+Execute KM:30 Cell: 4 -> OP: 155 (true)
+#KM: 40/60
+Execute KM:40 Cell: 1 -> OP: 202 (true)
+Execute KM:40 Cell: 2 -> OP: 203 (true)
+Execute KM:40 Cell: 3 -> OP: 204 (true)
+Execute KM:40 Cell: 4 -> OP: 205 (true)
+#KM: 50/50
+## Search solution.. 
+## Read tour.. 
+Longitud: 6 Path: 0, 4, 3, 1, 2, 0,
+## Checking tour.. true
+Trial(1.471 s)
+#### Time K6
+./data/disk/db
+#KM: 10/70
+Execute KM:10 Cell: 1 -> OP: 62 (true)
+Execute KM:10 Cell: 2 -> OP: 63 (true)
+Execute KM:10 Cell: 3 -> OP: 64 (true)
+Execute KM:10 Cell: 4 -> OP: 65 (true)
+Execute KM:10 Cell: 5 -> OP: 66 (true)
+#KM: 20/70
+Execute KM:20 Cell: 1 -> OP: 122 (true)
+Execute KM:20 Cell: 2 -> OP: 123 (true)
+Execute KM:20 Cell: 3 -> OP: 124 (true)
+Execute KM:20 Cell: 4 -> OP: 125 (true)
+Execute KM:20 Cell: 5 -> OP: 126 (true)
+#KM: 30/70
+Execute KM:30 Cell: 1 -> OP: 182 (true)
+Execute KM:30 Cell: 2 -> OP: 183 (true)
+Execute KM:30 Cell: 3 -> OP: 184 (true)
+Execute KM:30 Cell: 4 -> OP: 185 (true)
+Execute KM:30 Cell: 5 -> OP: 186 (true)
+#KM: 40/70
+Execute KM:40 Cell: 1 -> OP: 242 (true)
+Execute KM:40 Cell: 2 -> OP: 243 (true)
+Execute KM:40 Cell: 3 -> OP: 244 (true)
+Execute KM:40 Cell: 4 -> OP: 245 (true)
+Execute KM:40 Cell: 5 -> OP: 246 (true)
+#KM: 50/70
+Execute KM:50 Cell: 1 -> OP: 302 (true)
+Execute KM:50 Cell: 2 -> OP: 303 (true)
+Execute KM:50 Cell: 3 -> OP: 304 (true)
+Execute KM:50 Cell: 4 -> OP: 305 (true)
+Execute KM:50 Cell: 5 -> OP: 306 (true)
+#KM: 60/60
+## Search solution.. 
+## Read tour.. 
+Longitud: 7 Path: 0, 1, 3, 5, 2, 4, 0,
+## Checking tour.. true
+Trial(3.517 s)

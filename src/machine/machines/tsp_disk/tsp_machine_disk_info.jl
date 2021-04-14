@@ -25,7 +25,13 @@ module TSPMachineInfoDisk
     end
 
     function jump!(info :: MachineInfoExecution)
-        info.actual_km = MachineJumper.next_km!(info.jumper, info.actual_km)
+        next = MachineJumper.next_km!(info.jumper, info.actual_km)
+
+        if next != nothing
+            info.actual_km = next
+        else
+            info.finished = true
+        end
     end
 
     function register_jump!(info :: MachineInfoExecution, km :: Km)

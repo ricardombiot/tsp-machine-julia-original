@@ -3,7 +3,8 @@ function get_action(machine :: TravellingSalesmanMachineDisk, action_id :: Actio
 end
 
 function get_cell_origin(machine :: TravellingSalesmanMachineDisk) :: Union{TimelineCell, Nothing}
-    return TableTimelineDisk.get_cell(machine.timeline, machine.info.actual_km+1, machine.info.color_origin)
+    # la maquina de saltos saltará al paso ultimo
+    return TableTimelineDisk.get_cell(machine.timeline, machine.info.actual_km, machine.info.color_origin)
 end
 
 function get_km_target(machine :: TravellingSalesmanMachineDisk)
