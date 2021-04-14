@@ -36,6 +36,9 @@ module PathsSet
     include("machine/tsp/tsp_machine/tsp_machine.jl")
     include("machine/tsp/tsp_machine_parallel.jl")
 
+    include("machine/tsp_disk/tsp_machine_disk_info.jl")
+    include("machine/tsp_disk/tsp_machine_disk/tsp_machine_disk.jl")
+
     include("machine/subset_sum/subset_sum_program.jl")
     include("machine/subset_sum/subset_sum_machine.jl")
     include("machine/subset_sum/subset_sum_solver.jl")

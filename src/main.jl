@@ -63,6 +63,9 @@ using Main.PathsSet.TSPMachine
 using Main.PathsSet.TSPMachine: TravellingSalesmanMachine
 using Main.PathsSet.TSPMachineParallel
 
+using Main.PathsSet.TSPMachineDisk
+using Main.PathsSet.TSPMachineDisk: TravellingSalesmanMachineDisk
+
 using Main.PathsSet.InterfaceMachine
 using Main.PathsSet.InterfaceMachine: IMachine
 using Main.PathsSet.SolutionGraphReader

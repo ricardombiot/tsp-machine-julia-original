@@ -81,6 +81,9 @@ end
         #include("machine/tsp/test_tsp_machine_parallel_completo.jl")
     end
 
+    @testset "TSP_disk" begin
+        include("machine/tsp_disk/test_tsp_machine_disk.jl")
+    end
 
 
 end

@@ -4,6 +4,9 @@ module TableTimelineDisk
     using Main.PathsSet.Actions
     using Main.PathsSet.Actions: Action
 
+    using Main.PathsSet.Cell
+    using Main.PathsSet.Cell: TimelineCell
+
     using Main.PathsSet.DatabaseInterface
     using Main.PathsSet.DatabaseInterface: IDBActions
     using Main.PathsSet.GeneratorIds
@@ -28,6 +31,13 @@ module TableTimelineDisk
     function new(n :: Color, path :: String)
         #cells = Dict{Km, Dict{Color, TimelineCell}}()
         TimelineDisk(n, path)
+    end
+
+    function init!(timeline :: TimelineDisk)
+        path = "$(timeline.path)/timeline"
+        if !isdir(path)
+            mkdir(path)
+        end
     end
 
     include("./table_disk_getters_paths.jl")
@@ -57,6 +67,18 @@ module TableTimelineDisk
         else
             return nothing
         end
+    end
+
+    function get_cell(timeline :: TimelineDisk, km :: Km, color :: Color) :: Union{TimelineCell, Nothing}
+        if have_cell(timeline, km, color)
+            action_id = get_action_id_cell(timeline, km, color)
+            cell = Cell.new(km, color, action_id)
+            cell.parents = get_parents_cell(timeline, km, color)
+
+            return cell
+        end
+
+        return nothing
     end
 
     function get_action_id_cell(timeline :: TimelineDisk, km :: Km, color :: Color) :: Union{ActionId, Nothing}

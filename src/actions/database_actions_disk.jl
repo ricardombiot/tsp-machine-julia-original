@@ -24,6 +24,12 @@ module DatabaseActionsDisk
     end
 
     function init!(db :: DBActionsDisk)
+        path = "$(db.path)/db"
+        if !isdir(path)
+            println(path)
+            mkdir(path)
+        end
+
         action = Actions.new_init(db.n, db.b, db.color_origin)
         register_action!(db, action)
     end
