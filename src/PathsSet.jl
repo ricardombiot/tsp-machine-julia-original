@@ -26,23 +26,25 @@ module PathsSet
     include("actions/database_memory_controller_disk.jl")
     include("actions/execute.jl")
 
-    include("machine/grafo/graf.jl")
-    include("machine/grafo/graf_generator.jl")
+    include("machine/components/grafo/graf.jl")
+    include("machine/components/grafo/graf_generator.jl")
 
-    include("machine/timeline/timeline_cell.jl")
-    include("machine/timeline/timeline_table.jl")
-    include("machine/timeline/table_disk/timeline_table_disk.jl")
+    include("machine/components/timeline/timeline_cell.jl")
+    include("machine/components/timeline/timeline_table.jl")
+    include("machine/components/timeline/table_disk/timeline_table_disk.jl")
 
-    include("machine/hamiltonian/hal_machine.jl")
-    include("machine/tsp/tsp_machine/tsp_machine.jl")
-    include("machine/tsp/tsp_machine_parallel.jl")
+    include("machine/components/jumper/machine_jumper.jl")
 
-    include("machine/tsp_disk/tsp_machine_disk_info.jl")
-    include("machine/tsp_disk/tsp_machine_disk/tsp_machine_disk.jl")
+    include("machine/machines/hamiltonian/hal_machine.jl")
+    include("machine/machines/tsp/tsp_machine/tsp_machine.jl")
+    include("machine/machines/tsp/tsp_machine_parallel.jl")
 
-    include("machine/subset_sum/subset_sum_program.jl")
-    include("machine/subset_sum/subset_sum_machine.jl")
-    include("machine/subset_sum/subset_sum_solver.jl")
+    include("machine/machines/tsp_disk/tsp_machine_disk_info.jl")
+    include("machine/machines/tsp_disk/tsp_machine_disk/tsp_machine_disk.jl")
+
+    include("machine/machines/subset_sum/subset_sum_program.jl")
+    include("machine/machines/subset_sum/subset_sum_machine.jl")
+    include("machine/machines/subset_sum/subset_sum_solver.jl")
 
     include("machine/readers/imachine.jl")
     include("machine/readers/solution_graph_reader.jl")

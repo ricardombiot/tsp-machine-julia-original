@@ -1,5 +1,5 @@
 function test_read_grafo_tsplib()
-    g = GrafGenerator.read_tsplib_file("dj38","./../../../tsplib")
+    g = GrafGenerator.read_tsplib_file("dj38","./../../../../tsplib")
     @test g.n == 38
     #println("Djibouti Max weight: $(g.max_weight)")
 end
@@ -17,5 +17,5 @@ function test_read_grafo_tsplib_Qatar()
 end
 
 test_read_grafo_tsplib()
-#test_read_grafo_tsplib_Western_Sahara()
+test_read_grafo_tsplib_Western_Sahara()
 #test_read_grafo_tsplib_Qatar()

@@ -31,6 +31,28 @@ module FBSet
         set.active_subsets = 0
     end
 
+    function get_next(set :: FixedBinarySet, item_start :: Int64 = 0) :: Union{Int64, Nothing}
+        if item_start > 0 && item_start <= set.n
+            id_init = get_subset_id(set, item_start)
+
+            for id in id_init:set.n_subsets
+                subset = get_subset(set, id)
+                if subset != nothing
+                    if id_init == id
+                        last = get_target_item(item_start)
+                    else
+                        last = 1
+                    end
+
+                    start_subset = ((id-1)*128)
+                    return FBSet128.get_next(subset, last, start_subset)
+                end
+            end
+        end
+
+        return nothing
+    end
+
     function to_list(set :: FixedBinarySet) :: Array{Int64,1}
         lista = Array{Int64,1}()
         item_start = 0

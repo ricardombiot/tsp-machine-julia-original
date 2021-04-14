@@ -56,9 +56,12 @@ using Main.PathsSet.Cell
 using Main.PathsSet.Cell: TimelineCell
 using Main.PathsSet.TableTimeline
 using Main.PathsSet.TableTimeline: Timeline
-
 using Main.PathsSet.TableTimelineDisk
 using Main.PathsSet.TableTimelineDisk: TimelineDisk
+
+using Main.PathsSet.MachineJumper
+using Main.PathsSet.MachineJumper: Jumper
+
 
 using Main.PathsSet.HalMachine
 using Main.PathsSet.HalMachine: HamiltonianMachine

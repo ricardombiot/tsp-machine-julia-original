@@ -10,6 +10,7 @@ end
 @time @testset "FBSet" begin
     include("./fbset/test_fbset.jl")
     include("./fbset/test_fixed_binary_set128.jl")
+    include("./fbset/test_fbset_sequence.jl")
 end
 
 
@@ -25,7 +26,7 @@ end
     include("./graph/test_graph_joins.jl")
     include("./graph/test_graph_multi_join.jl")
 end
-=#
+
 
 @time @testset "Actions" begin
     include("./actions/test_actions.jl")
@@ -34,21 +35,26 @@ end
     include("./actions/test_controller_disk.jl")
 end
 
+=#
 
 @time @testset "Machine" begin
     #==#
     @testset "Program(Grafo)" begin
-        include("machine/grafo/test_graf.jl")
-        include("machine/grafo/test_tsplib.jl")
+        include("machine/components/grafo/test_graf.jl")
+        include("machine/components/grafo/test_tsplib.jl")
     end
 
     @testset "Timeline" begin
-        include("machine/timeline/test_timeline_cell.jl")
-        include("machine/timeline/test_timeline_table.jl")
+        include("machine/components/timeline/test_timeline_cell.jl")
+        include("machine/components/timeline/test_timeline_table.jl")
     end
 
     @testset "TimelineDisk" begin
-        include("machine/timeline/test_timeline_table_disk.jl")
+        include("machine/components/timeline/test_timeline_table_disk.jl")
+    end
+
+    @testset "Jumper" begin
+        include("machine/components/jumper/test_jumper.jl")
     end
 
 
@@ -83,7 +89,7 @@ end
     end
 
     @testset "TSP_disk" begin
-        include("machine/tsp_disk/test_tsp_machine_disk.jl")
+        #include("machine/tsp_disk/test_tsp_machine_disk.jl")
     end
 
 
