@@ -76,7 +76,6 @@ module TableTimelineDisk
     function create_cell!(timeline :: TimelineDisk, km :: Km, color :: Color)
         if !have_km(timeline, km)
             path = get_path_km(timeline, km)
-            println("Create dir: $path")
             mkdir(path)
         end
 
@@ -87,13 +86,6 @@ module TableTimelineDisk
             path = get_path_cell_parents(timeline, km, color)
             mkdir(path)
         end
-
-        #=
-        if !have_cell(timeline, km, color)
-            path = get_path_cell_parents(timeline, km, color)
-            mkpath(path)
-        end
-        =#
     end
 
     function put_init!(timeline :: TimelineDisk, n :: Color, color_origin :: Color)
@@ -115,7 +107,6 @@ module TableTimelineDisk
         end
     end
 
-
     function get_parents_cell(timeline :: TimelineDisk, km :: Km, color :: Color) :: Union{ActionsIdSet, Nothing}
         if have_cell(timeline, km, color)
             set_parents = ActionsIdSet()
@@ -129,22 +120,6 @@ module TableTimelineDisk
             return nothing
         end
     end
-
-    #=
-    function get_action_id_cell(timeline :: TimelineDisk, km :: Km, color :: Color) :: Union{ActionId, Nothing}
-        if have_cell(timeline, km, color)
-            list = read_cell_action_id(timeline, km, color)
-            if isempty(list)
-                return nothing
-            else
-                action_id = cast_file_action_id_to_action_id(first(list))
-                return action_id
-            end
-        else
-            return nothing
-        end
-    end
-    =#
 
     function execute!(timeline :: TimelineDisk, db :: IDBActions, km :: Km, color :: Color) :: Tuple{Bool, Union{ActionId,Nothing}}
         if have_cell(timeline, km, color)
@@ -163,11 +138,10 @@ module TableTimelineDisk
         return (action.valid, action.id)
     end
 
-    #=
     function remove!(timeline :: TimelineDisk, km :: Km)
-        if haskey(timeline.cells, km)
-            delete!(timeline.cells, km)
+        if have_km(timeline, km)
+            path = get_path_km(timeline, km)
+            rm(path, recursive=true)
         end
     end
-    =#
 end

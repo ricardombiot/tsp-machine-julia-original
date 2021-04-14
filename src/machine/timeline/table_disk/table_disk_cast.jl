@@ -12,13 +12,3 @@ function cast_file_parent_id_to_action_id(file_id :: String) :: ActionId
     action_id = parse(ActionId, file_id)
     return action_id
 end
-
-
-#=
-function cast_file_action_id_to_action_id(file_id :: String) :: ActionId
-    file_id = replace(file_id, ".txt" => "")
-    file_id = replace(file_id, "action_id_" => "")
-    action_id = parse(ActionId, file_id)
-    return action_id
-end
-=#

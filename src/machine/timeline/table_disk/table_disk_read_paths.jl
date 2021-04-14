@@ -18,15 +18,3 @@ function read_cell_parents(timeline :: TimelineDisk, km :: Km, color :: Color) :
         return Array{String, 1}()
     end
 end
-
-#=
-function read_cell_action_id(timeline :: TimelineDisk, km :: Km, color :: Color) :: Array{String, 1}
-    path = get_path_cell_action_id(timeline, km, color)
-
-    if isdir(path)
-        return readdir(path)
-    else
-        return Array{String, 1}()
-    end
-end
-=#

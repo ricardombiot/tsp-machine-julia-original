@@ -37,20 +37,16 @@ function test_read_paths_timeline_disk()
     @test TableTimelineDisk.get_action_id_cell(timeline, Km(1), Color(4)) == GeneratorIds.get_action_id(n, Km(1), Color(4))
 end
 
-
-
-
-function test_create_timeline()
+function test_create_cell_and_remove_km_timeline()
     n = Color(10)
     path = "./machine/timeline/data"
     timeline = TableTimelineDisk.new(n, path)
 
-    #@test TableTimelineDisk.have_cell(timeline, Km(20), Color(10)) == false
-    TableTimelineDisk.create_cell!(timeline, Km(20), Color(10))
-    @test TableTimelineDisk.have_cell(timeline, Km(20), Color(10)) == true
+    TableTimelineDisk.create_cell!(timeline, Km(100), Color(10))
+    @test TableTimelineDisk.have_cell(timeline, Km(100), Color(10)) == true
+    TableTimelineDisk.remove!(timeline, Km(100))
+    @test TableTimelineDisk.have_cell(timeline, Km(100), Color(10)) == false
 end
-
-
 
 function test_init_timeline()
     n = Color(10)
@@ -61,8 +57,6 @@ function test_init_timeline()
     @test TableTimelineDisk.have_cell(timeline, Km(0), Color(0)) == true
     @test TableTimelineDisk.get_line(timeline, Km(0)) == [Color(0)]
 end
-
-
 
 function test_push_parent_timeline()
     n = Color(10)
@@ -103,7 +97,7 @@ end
 
 test_paths_timeline_disk()
 test_read_paths_timeline_disk()
-test_create_timeline()
+test_create_cell_and_remove_km_timeline()
 test_init_timeline()
 test_push_parent_timeline()
 test_execute_cell()
