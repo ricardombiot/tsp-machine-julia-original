@@ -8,6 +8,10 @@ module MachineJumper
         set :: FixedBinarySet
     end
 
+    function new(b_max_km :: Km)
+        b_max = cast_km_to_int64(b_max_km)
+        new(b_max)
+    end
     function new(b_max :: Int64)
         set = FBSet.new(b_max)
         Jumper(set)

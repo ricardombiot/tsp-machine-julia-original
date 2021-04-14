@@ -19,6 +19,7 @@ function send_destines!(machine :: TravellingSalesmanMachineDisk, origin :: Colo
                         km_destine_max = km_destine
                     end
 
+                    TSPMachineInfoDisk.register_jump!(machine.info, km_destine)
                     TableTimelineDisk.push_parent!(machine.timeline, km_destine, destine, parent_id)
                     check_if_solution_recived(machine, destine, km_destine)
                 end

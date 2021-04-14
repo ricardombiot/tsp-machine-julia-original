@@ -18,7 +18,8 @@ function make_step!(machine :: TravellingSalesmanMachineDisk) :: Bool
     if !rules_to_halt_machine(machine)
         calc_line!(machine)
         free_memory!(machine)
-        machine.info.actual_km += Km(1)
+        TSPMachineInfoDisk.jump!(machine.info)
+        #machine.info.actual_km += Km(1)
         save_info!(machine)
         return true
     else

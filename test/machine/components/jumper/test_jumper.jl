@@ -66,4 +66,4 @@ function test_comparative()
 end
 
 test_jumper()
-test_comparative()
+#test_comparative()

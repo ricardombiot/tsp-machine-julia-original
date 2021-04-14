@@ -89,7 +89,7 @@ end
     end
 
     @testset "TSP_disk" begin
-        #include("machine/tsp_disk/test_tsp_machine_disk.jl")
+        include("machine/tsp_disk/test_tsp_machine_disk.jl")
     end
 
 
