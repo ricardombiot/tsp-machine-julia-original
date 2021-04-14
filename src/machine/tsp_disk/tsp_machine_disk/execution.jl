@@ -17,7 +17,7 @@ end
 function make_step!(machine :: TravellingSalesmanMachineDisk) :: Bool
     if !rules_to_halt_machine(machine)
         calc_line!(machine)
-        #free_memory!(machine)
+        free_memory!(machine)
         machine.info.actual_km += Km(1)
         save_info!(machine)
         return true
@@ -43,7 +43,7 @@ function execute_line!(machine :: TravellingSalesmanMachineDisk)
                  send_destines!(machine, origin)
             else
                 # Si la acción no se envia a nadie se registra para ser eliminada en el sigueinte paso.
-                #DatabaseMemoryController.register!(machine.db_controller, action_id, machine.actual_km)
+                register_action_to_clean!(machine, machine.info.actual_km, action_id)
             end
             #end
         end

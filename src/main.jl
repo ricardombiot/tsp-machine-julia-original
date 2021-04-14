@@ -42,6 +42,9 @@ using Main.PathsSet.DatabaseInterface
 using Main.PathsSet.DatabaseInterface: IDBActions
 using Main.PathsSet.DatabaseMemoryController
 using Main.PathsSet.DatabaseMemoryController: DBMemoryController
+using Main.PathsSet.DatabaseMemoryControllerDisk
+using Main.PathsSet.DatabaseMemoryControllerDisk: DBMemoryControllerDisk
+
 using Main.PathsSet.ExecuteActions
 
 

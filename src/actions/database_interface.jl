@@ -24,11 +24,21 @@ module DatabaseInterface
         return DatabaseActions.get_action(db, id)
     end
 
+    function remove!(db :: DBActionsDisk, id :: ActionId)
+        DatabaseActionsDisk.remove!(db, id)
+    end
+    function remove!(db :: DBActions, id :: ActionId)
+        DatabaseActions.remove!(db, id)
+    end
+
+
     function finished_execution!(db :: DBActionsDisk, action :: Action)
         DatabaseActionsDisk.finished_execution!(db, action)
     end
 
     function finished_execution!(db :: DBActions, action :: Action)
     end
+
+
 
 end

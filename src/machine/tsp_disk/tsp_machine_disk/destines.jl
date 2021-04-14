@@ -25,9 +25,9 @@ function send_destines!(machine :: TravellingSalesmanMachineDisk, origin :: Colo
             end
         end
 
-        #if km_destine_max != nothing
-            #DatabaseMemoryController.register!(machine.db_controller, action.id, km_destine_max)
-        #end
+        if km_destine_max != nothing
+            register_action_to_clean!(machine, km_destine_max, action.id)
+        end
     end
 end
 

@@ -6,6 +6,8 @@ module TSPMachineDisk
 
     using Main.PathsSet.DatabaseActionsDisk
     using Main.PathsSet.DatabaseActionsDisk: DBActionsDisk
+    using Main.PathsSet.DatabaseMemoryControllerDisk
+    using Main.PathsSet.DatabaseMemoryControllerDisk: DBMemoryControllerDisk
 
     using Main.PathsSet.TableTimelineDisk
     using Main.PathsSet.Graf
@@ -21,6 +23,7 @@ module TSPMachineDisk
         graf :: Grafo
         timeline :: TimelineDisk
         db :: DBActionsDisk
+        db_controller :: DBMemoryControllerDisk
     end
 
     include("./constructor.jl")

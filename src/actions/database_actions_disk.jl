@@ -72,4 +72,12 @@ module DatabaseActionsDisk
         DatabaseActionsDisk.register_action!(db, action)
     end
 
+
+    function remove!(db :: DBActionsDisk, id :: ActionId)
+        path = get_path_file_name(db, id)
+        if isfile(path)
+            rm(path)
+        end
+    end
+
 end

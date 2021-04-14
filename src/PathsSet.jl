@@ -23,6 +23,7 @@ module PathsSet
     include("actions/database_actions_disk.jl")
     include("actions/database_interface.jl")
     include("actions/database_memory_controller.jl")
+    include("actions/database_memory_controller_disk.jl")
     include("actions/execute.jl")
 
     include("machine/grafo/graf.jl")

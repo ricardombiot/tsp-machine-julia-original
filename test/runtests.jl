@@ -25,15 +25,16 @@ end
     include("./graph/test_graph_joins.jl")
     include("./graph/test_graph_multi_join.jl")
 end
-
+=#
 
 @time @testset "Actions" begin
     include("./actions/test_actions.jl")
     include("./actions/test_database_actions.jl")
     include("./actions/test_database_actions_disk.jl")
+    include("./actions/test_controller_disk.jl")
 end
 
-=#
+
 @time @testset "Machine" begin
     #==#
     @testset "Program(Grafo)" begin
