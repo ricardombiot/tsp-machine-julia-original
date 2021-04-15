@@ -29,7 +29,7 @@ function test_tsp_machine()
    println("## Calculating TSP Machine")
    TSPMachineDisk.execute!(machine)
    println("KM Solution: $(machine.info.km_solution_recived)")
-   @test machine.info.actual_km == Km(70) - 1
+   @test machine.info.actual_km == Km(70)
    @test machine.info.km_solution_recived == Km(70)
    cell = TSPMachineDisk.get_cell_origin(machine)
    @test cell != nothing

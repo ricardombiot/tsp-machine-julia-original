@@ -24,6 +24,7 @@ module TSPMachineDisk
         timeline :: TimelineDisk
         db :: DBActionsDisk
         db_controller :: DBMemoryControllerDisk
+        parallel :: Bool
     end
 
     include("./constructor.jl")

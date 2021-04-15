@@ -11,7 +11,7 @@ Execute KM:20 Cell: 2 -> OP: 63 (true)
 ## Read tour.. 
 Longitud: 4 Path: 0, 1, 2, 0,
 ## Checking tour.. true
-Trial(3.069 s)
+Trial(2.235 s)
 #### Time K4
 ./data/disk/db
 #KM: 10/50
@@ -31,7 +31,7 @@ Execute KM:30 Cell: 3 -> OP: 124 (true)
 ## Read tour.. 
 Longitud: 5 Path: 0, 2, 1, 3, 0,
 ## Checking tour.. true
-Trial(878.789 ms)
+Trial(628.073 ms)
 #### Time K5
 ./data/disk/db
 #KM: 10/60
@@ -57,9 +57,9 @@ Execute KM:40 Cell: 4 -> OP: 205 (true)
 #KM: 50/50
 ## Search solution.. 
 ## Read tour.. 
-Longitud: 6 Path: 0, 4, 3, 1, 2, 0,
+Longitud: 6 Path: 0, 4, 1, 3, 2, 0,
 ## Checking tour.. true
-Trial(1.471 s)
+Trial(1.618 s)
 #### Time K6
 ./data/disk/db
 #KM: 10/70
@@ -95,6 +95,6 @@ Execute KM:50 Cell: 5 -> OP: 306 (true)
 #KM: 60/60
 ## Search solution.. 
 ## Read tour.. 
-Longitud: 7 Path: 0, 1, 3, 5, 2, 4, 0,
+Longitud: 7 Path: 0, 5, 3, 1, 2, 4, 0,
 ## Checking tour.. true
-Trial(3.517 s)
+Trial(2.362 s)

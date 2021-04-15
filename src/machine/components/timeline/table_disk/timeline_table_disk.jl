@@ -45,6 +45,15 @@ module TableTimelineDisk
     include("./table_disk_cast.jl")
 
 
+    function try_mkdir(path :: String)
+       #try
+
+        #catch e
+        #   println("Error: $e")
+      # end
+       mkdir(path)
+    end
+
     function have_cell(timeline :: TimelineDisk, km :: Km, color :: Color) :: Bool
         path = get_path_cell(timeline, km, color)
         return isdir(path)
@@ -98,15 +107,15 @@ module TableTimelineDisk
     function create_cell!(timeline :: TimelineDisk, km :: Km, color :: Color)
         if !have_km(timeline, km)
             path = get_path_km(timeline, km)
-            mkdir(path)
+            try_mkdir(path)
         end
 
         if !have_cell(timeline, km, color)
             path = get_path_cell(timeline, km, color)
-            mkdir(path)
+            try_mkdir(path)
 
             path = get_path_cell_parents(timeline, km, color)
-            mkdir(path)
+            try_mkdir(path)
         end
     end
 
