@@ -13,6 +13,7 @@ module InterfaceMachine
     using Main.PathsSet.Cell: TimelineCell
     using Main.PathsSet.Actions: Action
     using Main.PathsSet.DatabaseActions: DBActions
+    using Main.PathsSet.DatabaseActionsDisk: DBActionsDisk
 
 
     include("./ihal_machine.jl")

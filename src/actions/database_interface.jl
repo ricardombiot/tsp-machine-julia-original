@@ -16,6 +16,13 @@ module DatabaseInterface
         return DatabaseActions.register_up!(db, km, up_color, parents)
     end
 
+    function generate_action_id(db :: DBActions, km :: Km, up_color :: Color) :: ActionId
+        return DatabaseActions.generate_action_id(db, km, up_color)
+    end
+    function generate_action_id(db :: DBActionsDisk, km :: Km, up_color :: Color) :: ActionId
+        return DatabaseActionsDisk.generate_action_id(db, km, up_color)
+    end
+
 
     function get_action(db :: DBActionsDisk, id :: ActionId) :: Union{Action, Nothing}
         return DatabaseActionsDisk.get_action(db, id)

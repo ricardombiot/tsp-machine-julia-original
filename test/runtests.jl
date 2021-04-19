@@ -5,7 +5,7 @@ include("./../src/main.jl")
 @time @testset "PathsSet" begin
     include("test_hello.jl")
 end
-
+=#
 
 @time @testset "FBSet" begin
     include("./fbset/test_fbset.jl")
@@ -35,7 +35,7 @@ end
     include("./actions/test_controller_disk.jl")
 end
 
-=#
+
 
 @time @testset "Machine" begin
     #==#
@@ -60,9 +60,13 @@ end
 
     @testset "Hamiltonian" begin
         #include("machine/hamiltonian/test_grafo_simple.jl")
+        #include("machine/hamiltonian/test_grafo_doc_example.jl")
         #include("machine/hamiltonian/test_hal_machine.jl")
         #include("machine/hamiltonian/test_grafo_dode.jl")
         #include("machine/hamiltonian/test_grafo_dode_exp.jl")
+
+        include("machine/hamiltonian/test_grafo_dode_reading_plot.jl")
+
 
         # ONLY FOR DEBUGING
         #include("machine/hamiltonian/test_grafo_dode_steps.jl")

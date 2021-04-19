@@ -2,11 +2,11 @@ function calc!(path :: PathSolutionReader)
     if next_step!(path)
         calc!(path)
     else
-        close_path(path)
+        close_path!(path)
     end
 end
 
-function close_path(path :: PathSolutionReader)
+function close_path!(path :: PathSolutionReader)
     if !path.is_origin_join
         push!(path.route, path.graph.color_origin)
         path.step += 1

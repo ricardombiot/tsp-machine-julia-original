@@ -1,6 +1,6 @@
 function test_tsp_machine_grafo_completo(n :: Color)
    graf = GrafGenerator.completo(n, Weight(10))
-
+   time = now()
    color_origin = Color(0)
    b_km = Km(n * 20)
    optimal_solution = Km(n * 10)
@@ -15,8 +15,12 @@ function test_tsp_machine_grafo_completo(n :: Color)
    cell = TSPMachine.get_cell_origin(machine)
    @test cell != nothing
 
-   test_get_one_solution(n, b_km, machine, optimal_solution)
+   #test_get_one_solution(n, b_km, machine, optimal_solution)
    test_explore_solutions(n ,b_km, machine, optimal_solution)
+
+   time_execute = now() - time
+   str_time_test = Dates.canonicalize(Dates.CompoundPeriod(time_execute))
+   println("TIME EXECUTION: $str_time_test")
 end
 
 function test_get_one_solution(n , b, machine, optimal_solution)
@@ -55,4 +59,4 @@ function test_explore_solutions(n , b, machine, optimal_solution)
 end
 
 
-test_tsp_machine_grafo_completo(Color(7))
+test_tsp_machine_grafo_completo(Color(5))

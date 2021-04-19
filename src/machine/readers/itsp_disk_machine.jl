@@ -7,8 +7,9 @@ function get_action(machine :: TravellingSalesmanMachineDisk, action_id :: Actio
 end
 
 
-function get_db(machine :: TravellingSalesmanMachineDisk) :: DBActions
-    return DBActions(machine.db)
+function get_db(machine :: TravellingSalesmanMachineDisk) :: DBActionsDisk
+    #return DBActions(machine.db)
+    return machine.db
 end
 
 function get_actual_km(machine :: TravellingSalesmanMachineDisk) :: Km
