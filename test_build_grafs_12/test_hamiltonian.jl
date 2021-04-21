@@ -1,4 +1,5 @@
 include("./../src/main.jl")
+using Dates
 
 function write_result_is_hamiltonian!(path :: String, id :: Int64, is_hamiltonian :: Bool)
     if is_hamiltonian
@@ -32,7 +33,9 @@ function test_clasification_hal_machine(n :: Color, id :: Int64, path_results ::
 
     color_origin = Color(0)
     machine = HalMachine.new(graf, color_origin)
+    time = now()
     HalMachine.execute!(machine)
+    time_execute = now() - time
 
     is_hamiltonian = SolutionGraphReader.have_solution(machine)
     write_result_is_hamiltonian!(path_results, id, is_hamiltonian)
@@ -44,6 +47,8 @@ function test_clasification_hal_machine(n :: Color, id :: Int64, path_results ::
         println("HalMachine: El grafo $id, hamiltoniano [FALSE]")
     end
     =#
+
+    return time_execute
 end
 
 function test_clasification_tsp_machine(n :: Color, id :: Int64, path_results :: String)
@@ -53,7 +58,10 @@ function test_clasification_tsp_machine(n :: Color, id :: Int64, path_results ::
     color_origin = Color(0)
     b_km = Km(n)
     machine = TSPMachine.new(graf, b_km, color_origin)
+
+    time = now()
     TSPMachine.execute!(machine)
+    time_execute = now() - time
 
     is_hamiltonian = SolutionGraphReader.have_solution(machine)
     write_result_is_hamiltonian!(path_results, id, is_hamiltonian)
@@ -65,6 +73,8 @@ function test_clasification_tsp_machine(n :: Color, id :: Int64, path_results ::
         println("TSPMachine: El grafo $id, hamiltoniano [FALSE]")
     end
     =#
+
+    return time_execute
 end
 
 
@@ -75,7 +85,9 @@ function test_clasification_tsp_brute_force(n :: Color, id :: Int64, path_result
     color_origin = Color(0)
     b_km = Km(n)
     machine = TSPBruteForce.new(graf, b_km, color_origin)
+    time = now()
     TSPBruteForce.execute!(machine)
+    time_execute = now() - time
 
     is_hamiltonian = TSPBruteForce.have_solution(machine)
     write_result_is_hamiltonian!(path_results, id, is_hamiltonian)
@@ -87,6 +99,14 @@ function test_clasification_tsp_brute_force(n :: Color, id :: Int64, path_result
         println("BruteForceMachine: El grafo $id, hamiltoniano [FALSE]")
     end
     =#
+
+    return time_execute
+end
+
+function cast_time_to_int64(ms :: Millisecond) :: Int64
+    ms = replace("$ms"," milliseconds" => "")
+    ms = replace("$ms"," millisecond" => "")
+    parse(Int64,"$ms")
 end
 
 function main(args)
@@ -100,10 +120,28 @@ function main(args)
      println("### Classication ###")
 
      total = Int64(2^((n*(n-1))/2))
+     total_time_tsp_machine = Threads.Atomic{Int64}(0)
+     total_time_hal_machine = Threads.Atomic{Int64}(0)
+     total_time_tsp_brute = Threads.Atomic{Int64}(0)
+     counter = Threads.Atomic{Int64}(1)
+
      Threads.@threads for id in 0:total-1
-         test_clasification_tsp_machine(n, id, path_tsp_machine)
-         test_clasification_hal_machine(n, id, path_hal_machine)
-         test_clasification_tsp_brute_force(n, id, path_tsp_brute)
+         procentage = (counter[]/total) * 100
+         println("Counter: $(counter[]) State: $procentage%")
+
+         time_execution = test_clasification_tsp_machine(n, id, path_tsp_machine)
+         time_execution = cast_time_to_int64(time_execution)
+         Threads.atomic_add!(total_time_tsp_machine, time_execution)
+
+         time_execution = test_clasification_hal_machine(n, id, path_hal_machine)
+         time_execution = cast_time_to_int64(time_execution)
+         Threads.atomic_add!(total_time_hal_machine, time_execution)
+
+         time_execution = test_clasification_tsp_brute_force(n, id, path_tsp_brute)
+         time_execution = cast_time_to_int64(time_execution)
+         Threads.atomic_add!(total_time_tsp_brute, time_execution)
+
+         Threads.atomic_add!(counter, 1)
      end
 
      println("### Verification ###")
@@ -131,13 +169,20 @@ function main(args)
      rate = (total_ok / total) * 100
      rate_tsp_verificate = (total_tsp_verficate/ total) * 100
 
+     avg_time_tsp_machine = total_time_tsp_machine[] / total_ok
+     avg_time_hal_machine = total_time_hal_machine[] / total_ok
+     avg_time_tsp_brute = total_time_tsp_brute[] / total_ok
+
      println("## Summary Test##")
      println("Graf. N: $n")
      println("TOTAL: $total")
      println("TOTAL OK: $total_ok")
      println("RATE: $rate%")
      println("RATE TSP VERIFICATE: $rate_tsp_verificate%")
-
+     println("## Times ##")
+     println("Avg. TSP Machine: $avg_time_tsp_machine ms")
+     println("Avg. Hal Machine: $avg_time_hal_machine ms")
+     println("Avg. Force Machine: $avg_time_tsp_brute ms")
 
 end
 

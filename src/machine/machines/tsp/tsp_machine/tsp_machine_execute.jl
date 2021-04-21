@@ -1,7 +1,7 @@
 function execute!(machine :: TravellingSalesmanMachine)
     if make_step!(machine)
         km_halt = km_target(machine)
-        println("#KM: $(machine.actual_km)/$(km_halt)")
+        #println("#KM: $(machine.actual_km)/$(km_halt)")
         execute!(machine)
     end
 end
