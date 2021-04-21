@@ -3,5 +3,5 @@ function get_action(machine :: TravellingSalesmanMachine, action_id :: ActionId)
 end
 
 function get_cell_origin(machine :: TravellingSalesmanMachine) :: Union{TimelineCell, Nothing}
-    return TableTimeline.get_cell(machine.timeline, machine.actual_km+1, machine.color_origin)
+    return TableTimeline.get_cell(machine.timeline, machine.actual_km, machine.color_origin)
 end

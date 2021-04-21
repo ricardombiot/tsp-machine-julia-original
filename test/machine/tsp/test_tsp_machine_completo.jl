@@ -1,3 +1,5 @@
+using Dates
+
 function test_tsp_machine_grafo_completo(n :: Color)
    graf = GrafGenerator.completo(n, Weight(10))
    time = now()
@@ -10,7 +12,7 @@ function test_tsp_machine_grafo_completo(n :: Color)
    TSPMachine.execute!(machine)
 
    println("KM Solution: $(machine.km_solution_recived)")
-   @test machine.actual_km == optimal_solution - 1
+   @test machine.actual_km == optimal_solution
    @test machine.km_solution_recived == optimal_solution
    cell = TSPMachine.get_cell_origin(machine)
    @test cell != nothing

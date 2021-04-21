@@ -13,6 +13,13 @@ module SolutionGraphReader
     using Main.PathsSet.PathGraph
     using Main.PathsSet.PathGraph: Graph
 
+
+    function have_solution(machine :: IMachine) :: Bool
+        cell_origin = InterfaceMachine.get_cell_origin(machine)
+        return cell_origin != nothing
+    end
+
+
     function get_one_solution_graph(machine :: IMachine) :: Union{Nothing, Graph}
         cell_origin = InterfaceMachine.get_cell_origin(machine)
         parents = cell_origin.parents

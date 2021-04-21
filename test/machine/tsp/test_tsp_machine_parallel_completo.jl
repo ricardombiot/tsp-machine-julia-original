@@ -10,7 +10,7 @@ function test_tsp_machine_grafo_completo_parallel(n :: Color)
    TSPMachineParallel.execute!(machine)
 
    println("KM Solution: $(machine.km_solution_recived)")
-   @test machine.actual_km == optimal_solution - 1
+   @test machine.actual_km == optimal_solution
    @test machine.km_solution_recived == optimal_solution
    cell = TSPMachine.get_cell_origin(machine)
    @test cell != nothing
@@ -32,4 +32,4 @@ function test_get_one_solution(n , b, machine, optimal_solution)
    println("# Checked the solution [$result_check]")
 end
 
-test_tsp_machine_grafo_completo_parallel(Color(8))
+test_tsp_machine_grafo_completo_parallel(Color(5))

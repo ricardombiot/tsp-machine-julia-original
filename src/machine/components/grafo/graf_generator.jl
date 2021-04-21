@@ -32,8 +32,8 @@ module GrafGenerator
         return g
     end
 
-    function read_tsplib_file(name :: String, path :: String = "./../../../../tsplib") :: Grafo
-        file_path = "$path/$name.tsp"
+    function read_tsplib_file(name :: String, path :: String = "./../../../../tsplib", extension :: String = ".tsp") :: Grafo
+        file_path = "$path/$(name)$(extension)"
         lib = readTSP(joinpath(@__DIR__, file_path))
 
         n = Color(lib.dimension)

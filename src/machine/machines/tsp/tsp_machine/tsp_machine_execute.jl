@@ -28,7 +28,7 @@ end
 
 function rules_to_halt_machine(machine :: TravellingSalesmanMachine) :: Bool
     km_to_halt = km_target(machine)
-    return km_to_halt-1 == machine.actual_km
+    return km_to_halt == machine.actual_km
 end
 
 function km_target(machine :: TravellingSalesmanMachine) :: Km
@@ -45,7 +45,7 @@ function execute_line!(machine :: TravellingSalesmanMachine)
         for (origin, cell) in line
             (is_valid, action_id) = TableTimeline.execute!(machine.timeline, machine.db, machine.actual_km, origin)
 
-            println("Execute KM:$(machine.actual_km) Cell: $origin -> OP: $action_id ($is_valid)")
+            #println("Execute KM:$(machine.actual_km) Cell: $origin -> OP: $action_id ($is_valid)")
             if is_valid
                  send_destines!(machine, origin)
             else

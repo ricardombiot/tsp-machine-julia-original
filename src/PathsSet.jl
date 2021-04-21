@@ -28,6 +28,7 @@ module PathsSet
 
     include("machine/components/grafo/graf.jl")
     include("machine/components/grafo/graf_generator.jl")
+    include("machine/components/grafo/graf_writer.jl")
 
     include("machine/components/timeline/timeline_cell.jl")
     include("machine/components/timeline/timeline_table.jl")

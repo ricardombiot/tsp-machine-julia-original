@@ -5,7 +5,7 @@ include("./../src/main.jl")
 @time @testset "PathsSet" begin
     include("test_hello.jl")
 end
-=#
+
 
 @time @testset "FBSet" begin
     include("./fbset/test_fbset.jl")
@@ -34,16 +34,17 @@ end
     include("./actions/test_database_actions_disk.jl")
     include("./actions/test_controller_disk.jl")
 end
-
+=#
 
 
 @time @testset "Machine" begin
-    #==#
+
     @testset "Program(Grafo)" begin
         include("machine/components/grafo/test_graf.jl")
         include("machine/components/grafo/test_tsplib.jl")
+        include("machine/components/grafo/test_graf_writer.jl")
     end
-
+    #=
     @testset "Timeline" begin
         include("machine/components/timeline/test_timeline_cell.jl")
         include("machine/components/timeline/test_timeline_table.jl")
@@ -85,15 +86,15 @@ end
         #include("machine/subset_sum/test_sum_machine.jl")
         #include("subset_sum/test_subset_sum.jl")
     end
-
+    =#
     @testset "TSP" begin
         #include("machine/tsp/test_tsp_machine.jl")
-        #include("machine/tsp/test_tsp_machine_completo.jl")
-        #include("machine/tsp/test_tsp_machine_parallel_completo.jl")
+        include("machine/tsp/test_tsp_machine_completo.jl")
+        include("machine/tsp/test_tsp_machine_parallel_completo.jl")
     end
 
     @testset "TSP_disk" begin
-        include("machine/tsp_disk/test_tsp_machine_disk.jl")
+        #include("machine/tsp_disk/test_tsp_machine_disk.jl")
     end
 
 

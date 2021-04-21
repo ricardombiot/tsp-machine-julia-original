@@ -32,7 +32,8 @@ module Graf
         if is_valid_index(graf, origin) && haskey(graf.dict, origin)
             return graf.dict[origin]
         else
-            return nothing
+            #return nothing
+            return Dict{Color, Weight}()
         end
     end
 
@@ -106,6 +107,26 @@ module Graf
     function remove_bidirectional!(graf :: Grafo , origin :: Color,  destine :: Color)
         remove!(graf, origin, destine)
         remove!(graf, destine, origin)
+    end
+
+
+    function isequal(graf :: Grafo, graf_b :: Grafo) :: Bool
+        if graf.n != graf_b.n
+            return false
+        end
+
+        for origen=0:graf.n-1
+            for destino=0:graf.n-1
+                weight_a = get_weight(graf, origen,  destino)
+                weight_b = get_weight(graf, origen,  destino)
+
+                if weight_a != weight_b
+                    return false
+                end
+            end
+        end
+
+        return true
     end
 
 end
