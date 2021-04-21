@@ -83,3 +83,6 @@ using Main.PathsSet.SubsetSumProgram: SumProgram
 using Main.PathsSet.SubsetSumMachine
 using Main.PathsSet.SubsetSumMachine: SumMachine
 using Main.PathsSet.SubsetSumSolver
+
+using Main.PathsSet.TSPBruteForce
+using Main.PathsSet.TSPBruteForce: BruteMachine

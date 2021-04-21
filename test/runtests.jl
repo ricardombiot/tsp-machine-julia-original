@@ -89,12 +89,16 @@ end
     =#
     @testset "TSP" begin
         #include("machine/tsp/test_tsp_machine.jl")
-        include("machine/tsp/test_tsp_machine_completo.jl")
-        include("machine/tsp/test_tsp_machine_parallel_completo.jl")
+        #include("machine/tsp/test_tsp_machine_completo.jl")
+        #include("machine/tsp/test_tsp_machine_parallel_completo.jl")
     end
 
     @testset "TSP_disk" begin
         #include("machine/tsp_disk/test_tsp_machine_disk.jl")
+    end
+
+    @testset "TSPBruteForce" begin
+        include("machine/tsp_brute_force/test_brute_force.jl")
     end
 
 

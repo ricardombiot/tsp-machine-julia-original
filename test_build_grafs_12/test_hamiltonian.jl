@@ -2,14 +2,27 @@ include("./../src/main.jl")
 
 function write_result_is_hamiltonian!(path :: String, id :: Int64, is_hamiltonian :: Bool)
     if is_hamiltonian
-        path_action_file = "$(path)/hamiltonian/$(id)"
+        path_file = "$(path)/hamiltonian/$(id)"
     else
-        path_action_file = "$(path)/non-hamiltonian/$(id)"
+        path_file = "$(path)/non-hamiltonian/$(id)"
     end
 
-    if !isfile(path_action_file)
-        shell_command = `touch $(path_action_file)`
+    if !isfile(path_file)
+        shell_command = `touch $(path_file)`
         run(shell_command)
+    end
+end
+
+function read_result(path :: String, id :: Int64) :: String
+    path_hal_file = "$(path)/hamiltonian/$(id)"
+    path_nonhal_file = "$(path)/non-hamiltonian/$(id)"
+
+    if isfile(path_hal_file) && !isfile(path_nonhal_file)
+        return "HAMILTONIAN"
+    elseif !isfile(path_hal_file) && isfile(path_nonhal_file)
+        return "NON-HAMILTONIAN"
+    else
+        return "ERROR"
     end
 end
 
@@ -78,12 +91,36 @@ function main(args)
      path_tsp_machine = prepare_folders_results(base_path, "tsp_machine")
      path_hal_machine = prepare_folders_results(base_path, "hal_machine")
 
+     println("### Classication ###")
 
      total = Int64(2^((n*(n-1))/2))
      for id in 0:total-1
          test_clasification_tsp_machine(n, id, path_tsp_machine)
          test_clasification_hal_machine(n, id, path_hal_machine)
      end
+
+     println("### Verification ###")
+
+     total_ok = 0
+     for id in 0:total-1
+         result_tsp = read_result(path_tsp_machine, id)
+         result_hal = read_result(path_hal_machine, id)
+
+         if result_tsp == result_hal && result_tsp != "ERROR"
+             total_ok += 1
+         else
+             println("Error $id")
+         end
+     end
+
+     rate = (total_ok / total) * 100
+
+     println("## Summary Test##")
+     println("Graf. N: $n")
+     println("TOTAL: $total")
+     println("TOTAL OK: $total_ok")
+     println("RATE: $rate%")
+
 
 end
 
