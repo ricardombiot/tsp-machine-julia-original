@@ -36,6 +36,24 @@ function test_write_hcp_grafo_completo()
 end
 
 
+function test_write_hcp_grafo_non_solution()
+    n = Color(8)
+    graf = GrafGenerator.not_hamiltonian_one_node_with_one_edge(n)
+
+    path = "./machine/components/grafo/samples"
+    name = "sample_no_solution_hcp1"
+    comment = "sample_no_solution_hcp1"
+    GrafWriter.write_matrix_hcp!(graf, path, name, comment)
+
+    path = "./../../../../test/machine/components/grafo/samples"
+    g = GrafGenerator.read_tsplib_file("sample_no_solution_hcp1",path,".hcp")
+
+    @test Graf.isequal(graf, g)
+end
+
+
+
 test_write_grafo_completo()
 
 test_write_hcp_grafo_completo()
+test_write_hcp_grafo_non_solution()

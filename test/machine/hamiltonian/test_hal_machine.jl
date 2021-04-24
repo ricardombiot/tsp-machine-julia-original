@@ -65,5 +65,5 @@ end
 
 #test_create_machine()
 
-test_create_machine_k(Color(8))
+test_create_machine_k(Color(7))
 #test_create_machine_k(Color(8))

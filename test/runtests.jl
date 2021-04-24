@@ -34,6 +34,12 @@ end
     include("./actions/test_database_actions_disk.jl")
     include("./actions/test_controller_disk.jl")
 end
+
+
+@time @testset "Utils" begin
+    include("./utils/test_generator_ids.jl")
+end
+
 =#
 
 
@@ -50,6 +56,8 @@ end
         include("machine/components/timeline/test_timeline_table.jl")
     end
 
+
+
     @testset "TimelineDisk" begin
         include("machine/components/timeline/test_timeline_table_disk.jl")
     end
@@ -57,21 +65,25 @@ end
     @testset "Jumper" begin
         include("machine/components/jumper/test_jumper.jl")
     end
+    =#
 
 
     @testset "Hamiltonian" begin
         #include("machine/hamiltonian/test_grafo_simple.jl")
         #include("machine/hamiltonian/test_grafo_doc_example.jl")
         #include("machine/hamiltonian/test_hal_machine.jl")
+        include("machine/hamiltonian/test_hal_machine_non_solution.jl")
+
         #include("machine/hamiltonian/test_grafo_dode.jl")
         #include("machine/hamiltonian/test_grafo_dode_exp.jl")
 
-        include("machine/hamiltonian/test_grafo_dode_reading_plot.jl")
+        #include("machine/hamiltonian/test_grafo_dode_reading_plot.jl")
 
 
         # ONLY FOR DEBUGING
         #include("machine/hamiltonian/test_grafo_dode_steps.jl")
     end
+
 
     @testset "Hamiltonian-reduce3sat" begin
         #include("machine/hamiltonian/reduce3sat/test_reduce3sat.jl")
@@ -86,7 +98,7 @@ end
         #include("machine/subset_sum/test_sum_machine.jl")
         #include("subset_sum/test_subset_sum.jl")
     end
-    =#
+
     @testset "TSP" begin
         #include("machine/tsp/test_tsp_machine.jl")
         #include("machine/tsp/test_tsp_machine_completo.jl")
@@ -98,14 +110,11 @@ end
     end
 
     @testset "TSPBruteForce" begin
-        include("machine/tsp_brute_force/test_brute_force.jl")
+        #include("machine/tsp_brute_force/test_brute_force.jl")
+        #include("machine/tsp_brute_force/test_brute_force_complete.jl")
+        #include("machine/tsp_brute_force/test_brute_force_non_solution.jl")
+        #include("machine/tsp_brute_force/test_brute_force_dode.jl")
     end
 
 
-end
-
-
-
-@time @testset "Utils" begin
-    include("./utils/test_generator_ids.jl")
 end

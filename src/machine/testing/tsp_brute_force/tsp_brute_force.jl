@@ -19,26 +19,31 @@ module TSPBruteForce
 
         color_origin :: Color
         path_selected :: Union{BrutePath, Nothing}
-        path_solution :: Union{BrutePath, Nothing}
+        path_solution :: Array{BrutePath, 1}
+        search_all_solutions :: Bool
     end
 
-    function new(graf ::Grafo, b_max :: Km, color_origin :: Color)
+    function new(graf ::Grafo, b_max :: Km, color_origin :: Color, search_all_solutions :: Bool = false)
         path_init = build_init_path(color_origin)
 
         paths = Array{BrutePath, 1}()
         push!(paths, path_init)
         path_selected = nothing
-        path_solution = nothing
+        path_solution = Array{BrutePath, 1}()
 
-        BruteMachine(graf, paths, b_max, color_origin, path_selected, path_solution)
+        BruteMachine(graf, paths, b_max, color_origin, path_selected, path_solution, search_all_solutions)
     end
 
     function have_solution(machine :: BruteMachine) :: Bool
-        machine.path_solution != nothing
+        !isempty(machine.path_solution)
     end
 
     function get_solution(machine :: BruteMachine) :: Union{BrutePath, Nothing}
-        machine.path_solution
+        if have_solution(machine)
+            return first(machine.path_solution)
+        else
+            return nothing
+        end
     end
 
     function half(machine :: BruteMachine)
@@ -51,7 +56,9 @@ module TSPBruteForce
 
             derive_selected_path!(machine)
 
-            if !have_solution(machine)
+            if machine.search_all_solutions
+                execute!(machine)
+            elseif !have_solution(machine)
                 execute!(machine)
             end
         end
@@ -107,7 +114,7 @@ module TSPBruteForce
     function save_derive_path_if_can_be_solution!(machine :: BruteMachine, path :: BrutePath)
         if path.km <= machine.b_max
             if path.length == machine.graf.n+1
-                machine.path_solution = path
+                push!(machine.path_solution, path)
             else
 
                 push!(machine.paths , path)
