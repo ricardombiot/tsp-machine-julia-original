@@ -1,4 +1,4 @@
-
+using Dates
 function test_dode_calc()
    graf = GrafGenerator.dodecaedro()
    time = now()
@@ -10,7 +10,7 @@ function test_dode_calc()
    println("## Calc. Dode...")
    HalMachine.execute!(machine)
 
-   #println("## Plot join solution.. ")
+   println("## Plot join solution.. ")
    graph_join = SolutionGraphReader.get_graph_join_origin(machine)
    Graphviz.to_png(graph_join,"graph_join_solutions","./machine/hamiltonian/visual_graphs/grafo_dode")
 

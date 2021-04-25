@@ -204,4 +204,21 @@ module Owners
         end
     end
 
+    function isequal(owners_a :: OwnersByStep, owners_b :: OwnersByStep) :: Bool
+        if !can_be_valid_operation(owners_a, owners_b)
+            return false
+        end
+
+        for step in Step(0):owners_a.max_step
+            owners_step_set_a = get_step_set(owners_a, step)
+            owners_step_set_b = get_step_set(owners_b, step)
+            
+            if !OwnersSet.isequal(owners_step_set_a, owners_step_set_b)
+                return false
+            end
+        end
+
+        return true
+    end
+
 end

@@ -52,4 +52,8 @@ module OwnersSet
     function to_string(owners :: OwnersFixedSet) :: String
         FBSet.to_string(owners.fbset)
     end
+
+    function isequal(owners_a :: OwnersFixedSet, owners_b :: OwnersFixedSet) :: Bool
+        FBSet.isequal(owners_a.fbset, owners_b.fbset)
+    end
 end

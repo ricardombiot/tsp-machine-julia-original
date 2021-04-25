@@ -1,6 +1,6 @@
 
 # Maximum theoretical $ O(N^9/128) $
-# Most probable during construction less than $ O(N^6/128) * O(N) $ 
+# Most probable during construction less than $ O(N^6/128) * O(N) $
 # Complete graphs during construction $ O(N^6/128) * O(1) $
 # $ O(N^6/128) * O(stages) $
 function review_owners_all_graph!(graph :: Graph)
@@ -11,7 +11,7 @@ function recursive_review_owners_all_graph!(graph :: Graph, stage :: Int64)
     # Maximum cost of execute $ O(N^6/128) * O(stages) $
     # Theoretical If we would been execute it after remove each node $ O(N^3) * O(N^6/128) $
     # but in the practise we execute it at least deleting all nodes of a color
-    # each delete node can produce a propation deleting, and before of delete all graph will be 
+    # each delete node can produce a propation deleting, and before of delete all graph will be
     # detected the owners like invalid then wont produce none deletion.
 
     # In the practise the executions dependes of the deletes stages required
@@ -22,6 +22,7 @@ function recursive_review_owners_all_graph!(graph :: Graph, stage :: Int64)
         rebuild_owners(graph)
         # $ O(N^6/128) $
         review_owners_nodes_and_relationships!(graph)
+        review_owners_colors!(graph)
 
         graph.required_review_ownwers = false
         if graph.valid && !isempty(graph.nodes_to_delete)
@@ -118,8 +119,22 @@ function filter_by_unique_son_intersection_owners!(graph :: Graph, node :: Node)
         son_node_id = edge_id.destine_id
         son_node = get_node(graph, son_node_id)
 
-        # $ O(N^3/128) $
-        PathNode.intersect_owners!(node, son_node.owners)
+        if length(son_node.parents) == 1
+            node.owners = deepcopy(son_node.owners)
+        else
+            # $ O(N^3/128) $
+            PathNode.intersect_owners!(node, son_node.owners)
+        end
+
+        #node.owners = deepcopy(son_node.owners)
+        #PathNode.intersect_owners!(node, son_node.owners)
+
+        #=if !Owners.isequal(node.owners, son_node.owners)
+            println("Not equal owners parent and son after intersect")
+        else
+            println("OK parent and son")
+        end
+        =#
 
         if node.owners.valid
             # $ O(N) $

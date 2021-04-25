@@ -1,5 +1,5 @@
 module PathGraph
-    using Main.PathsSet.Alias: Color, Km, Step, UniqueNodeKey, ActionId
+    using Main.PathsSet.Alias: Color, SetColors, Km, Step, UniqueNodeKey, ActionId
 
     using Main.PathsSet.PathEdge
     using Main.PathsSet.PathNode
@@ -58,5 +58,7 @@ module PathGraph
     include("./graph_join.jl")
     include("./graph_getters.jl")
     include("./graph_log.jl")
+
+    include("./graph_owners_colors_review.jl")
 
 end

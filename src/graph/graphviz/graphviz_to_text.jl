@@ -22,11 +22,15 @@ function owners_to_text(graph :: Graph, node :: Node) :: String
     owners_txt = ""
     for step in Step(0):node.owners.max_step
         vacio = Owners.isempty(node.owners, step)
-        tolist = list_owners_to_text(graph, step, node)
-        #tolist = make_to_list(step, node)
-        #count = Owners.count(node.owners, step)
-        #owners_txt *= "<BR /><FONT POINT-SIZE=\"8\"> Km: $step: $tolist [$count|$vacio]"
-        owners_txt *= "<BR /><FONT POINT-SIZE=\"8\"> Km: $step: $tolist"
+        list = list_owners_to_text(graph, step, node)
+        tolist = make_to_list(step, node)
+        count = Owners.count(node.owners, step)
+
+        owners_txt *= "<BR /><FONT POINT-SIZE=\"8\"> CalcKm: $step: $list"
+        owners_txt *= "</FONT>"
+
+        owners_txt *= "<BR /><FONT POINT-SIZE=\"8\"> Km: $step: $tolist [$count|$vacio]"
+
         #owners_txt *= "<BR /> $tolist"
         owners_txt *= "</FONT>"
     end
@@ -48,8 +52,8 @@ function list_owners_to_text(graph :: Graph, step :: Step, node :: Node) :: Stri
     for node_id in graph.table_lines[step]
         if Owners.have(node.owners, step, node_id)
             node_id_txt = NodeIdentity.to_string(node_id)
-            node = PathGraph.get_node(graph, node_id)
-            owners_txt *= "$node_id_txt( $(node.color) )"
+            node_owner = PathGraph.get_node(graph, node_id)
+            owners_txt *= "$node_id_txt( $(node_owner.color) )"
         end
     end
 
