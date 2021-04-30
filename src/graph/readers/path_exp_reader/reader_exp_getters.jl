@@ -1,6 +1,6 @@
 function print_solutions(exp_solver :: PathSolutionExpReader)
     for path in exp_solver.paths_solution
-        txt = PathReader.print_path(path)
+        txt = PathReader.to_string_path(path)
         println(txt)
     end
 end

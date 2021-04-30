@@ -43,7 +43,7 @@ module PathReader
     function load_and_plot!(n :: Color, b :: Km, graph :: Graph, dir :: String, is_origin_join :: Bool = false) :: Tuple{String, PathSolutionReader}
         path = new(n, b, graph, is_origin_join)
         calc_and_plot!(path, dir)
-        txt_path = print_path(path)
+        txt_path = to_string_path(path)
         txt_path = "Longitud: $(path.step) Path: $txt_path"
         return (txt_path, path)
     end
@@ -51,12 +51,12 @@ module PathReader
     function load!(n :: Color, b :: Km, graph :: Graph, is_origin_join :: Bool = false) :: Tuple{String, PathSolutionReader}
         path = new(n, b, graph, is_origin_join)
         calc!(path)
-        txt_path = print_path(path)
+        txt_path = to_string_path(path)
         txt_path = "Longitud: $(path.step) Path: $txt_path"
         return (txt_path, path)
     end
 
-    function print_path(path :: PathSolutionReader) :: String
+    function to_string_path(path :: PathSolutionReader) :: String
         txt = ""
         for color in path.route
             txt *= "$color, "

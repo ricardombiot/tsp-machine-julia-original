@@ -18,11 +18,13 @@ function recursive_review_owners_all_graph!(graph :: Graph, stage :: Int64)
     # in complete graphs is require one stage but in others graphs can required more stages
     # to be valid or invalid but in all cases is a polynomial (yes, expensive but polynomial)
     if graph.valid && graph.required_review_ownwers
+        review_owners_colors!(graph)
+        apply_node_deletes!(graph)
+
         # $ O(N^3) $
         rebuild_owners(graph)
         # $ O(N^6/128) $
         review_owners_nodes_and_relationships!(graph)
-        review_owners_colors!(graph)
 
         graph.required_review_ownwers = false
         if graph.valid && !isempty(graph.nodes_to_delete)

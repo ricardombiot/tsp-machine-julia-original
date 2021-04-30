@@ -12,7 +12,7 @@ function review_owners_colors!(graph :: Graph)
         end
     end
 
-    apply_node_deletes!(graph)
+    #apply_node_deletes!(graph)
 end
 
 function have_incoherence_color(graph :: Graph, node_id :: NodeId) :: Bool

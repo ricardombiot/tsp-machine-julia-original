@@ -16,7 +16,7 @@ module PathGraph
     mutable struct Graph
         # N of nodes
         n :: Color
-        # maxim km target (B)
+        # max km target (B)
         b :: Km
         # Next step (length of step)
         next_step :: Step

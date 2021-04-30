@@ -1,7 +1,7 @@
 using Test
 include("./../src/main.jl")
 
-#=
+#==#
 @time @testset "PathsSet" begin
     include("test_hello.jl")
 end
@@ -40,7 +40,7 @@ end
     include("./utils/test_generator_ids.jl")
 end
 
-=#
+
 
 
 @time @testset "Machine" begin
@@ -50,7 +50,7 @@ end
         include("machine/components/grafo/test_tsplib.jl")
         include("machine/components/grafo/test_graf_writer.jl")
     end
-    #=
+
     @testset "Timeline" begin
         include("machine/components/timeline/test_timeline_cell.jl")
         include("machine/components/timeline/test_timeline_table.jl")
@@ -65,7 +65,7 @@ end
     @testset "Jumper" begin
         include("machine/components/jumper/test_jumper.jl")
     end
-    =#
+    #==#
 
 
     @testset "Hamiltonian" begin
