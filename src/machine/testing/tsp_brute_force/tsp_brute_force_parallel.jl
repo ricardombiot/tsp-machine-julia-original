@@ -1,4 +1,4 @@
-module TSPBruteForce
+module TSPBruteForceParallel
     using Main.PathsSet.Alias: Km, Color, Weight
 
     using Main.PathsSet.Graf
@@ -13,7 +13,7 @@ module TSPBruteForce
         last :: Color
     end
 
-    mutable struct BruteMachine
+    mutable struct BruteMachineParallel
         graf :: Grafo
         paths :: Array{BrutePath, 1}
         b_max :: Km
@@ -32,14 +32,14 @@ module TSPBruteForce
         path_selected = nothing
         path_solution = Array{BrutePath, 1}()
 
-        BruteMachine(graf, paths, b_max, color_origin, path_selected, path_solution, search_all_solutions)
+        BruteMachineParallel(graf, paths, b_max, color_origin, path_selected, path_solution, search_all_solutions)
     end
 
-    function have_solution(machine :: BruteMachine) :: Bool
+    function have_solution(machine :: BruteMachineParallel) :: Bool
         !isempty(machine.path_solution)
     end
 
-    function get_solution(machine :: BruteMachine) :: Union{BrutePath, Nothing}
+    function get_solution(machine :: BruteMachineParallel) :: Union{BrutePath, Nothing}
         if have_solution(machine)
             return first(machine.path_solution)
         else
@@ -47,16 +47,21 @@ module TSPBruteForce
         end
     end
 
-    function half(machine :: BruteMachine)
+    function half(machine :: BruteMachineParallel)
         isempty(machine.paths)
     end
 
-    function execute!(machine :: BruteMachine)
-        if !half(machine)
+    function execute!(machine :: BruteMachineParallel)
+        #for path_selected in machine.paths
+
+        while !isempty(machine.paths)
+            machine.path_selected =pop!(machine.paths)
+            #machine.path_selected = path_selected
+        #if !half(machine)
             #println("#### BRUTE STEP #####")
             #println(to_string_paths(machine.paths))
 
-            machine.path_selected = pop!(machine.paths)
+            #machine.path_selected = pop!(machine.paths)
             #println("SELECTED: " * to_string_path(machine.path_selected))
 
             derive_selected_path!(machine)
@@ -64,15 +69,21 @@ module TSPBruteForce
             #println("#### AFTER DERIVE - BRUTE STEP #####")
             #println(to_string_paths(machine.paths))
 
+            #=
             if machine.search_all_solutions
                 execute!(machine)
             elseif !have_solution(machine)
                 execute!(machine)
             end
+            =#
+
+            if !machine.search_all_solutions && have_solution(machine)
+                break
+            end
         end
     end
 
-    function derive_selected_path!(machine :: BruteMachine)
+    function derive_selected_path!(machine :: BruteMachineParallel)
         if machine.path_selected.length == machine.graf.n
             derive_return_to_origin!(machine)
         else
@@ -80,7 +91,7 @@ module TSPBruteForce
         end
     end
 
-    function derive_go_to_middle!(machine :: BruteMachine)
+    function derive_go_to_middle!(machine :: BruteMachineParallel)
         copy_path = deepcopy(machine.path_selected)
 
         for (destine, weight) in Graf.get_destines(machine.graf, copy_path.last)
@@ -98,7 +109,7 @@ module TSPBruteForce
         end
     end
 
-    function derive_return_to_origin!(machine :: BruteMachine)
+    function derive_return_to_origin!(machine :: BruteMachineParallel)
         copy_path = deepcopy(machine.path_selected)
         weight = Graf.get_weight(machine.graf, copy_path.last, machine.color_origin)
 
@@ -123,7 +134,7 @@ module TSPBruteForce
         path.km += Km(weight)
     end
 
-    function save_derive_path_if_can_be_solution!(machine :: BruteMachine, path :: BrutePath)
+    function save_derive_path_if_can_be_solution!(machine :: BruteMachineParallel, path :: BrutePath)
         if path.km <= machine.b_max
             if path.length == machine.graf.n+1
 
@@ -142,7 +153,7 @@ module TSPBruteForce
         end
     end
 
-    function to_string_solutions(machine :: BruteMachine) :: String
+    function to_string_solutions(machine :: BruteMachineParallel) :: String
         to_string_paths(machine.path_solution)
     end
 

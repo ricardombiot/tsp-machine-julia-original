@@ -53,16 +53,16 @@ module TSPBruteForce
 
     function execute!(machine :: BruteMachine)
         if !half(machine)
-            #println("#### BRUTE STEP #####")
-            #println(to_string_paths(machine.paths))
+            println("#### BRUTE STEP #####")
+            println(to_string_paths(machine.paths))
 
             machine.path_selected = pop!(machine.paths)
-            #println("SELECTED: " * to_string_path(machine.path_selected))
+            println("SELECTED: " * to_string_path(machine.path_selected))
 
             derive_selected_path!(machine)
 
-            #println("#### AFTER DERIVE - BRUTE STEP #####")
-            #println(to_string_paths(machine.paths))
+            println("#### AFTER DERIVE - BRUTE STEP #####")
+            println(to_string_paths(machine.paths))
 
             if machine.search_all_solutions
                 execute!(machine)
@@ -87,10 +87,10 @@ module TSPBruteForce
 
             have_visited = destine in copy_path.route_set
             if !have_visited
-                #println("## Derive path")
-                #println(to_string_path(copy_path))
+                println("## Derive path")
+                println(to_string_path(copy_path))
                 make_visit!(copy_path, destine, weight)
-                #println(to_string_path(copy_path))
+                println(to_string_path(copy_path))
                 save_derive_path_if_can_be_solution!(machine, copy_path)
                 copy_path = deepcopy(machine.path_selected)
             end
@@ -126,16 +126,8 @@ module TSPBruteForce
     function save_derive_path_if_can_be_solution!(machine :: BruteMachine, path :: BrutePath)
         if path.km <= machine.b_max
             if path.length == machine.graf.n+1
-
-                if path.km == machine.b_max
-                    #println("Save new solution!")
-                    push!(machine.path_solution, path)
-                else
-                    #println("Save solution! optimize $(machine.b_max)")
-                    machine.b_max = path.km
-                    machine.path_solution = [path]
-                end
-
+                println("Save solution!")
+                push!(machine.path_solution, path)
             else
                 push!(machine.paths , path)
             end
@@ -161,8 +153,8 @@ module TSPBruteForce
         for color in path.route
             txt *= "$color, "
         end
-
-        return chop(txt, tail = 2)
+        txt *= "#"
+        return txt
     end
 
 end

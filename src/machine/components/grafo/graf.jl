@@ -1,7 +1,6 @@
 module Graf
     using Main.PathsSet.Alias: Color, Weight
-
-
+    
     mutable struct Grafo
         count_aristas :: Int64
         n :: Color

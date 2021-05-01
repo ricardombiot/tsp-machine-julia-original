@@ -61,7 +61,7 @@ module PathReader
         for color in path.route
             txt *= "$color, "
         end
-        return chop(txt, tail = 1)
+        return chop(txt, tail = 2)
     end
 
 end

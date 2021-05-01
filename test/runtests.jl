@@ -1,7 +1,7 @@
 using Test
 include("./../src/main.jl")
 
-#==#
+#=
 @time @testset "PathsSet" begin
     include("test_hello.jl")
 end
@@ -41,10 +41,10 @@ end
 end
 
 
-
+=#
 
 @time @testset "Machine" begin
-
+    #=
     @testset "Program(Grafo)" begin
         include("machine/components/grafo/test_graf.jl")
         include("machine/components/grafo/test_tsplib.jl")
@@ -55,7 +55,7 @@ end
         include("machine/components/timeline/test_timeline_cell.jl")
         include("machine/components/timeline/test_timeline_table.jl")
     end
-
+    =#
 
 
     @testset "TimelineDisk" begin
@@ -71,11 +71,12 @@ end
     @testset "Hamiltonian" begin
         #include("machine/hamiltonian/test_grafo_simple.jl")
         #include("machine/hamiltonian/test_grafo_doc_example.jl")
+        include("machine/hamiltonian/test_grafo_dir_example.jl")
         #include("machine/hamiltonian/test_hal_machine.jl")
         #include("machine/hamiltonian/test_hal_machine_non_solution.jl")
 
         #include("machine/hamiltonian/test_grafo_dode.jl")
-        include("machine/hamiltonian/test_grafo_dode_exp.jl")
+        #include("machine/hamiltonian/test_grafo_dode_exp.jl")
 
         #include("machine/hamiltonian/test_grafo_dode_reading_plot.jl")
 

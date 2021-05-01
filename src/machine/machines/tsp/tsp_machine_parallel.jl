@@ -12,15 +12,20 @@ module TSPMachineParallel
 
     function execute!(machine :: TravellingSalesmanMachine)
         n_thr = nthreads()
-        println("Thr: $n_thr" )
+        #println("Thr: $n_thr" )
         execute_step!(machine)
     end
 
     function execute_step!(machine :: TravellingSalesmanMachine)
-        if make_step!(machine)
+        #=if make_step!(machine)
             km_halt = TSPMachine.km_target(machine)
-            println("#KM: $(machine.actual_km)/$(km_halt)")
+            #println("#KM: $(machine.actual_km)/$(km_halt)")
             execute_step!(machine)
+        end
+        =#
+        while make_step!(machine)
+            km_halt = TSPMachine.km_target(machine)
+            #println("#KM: $(machine.actual_km)/$(km_halt)")
         end
     end
 
@@ -41,6 +46,8 @@ module TSPMachineParallel
             results = Array{Tuple{Bool, Color, ActionId}, 1}()
 
             Threads.@threads for origin in collect(keys(line))
+                id_thr = Threads.threadid()
+                #println("Thr: $id_thr Origin: $origin")
                 (is_valid, action_id) = TableTimeline.execute!(machine.timeline, machine.db, machine.actual_km, origin)
 
                 result_tuple :: Tuple{Bool, Color, ActionId} = (is_valid, origin, action_id)

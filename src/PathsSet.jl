@@ -52,5 +52,6 @@ module PathsSet
     include("machine/readers/path_checker.jl")
 
     include("machine/testing/tsp_brute_force/tsp_brute_force.jl")
+    include("machine/testing/tsp_brute_force/tsp_brute_force_parallel.jl")
 
 end # module

@@ -4,6 +4,8 @@ module GrafGenerator
     using Main.PathsSet.Graf: Grafo
     using TSPLIB
 
+    using Random
+
     function completo(n :: Color, peso :: Weight = Weight(1)) :: Grafo
         g = Graf.new(n)
 
@@ -11,6 +13,26 @@ module GrafGenerator
             for destino=0:n-1
                 if origen != destino
                     Graf.add_bidirectional!(g, origen, destino, peso)
+                end
+            end
+        end
+
+        return g
+    end
+
+    function dirgraf_random(n :: Color, min :: Int64, max :: Int64) :: Grafo
+        g = Graf.new(n)
+
+        list_values = collect(range(min,max,length=max-min+1))
+        list_values = map((x) -> Weight(x),list_values)
+
+        for origen=0:n-1
+            for destino=0:n-1
+                if origen != destino
+                    peso = rand(list_values)
+                    if peso != Weight(0)
+                        Graf.add!(g, origen, destino, peso)
+                    end
                 end
             end
         end
@@ -59,7 +81,8 @@ module GrafGenerator
 
                 peso = Weight(lib.weights[origin, destine])
                 if ori != dest && peso > 0
-                    Graf.add_bidirectional!(g, ori, dest, peso)
+                    #Graf.add_bidirectional!(g, ori, dest, peso)
+                    Graf.add!(g, ori, dest, peso)
                 end
             end
         end
