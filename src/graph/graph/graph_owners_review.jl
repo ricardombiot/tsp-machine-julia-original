@@ -113,7 +113,6 @@ end
 function filter_by_sons_intersection_owners!(graph :: Graph, node :: Node) :: Bool
     last_step = Step(graph.next_step-1)
     if node.step != last_step
-
         owners_sons_union :: Union{OwnersByStep,Nothing} = nothing
 
         for (son_node_id, edge_id) in node.sons
@@ -125,13 +124,10 @@ function filter_by_sons_intersection_owners!(graph :: Graph, node :: Node) :: Bo
                 else
                     Owners.union!(owners_sons_union, son_node.owners)
                 end
-            #else
-            #    println("SON with INVALID OWNERS ¿?")
             end
         end
 
         if owners_sons_union == nothing
-            #println("remove $(node.id.key) SONS havent owners valid")
             return true
         elseif owners_sons_union.valid
             PathNode.intersect_owners!(node, owners_sons_union)
@@ -143,18 +139,9 @@ function filter_by_sons_intersection_owners!(graph :: Graph, node :: Node) :: Bo
 
                 return false
             else
-                #println("remove $(node.id.key) [$(node.owners.valid)]")
-
-                #txt_union_owners = Owners.to_string_list(owners_sons_union)
-                #println(txt_union_owners)
-
-                #txt_owners = Owners.to_string_list(node.owners)
-                #println(txt_owners)
-                #println("----")
                 return true
             end
         else
-            #println("union owners no valid ")
             return false
         end
     else
@@ -170,12 +157,10 @@ function filter_by_incoherence_colors(graph :: Graph, node :: Node) :: Bool
         colors_step = load_all_colors_node_step_at_review_owners(graph, step, node)
 
         if controller_incoherence_fixed_color_in_more_than_one_step!(graph.n, step, set_conflict_colors, colors_step)
-            #println("Filter by k$(node_id.key) fixed color incoherence")
             return true
         end
 
         if controller_incoherence_enough_color!(graph.n, step, set_of_all_colors, colors_step)
-            #println("Filter by k$(node_id.key) enough colors incoherence")
             return true
         end
     end
