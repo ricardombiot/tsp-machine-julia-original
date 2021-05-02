@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - on branch disk-version - src/graph/readers/path_reader/reader_selection.jl</title>
+  <title>LCOV - on branch improving-review - src/graph/readers/path_reader/reader_selection.jl</title>
   <link rel="stylesheet" type="text/css" href="../../../../gcov.css">
 </head>
 
@@ -28,16 +28,16 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">on branch disk-version</td>
+            <td class="headerValue">on branch improving-review</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">7</td>
-            <td class="headerCovTableEntry">8</td>
-            <td class="headerCovTableEntryMed">87.5 %</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">10</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-04-23 21:07:56</td>
+            <td class="headerValue">2021-05-02 14:19:06</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -60,23 +60,23 @@
       <td>
 <pre class="sourceHeading">          Line data    Source code</pre>
 <pre class="source">
-<a name="1"><span class="lineNum">       1 </span>            : function fixed_next!(path :: PathSolutionReader)</a>
-<a name="2"><span class="lineNum">       2 </span><span class="lineCov">        108 :     node = PathGraph.get_node(path.graph, path.next_node_id)</span></a>
-<a name="3"><span class="lineNum">       3 </span><span class="lineCov">        108 :     path.next_node_id = selected_next(path, node)</span></a>
+<a name="1"><span class="lineNum">       1 </span><span class="lineNoCov">          0 : function fixed_next!(path :: PathSolutionReader)</span></a>
+<a name="2"><span class="lineNum">       2 </span><span class="lineNoCov">          0 :     node = PathGraph.get_node(path.graph, path.next_node_id)</span></a>
+<a name="3"><span class="lineNum">       3 </span><span class="lineNoCov">          0 :     path.next_node_id = selected_next(path, node)</span></a>
 <a name="4"><span class="lineNum">       4 </span>            : </a>
 <a name="5"><span class="lineNum">       5 </span>            :     #println(&quot;[$(path.step)] Selected: $(path.next_node_id.key)&quot;)</a>
 <a name="6"><span class="lineNum">       6 </span>            : end</a>
 <a name="7"><span class="lineNum">       7 </span>            : </a>
-<a name="8"><span class="lineNum">       8 </span>            : function selected_next(path :: PathSolutionReader, node :: Node) :: Union{NodeId,Nothing}</a>
-<a name="9"><span class="lineNum">       9 </span><span class="lineCov">        108 :     if path.graph.valid</span></a>
-<a name="10"><span class="lineNum">      10 </span><span class="lineCov">         72 :         if !isempty(node.sons)</span></a>
-<a name="11"><span class="lineNum">      11 </span><span class="lineCov">        144 :             (node_id, edge_id) = first(node.sons)</span></a>
-<a name="12"><span class="lineNum">      12 </span><span class="lineCov">         72 :             return node_id</span></a>
+<a name="8"><span class="lineNum">       8 </span><span class="lineNoCov">          0 : function selected_next(path :: PathSolutionReader, node :: Node) :: Union{NodeId,Nothing}</span></a>
+<a name="9"><span class="lineNum">       9 </span><span class="lineNoCov">          0 :     if path.graph.valid</span></a>
+<a name="10"><span class="lineNum">      10 </span><span class="lineNoCov">          0 :         if !isempty(node.sons)</span></a>
+<a name="11"><span class="lineNum">      11 </span><span class="lineNoCov">          0 :             (node_id, edge_id) = first(node.sons)</span></a>
+<a name="12"><span class="lineNum">      12 </span><span class="lineNoCov">          0 :             return node_id</span></a>
 <a name="13"><span class="lineNum">      13 </span>            :         end</a>
 <a name="14"><span class="lineNum">      14 </span>            : </a>
 <a name="15"><span class="lineNum">      15 </span><span class="lineNoCov">          0 :         return nothing</span></a>
 <a name="16"><span class="lineNum">      16 </span>            :     else</a>
-<a name="17"><span class="lineNum">      17 </span><span class="lineCov">         36 :         return nothing</span></a>
+<a name="17"><span class="lineNum">      17 </span><span class="lineNoCov">          0 :         return nothing</span></a>
 <a name="18"><span class="lineNum">      18 </span>            :     end</a>
 <a name="19"><span class="lineNum">      19 </span>            : end</a>
 </pre>

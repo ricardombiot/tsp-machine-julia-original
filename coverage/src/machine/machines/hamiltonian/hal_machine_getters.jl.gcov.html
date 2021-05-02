@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - on branch disk-version - src/machine/machines/hamiltonian/hal_machine_getters.jl</title>
+  <title>LCOV - on branch improving-review - src/machine/machines/hamiltonian/hal_machine_getters.jl</title>
   <link rel="stylesheet" type="text/css" href="../../../../gcov.css">
 </head>
 
@@ -28,16 +28,16 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">on branch disk-version</td>
+            <td class="headerValue">on branch improving-review</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">2</td>
-            <td class="headerCovTableEntry">2</td>
-            <td class="headerCovTableEntryHi">100.0 %</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-04-23 21:07:56</td>
+            <td class="headerValue">2021-05-02 14:19:06</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -60,12 +60,12 @@
       <td>
 <pre class="sourceHeading">          Line data    Source code</pre>
 <pre class="source">
-<a name="1"><span class="lineNum">       1 </span>            : function get_action(machine :: HamiltonianMachine, action_id :: ActionId) :: Union{Action, Nothing}</a>
-<a name="2"><span class="lineNum">       2 </span><span class="lineCov">         72 :     return DatabaseActions.get_action(machine.db, action_id)</span></a>
+<a name="1"><span class="lineNum">       1 </span><span class="lineNoCov">          0 : function get_action(machine :: HamiltonianMachine, action_id :: ActionId) :: Union{Action, Nothing}</span></a>
+<a name="2"><span class="lineNum">       2 </span><span class="lineNoCov">          0 :     return DatabaseActions.get_action(machine.db, action_id)</span></a>
 <a name="3"><span class="lineNum">       3 </span>            : end</a>
 <a name="4"><span class="lineNum">       4 </span>            : </a>
-<a name="5"><span class="lineNum">       5 </span>            : function get_cell_origin(machine :: HamiltonianMachine) :: Union{TimelineCell, Nothing}</a>
-<a name="6"><span class="lineNum">       6 </span><span class="lineCov">          2 :     return TableTimeline.get_cell(machine.timeline, machine.actual_km, machine.color_origin)</span></a>
+<a name="5"><span class="lineNum">       5 </span><span class="lineNoCov">          0 : function get_cell_origin(machine :: HamiltonianMachine) :: Union{TimelineCell, Nothing}</span></a>
+<a name="6"><span class="lineNum">       6 </span><span class="lineNoCov">          0 :     return TableTimeline.get_cell(machine.timeline, machine.actual_km, machine.color_origin)</span></a>
 <a name="7"><span class="lineNum">       7 </span>            : end</a>
 </pre>
       </td>

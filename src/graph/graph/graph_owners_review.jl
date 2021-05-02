@@ -18,8 +18,8 @@ function recursive_review_owners_all_graph!(graph :: Graph, stage :: Int64)
     # in complete graphs is require one stage but in others graphs can required more stages
     # to be valid or invalid but in all cases is a polynomial (yes, expensive but polynomial)
     if graph.valid && graph.required_review_ownwers
-        review_owners_colors!(graph)
-        apply_node_deletes!(graph)
+        #review_owners_colors!(graph)
+        #apply_node_deletes!(graph)
 
         # $ O(N^3) $
         rebuild_owners(graph)
@@ -84,7 +84,11 @@ function review_owners_nodes_and_relationships!(graph :: Graph)
                 if filter_by_intersection_owners!(node, graph.owners)
                     save_to_delete_node!(graph, node_id)
                 # $ O(N^3/128) $
-                elseif filter_by_unique_son_intersection_owners!(graph, node)
+                #elseif filter_by_unique_son_intersection_owners!(graph, node)
+                #    save_to_delete_node!(graph, node_id)
+                elseif filter_by_sons_intersection_owners!(graph, node)
+                    save_to_delete_node!(graph, node_id)
+                elseif filter_by_incoherence_colors(graph, node)
                     save_to_delete_node!(graph, node_id)
                 end
             end
@@ -105,6 +109,80 @@ function filter_by_intersection_owners!(node :: Node, owners :: OwnersByStep) ::
 
     return !node.owners.valid
 end
+
+function filter_by_sons_intersection_owners!(graph :: Graph, node :: Node) :: Bool
+    last_step = Step(graph.next_step-1)
+    if node.step != last_step
+
+        owners_sons_union :: Union{OwnersByStep,Nothing} = nothing
+
+        for (son_node_id, edge_id) in node.sons
+            son_node = get_node(graph, son_node_id)
+
+            if son_node.owners.valid
+                if owners_sons_union == nothing
+                    owners_sons_union = deepcopy(son_node.owners)
+                else
+                    Owners.union!(owners_sons_union, son_node.owners)
+                end
+            #else
+            #    println("SON with INVALID OWNERS ¿?")
+            end
+        end
+
+        if owners_sons_union == nothing
+            #println("remove $(node.id.key) SONS havent owners valid")
+            return true
+        elseif owners_sons_union.valid
+            PathNode.intersect_owners!(node, owners_sons_union)
+            if node.owners.valid
+                # $ O(N) $
+                if node.step != Step(0)
+                    remove_parents_edges_arent_owner_node!(graph, node)
+                end
+
+                return false
+            else
+                #println("remove $(node.id.key) [$(node.owners.valid)]")
+
+                #txt_union_owners = Owners.to_string_list(owners_sons_union)
+                #println(txt_union_owners)
+
+                #txt_owners = Owners.to_string_list(node.owners)
+                #println(txt_owners)
+                #println("----")
+                return true
+            end
+        else
+            #println("union owners no valid ")
+            return false
+        end
+    else
+        return false
+    end
+end
+
+function filter_by_incoherence_colors(graph :: Graph, node :: Node) :: Bool
+    set_of_all_colors = SetColors()
+    set_conflict_colors = SetColors()
+
+    for step in Step(0):Step(graph.next_step-1)
+        colors_step = load_all_colors_node_step_at_review_owners(graph, step, node)
+
+        if controller_incoherence_fixed_color_in_more_than_one_step!(graph.n, step, set_conflict_colors, colors_step)
+            #println("Filter by k$(node_id.key) fixed color incoherence")
+            return true
+        end
+
+        if controller_incoherence_enough_color!(graph.n, step, set_of_all_colors, colors_step)
+            #println("Filter by k$(node_id.key) enough colors incoherence")
+            return true
+        end
+    end
+
+    return false
+end
+
 
 #=
 IDEA: Si solo voy a un hijo entonces, es un color fijo dentro del camino,

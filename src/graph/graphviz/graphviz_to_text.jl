@@ -26,8 +26,8 @@ function owners_to_text(graph :: Graph, node :: Node) :: String
         tolist = make_to_list(step, node)
         count = Owners.count(node.owners, step)
 
-        owners_txt *= "<BR /><FONT POINT-SIZE=\"8\"> CalcKm: $step: $list"
-        owners_txt *= "</FONT>"
+        #owners_txt *= "<BR /><FONT POINT-SIZE=\"8\"> CalcKm: $step: $list"
+        #owners_txt *= "</FONT>"
 
         owners_txt *= "<BR /><FONT POINT-SIZE=\"8\"> Km: $step: $tolist [$count|$vacio]"
 

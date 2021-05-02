@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - on branch disk-version - src/graph/graph/graph_nodes.jl</title>
+  <title>LCOV - on branch improving-review - src/graph/graph/graph_nodes.jl</title>
   <link rel="stylesheet" type="text/css" href="../../../gcov.css">
 </head>
 
@@ -28,16 +28,16 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">on branch disk-version</td>
+            <td class="headerValue">on branch improving-review</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">8</td>
-            <td class="headerCovTableEntry">8</td>
-            <td class="headerCovTableEntryHi">100.0 %</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">11</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-04-23 21:07:56</td>
+            <td class="headerValue">2021-05-02 14:19:06</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -60,26 +60,26 @@
       <td>
 <pre class="sourceHeading">          Line data    Source code</pre>
 <pre class="source">
-<a name="1"><span class="lineNum">       1 </span>            : function get_nodes_by_color(graph :: Graph, color :: Color) :: NodesIdSet</a>
-<a name="2"><span class="lineNum">       2 </span><span class="lineCov">        676 :     if !haskey(graph.table_color_nodes, color)</span></a>
-<a name="3"><span class="lineNum">       3 </span><span class="lineCov">         74 :         return NodesIdSet()</span></a>
+<a name="1"><span class="lineNum">       1 </span><span class="lineNoCov">          0 : function get_nodes_by_color(graph :: Graph, color :: Color) :: NodesIdSet</span></a>
+<a name="2"><span class="lineNum">       2 </span><span class="lineNoCov">          0 :     if !haskey(graph.table_color_nodes, color)</span></a>
+<a name="3"><span class="lineNum">       3 </span><span class="lineNoCov">          0 :         return NodesIdSet()</span></a>
 <a name="4"><span class="lineNum">       4 </span>            :     end</a>
 <a name="5"><span class="lineNum">       5 </span>            : </a>
-<a name="6"><span class="lineNum">       6 </span><span class="lineCov">        300 :     return graph.table_color_nodes[color]</span></a>
+<a name="6"><span class="lineNum">       6 </span><span class="lineNoCov">          0 :     return graph.table_color_nodes[color]</span></a>
 <a name="7"><span class="lineNum">       7 </span>            : end</a>
 <a name="8"><span class="lineNum">       8 </span>            : </a>
-<a name="9"><span class="lineNum">       9 </span>            : function have_node(graph :: Graph, node_id :: NodeId) :: Bool</a>
-<a name="10"><span class="lineNum">      10 </span><span class="lineCov">     131018 :     return get_node(graph, node_id) != nothing</span></a>
+<a name="9"><span class="lineNum">       9 </span><span class="lineNoCov">          0 : function have_node(graph :: Graph, node_id :: NodeId) :: Bool</span></a>
+<a name="10"><span class="lineNum">      10 </span><span class="lineNoCov">          0 :     return get_node(graph, node_id) != nothing</span></a>
 <a name="11"><span class="lineNum">      11 </span>            : end</a>
 <a name="12"><span class="lineNum">      12 </span>            : </a>
-<a name="13"><span class="lineNum">      13 </span>            : function get_node(graph :: Graph, node_id :: NodeId) :: Union{Node,Nothing}</a>
-<a name="14"><span class="lineNum">      14 </span><span class="lineCov">     761245 :     if haskey(graph.table_nodes, node_id.action_id)</span></a>
-<a name="15"><span class="lineNum">      15 </span><span class="lineCov">     756213 :         if haskey(graph.table_nodes[node_id.action_id], node_id)</span></a>
-<a name="16"><span class="lineNum">      16 </span><span class="lineCov">     282728 :             return graph.table_nodes[node_id.action_id][node_id]</span></a>
+<a name="13"><span class="lineNum">      13 </span><span class="lineNoCov">          0 : function get_node(graph :: Graph, node_id :: NodeId) :: Union{Node,Nothing}</span></a>
+<a name="14"><span class="lineNum">      14 </span><span class="lineNoCov">          0 :     if haskey(graph.table_nodes, node_id.action_id)</span></a>
+<a name="15"><span class="lineNum">      15 </span><span class="lineNoCov">          0 :         if haskey(graph.table_nodes[node_id.action_id], node_id)</span></a>
+<a name="16"><span class="lineNum">      16 </span><span class="lineNoCov">          0 :             return graph.table_nodes[node_id.action_id][node_id]</span></a>
 <a name="17"><span class="lineNum">      17 </span>            :         end</a>
 <a name="18"><span class="lineNum">      18 </span>            :     end</a>
 <a name="19"><span class="lineNum">      19 </span>            : </a>
-<a name="20"><span class="lineNum">      20 </span><span class="lineCov">       7746 :     return nothing</span></a>
+<a name="20"><span class="lineNum">      20 </span><span class="lineNoCov">          0 :     return nothing</span></a>
 <a name="21"><span class="lineNum">      21 </span>            : end</a>
 <a name="22"><span class="lineNum">      22 </span>            : </a>
 <a name="23"><span class="lineNum">      23 </span>            : #=function push_owner_myself_as_owner_of_me!(node :: Node)</a>

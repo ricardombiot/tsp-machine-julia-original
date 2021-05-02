@@ -73,3 +73,20 @@ function load_all_colors_node_step(graph :: Graph, step :: Step, node :: Node) :
 
     return colors
 end
+
+
+function load_all_colors_node_step_at_review_owners(graph :: Graph, step :: Step, node :: Node) :: SetColors
+    colors :: SetColors = SetColors()
+
+    for node_id in graph.table_lines[step]
+        if Owners.have(node.owners, step, node_id)
+            node_owner = PathGraph.get_node(graph, node_id)
+
+            if node_owner.owners.valid
+                push!(colors, node_owner.color)
+            end
+        end
+    end
+
+    return colors
+end

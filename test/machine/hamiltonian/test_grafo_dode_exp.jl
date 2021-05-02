@@ -12,7 +12,7 @@ function test_dode_calc()
 
    println("## Plot join solution.. ")
    graph_join = SolutionGraphReader.get_graph_join_origin(machine)
-   Graphviz.to_png(graph_join,"graph_join_solutions","./machine/hamiltonian/visual_graphs/grafo_dode")
+   #Graphviz.to_png(graph_join,"graph_join_solutions","./machine/hamiltonian/visual_graphs/grafo_dode")
 
    println("## Search all solutions.. ")
    dir = "./machine/hamiltonian/visual_graphs/exp_dode"

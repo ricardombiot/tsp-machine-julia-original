@@ -12,4 +12,4 @@ function test_tsp_brute_force_non_solution(n :: Color)
 
 end
 
-test_tsp_brute_force_non_solution(Color(8))
+test_tsp_brute_force_non_solution(Color(10))

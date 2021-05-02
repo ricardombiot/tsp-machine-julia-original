@@ -57,7 +57,7 @@ end
     end
     =#
 
-
+    #=
     @testset "TimelineDisk" begin
         include("machine/components/timeline/test_timeline_table_disk.jl")
     end
@@ -65,14 +65,14 @@ end
     @testset "Jumper" begin
         include("machine/components/jumper/test_jumper.jl")
     end
-    #==#
+    =#
 
 
     @testset "Hamiltonian" begin
         #include("machine/hamiltonian/test_grafo_simple.jl")
         #include("machine/hamiltonian/test_grafo_doc_example.jl")
-        include("machine/hamiltonian/test_grafo_dir_example.jl")
-        #include("machine/hamiltonian/test_hal_machine.jl")
+        #include("machine/hamiltonian/test_grafo_dir_example.jl")
+        include("machine/hamiltonian/test_hal_machine.jl")
         #include("machine/hamiltonian/test_hal_machine_non_solution.jl")
 
         #include("machine/hamiltonian/test_grafo_dode.jl")

@@ -67,6 +67,8 @@ end
 
 #test_machine_k_non_solution_step_by_step()
 
-for n in 4:10
-   test_create_machine_k_non_solution(Color(n))
-end
+#for n in 4:10
+#   test_create_machine_k_non_solution(Color(n))
+#end
+
+test_create_machine_k_non_solution(Color(7))

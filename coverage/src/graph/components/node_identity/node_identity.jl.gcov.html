@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - on branch disk-version - src/graph/components/node_identity/node_identity.jl</title>
+  <title>LCOV - on branch improving-review - src/graph/components/node_identity/node_identity.jl</title>
   <link rel="stylesheet" type="text/css" href="../../../../gcov.css">
 </head>
 
@@ -28,16 +28,16 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">on branch disk-version</td>
+            <td class="headerValue">on branch improving-review</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">2</td>
-            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">1</td>
             <td class="headerCovTableEntryHi">100.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-04-23 21:07:56</td>
+            <td class="headerValue">2021-05-02 14:19:06</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -60,12 +60,12 @@
       <td>
 <pre class="sourceHeading">          Line data    Source code</pre>
 <pre class="source">
-<a name="1"><span class="lineNum">       1 </span><span class="lineCov">          6 : module NodeIdentity</span></a>
+<a name="1"><span class="lineNum">       1 </span><span class="lineCov">          3 : module NodeIdentity</span></a>
 <a name="2"><span class="lineNum">       2 </span>            :     using Main.PathsSet.Alias: ActionId, Km, Color, Step, UniqueNodeKey</a>
 <a name="3"><span class="lineNum">       3 </span>            :     using Main.PathsSet.GeneratorIds</a>
 <a name="4"><span class="lineNum">       4 </span>            : </a>
 <a name="5"><span class="lineNum">       5 </span>            :     struct NodeId</a>
-<a name="6"><span class="lineNum">       6 </span><span class="lineCov">        412 :         key :: UniqueNodeKey</span></a>
+<a name="6"><span class="lineNum">       6 </span>            :         key :: UniqueNodeKey</a>
 <a name="7"><span class="lineNum">       7 </span>            :         step :: Step</a>
 <a name="8"><span class="lineNum">       8 </span>            :         action_id :: ActionId</a>
 <a name="9"><span class="lineNum">       9 </span>            :         action_parent_id :: ActionId</a>

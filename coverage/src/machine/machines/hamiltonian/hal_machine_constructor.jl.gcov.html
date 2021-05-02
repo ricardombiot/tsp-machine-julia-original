@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - on branch disk-version - src/machine/machines/hamiltonian/hal_machine_constructor.jl</title>
+  <title>LCOV - on branch improving-review - src/machine/machines/hamiltonian/hal_machine_constructor.jl</title>
   <link rel="stylesheet" type="text/css" href="../../../../gcov.css">
 </head>
 
@@ -28,16 +28,16 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">on branch disk-version</td>
+            <td class="headerValue">on branch improving-review</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">12</td>
-            <td class="headerCovTableEntry">12</td>
-            <td class="headerCovTableEntryHi">100.0 %</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">14</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-04-23 21:07:56</td>
+            <td class="headerValue">2021-05-02 14:19:06</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -60,25 +60,25 @@
       <td>
 <pre class="sourceHeading">          Line data    Source code</pre>
 <pre class="source">
-<a name="1"><span class="lineNum">       1 </span>            : function new(graf :: Grafo, color_origin :: Color = Color(0))</a>
-<a name="2"><span class="lineNum">       2 </span><span class="lineCov">          2 :     n = graf.n</span></a>
-<a name="3"><span class="lineNum">       3 </span><span class="lineCov">          2 :     b = Km(n)</span></a>
-<a name="4"><span class="lineNum">       4 </span><span class="lineCov">          2 :     actual_km = Km(0)</span></a>
-<a name="5"><span class="lineNum">       5 </span><span class="lineCov">          2 :     timeline = TableTimeline.new()</span></a>
+<a name="1"><span class="lineNum">       1 </span><span class="lineNoCov">          0 : function new(graf :: Grafo, color_origin :: Color = Color(0))</span></a>
+<a name="2"><span class="lineNum">       2 </span><span class="lineNoCov">          0 :     n = graf.n</span></a>
+<a name="3"><span class="lineNum">       3 </span><span class="lineNoCov">          0 :     b = Km(n)</span></a>
+<a name="4"><span class="lineNum">       4 </span><span class="lineNoCov">          0 :     actual_km = Km(0)</span></a>
+<a name="5"><span class="lineNum">       5 </span><span class="lineNoCov">          0 :     timeline = TableTimeline.new()</span></a>
 <a name="6"><span class="lineNum">       6 </span>            : </a>
 <a name="7"><span class="lineNum">       7 </span>            : </a>
-<a name="8"><span class="lineNum">       8 </span><span class="lineCov">          2 :     db = DatabaseActions.new(n, b, color_origin)</span></a>
-<a name="9"><span class="lineNum">       9 </span><span class="lineCov">          2 :     db_controller = DatabaseMemoryController.new()</span></a>
-<a name="10"><span class="lineNum">      10 </span><span class="lineCov">          2 :     machine = HamiltonianMachine(n, actual_km, color_origin, graf, timeline, db, db_controller)</span></a>
-<a name="11"><span class="lineNum">      11 </span><span class="lineCov">          2 :     init!(machine)</span></a>
+<a name="8"><span class="lineNum">       8 </span><span class="lineNoCov">          0 :     db = DatabaseActions.new(n, b, color_origin)</span></a>
+<a name="9"><span class="lineNum">       9 </span><span class="lineNoCov">          0 :     db_controller = DatabaseMemoryController.new()</span></a>
+<a name="10"><span class="lineNum">      10 </span><span class="lineNoCov">          0 :     machine = HamiltonianMachine(n, actual_km, color_origin, graf, timeline, db, db_controller)</span></a>
+<a name="11"><span class="lineNum">      11 </span><span class="lineNoCov">          0 :     init!(machine)</span></a>
 <a name="12"><span class="lineNum">      12 </span>            : </a>
-<a name="13"><span class="lineNum">      13 </span><span class="lineCov">          2 :     return machine</span></a>
+<a name="13"><span class="lineNum">      13 </span><span class="lineNoCov">          0 :     return machine</span></a>
 <a name="14"><span class="lineNum">      14 </span>            : end</a>
 <a name="15"><span class="lineNum">      15 </span>            : </a>
-<a name="16"><span class="lineNum">      16 </span>            : function init!(machine :: HamiltonianMachine)</a>
-<a name="17"><span class="lineNum">      17 </span><span class="lineCov">          2 :     TableTimeline.put_init!(machine.timeline, machine.n, machine.color_origin)</span></a>
-<a name="18"><span class="lineNum">      18 </span><span class="lineCov">          2 :     send_destines!(machine, machine.color_origin)</span></a>
-<a name="19"><span class="lineNum">      19 </span><span class="lineCov">          2 :     machine.actual_km += Km(1)</span></a>
+<a name="16"><span class="lineNum">      16 </span><span class="lineNoCov">          0 : function init!(machine :: HamiltonianMachine)</span></a>
+<a name="17"><span class="lineNum">      17 </span><span class="lineNoCov">          0 :     TableTimeline.put_init!(machine.timeline, machine.n, machine.color_origin)</span></a>
+<a name="18"><span class="lineNum">      18 </span><span class="lineNoCov">          0 :     send_destines!(machine, machine.color_origin)</span></a>
+<a name="19"><span class="lineNum">      19 </span><span class="lineNoCov">          0 :     machine.actual_km += Km(1)</span></a>
 <a name="20"><span class="lineNum">      20 </span>            : end</a>
 </pre>
       </td>

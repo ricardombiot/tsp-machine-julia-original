@@ -55,7 +55,7 @@ function test_create_machine_k(n :: Color)
     #println(graph)
     #println(pwd())
     graph_join = SolutionGraphReader.get_graph_join_origin(machine)
-    Graphviz.to_png(graph_join,"join_graph_k$n","./machine/hamiltonian/visual_graphs/grafo_kn")
+    #Graphviz.to_png(graph_join,"join_graph_k$n","./machine/hamiltonian/visual_graphs/grafo_kn")
 
     b = Km(n)
     (tour, path) = PathReader.load!(n, b, graph_join, true)
@@ -65,5 +65,5 @@ end
 
 #test_create_machine()
 
-test_create_machine_k(Color(7))
+test_create_machine_k(Color(8))
 #test_create_machine_k(Color(8))

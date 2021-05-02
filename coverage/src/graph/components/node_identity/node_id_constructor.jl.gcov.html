@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - on branch disk-version - src/graph/components/node_identity/node_id_constructor.jl</title>
+  <title>LCOV - on branch improving-review - src/graph/components/node_identity/node_id_constructor.jl</title>
   <link rel="stylesheet" type="text/css" href="../../../../gcov.css">
 </head>
 
@@ -28,16 +28,16 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">on branch disk-version</td>
+            <td class="headerValue">on branch improving-review</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">4</td>
-            <td class="headerCovTableEntry">4</td>
-            <td class="headerCovTableEntryHi">100.0 %</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">5</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-04-23 21:07:56</td>
+            <td class="headerValue">2021-05-02 14:19:06</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -60,12 +60,12 @@
       <td>
 <pre class="sourceHeading">          Line data    Source code</pre>
 <pre class="source">
-<a name="1"><span class="lineNum">       1 </span>            : function new(n :: Color, b :: Km, step :: Step, action_id :: ActionId, action_parent_id :: Union{ActionId, Nothing} = nothing)</a>
-<a name="2"><span class="lineNum">       2 </span><span class="lineCov">        412 :     if action_parent_id == nothing</span></a>
-<a name="3"><span class="lineNum">       3 </span><span class="lineCov">         38 :         action_parent_id = action_id</span></a>
+<a name="1"><span class="lineNum">       1 </span><span class="lineNoCov">          0 : function new(n :: Color, b :: Km, step :: Step, action_id :: ActionId, action_parent_id :: Union{ActionId, Nothing} = nothing)</span></a>
+<a name="2"><span class="lineNum">       2 </span><span class="lineNoCov">          0 :     if action_parent_id == nothing</span></a>
+<a name="3"><span class="lineNum">       3 </span><span class="lineNoCov">          0 :         action_parent_id = action_id</span></a>
 <a name="4"><span class="lineNum">       4 </span>            :     end</a>
-<a name="5"><span class="lineNum">       5 </span><span class="lineCov">        412 :     key = calc_key(n, b, step, action_id, action_parent_id)</span></a>
-<a name="6"><span class="lineNum">       6 </span><span class="lineCov">        412 :     NodeId(key, step, action_id, action_parent_id)</span></a>
+<a name="5"><span class="lineNum">       5 </span><span class="lineNoCov">          0 :     key = calc_key(n, b, step, action_id, action_parent_id)</span></a>
+<a name="6"><span class="lineNum">       6 </span><span class="lineNoCov">          0 :     NodeId(key, step, action_id, action_parent_id)</span></a>
 <a name="7"><span class="lineNum">       7 </span>            : end</a>
 </pre>
       </td>
