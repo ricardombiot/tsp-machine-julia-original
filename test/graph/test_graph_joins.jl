@@ -48,15 +48,15 @@ function test_join()
     action_id_s2_2 = GeneratorIds.get_action_id(Color(n), Km(2), Color(2))
     action_id_s3_6 = GeneratorIds.get_action_id(Color(n), Km(3), Color(6))
 
-    node00_id = NodeIdentity.new(n, b, action_id_s0_0)
-    node12_id = NodeIdentity.new(n, b, action_id_s1_2, action_id_s0_0)
-    node14_id = NodeIdentity.new(n, b, action_id_s1_4, action_id_s0_0)
+    node00_id = NodeIdentity.new(n, b, Step(0), action_id_s0_0)
+    node12_id = NodeIdentity.new(n, b, Step(1),action_id_s1_2, action_id_s0_0)
+    node14_id = NodeIdentity.new(n, b, Step(1), action_id_s1_4, action_id_s0_0)
 
-    node24_id = NodeIdentity.new(n, b, action_id_s2_4, action_id_s1_2)
-    node22_id = NodeIdentity.new(n, b, action_id_s2_2, action_id_s1_4)
+    node24_id = NodeIdentity.new(n, b, Step(2),action_id_s2_4, action_id_s1_2)
+    node22_id = NodeIdentity.new(n, b, Step(2),action_id_s2_2, action_id_s1_4)
 
-    node36_22_id = NodeIdentity.new(n, b, action_id_s3_6, action_id_s2_2)
-    node36_24_id = NodeIdentity.new(n, b, action_id_s3_6, action_id_s2_4)
+    node36_22_id = NodeIdentity.new(n, b, Step(3),action_id_s3_6, action_id_s2_2)
+    node36_24_id = NodeIdentity.new(n, b, Step(3),action_id_s3_6, action_id_s2_4)
 
     ## Join
     graph_join = build_join()
@@ -161,105 +161,132 @@ function test_join()
     for node in list_all_nodes
         PathNode.have_owner(node, Step(0), node00_id)
     end
+    #=
     for edge in list_all_edges
         PathEdge.have_owner(edge, Step(0), node00_id)
     end
+    =#
 
     # node12_id
     @test Owners.have(graph_join.owners, Step(1), node12_id)
     for node in list_nodes_12
         PathNode.have_owner(node, Step(1), node12_id)
     end
+    #=
     for edge in list_edges_12
         PathEdge.have_owner(edge, Step(1), node12_id)
     end
+    =#
 
     for node in list_nodes_14
         !PathNode.have_owner(node, Step(1), node12_id)
     end
+    #=
     for edge in list_edges_14
         !PathEdge.have_owner(edge, Step(1), node12_id)
     end
+    =#
 
     # node24_id
     @test Owners.have(graph_join.owners, Step(2), node24_id)
     for node in list_nodes_12
         PathNode.have_owner(node, Step(2), node24_id)
     end
+    #=
     for edge in list_edges_12
         PathEdge.have_owner(edge, Step(2), node24_id)
     end
+    =#
+
 
     for node in list_nodes_14
         !PathNode.have_owner(node, Step(2), node24_id)
     end
+    #=
     for edge in list_edges_14
         !PathEdge.have_owner(edge, Step(2), node24_id)
     end
+    =#
 
     # node24_id
     @test Owners.have(graph_join.owners, Step(3), node36_24_id)
     for node in list_nodes_12
         PathNode.have_owner(node, Step(3), node36_24_id)
     end
+    #=
     for edge in list_edges_12
         PathEdge.have_owner(edge, Step(3), node36_24_id)
     end
+    =#
 
     for node in list_nodes_14
         !PathNode.have_owner(node, Step(3), node36_24_id)
     end
+    #=
     for edge in list_edges_14
         !PathEdge.have_owner(edge, Step(3), node36_24_id)
     end
+    =#
 
     # node14_id
     @test Owners.have(graph_join.owners, Step(1), node14_id)
     for node in list_nodes_14
         PathNode.have_owner(node, Step(1), node14_id)
     end
+    #=
     for edge in list_edges_14
         PathEdge.have_owner(edge, Step(1), node14_id)
     end
+    =#
 
     for node in list_nodes_12
         !PathNode.have_owner(node, Step(1), node14_id)
     end
+    #=
     for edge in list_edges_12
         !PathEdge.have_owner(edge, Step(1), node14_id)
     end
+    =#
 
     # node22_id
     @test Owners.have(graph_join.owners, Step(2), node22_id)
     for node in list_nodes_14
         PathNode.have_owner(node, Step(2), node22_id)
     end
+    #=
     for edge in list_edges_14
         PathEdge.have_owner(edge, Step(2), node22_id)
     end
+    =#
 
     for node in list_nodes_12
         !PathNode.have_owner(node, Step(2), node22_id)
     end
+    #=
     for edge in list_edges_12
         !PathEdge.have_owner(edge, Step(2), node22_id)
     end
+    =#
 
     # node36_22_id
     @test Owners.have(graph_join.owners, Step(3), node36_22_id)
     for node in list_nodes_14
         PathNode.have_owner(node, Step(3), node36_22_id)
     end
+    #=
     for edge in list_edges_14
         PathEdge.have_owner(edge, Step(3), node36_22_id)
     end
+    =#
 
     for node in list_nodes_12
         !PathNode.have_owner(node, Step(3), node36_22_id)
     end
+    #=
     for edge in list_edges_12
         !PathEdge.have_owner(edge, Step(3), node36_22_id)
     end
+    =#
 
 end
 

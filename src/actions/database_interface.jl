@@ -16,6 +16,13 @@ module DatabaseInterface
         return DatabaseActions.register_up!(db, km, up_color, parents)
     end
 
+    function generate_action_id(db :: DBActions, km :: Km, up_color :: Color) :: ActionId
+        return DatabaseActions.generate_action_id(db, km, up_color)
+    end
+    function generate_action_id(db :: DBActionsDisk, km :: Km, up_color :: Color) :: ActionId
+        return DatabaseActionsDisk.generate_action_id(db, km, up_color)
+    end
+
 
     function get_action(db :: DBActionsDisk, id :: ActionId) :: Union{Action, Nothing}
         return DatabaseActionsDisk.get_action(db, id)
@@ -24,11 +31,21 @@ module DatabaseInterface
         return DatabaseActions.get_action(db, id)
     end
 
+    function remove!(db :: DBActionsDisk, id :: ActionId)
+        DatabaseActionsDisk.remove!(db, id)
+    end
+    function remove!(db :: DBActions, id :: ActionId)
+        DatabaseActions.remove!(db, id)
+    end
+
+
     function finished_execution!(db :: DBActionsDisk, action :: Action)
         DatabaseActionsDisk.finished_execution!(db, action)
     end
 
     function finished_execution!(db :: DBActions, action :: Action)
     end
+
+
 
 end

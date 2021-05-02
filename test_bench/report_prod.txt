@@ -1,9 +1,23 @@
-#### Time K8
-Trial(5.441 s)
-#### Time K9
-Trial(19.238 s)
-#### Time K10
-Trial(68.260 s)
-#### Time K11
-Trial(227.990 s)
-#### Time K12
+#### Time K3
+#KM: 2/3
+#KM: 3/3
+Trial(395.599 ms)
+#### Time K4
+#KM: 2/4
+#KM: 3/4
+#KM: 4/4
+Trial(4.491 ms)
+#### Time K13
+#KM: 2/13
+#KM: 3/13
+#KM: 4/13
+#KM: 5/13
+#KM: 6/13
+#KM: 7/13
+#KM: 8/13
+#KM: 9/13
+#KM: 10/13
+#KM: 11/13
+#KM: 12/13
+#KM: 13/13
+Trial(202.309 s)

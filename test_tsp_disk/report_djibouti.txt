@@ -1,0 +1,5 @@
+## Start execution: 2021-04-19T14:31:49.746
+## End Reading tsplib execution: time
+#KM: 1104/70604
+Instance have NOT solution...
+TIME EXECUTION: 4 seconds, 529 milliseconds

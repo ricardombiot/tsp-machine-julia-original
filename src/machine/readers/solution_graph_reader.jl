@@ -6,11 +6,19 @@ module SolutionGraphReader
 
     using Main.PathsSet.InterfaceMachine
     using Main.PathsSet.InterfaceMachine: IMachine
+    using Main.PathsSet.DatabaseInterface
 
-    using Main.PathsSet.DatabaseActions
+    #using Main.PathsSet.DatabaseActions
     using Main.PathsSet.Actions
     using Main.PathsSet.PathGraph
     using Main.PathsSet.PathGraph: Graph
+
+
+    function have_solution(machine :: IMachine) :: Bool
+        cell_origin = InterfaceMachine.get_cell_origin(machine)
+        return cell_origin != nothing
+    end
+
 
     function get_one_solution_graph(machine :: IMachine) :: Union{Nothing, Graph}
         cell_origin = InterfaceMachine.get_cell_origin(machine)
@@ -50,8 +58,7 @@ module SolutionGraphReader
         actual_km = InterfaceMachine.get_actual_km(machine)
         color_origin = InterfaceMachine.get_color_origin(machine)
 
-        color_origin = machine.color_origin
-        action_id = DatabaseActions.generate_action_id(db, actual_km+1, color_origin)
+        action_id = DatabaseInterface.generate_action_id(db, actual_km+1, color_origin)
 
         graph_join = nothing
 

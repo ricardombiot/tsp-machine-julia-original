@@ -29,6 +29,17 @@ module FBSet128
         return count_ones(set.content)
     end
 
+    function get_next(set :: FixedBinarySet128, last :: Int64 = 1, item_start :: Int64 = 0) :: Union{Int64, Nothing}
+        for item in last:128
+            if have(set, item)
+                item_value = item_start + item
+                return item_value
+            end
+        end
+
+        return nothing
+    end
+
     function to_list(set :: FixedBinarySet128, item_start :: Int64 = 0) :: Array{Int64,1}
         list = Array{Int64,1}()
         for item in 1:128

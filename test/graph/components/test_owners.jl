@@ -3,7 +3,7 @@ function test_owners_push_and_pop_key_by_step()
     b= Km(10)
     bbnn = UniqueNodeKey(b^2*n^2)
     owners = Owners.new(bbnn)
-    node_id = NodeIdentity.new(n, b, ActionId(1), nothing)
+    node_id = NodeIdentity.new(n, b, Step(0), ActionId(1), nothing)
 
 
     @test Owners.isempty(owners, Step(0))
@@ -46,18 +46,18 @@ function test_operations_owner()
 
     action_id_s3_1 = GeneratorIds.get_action_id(n, Km(3), Color(1))
 
-    node_id_s0_2_2 = NodeIdentity.new(n, action_id_s0_2, action_id_s0_2)
+    node_id_s0_2_2 = NodeIdentity.new(n, Step(0), action_id_s0_2, action_id_s0_2)
 
-    node_id_s1_3_2 = NodeIdentity.new(n, action_id_s1_3, action_id_s0_2)
-    node_id_s1_4_2 = NodeIdentity.new(n, action_id_s1_4, action_id_s0_2)
-    node_id_s1_5_2 = NodeIdentity.new(n, action_id_s1_5, action_id_s0_2)
+    node_id_s1_3_2 = NodeIdentity.new(n, Step(1), action_id_s1_3, action_id_s0_2)
+    node_id_s1_4_2 = NodeIdentity.new(n, Step(1),action_id_s1_4, action_id_s0_2)
+    node_id_s1_5_2 = NodeIdentity.new(n, Step(1),action_id_s1_5, action_id_s0_2)
 
-    node_id_s2_4_5 = NodeIdentity.new(n, action_id_s2_4, action_id_s1_5)
-    node_id_s2_4_3 = NodeIdentity.new(n, action_id_s2_4, action_id_s1_3)
-    node_id_s2_6_4 = NodeIdentity.new(n, action_id_s2_6, action_id_s1_4)
+    node_id_s2_4_5 = NodeIdentity.new(n, Step(2),action_id_s2_4, action_id_s1_5)
+    node_id_s2_4_3 = NodeIdentity.new(n, Step(2),action_id_s2_4, action_id_s1_3)
+    node_id_s2_6_4 = NodeIdentity.new(n, Step(2),action_id_s2_6, action_id_s1_4)
 
-    node_id_s3_1_4 = NodeIdentity.new(n, action_id_s3_1, action_id_s2_4)
-    node_id_s3_1_6 = NodeIdentity.new(n, action_id_s3_1, action_id_s2_6)
+    node_id_s3_1_4 = NodeIdentity.new(n, Step(3),action_id_s3_1, action_id_s2_4)
+    node_id_s3_1_6 = NodeIdentity.new(n, Step(3),action_id_s3_1, action_id_s2_6)
 
     bbnn = UniqueNodeKey(b^2*n^2)
     owners_set_a = Owners.new(bbnn)
@@ -132,6 +132,8 @@ function test_operations_owner()
     @test Owners.count(owners_set_a_copy, Step(3)) == 0
 
     @test owners_set_a_copy.valid == false
+
+    #=
     # diff! a / b
 
     owners_set_a_copy = deepcopy(owners_set_a)
@@ -147,7 +149,7 @@ function test_operations_owner()
 
     @test Owners.have(owners_set_b_copy, Step(0), node_id_s0_2_2) == false
     @test owners_set_b_copy.valid == false
-
+    =#
 end
 
 
@@ -159,9 +161,9 @@ function test_operations_not_valid_cases()
     action_id_s1_3 = GeneratorIds.get_action_id(n, Km(1), Color(3))
     action_id_s2_4 = GeneratorIds.get_action_id(n, Km(2), Color(4))
 
-    node_id_s0_2_2 = NodeIdentity.new(n, action_id_s0_2, action_id_s0_2)
-    node_id_s1_3_2 = NodeIdentity.new(n, action_id_s1_3, action_id_s0_2)
-    node_id_s2_1_4 = NodeIdentity.new(n, action_id_s2_4, action_id_s1_3)
+    node_id_s0_2_2 = NodeIdentity.new(n, Step(0), action_id_s0_2, action_id_s0_2)
+    node_id_s1_3_2 = NodeIdentity.new(n, Step(1), action_id_s1_3, action_id_s0_2)
+    node_id_s2_1_4 = NodeIdentity.new(n, Step(2), action_id_s2_4, action_id_s1_3)
 
     bbnn = UniqueNodeKey(b^2*n^2)
     owners_set_a = Owners.new(bbnn)
@@ -190,8 +192,8 @@ function test_operations_not_valid_cases()
     Owners.intersect!(owners_set_a_copy, owners_set_b)
     @test owners_set_a_copy.valid == false
 
+    #=
     # diff
-
     owners_set_a_copy = deepcopy(owners_set_a)
     Owners.diff!(owners_set_a_copy, owners_set_b)
 
@@ -201,6 +203,8 @@ function test_operations_not_valid_cases()
     Owners.diff!(owners_set_b_copy, owners_set_a)
 
     @test owners_set_b_copy.valid == false
+
+    =#
 
 end
 

@@ -1,0 +1,292 @@
+#### Time K7
+./data/disk/db
+#KM: 10/80
+Thr.Id:1/4 - Execute KM:10 Cell: 1 -> OP: 72 (true)
+Thr.Id:2/4 - Execute KM:10 Cell: 3 -> OP: 74 (true)
+Thr.Id:3/4 - Execute KM:10 Cell: 5 -> OP: 76 (true)
+Thr.Id:4/4 - Execute KM:10 Cell: 6 -> OP: 77 (true)
+Thr.Id:1/4 - Execute KM:10 Cell: 2 -> OP: 73 (true)
+Thr.Id:2/4 - Execute KM:10 Cell: 4 -> OP: 75 (true)
+#KM: 20/80
+Thr.Id:4/4 - Execute KM:20 Cell: 6 -> OP: 147 (true)
+Thr.Id:3/4 - Execute KM:20 Cell: 5 -> OP: 146 (true)
+Thr.Id:2/4 - Execute KM:20 Cell: 3 -> OP: 144 (true)
+Thr.Id:1/4 - Execute KM:20 Cell: 1 -> OP: 142 (true)
+Thr.Id:2/4 - Execute KM:20 Cell: 4 -> OP: 145 (true)
+Thr.Id:1/4 - Execute KM:20 Cell: 2 -> OP: 143 (true)
+#KM: 30/80
+Thr.Id:4/4 - Execute KM:30 Cell: 6 -> OP: 217 (true)
+Thr.Id:2/4 - Execute KM:30 Cell: 3 -> OP: 214 (true)
+Thr.Id:3/4 - Execute KM:30 Cell: 5 -> OP: 216 (true)
+Thr.Id:1/4 - Execute KM:30 Cell: 1 -> OP: 212 (true)
+Thr.Id:2/4 - Execute KM:30 Cell: 4 -> OP: 215 (true)
+Thr.Id:1/4 - Execute KM:30 Cell: 2 -> OP: 213 (true)
+#KM: 40/80
+Thr.Id:4/4 - Execute KM:40 Cell: 6 -> OP: 287 (true)
+Thr.Id:2/4 - Execute KM:40 Cell: 3 -> OP: 284 (true)
+Thr.Id:3/4 - Execute KM:40 Cell: 5 -> OP: 286 (true)
+Thr.Id:1/4 - Execute KM:40 Cell: 1 -> OP: 282 (true)
+Thr.Id:2/4 - Execute KM:40 Cell: 4 -> OP: 285 (true)
+Thr.Id:1/4 - Execute KM:40 Cell: 2 -> OP: 283 (true)
+#KM: 50/80
+Thr.Id:2/4 - Execute KM:50 Cell: 3 -> OP: 354 (true)
+Thr.Id:3/4 - Execute KM:50 Cell: 5 -> OP: 356 (true)
+Thr.Id:4/4 - Execute KM:50 Cell: 6 -> OP: 357 (true)
+Thr.Id:1/4 - Execute KM:50 Cell: 1 -> OP: 352 (true)
+Thr.Id:2/4 - Execute KM:50 Cell: 4 -> OP: 355 (true)
+Thr.Id:1/4 - Execute KM:50 Cell: 2 -> OP: 353 (true)
+#KM: 60/80
+Thr.Id:3/4 - Execute KM:60 Cell: 5 -> OP: 426 (true)
+Thr.Id:2/4 - Execute KM:60 Cell: 3 -> OP: 424 (true)
+Thr.Id:4/4 - Execute KM:60 Cell: 6 -> OP: 427 (true)
+Thr.Id:1/4 - Execute KM:60 Cell: 1 -> OP: 422 (true)
+Thr.Id:2/4 - Execute KM:60 Cell: 4 -> OP: 425 (true)
+Thr.Id:1/4 - Execute KM:60 Cell: 2 -> OP: 423 (true)
+#KM: 70/70
+## Search solution.. 
+## Read tour.. 
+Longitud: 8 Path: 0, 5, 6, 1, 3, 4, 2, 0,
+## Checking tour.. true
+Trial(10.747 s)
+#### Time K8
+./data/disk/db
+#KM: 10/90
+Thr.Id:3/4 - Execute KM:10 Cell: 5 -> OP: 86 (true)
+Thr.Id:2/4 - Execute KM:10 Cell: 3 -> OP: 84 (true)
+Thr.Id:3/4 - Execute KM:10 Cell: 6 -> OP: 87 (true)
+Thr.Id:2/4 - Execute KM:10 Cell: 4 -> OP: 85 (true)
+Thr.Id:4/4 - Execute KM:10 Cell: 7 -> OP: 88 (true)
+Thr.Id:1/4 - Execute KM:10 Cell: 1 -> OP: 82 (true)
+Thr.Id:1/4 - Execute KM:10 Cell: 2 -> OP: 83 (true)
+#KM: 20/90
+Thr.Id:2/4 - Execute KM:20 Cell: 3 -> OP: 164 (true)
+Thr.Id:4/4 - Execute KM:20 Cell: 7 -> OP: 168 (true)
+Thr.Id:3/4 - Execute KM:20 Cell: 5 -> OP: 166 (true)
+Thr.Id:3/4 - Execute KM:20 Cell: 6 -> OP: 167 (true)
+Thr.Id:2/4 - Execute KM:20 Cell: 4 -> OP: 165 (true)
+Thr.Id:1/4 - Execute KM:20 Cell: 1 -> OP: 162 (true)
+Thr.Id:1/4 - Execute KM:20 Cell: 2 -> OP: 163 (true)
+#KM: 30/90
+Thr.Id:4/4 - Execute KM:30 Cell: 7 -> OP: 248 (true)
+Thr.Id:2/4 - Execute KM:30 Cell: 3 -> OP: 244 (true)
+Thr.Id:3/4 - Execute KM:30 Cell: 5 -> OP: 246 (true)
+Thr.Id:3/4 - Execute KM:30 Cell: 6 -> OP: 247 (true)
+Thr.Id:2/4 - Execute KM:30 Cell: 4 -> OP: 245 (true)
+Thr.Id:1/4 - Execute KM:30 Cell: 1 -> OP: 242 (true)
+Thr.Id:1/4 - Execute KM:30 Cell: 2 -> OP: 243 (true)
+#KM: 40/90
+Thr.Id:3/4 - Execute KM:40 Cell: 5 -> OP: 326 (true)
+Thr.Id:2/4 - Execute KM:40 Cell: 3 -> OP: 324 (true)
+Thr.Id:4/4 - Execute KM:40 Cell: 7 -> OP: 328 (true)
+Thr.Id:1/4 - Execute KM:40 Cell: 1 -> OP: 322 (true)
+Thr.Id:3/4 - Execute KM:40 Cell: 6 -> OP: 327 (true)
+Thr.Id:2/4 - Execute KM:40 Cell: 4 -> OP: 325 (true)
+Thr.Id:1/4 - Execute KM:40 Cell: 2 -> OP: 323 (true)
+#KM: 50/90
+Thr.Id:4/4 - Execute KM:50 Cell: 7 -> OP: 408 (true)
+Thr.Id:3/4 - Execute KM:50 Cell: 5 -> OP: 406 (true)
+Thr.Id:2/4 - Execute KM:50 Cell: 3 -> OP: 404 (true)
+Thr.Id:1/4 - Execute KM:50 Cell: 1 -> OP: 402 (true)
+Thr.Id:2/4 - Execute KM:50 Cell: 4 -> OP: 405 (true)
+Thr.Id:3/4 - Execute KM:50 Cell: 6 -> OP: 407 (true)
+Thr.Id:1/4 - Execute KM:50 Cell: 2 -> OP: 403 (true)
+#KM: 60/90
+Thr.Id:4/4 - Execute KM:60 Cell: 7 -> OP: 488 (true)
+Thr.Id:3/4 - Execute KM:60 Cell: 5 -> OP: 486 (true)
+Thr.Id:2/4 - Execute KM:60 Cell: 3 -> OP: 484 (true)
+Thr.Id:1/4 - Execute KM:60 Cell: 1 -> OP: 482 (true)
+Thr.Id:3/4 - Execute KM:60 Cell: 6 -> OP: 487 (true)
+Thr.Id:2/4 - Execute KM:60 Cell: 4 -> OP: 485 (true)
+Thr.Id:1/4 - Execute KM:60 Cell: 2 -> OP: 483 (true)
+#KM: 70/90
+Thr.Id:4/4 - Execute KM:70 Cell: 7 -> OP: 568 (true)
+Thr.Id:3/4 - Execute KM:70 Cell: 5 -> OP: 566 (true)
+Thr.Id:2/4 - Execute KM:70 Cell: 3 -> OP: 564 (true)
+Thr.Id:1/4 - Execute KM:70 Cell: 1 -> OP: 562 (true)
+Thr.Id:3/4 - Execute KM:70 Cell: 6 -> OP: 567 (true)
+Thr.Id:1/4 - Execute KM:70 Cell: 2 -> OP: 563 (true)
+Thr.Id:2/4 - Execute KM:70 Cell: 4 -> OP: 565 (true)
+#KM: 80/80
+## Search solution.. 
+## Read tour.. 
+Longitud: 9 Path: 0, 4, 1, 7, 6, 2, 3, 5, 0,
+## Checking tour.. true
+Trial(15.823 s)
+#### Time K9
+./data/disk/db
+#KM: 10/100
+Thr.Id:2/4 - Execute KM:10 Cell: 3 -> OP: 94 (true)
+Thr.Id:3/4 - Execute KM:10 Cell: 5 -> OP: 96 (true)
+Thr.Id:2/4 - Execute KM:10 Cell: 4 -> OP: 95 (true)
+Thr.Id:4/4 - Execute KM:10 Cell: 7 -> OP: 98 (true)
+Thr.Id:3/4 - Execute KM:10 Cell: 6 -> OP: 97 (true)
+Thr.Id:4/4 - Execute KM:10 Cell: 8 -> OP: 99 (true)
+Thr.Id:1/4 - Execute KM:10 Cell: 1 -> OP: 92 (true)
+Thr.Id:1/4 - Execute KM:10 Cell: 2 -> OP: 93 (true)
+#KM: 20/100
+Thr.Id:3/4 - Execute KM:20 Cell: 5 -> OP: 186 (true)
+Thr.Id:4/4 - Execute KM:20 Cell: 7 -> OP: 188 (true)
+Thr.Id:2/4 - Execute KM:20 Cell: 3 -> OP: 184 (true)
+Thr.Id:3/4 - Execute KM:20 Cell: 6 -> OP: 187 (true)
+Thr.Id:4/4 - Execute KM:20 Cell: 8 -> OP: 189 (true)
+Thr.Id:2/4 - Execute KM:20 Cell: 4 -> OP: 185 (true)
+Thr.Id:1/4 - Execute KM:20 Cell: 1 -> OP: 182 (true)
+Thr.Id:1/4 - Execute KM:20 Cell: 2 -> OP: 183 (true)
+#KM: 30/100
+Thr.Id:4/4 - Execute KM:30 Cell: 7 -> OP: 278 (true)
+Thr.Id:3/4 - Execute KM:30 Cell: 5 -> OP: 276 (true)
+Thr.Id:2/4 - Execute KM:30 Cell: 3 -> OP: 274 (true)
+Thr.Id:1/4 - Execute KM:30 Cell: 1 -> OP: 272 (true)
+Thr.Id:4/4 - Execute KM:30 Cell: 8 -> OP: 279 (true)
+Thr.Id:3/4 - Execute KM:30 Cell: 6 -> OP: 277 (true)
+Thr.Id:2/4 - Execute KM:30 Cell: 4 -> OP: 275 (true)
+Thr.Id:1/4 - Execute KM:30 Cell: 2 -> OP: 273 (true)
+#KM: 40/100
+Thr.Id:3/4 - Execute KM:40 Cell: 5 -> OP: 366 (true)
+Thr.Id:4/4 - Execute KM:40 Cell: 7 -> OP: 368 (true)
+Thr.Id:2/4 - Execute KM:40 Cell: 3 -> OP: 364 (true)
+Thr.Id:1/4 - Execute KM:40 Cell: 1 -> OP: 362 (true)
+Thr.Id:4/4 - Execute KM:40 Cell: 8 -> OP: 369 (true)
+Thr.Id:3/4 - Execute KM:40 Cell: 6 -> OP: 367 (true)
+Thr.Id:2/4 - Execute KM:40 Cell: 4 -> OP: 365 (true)
+Thr.Id:1/4 - Execute KM:40 Cell: 2 -> OP: 363 (true)
+#KM: 50/100
+Thr.Id:3/4 - Execute KM:50 Cell: 5 -> OP: 456 (true)
+Thr.Id:4/4 - Execute KM:50 Cell: 7 -> OP: 458 (true)
+Thr.Id:2/4 - Execute KM:50 Cell: 3 -> OP: 454 (true)
+Thr.Id:1/4 - Execute KM:50 Cell: 1 -> OP: 452 (true)
+Thr.Id:4/4 - Execute KM:50 Cell: 8 -> OP: 459 (true)
+Thr.Id:3/4 - Execute KM:50 Cell: 6 -> OP: 457 (true)
+Thr.Id:2/4 - Execute KM:50 Cell: 4 -> OP: 455 (true)
+Thr.Id:1/4 - Execute KM:50 Cell: 2 -> OP: 453 (true)
+#KM: 60/100
+Thr.Id:3/4 - Execute KM:60 Cell: 5 -> OP: 546 (true)
+Thr.Id:2/4 - Execute KM:60 Cell: 3 -> OP: 544 (true)
+Thr.Id:1/4 - Execute KM:60 Cell: 1 -> OP: 542 (true)
+Thr.Id:4/4 - Execute KM:60 Cell: 7 -> OP: 548 (true)
+Thr.Id:2/4 - Execute KM:60 Cell: 4 -> OP: 545 (true)
+Thr.Id:3/4 - Execute KM:60 Cell: 6 -> OP: 547 (true)
+Thr.Id:4/4 - Execute KM:60 Cell: 8 -> OP: 549 (true)
+Thr.Id:1/4 - Execute KM:60 Cell: 2 -> OP: 543 (true)
+#KM: 70/100
+Thr.Id:4/4 - Execute KM:70 Cell: 7 -> OP: 638 (true)
+Thr.Id:2/4 - Execute KM:70 Cell: 3 -> OP: 634 (true)
+Thr.Id:3/4 - Execute KM:70 Cell: 5 -> OP: 636 (true)
+Thr.Id:1/4 - Execute KM:70 Cell: 1 -> OP: 632 (true)
+Thr.Id:4/4 - Execute KM:70 Cell: 8 -> OP: 639 (true)
+Thr.Id:2/4 - Execute KM:70 Cell: 4 -> OP: 635 (true)
+Thr.Id:3/4 - Execute KM:70 Cell: 6 -> OP: 637 (true)
+Thr.Id:1/4 - Execute KM:70 Cell: 2 -> OP: 633 (true)
+#KM: 80/100
+Thr.Id:4/4 - Execute KM:80 Cell: 7 -> OP: 728 (true)
+Thr.Id:2/4 - Execute KM:80 Cell: 3 -> OP: 724 (true)
+Thr.Id:3/4 - Execute KM:80 Cell: 5 -> OP: 726 (true)
+Thr.Id:1/4 - Execute KM:80 Cell: 1 -> OP: 722 (true)
+Thr.Id:2/4 - Execute KM:80 Cell: 4 -> OP: 725 (true)
+Thr.Id:3/4 - Execute KM:80 Cell: 6 -> OP: 727 (true)
+Thr.Id:4/4 - Execute KM:80 Cell: 8 -> OP: 729 (true)
+Thr.Id:1/4 - Execute KM:80 Cell: 2 -> OP: 723 (true)
+#KM: 90/90
+## Search solution.. 
+## Read tour.. 
+Longitud: 10 Path: 0, 7, 8, 1, 5, 4, 6, 3, 2, 0,
+## Checking tour.. true
+Trial(27.124 s)
+#### Time K10
+./data/disk/db
+#KM: 10/110
+Thr.Id:2/4 - Execute KM:10 Cell: 4 -> OP: 105 (true)
+Thr.Id:4/4 - Execute KM:10 Cell: 8 -> OP: 109 (true)
+Thr.Id:3/4 - Execute KM:10 Cell: 6 -> OP: 107 (true)
+Thr.Id:2/4 - Execute KM:10 Cell: 5 -> OP: 106 (true)
+Thr.Id:4/4 - Execute KM:10 Cell: 9 -> OP: 110 (true)
+Thr.Id:3/4 - Execute KM:10 Cell: 7 -> OP: 108 (true)
+Thr.Id:1/4 - Execute KM:10 Cell: 1 -> OP: 102 (true)
+Thr.Id:1/4 - Execute KM:10 Cell: 2 -> OP: 103 (true)
+Thr.Id:1/4 - Execute KM:10 Cell: 3 -> OP: 104 (true)
+#KM: 20/110
+Thr.Id:2/4 - Execute KM:20 Cell: 4 -> OP: 205 (true)
+Thr.Id:3/4 - Execute KM:20 Cell: 6 -> OP: 207 (true)
+Thr.Id:4/4 - Execute KM:20 Cell: 8 -> OP: 209 (true)
+Thr.Id:4/4 - Execute KM:20 Cell: 9 -> OP: 210 (true)
+Thr.Id:2/4 - Execute KM:20 Cell: 5 -> OP: 206 (true)
+Thr.Id:3/4 - Execute KM:20 Cell: 7 -> OP: 208 (true)
+Thr.Id:1/4 - Execute KM:20 Cell: 1 -> OP: 202 (true)
+Thr.Id:1/4 - Execute KM:20 Cell: 2 -> OP: 203 (true)
+Thr.Id:1/4 - Execute KM:20 Cell: 3 -> OP: 204 (true)
+#KM: 30/110
+Thr.Id:2/4 - Execute KM:30 Cell: 4 -> OP: 305 (true)
+Thr.Id:3/4 - Execute KM:30 Cell: 6 -> OP: 307 (true)
+Thr.Id:4/4 - Execute KM:30 Cell: 8 -> OP: 309 (true)
+Thr.Id:2/4 - Execute KM:30 Cell: 5 -> OP: 306 (true)
+Thr.Id:1/4 - Execute KM:30 Cell: 1 -> OP: 302 (true)
+Thr.Id:3/4 - Execute KM:30 Cell: 7 -> OP: 308 (true)
+Thr.Id:4/4 - Execute KM:30 Cell: 9 -> OP: 310 (true)
+Thr.Id:1/4 - Execute KM:30 Cell: 2 -> OP: 303 (true)
+Thr.Id:1/4 - Execute KM:30 Cell: 3 -> OP: 304 (true)
+#KM: 40/110
+Thr.Id:2/4 - Execute KM:40 Cell: 4 -> OP: 405 (true)
+Thr.Id:3/4 - Execute KM:40 Cell: 6 -> OP: 407 (true)
+Thr.Id:4/4 - Execute KM:40 Cell: 8 -> OP: 409 (true)
+Thr.Id:1/4 - Execute KM:40 Cell: 1 -> OP: 402 (true)
+Thr.Id:3/4 - Execute KM:40 Cell: 7 -> OP: 408 (true)
+Thr.Id:4/4 - Execute KM:40 Cell: 9 -> OP: 410 (true)
+Thr.Id:1/4 - Execute KM:40 Cell: 2 -> OP: 403 (true)
+Thr.Id:2/4 - Execute KM:40 Cell: 5 -> OP: 406 (true)
+Thr.Id:1/4 - Execute KM:40 Cell: 3 -> OP: 404 (true)
+#KM: 50/110
+Thr.Id:2/4 - Execute KM:50 Cell: 4 -> OP: 505 (true)
+Thr.Id:3/4 - Execute KM:50 Cell: 6 -> OP: 507 (true)
+Thr.Id:4/4 - Execute KM:50 Cell: 8 -> OP: 509 (true)
+Thr.Id:1/4 - Execute KM:50 Cell: 1 -> OP: 502 (true)
+Thr.Id:3/4 - Execute KM:50 Cell: 7 -> OP: 508 (true)
+Thr.Id:4/4 - Execute KM:50 Cell: 9 -> OP: 510 (true)
+Thr.Id:2/4 - Execute KM:50 Cell: 5 -> OP: 506 (true)
+Thr.Id:1/4 - Execute KM:50 Cell: 2 -> OP: 503 (true)
+Thr.Id:1/4 - Execute KM:50 Cell: 3 -> OP: 504 (true)
+#KM: 60/110
+Thr.Id:4/4 - Execute KM:60 Cell: 8 -> OP: 609 (true)
+Thr.Id:2/4 - Execute KM:60 Cell: 4 -> OP: 605 (true)
+Thr.Id:3/4 - Execute KM:60 Cell: 6 -> OP: 607 (true)
+Thr.Id:1/4 - Execute KM:60 Cell: 1 -> OP: 602 (true)
+Thr.Id:3/4 - Execute KM:60 Cell: 7 -> OP: 608 (true)
+Thr.Id:2/4 - Execute KM:60 Cell: 5 -> OP: 606 (true)
+Thr.Id:4/4 - Execute KM:60 Cell: 9 -> OP: 610 (true)
+Thr.Id:1/4 - Execute KM:60 Cell: 2 -> OP: 603 (true)
+Thr.Id:1/4 - Execute KM:60 Cell: 3 -> OP: 604 (true)
+#KM: 70/110
+Thr.Id:3/4 - Execute KM:70 Cell: 6 -> OP: 707 (true)
+Thr.Id:4/4 - Execute KM:70 Cell: 8 -> OP: 709 (true)
+Thr.Id:2/4 - Execute KM:70 Cell: 4 -> OP: 705 (true)
+Thr.Id:1/4 - Execute KM:70 Cell: 1 -> OP: 702 (true)
+Thr.Id:3/4 - Execute KM:70 Cell: 7 -> OP: 708 (true)
+Thr.Id:2/4 - Execute KM:70 Cell: 5 -> OP: 706 (true)
+Thr.Id:4/4 - Execute KM:70 Cell: 9 -> OP: 710 (true)
+Thr.Id:1/4 - Execute KM:70 Cell: 2 -> OP: 703 (true)
+Thr.Id:1/4 - Execute KM:70 Cell: 3 -> OP: 704 (true)
+#KM: 80/110
+Thr.Id:3/4 - Execute KM:80 Cell: 6 -> OP: 807 (true)
+Thr.Id:4/4 - Execute KM:80 Cell: 8 -> OP: 809 (true)
+Thr.Id:2/4 - Execute KM:80 Cell: 4 -> OP: 805 (true)
+Thr.Id:1/4 - Execute KM:80 Cell: 1 -> OP: 802 (true)
+Thr.Id:3/4 - Execute KM:80 Cell: 7 -> OP: 808 (true)
+Thr.Id:1/4 - Execute KM:80 Cell: 2 -> OP: 803 (true)
+Thr.Id:2/4 - Execute KM:80 Cell: 5 -> OP: 806 (true)
+Thr.Id:4/4 - Execute KM:80 Cell: 9 -> OP: 810 (true)
+Thr.Id:1/4 - Execute KM:80 Cell: 3 -> OP: 804 (true)
+#KM: 90/110
+Thr.Id:4/4 - Execute KM:90 Cell: 8 -> OP: 909 (true)
+Thr.Id:2/4 - Execute KM:90 Cell: 4 -> OP: 905 (true)
+Thr.Id:3/4 - Execute KM:90 Cell: 6 -> OP: 907 (true)
+Thr.Id:1/4 - Execute KM:90 Cell: 1 -> OP: 902 (true)
+Thr.Id:2/4 - Execute KM:90 Cell: 5 -> OP: 906 (true)
+Thr.Id:4/4 - Execute KM:90 Cell: 9 -> OP: 910 (true)
+Thr.Id:3/4 - Execute KM:90 Cell: 7 -> OP: 908 (true)
+Thr.Id:1/4 - Execute KM:90 Cell: 2 -> OP: 903 (true)
+Thr.Id:1/4 - Execute KM:90 Cell: 3 -> OP: 904 (true)
+#KM: 100/100
+## Search solution.. 
+## Read tour.. 
+Longitud: 11 Path: 0, 3, 1, 8, 2, 9, 5, 7, 4, 6, 0,
+## Checking tour.. true
+Trial(52.722 s)

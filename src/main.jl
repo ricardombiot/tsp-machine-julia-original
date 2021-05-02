@@ -1,5 +1,5 @@
 include("./PathsSet.jl")
-using Main.PathsSet.Alias: ActionId, ActionsIdSet, Color, Step, Km, UniqueNodeKey, Weight
+using Main.PathsSet.Alias: ActionId, ActionsIdSet, Color, Step, Km, UniqueNodeKey, Weight, SetColors
 
 using Main.PathsSet.FBSet
 using Main.PathsSet.FBSet: FixedBinarySet
@@ -42,22 +42,50 @@ using Main.PathsSet.DatabaseInterface
 using Main.PathsSet.DatabaseInterface: IDBActions
 using Main.PathsSet.DatabaseMemoryController
 using Main.PathsSet.DatabaseMemoryController: DBMemoryController
+using Main.PathsSet.DatabaseMemoryControllerDisk
+using Main.PathsSet.DatabaseMemoryControllerDisk: DBMemoryControllerDisk
+
 using Main.PathsSet.ExecuteActions
 
 
 using Main.PathsSet.Graf
 using Main.PathsSet.Graf: Grafo
 using Main.PathsSet.GrafGenerator
+using Main.PathsSet.GrafWriter
 
 using Main.PathsSet.Cell
 using Main.PathsSet.Cell: TimelineCell
 using Main.PathsSet.TableTimeline
 using Main.PathsSet.TableTimeline: Timeline
+using Main.PathsSet.TableTimelineDisk
+using Main.PathsSet.TableTimelineDisk: TimelineDisk
+
+using Main.PathsSet.MachineJumper
+using Main.PathsSet.MachineJumper: Jumper
 
 
 using Main.PathsSet.HalMachine
 using Main.PathsSet.HalMachine: HamiltonianMachine
+using Main.PathsSet.TSPMachine
+using Main.PathsSet.TSPMachine: TravellingSalesmanMachine
+using Main.PathsSet.TSPMachineParallel
+
+using Main.PathsSet.TSPMachineDisk
+using Main.PathsSet.TSPMachineDisk: TravellingSalesmanMachineDisk
 
 using Main.PathsSet.InterfaceMachine
 using Main.PathsSet.InterfaceMachine: IMachine
 using Main.PathsSet.SolutionGraphReader
+
+using Main.PathsSet.SubsetSumProgram
+using Main.PathsSet.SubsetSumProgram: SumProgram
+
+using Main.PathsSet.SubsetSumMachine
+using Main.PathsSet.SubsetSumMachine: SumMachine
+using Main.PathsSet.SubsetSumSolver
+
+using Main.PathsSet.TSPBruteForce
+using Main.PathsSet.TSPBruteForce: BruteMachine
+
+using Main.PathsSet.TSPBruteForceParallel
+using Main.PathsSet.TSPBruteForceParallel: BruteMachineParallel

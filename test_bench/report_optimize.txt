@@ -1,0 +1,8 @@
+#### Time K3
+Trial(444.359 μs)
+#### Time K4
+Trial(3.240 ms)
+#### Time K5
+Trial(17.992 ms)
+#### Time K6
+Trial(91.259 ms)
