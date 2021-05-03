@@ -4,11 +4,11 @@ include("./../src/main.jl")
 
 function test_bench()
 
-   for n in [3,4,13]
+   for n in 3:14
       n_color = Color(n)
       color_origin = Color(0)
       graf = GrafGenerator.completo(n_color)
-      b = @benchmarkable test_grafo_with_g(x) setup=(x = deepcopy($graf)) samples=1 seconds=3600.0
+      b = @benchmarkable test_grafo_with_g(x) setup=(x = deepcopy($graf)) samples=30 seconds=1000.0
       println("#### Time K$n")
       println(run(b))
    end

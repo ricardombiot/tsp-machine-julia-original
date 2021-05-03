@@ -1,6 +1,10 @@
 
 function test_create_machine_k_non_solution(n :: Color)
-    graf = GrafGenerator.not_hamiltonian_one_node_with_one_edge(n)
+    #graf = GrafGenerator.not_hamiltonian_one_node_with_one_edge(n)
+    graf = GrafGenerator.not_hamiltonian_node_isolated(n)
+
+    #println(Graf.get_destines(graf, Color(n-1)))
+    #println(Graf.get_destines(graf, Color(1)))
 
     color_origin = Color(0)
     machine = HalMachine.new(graf, color_origin)
@@ -24,6 +28,8 @@ end
 function test_machine_k_non_solution_step_by_step()
    n = Color(8)
    graf = GrafGenerator.not_hamiltonian_one_node_with_one_edge(n)
+   #graf = GrafGenerator.not_hamiltonian_node_isolated(n)
+
    dir = "./machine/hamiltonian/visual_graphs/non_solution_step_by_step"
 
    color_origin = Color(0)
@@ -67,8 +73,8 @@ end
 
 #test_machine_k_non_solution_step_by_step()
 
-#for n in 4:10
-#   test_create_machine_k_non_solution(Color(n))
-#end
+for n in 4:10
+   test_create_machine_k_non_solution(Color(n))
+end
 
-test_create_machine_k_non_solution(Color(7))
+#test_create_machine_k_non_solution(Color(7))

@@ -72,8 +72,8 @@ end
         #include("machine/hamiltonian/test_grafo_simple.jl")
         #include("machine/hamiltonian/test_grafo_doc_example.jl")
         #include("machine/hamiltonian/test_grafo_dir_example.jl")
-        include("machine/hamiltonian/test_hal_machine.jl")
-        #include("machine/hamiltonian/test_hal_machine_non_solution.jl")
+        #include("machine/hamiltonian/test_hal_machine.jl")
+        include("machine/hamiltonian/test_hal_machine_non_solution.jl")
 
         #include("machine/hamiltonian/test_grafo_dode.jl")
         #include("machine/hamiltonian/test_grafo_dode_exp.jl")

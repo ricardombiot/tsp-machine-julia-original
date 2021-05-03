@@ -28,7 +28,7 @@ function read_result(path :: String, id :: Int64) :: String
 end
 
 function test_clasification_hal_machine(n :: Color, id :: Int64, path_results :: String)
-    path = "./../../../../test_build_grafs_12/data/grafs$n/hcp"
+    path = "./../../../../test_hamiltonian_12/data/grafs$n/hcp"
     graf = GrafGenerator.read_tsplib_file("$id",path,".hcp")
 
     color_origin = Color(0)
@@ -40,19 +40,11 @@ function test_clasification_hal_machine(n :: Color, id :: Int64, path_results ::
     is_hamiltonian = SolutionGraphReader.have_solution(machine)
     write_result_is_hamiltonian!(path_results, id, is_hamiltonian)
 
-    #=
-    if is_hamiltonian
-        println("HalMachine: El grafo $id, hamiltoniano [TRUE]")
-    else
-        println("HalMachine: El grafo $id, hamiltoniano [FALSE]")
-    end
-    =#
-
     return time_execute
 end
 
 function test_clasification_tsp_machine(n :: Color, id :: Int64, path_results :: String)
-    path = "./../../../../test_build_grafs_12/data/grafs$n/tsp"
+    path = "./../../../../test_hamiltonian_12/data/grafs$n/tsp"
     graf = GrafGenerator.read_tsplib_file("$id",path,".tsp")
 
     color_origin = Color(0)
@@ -66,20 +58,12 @@ function test_clasification_tsp_machine(n :: Color, id :: Int64, path_results ::
     is_hamiltonian = SolutionGraphReader.have_solution(machine)
     write_result_is_hamiltonian!(path_results, id, is_hamiltonian)
 
-    #=
-    if is_hamiltonian
-        println("TSPMachine: El grafo $id, hamiltoniano [TRUE]")
-    else
-        println("TSPMachine: El grafo $id, hamiltoniano [FALSE]")
-    end
-    =#
-
     return time_execute
 end
 
 
 function test_clasification_tsp_brute_force(n :: Color, id :: Int64, path_results :: String)
-    path = "./../../../../test_build_grafs_12/data/grafs$n/tsp"
+    path = "./../../../../test_hamiltonian_12/data/grafs$n/tsp"
     graf = GrafGenerator.read_tsplib_file("$id",path,".tsp")
 
     color_origin = Color(0)
@@ -91,14 +75,6 @@ function test_clasification_tsp_brute_force(n :: Color, id :: Int64, path_result
 
     is_hamiltonian = TSPBruteForce.have_solution(machine)
     write_result_is_hamiltonian!(path_results, id, is_hamiltonian)
-
-    #=
-    if is_hamiltonian
-        println("BruteForceMachine: El grafo $id, hamiltoniano [TRUE]")
-    else
-        println("BruteForceMachine: El grafo $id, hamiltoniano [FALSE]")
-    end
-    =#
 
     return time_execute
 end

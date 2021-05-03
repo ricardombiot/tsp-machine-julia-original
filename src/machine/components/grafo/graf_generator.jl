@@ -52,6 +52,26 @@ module GrafGenerator
         return g
     end
 
+    function not_hamiltonian_node_isolated(n :: Color, peso :: Weight = Weight(1)) :: Grafo
+        g = completo(n, peso)
+
+        last_node = Color(n-1)
+        # remove all edges except last_node & zero and one
+        for destine=2:n-1
+            Graf.remove_bidirectional!(g, last_node,  destine)
+        end
+
+        node_isolated = Color(1)
+        # remove all edges except with last_node & zero
+        for destine=1:n-2
+            Graf.remove_bidirectional!(g, node_isolated,  destine)
+        end
+
+
+
+        return g
+    end
+
     function cycle(n :: Color, peso :: Weight = Weight(1)) :: Grafo
         g = Graf.new(n)
         for i in 0:n-1
