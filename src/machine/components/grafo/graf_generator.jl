@@ -66,9 +66,7 @@ module GrafGenerator
         for destine=1:n-2
             Graf.remove_bidirectional!(g, node_isolated,  destine)
         end
-
-
-
+        
         return g
     end
 

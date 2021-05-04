@@ -6,8 +6,10 @@ module DatabaseInterface
     using Main.PathsSet.DatabaseActionsDisk: DBActionsDisk
     using Main.PathsSet.DatabaseActions
     using Main.PathsSet.DatabaseActions: DBActions
+    using Main.PathsSet.DatabaseActionsMultiThread
+    using Main.PathsSet.DatabaseActionsMultiThread: DBActionsMultiThread
 
-    const IDBActions = Union{DBActions, DBActionsDisk}
+    const IDBActions = Union{DBActions, DBActionsDisk, DBActionsMultiThread}
 
     function register_up!(db :: DBActionsDisk, km :: Km, up_color :: Color, parents :: ActionsIdSet) :: ActionId
         return DatabaseActionsDisk.register_up!(db, km, up_color, parents)
@@ -15,12 +17,18 @@ module DatabaseInterface
     function register_up!(db :: DBActions, km :: Km, up_color :: Color, parents :: ActionsIdSet) :: ActionId
         return DatabaseActions.register_up!(db, km, up_color, parents)
     end
+    function register_up!(db :: DBActionsMultiThread, km :: Km, up_color :: Color, parents :: ActionsIdSet) :: ActionId
+        return DatabaseActionsMultiThread.register_up!(db, km, up_color, parents)
+    end
 
     function generate_action_id(db :: DBActions, km :: Km, up_color :: Color) :: ActionId
         return DatabaseActions.generate_action_id(db, km, up_color)
     end
     function generate_action_id(db :: DBActionsDisk, km :: Km, up_color :: Color) :: ActionId
         return DatabaseActionsDisk.generate_action_id(db, km, up_color)
+    end
+    function generate_action_id(db :: DBActionsMultiThread, km :: Km, up_color :: Color) :: ActionId
+        return DatabaseActionsMultiThread.generate_action_id(db, km, up_color)
     end
 
 
@@ -30,6 +38,10 @@ module DatabaseInterface
     function get_action(db :: DBActions, id :: ActionId) :: Union{Action, Nothing}
         return DatabaseActions.get_action(db, id)
     end
+    function get_action(db :: DBActionsMultiThread, id :: ActionId) :: Union{Action, Nothing}
+        return DatabaseActionsMultiThread.get_action(db, id)
+    end
+
 
     function remove!(db :: DBActionsDisk, id :: ActionId)
         DatabaseActionsDisk.remove!(db, id)
@@ -37,15 +49,17 @@ module DatabaseInterface
     function remove!(db :: DBActions, id :: ActionId)
         DatabaseActions.remove!(db, id)
     end
+    function remove!(db :: DBActionsMultiThread, id :: ActionId)
+        DatabaseActionsMultiThread.remove!(db, id)
+    end
 
 
     function finished_execution!(db :: DBActionsDisk, action :: Action)
         DatabaseActionsDisk.finished_execution!(db, action)
     end
-
     function finished_execution!(db :: DBActions, action :: Action)
     end
-
-
+    function finished_execution!(db :: DBActionsMultiThread, action :: Action)
+    end
 
 end

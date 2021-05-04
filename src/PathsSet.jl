@@ -21,6 +21,7 @@ module PathsSet
     include("actions/actions.jl")
     include("actions/database_actions.jl")
     include("actions/database_actions_disk.jl")
+    include("actions/database_actions_multithread.jl")
     include("actions/database_interface.jl")
     include("actions/database_memory_controller.jl")
     include("actions/database_memory_controller_disk.jl")
@@ -38,6 +39,7 @@ module PathsSet
 
     include("machine/machines/hamiltonian/hal_machine.jl")
     include("machine/machines/tsp/tsp_machine/tsp_machine.jl")
+    include("machine/machines/tsp/parallel_tsp_machine/parallel_tsp_machine.jl")
     include("machine/machines/tsp/tsp_machine_parallel.jl")
 
     include("machine/machines/tsp_disk/tsp_machine_disk_info.jl")
