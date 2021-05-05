@@ -93,3 +93,4 @@ using Main.PathsSet.TSPBruteForce: BruteMachine
 
 using Main.PathsSet.TSPBruteForceParallel
 using Main.PathsSet.TSPBruteForceParallel: BruteMachineParallel
+using Main.PathsSet.SpaceInspector

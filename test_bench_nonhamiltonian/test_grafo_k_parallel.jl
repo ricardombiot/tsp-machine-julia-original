@@ -13,6 +13,7 @@ function test_bench()
 
    csv_txt = ""
    for n in 5:10
+      wait_gc_before()
       csv_times_line = "$n"
       println("#### Time K$n")
       n_color = Color(n)
@@ -34,6 +35,11 @@ function test_bench()
    println("### CSV_REPORT ###")
    println(csv_txt)
 
+end
+
+function wait_gc_before()
+   GC.gc()
+   sleep(0.1)
 end
 
 function test_grafo_with_g(graf, log = false)

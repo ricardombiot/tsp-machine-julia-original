@@ -1,0 +1,12 @@
+name_test: complete_graphs
+name_mode: multicore
+name_config: simple
+
+singlecore: false
+threads: 2
+activate_log: true
+activate_log_iters: false
+
+n_start: 5
+n_end: 6
+iterations: 10

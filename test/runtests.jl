@@ -12,7 +12,7 @@ end
     include("./fbset/test_fixed_binary_set128.jl")
     include("./fbset/test_fbset_sequence.jl")
 end
-
+=#
 
 @time @testset "Graphs" begin
     include("./graph/components/test_node_identify.jl")
@@ -26,7 +26,7 @@ end
     include("./graph/test_graph_joins.jl")
     include("./graph/test_graph_multi_join.jl")
 end
-
+#=
 
 @time @testset "Actions" begin
     include("./actions/test_actions.jl")
@@ -73,10 +73,10 @@ end
         #include("machine/hamiltonian/test_grafo_doc_example.jl")
         #include("machine/hamiltonian/test_grafo_dir_example.jl")
         #include("machine/hamiltonian/test_hal_machine.jl")
-        include("machine/hamiltonian/test_hal_machine_non_solution.jl")
+        #include("machine/hamiltonian/test_hal_machine_non_solution.jl")
 
         #include("machine/hamiltonian/test_grafo_dode.jl")
-        #include("machine/hamiltonian/test_grafo_dode_exp.jl")
+        include("machine/hamiltonian/test_grafo_dode_exp.jl")
 
         #include("machine/hamiltonian/test_grafo_dode_reading_plot.jl")
 

@@ -8,7 +8,8 @@ module PathsSet
 
     include("graph/components/node_identity/node_identity.jl")
     include("graph/components/edge_identity/edge_identity.jl")
-    include("graph/components/owners/owners_set.jl")
+    #include("graph/components/owners/owners_set.jl")
+    include("graph/components/owners/owners_set_notbinary.jl")
     include("graph/components/owners/owners.jl")
     include("graph/components/node/node.jl")
     include("graph/components/edge/edge.jl")
@@ -55,5 +56,6 @@ module PathsSet
 
     include("machine/testing/tsp_brute_force/tsp_brute_force.jl")
     include("machine/testing/tsp_brute_force/tsp_brute_force_parallel.jl")
+    include("machine/testing/space_inspector.jl")
 
 end # module

@@ -11,9 +11,16 @@ function test_bench()
    println("# Threads: $(n_thr)")
    println("# Iterations: $(iterations)")
 
-   csv_txt = ""
-   for n in 3:8
+   path_csvs = "./reports"
+
+
+   csv_times_file = ""
+   csv_space_file = ""
+   for n in 3:6
+      wait_gc_before()
+      time_start_window_space = DateTime(now())
       csv_times_line = "$n"
+
       println("#### Time K$n")
       n_color = Color(n)
       color_origin = Color(0)
@@ -29,11 +36,29 @@ function test_bench()
       avg_time_execute = time_execute_total / iterations
 
       println(avg_time_execute)
-      csv_txt *= csv_times_line *"\n"
-   end
-   println("### CSV_REPORT ###")
-   println(csv_txt)
+      csv_times_file *= csv_times_line *"\n"
+      time_end_window_space = DateTime(now())
+      csv_space_file *= "$n;$time_start_window_space;$time_end_window_space" *"\n"
 
+   end
+   #println("### CSV_REPORT_TIMES ###")
+   #println(csv_times_file)
+   #println("### CSV_SPACE_WINDOW_TIMES ###")
+   #println(csv_space_file)
+   write_csv!(path_csvs, "report_times", csv_times_file)
+   write_csv!(path_csvs, "report_space_window", csv_space_file)
+
+end
+
+function write_csv!(path, file, content)
+   open("$path/$(file).csv", "w") do io
+      write(io, content)
+   end
+end
+
+function wait_gc_before()
+   GC.gc()
+   sleep(0.1)
 end
 
 function test_grafo_with_g(graf, log = false)

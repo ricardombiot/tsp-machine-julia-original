@@ -1,0 +1,12 @@
+name_test: nonhamiltonian
+name_mode: multicore
+name_config: fast
+
+singlecore: false
+threads: 3
+activate_log: true
+activate_log_iters: false
+
+n_start: 3
+n_end: 10
+iterations: 1
