@@ -105,7 +105,8 @@ function main_executor(base_reports_path, args)
 
     times_report = Dict{Int64,Array{Int64,1}}()
     windows_report = Array{String,1}()
-    avoid_fisrt_register_execution = true
+    is_fisrt_execution = true
+    #avoid_fisrt_register_execution = true
 
     for n in n_start:n_end
         sleep(0.01)
@@ -124,12 +125,16 @@ function main_executor(base_reports_path, args)
             end
 
             (time_execution, mem_allocated) = test_execute(instance, activate_log_iters)
-
-            if !avoid_fisrt_register_execution
-                push!(times_report[n], time_execution)
-                worst_mem_allocated = max(worst_mem_allocated, mem_allocated)
+            if is_fisrt_execution
+                (time_execution, mem_allocated) = test_execute(instance, activate_log_iters)
+                is_fisrt_execution = false
             end
-            avoid_fisrt_register_execution = false
+
+            #if !avoid_fisrt_register_execution
+            push!(times_report[n], time_execution)
+            worst_mem_allocated = max(worst_mem_allocated, mem_allocated)
+            #end
+            #avoid_fisrt_register_execution = false
 
             if activate_log_iters
                 println("Iter [$n, $iter]: $time_execution ms")

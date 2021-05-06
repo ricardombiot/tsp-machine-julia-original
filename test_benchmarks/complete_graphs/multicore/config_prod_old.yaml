@@ -1,12 +1,12 @@
-name_test: nonhamiltonian
+name_test: complete_graphs
 name_mode: multicore
-name_config: fast
+name_config: prod
 
 singlecore: false
-threads: 3
+threads: 12
 activate_log: true
 activate_log_iters: false
 
 n_start: 5
-n_end: 10
-iterations: 1
+n_end: 15
+iterations: 2

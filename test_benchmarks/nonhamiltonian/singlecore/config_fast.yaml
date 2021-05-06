@@ -7,6 +7,24 @@ threads: 1
 activate_log: true
 activate_log_iters: false
 
-n_start: 3
+n_start: 5
 n_end: 10
-iterations: 1
+iterations: 40
+
+plots:
+  time_vs_factorial:
+    name: "time_vs_factorial"
+    series:
+      - name: "Inc T"
+        serie: "time"
+      - name: "Inc T n!"
+        serie: "n!"
+  time_vs_polynomial:
+    name: "time_vs_polynomial"
+    series:
+      - name: "Inc T"
+        serie: "time"
+      - name: "Inc T n^12"
+        serie: "n^12"
+      - name: "Inc T n^14"
+        serie: "n^14"

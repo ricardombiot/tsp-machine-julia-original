@@ -1,15 +1,15 @@
 name_test: complete_graphs
-name_mode: singlecore
-name_config: fast
+name_mode: multicore
+name_config: prod
 
-singlecore: true
-threads: 1
+singlecore: false
+threads: 16
 activate_log: true
 activate_log_iters: false
 
 n_start: 3
-n_end: 10
-iterations: 10
+n_end: 13
+iterations: 2
 
 plots:
   time_vs_factorial:
