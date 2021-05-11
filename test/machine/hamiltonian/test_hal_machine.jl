@@ -1,4 +1,3 @@
-
 function write_log_owners(graph, name, path)
     input_file = "$path/$(name).txt"
     txt = to_string_nodes_owners(graph)
@@ -65,5 +64,8 @@ end
 
 #test_create_machine()
 
+
 test_create_machine_k(Color(8))
+
+
 #test_create_machine_k(Color(8))

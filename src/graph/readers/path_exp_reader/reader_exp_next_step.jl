@@ -53,6 +53,9 @@ function derive_fixed_next!(exp_solver :: PathSolutionExpReader, path :: PathSol
     node = PathGraph.get_node(path.graph, path.next_node_id)
     sons = deepcopy(node.sons)
     if !isempty(sons)
+        n_sons = length(sons)
+        max_count_total_sons = min(Int64(exp_solver.limit), n_sons)
+
         total_sons = 0
         for (node_id, edge_id) in sons
             copy_path = deepcopy(path)
@@ -67,6 +70,9 @@ function derive_fixed_next!(exp_solver :: PathSolutionExpReader, path :: PathSol
             end
 
             total_sons += 1
+            if max_count_total_sons < total_sons
+                break
+            end
         end
 
         update_limit(exp_solver, total_sons)
@@ -86,21 +92,11 @@ end
 
 
 function update_limit(exp_solver :: PathSolutionExpReader, total_sons :: Int64)
-
-    if total_sons > exp_solver.limit
-        if exp_solver.limit == 1
-            #son  = first(sons)
-            #sons = [son]
-
-            exp_solver.limit -= 1
-        else
-            limit = Int64(exp_solver.limit)
-            #sons = sons[1:limit]
-
+    if total_sons != 1
+        if total_sons == exp_solver.limit
             exp_solver.limit = UInt128(0)
+        else
+            exp_solver.limit -= (total_sons-1)
         end
-    else
-        exp_solver.limit -= (total_sons-1)
     end
-
 end

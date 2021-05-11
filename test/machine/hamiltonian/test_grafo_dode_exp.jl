@@ -10,13 +10,14 @@ function test_dode_calc()
    println("## Calc. Dode...")
    HalMachine.execute!(machine)
 
-   println("## Plot join solution.. ")
+   #println("## Plot join solution.. ")
    graph_join = SolutionGraphReader.get_graph_join_origin(machine)
    #Graphviz.to_png(graph_join,"graph_join_solutions","./machine/hamiltonian/visual_graphs/grafo_dode")
 
    println("## Search all solutions.. ")
    dir = "./machine/hamiltonian/visual_graphs/exp_dode"
-   limit = UInt128(100)
+   #limit = UInt128(100)
+   limit = UInt128(20)
    b = Km(graf.n)
    reader_exp = PathExpReader.new(graf.n, b, graph_join, limit, true, dir)
    PathExpReader.calc!(reader_exp)

@@ -13,7 +13,7 @@ end
     include("./fbset/test_fbset_sequence.jl")
 end
 =#
-
+#=
 @time @testset "Graphs" begin
     include("./graph/components/test_node_identify.jl")
     include("./graph/components/test_owners_set.jl")
@@ -26,6 +26,7 @@ end
     include("./graph/test_graph_joins.jl")
     include("./graph/test_graph_multi_join.jl")
 end
+=#
 #=
 
 @time @testset "Actions" begin
@@ -76,7 +77,9 @@ end
         #include("machine/hamiltonian/test_hal_machine_non_solution.jl")
 
         #include("machine/hamiltonian/test_grafo_dode.jl")
-        include("machine/hamiltonian/test_grafo_dode_exp.jl")
+        #include("machine/hamiltonian/test_grafo_dode_exp.jl")
+
+        include("machine/hamiltonian/test_grafo_complete_exp.jl")
 
         #include("machine/hamiltonian/test_grafo_dode_reading_plot.jl")
 
