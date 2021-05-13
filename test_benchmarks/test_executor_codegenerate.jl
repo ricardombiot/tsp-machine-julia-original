@@ -8,7 +8,7 @@ using Dates
 include("./../src/main.jl")
 include("./benchmark_funcs.jl")
 include("./benchmark_space.jl")
-include("./complete_graphs/singlecore/test_builder.jl")
+include("./asymptotic/size_n3/test_builder.jl")
 
 run_memory_inspector("./reports")
 main_executor("./reports", ARGS)

@@ -11,7 +11,7 @@ include("./benchmark_space.jl")
 
 function main(args)
     config_file = first(args)
-    data = YAML.load_file(config_file)
+    params = YAML.load_file(config_file)
 
     series_funs = Dict{String, Any}()
 
@@ -22,22 +22,28 @@ function main(args)
     series_funs["n^4"] = (n) -> n^4
     series_funs["n^5"] = (n) -> n^5
     series_funs["n^6"] = (n) -> n^6
+    series_funs["n^7"] = (n) -> n^7
+    series_funs["n^8"] = (n) -> n^8
 
     series_funs["n^12"] = (n) -> n^12
     series_funs["n^14"] = (n) -> n^14
     series_funs["n^16"] = (n) -> n^16
 
-    n_start = data["n_start"]
-    n_end = data["n_end"]
-    plots = data["plots"]
+    n_start = params["n_start"]
+    n_end = params["n_end"]
+    n_inc = 1
+    if haskey(params, "n_inc")
+        n_inc = params["n_inc"]
+    end
+    plots = params["plots"]
 
     #println(plots)
 
     base_reports_path="./reports"
 
     println("# Calculating...")
-    time_increments = load_time_increments(base_reports_path, data)
-    memory_increments = load_memory_increments(base_reports_path, data)
+    time_increments = load_time_increments(base_reports_path, params)
+    memory_increments = load_memory_increments(base_reports_path, params)
 
     base_series = Dict{String, Any}()
     base_series["time"] = time_increments
@@ -45,7 +51,7 @@ function main(args)
 
     println("# Buiding plots...")
 
-    x = n_start+1:n_end
+    x = n_start+n_inc:n_inc:n_end
     gr()
     for (plot_key, plot_config) in plots
         p = nothing
@@ -66,14 +72,14 @@ function main(args)
             #println(serie)
             name_serie = serie["name"]
             fn_serie = serie["serie"]
-            values = calc_serie(fn_serie, series_funs, n_start, n_end)
+            values = calc_serie(fn_serie, series_funs, params)
             #println(name_serie)
             #println(values)
             plot!(p, x, values, label = name_serie)
         end
         println("   - Config title...")
-        x_title_plot!(p, data)
-        save_path_image = get_name_save_path_image(base_reports_path, data, name)
+        x_title_plot!(p, params)
+        save_path_image = get_name_save_path_image(base_reports_path, params, name)
         println("   - Saving plot in... $save_path_image.png")
         savefig(p, "$save_path_image.png")
         #println("   - Saving plot in... $save_path_image.tikz")
@@ -84,19 +90,19 @@ function main(args)
 end
 
 
-function get_name_save_path_image(base_reports_path, data, name)
+function get_name_save_path_image(base_reports_path, params, name)
 
-    name_test= data["name_test"]
-    name_mode= data["name_mode"]
-    name_config = data["name_config"]
+    name_test= params["name_test"]
+    name_mode= params["name_mode"]
+    name_config = params["name_config"]
 
     "$base_reports_path/$name_test/$name_mode/$(name_config)_$(name)"
 end
 
-function x_title_plot!(p, data)
-    iterations = data["iterations"]
-    singlecore = data["singlecore"]
-    threads = data["threads"]
+function x_title_plot!(p, params)
+    iterations = params["iterations"]
+    singlecore = params["singlecore"]
+    threads = params["threads"]
 
     if singlecore
         xlabel!(p, "N iterations: $iterations (singlecore)")
@@ -105,21 +111,21 @@ function x_title_plot!(p, data)
     end
 end
 
-function calc_serie(name, series_funs, n_start, n_end)
+function calc_serie(name, series_funs, params)
     func = series_funs[name]
     results = Dict{Int64,Float64}()
-    for n in n_start:n_end
+    for n in get_n_range(params)
         val = func(n)
         results[n] = val
     end
 
-    return calc_increment(results, n_start, n_end)
+    return calc_increment(results, params)
 end
 
-function calc_increment(results, n_start, n_end)
+function calc_increment(results, params)
     lista_increments = Array{Float64,1}()
     last_n = nothing
-    for n in n_start:n_end
+    for n in get_n_range(params)
         if last_n != nothing
             last = results[last_n]
             actual = results[n]
@@ -139,12 +145,12 @@ function calc_increment(results, n_start, n_end)
     return lista_increments
 end
 
-function load_memory_increments(base_reports_path, data)
-    name_test= data["name_test"]
-    name_mode= data["name_mode"]
-    name_config = data["name_config"]
-    n_start = data["n_start"]
-    n_end = data["n_end"]
+function load_memory_increments(base_reports_path, params)
+    name_test= params["name_test"]
+    name_mode= params["name_mode"]
+    name_config = params["name_config"]
+    n_start = params["n_start"]
+    n_end = params["n_end"]
 
     file_memory = get_file_memory_name(base_reports_path, name_test , name_mode, name_config)
 
@@ -165,7 +171,7 @@ function load_memory_increments(base_reports_path, data)
 
     lista_increments = Array{Float64,1}()
     last_n = nothing
-    for n in n_start:n_end
+    for n in get_n_range(params)
         if last_n != nothing
             last_worst_allocated = results[last_n]
             actual_worst_allocated = results[n]
@@ -188,12 +194,12 @@ function load_memory_increments(base_reports_path, data)
 
 end
 
-function load_time_increments(base_reports_path, data)
-    name_test= data["name_test"]
-    name_mode= data["name_mode"]
-    name_config = data["name_config"]
-    n_start = data["n_start"]
-    n_end = data["n_end"]
+function load_time_increments(base_reports_path, params)
+    name_test= params["name_test"]
+    name_mode= params["name_mode"]
+    name_config = params["name_config"]
+    n_start = params["n_start"]
+    n_end = params["n_end"]
 
     file_times = get_file_times_name(base_reports_path, name_test , name_mode, name_config)
 
@@ -214,7 +220,7 @@ function load_time_increments(base_reports_path, data)
 
     lista_increments = Array{Float64,1}()
     last_n = nothing
-    for n in n_start:n_end
+    for n in get_n_range(params)
         if last_n != nothing
             last_average = results[last_n]
             actual_average = results[n]

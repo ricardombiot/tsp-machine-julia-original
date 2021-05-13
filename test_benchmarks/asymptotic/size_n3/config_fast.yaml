@@ -1,0 +1,28 @@
+name_test: asymptotic
+name_mode: size_n3
+name_config: fast
+
+singlecore: true
+threads: 1
+activate_log: true
+activate_log_iters: false
+
+n_start: 125
+n_end: 300
+n_inc: 25
+iterations: 1
+
+plots:
+  time_vs_polynomial:
+    name: "time_vs_polynomial"
+    title: "Time VS Polynomials"
+    target:
+      name: "Inc T"
+      serie: "time"
+    series:
+      - name: "Inc T n"
+        serie: "n"
+      - name: "Inc T n^3"
+        serie: "n^3"
+      - name: "Inc T n^5"
+        serie: "n^5"

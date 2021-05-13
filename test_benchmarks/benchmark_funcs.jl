@@ -1,11 +1,11 @@
-function write_reports!(base_reports_path :: String, name_test :: String, name_mode :: String, name_config :: String, n_start :: Int64, n_end :: Int64, times_report, windows_report)
+function write_reports!(base_reports_path :: String, name_test :: String, name_mode :: String, name_config :: String, n_start :: Int64, n_end :: Int64, params, times_report, windows_report)
     build_directories_reports!(base_reports_path, name_test, name_mode)
     #file_times = "$path_mode_test/$(name_config)_times.csv"
     #file_space_window = get_file_space_window_name "$path_mode_test/$(name_config)_space_window.csv"
     file_times = get_file_times_name(base_reports_path, name_test, name_mode, name_config)
     file_space_window = get_file_space_window_name(base_reports_path, name_test, name_mode, name_config)
 
-    write_times_report!(file_times, times_report, n_start, n_end)
+    write_times_report!(file_times, times_report, n_start, n_end, params)
     write_space_window_report!(file_space_window, windows_report)
 end
 
@@ -21,11 +21,12 @@ function get_file_memory_name(base_reports_path :: String, name_test :: String, 
     "$base_reports_path/$name_test/$name_mode/$(name_config)_memory.csv"
 end
 
-function write_times_report!(file_times, times_report, n_start, n_end)
+function write_times_report!(file_times, times_report, n_start, n_end, params)
     println("Writing times report $file_times ... ")
     open("$file_times", "w") do io
         #for (n, iter_times) in times_report
-        for n in n_start:n_end
+        #for n in n_start:n_end
+        for n in get_n_range(params)
             iter_times = times_report[n]
             line_txt = "$n"
             total_items = 0
@@ -87,6 +88,17 @@ function cast_time_to_int64(ms :: Millisecond) :: Int64
     parse(Int64,"$ms")
 end
 
+function get_n_range(params)
+    n_start = params["n_start"]
+    n_end = params["n_end"]
+    n_inc = 1
+    if haskey(params, "n_inc")
+        n_inc = params["n_inc"]
+    end
+
+
+    return n_start:n_inc:n_end
+end
 
 function main_executor(base_reports_path, args)
     config_file = first(args)
@@ -108,7 +120,7 @@ function main_executor(base_reports_path, args)
     is_fisrt_execution = true
     #avoid_fisrt_register_execution = true
 
-    for n in n_start:n_end
+    for n in get_n_range(params)
         sleep(0.01)
         if activate_log
             println("INPUT: Graph of [$n]")
@@ -139,6 +151,8 @@ function main_executor(base_reports_path, args)
             if activate_log_iters
                 println("Iter [$n, $iter]: $time_execution ms")
             end
+
+            GC.gc()
         end
 
         time_end_window_space = DateTime(now())
@@ -150,5 +164,5 @@ function main_executor(base_reports_path, args)
         println("Writing Reports... wait please.")
     end
 
-    write_reports!(base_reports_path, name_test, name_mode, name_config, n_start, n_end, times_report, windows_report)
+    write_reports!(base_reports_path, name_test, name_mode, name_config, n_start, n_end, params, times_report, windows_report)
 end
