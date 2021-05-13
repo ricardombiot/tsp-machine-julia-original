@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - on branch disk-version - src/graph/readers/path_reader/path_reader.jl</title>
+  <title>LCOV - on branch improving-review - src/graph/readers/path_reader/path_reader.jl</title>
   <link rel="stylesheet" type="text/css" href="../../../../gcov.css">
 </head>
 
@@ -28,16 +28,16 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">on branch disk-version</td>
+            <td class="headerValue">on branch improving-review</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">11</td>
-            <td class="headerCovTableEntry">25</td>
-            <td class="headerCovTableEntryLo">44.0 %</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">26</td>
+            <td class="headerCovTableEntryLo">3.8 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-04-23 21:07:56</td>
+            <td class="headerValue">2021-05-02 14:19:06</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -60,7 +60,7 @@
       <td>
 <pre class="sourceHeading">          Line data    Source code</pre>
 <pre class="source">
-<a name="1"><span class="lineNum">       1 </span><span class="lineCov">         10 : module PathReader</span></a>
+<a name="1"><span class="lineNum">       1 </span><span class="lineCov">          5 : module PathReader</span></a>
 <a name="2"><span class="lineNum">       2 </span>            :     using Main.PathsSet.Alias: Km, Step, Color, ActionId</a>
 <a name="3"><span class="lineNum">       3 </span>            : </a>
 <a name="4"><span class="lineNum">       4 </span>            :     using Main.PathsSet.PathGraph</a>
@@ -75,7 +75,7 @@
 <a name="13"><span class="lineNum">      13 </span>            :     using Main.PathsSet.Graphviz</a>
 <a name="14"><span class="lineNum">      14 </span>            : </a>
 <a name="15"><span class="lineNum">      15 </span>            :     mutable struct PathSolutionReader</a>
-<a name="16"><span class="lineNum">      16 </span><span class="lineCov">         36 :         step :: Step</span></a>
+<a name="16"><span class="lineNum">      16 </span>            :         step :: Step</a>
 <a name="17"><span class="lineNum">      17 </span>            :         route :: Array{Color, 1}</a>
 <a name="18"><span class="lineNum">      18 </span>            :         next_node_id :: Union{NodeId, Nothing}</a>
 <a name="19"><span class="lineNum">      19 </span>            :         owners :: OwnersByStep</a>
@@ -105,25 +105,25 @@
 <a name="43"><span class="lineNum">      43 </span><span class="lineNoCov">          0 :     function load_and_plot!(n :: Color, b :: Km, graph :: Graph, dir :: String, is_origin_join :: Bool = false) :: Tuple{String, PathSolutionReader}</span></a>
 <a name="44"><span class="lineNum">      44 </span><span class="lineNoCov">          0 :         path = new(n, b, graph, is_origin_join)</span></a>
 <a name="45"><span class="lineNum">      45 </span><span class="lineNoCov">          0 :         calc_and_plot!(path, dir)</span></a>
-<a name="46"><span class="lineNum">      46 </span><span class="lineNoCov">          0 :         txt_path = print_path(path)</span></a>
+<a name="46"><span class="lineNum">      46 </span><span class="lineNoCov">          0 :         txt_path = to_string_path(path)</span></a>
 <a name="47"><span class="lineNum">      47 </span><span class="lineNoCov">          0 :         txt_path = &quot;Longitud: $(path.step) Path: $txt_path&quot;</span></a>
 <a name="48"><span class="lineNum">      48 </span><span class="lineNoCov">          0 :         return (txt_path, path)</span></a>
 <a name="49"><span class="lineNum">      49 </span>            :     end</a>
 <a name="50"><span class="lineNum">      50 </span>            : </a>
-<a name="51"><span class="lineNum">      51 </span>            :     function load!(n :: Color, b :: Km, graph :: Graph, is_origin_join :: Bool = false) :: Tuple{String, PathSolutionReader}</a>
-<a name="52"><span class="lineNum">      52 </span><span class="lineCov">         36 :         path = new(n, b, graph, is_origin_join)</span></a>
-<a name="53"><span class="lineNum">      53 </span><span class="lineCov">         36 :         calc!(path)</span></a>
-<a name="54"><span class="lineNum">      54 </span><span class="lineCov">         36 :         txt_path = print_path(path)</span></a>
-<a name="55"><span class="lineNum">      55 </span><span class="lineCov">         36 :         txt_path = &quot;Longitud: $(path.step) Path: $txt_path&quot;</span></a>
-<a name="56"><span class="lineNum">      56 </span><span class="lineCov">         36 :         return (txt_path, path)</span></a>
+<a name="51"><span class="lineNum">      51 </span><span class="lineNoCov">          0 :     function load!(n :: Color, b :: Km, graph :: Graph, is_origin_join :: Bool = false) :: Tuple{String, PathSolutionReader}</span></a>
+<a name="52"><span class="lineNum">      52 </span><span class="lineNoCov">          0 :         path = new(n, b, graph, is_origin_join)</span></a>
+<a name="53"><span class="lineNum">      53 </span><span class="lineNoCov">          0 :         calc!(path)</span></a>
+<a name="54"><span class="lineNum">      54 </span><span class="lineNoCov">          0 :         txt_path = to_string_path(path)</span></a>
+<a name="55"><span class="lineNum">      55 </span><span class="lineNoCov">          0 :         txt_path = &quot;Longitud: $(path.step) Path: $txt_path&quot;</span></a>
+<a name="56"><span class="lineNum">      56 </span><span class="lineNoCov">          0 :         return (txt_path, path)</span></a>
 <a name="57"><span class="lineNum">      57 </span>            :     end</a>
 <a name="58"><span class="lineNum">      58 </span>            : </a>
-<a name="59"><span class="lineNum">      59 </span>            :     function print_path(path :: PathSolutionReader) :: String</a>
-<a name="60"><span class="lineNum">      60 </span><span class="lineCov">         36 :         txt = &quot;&quot;</span></a>
-<a name="61"><span class="lineNum">      61 </span><span class="lineCov">         36 :         for color in path.route</span></a>
-<a name="62"><span class="lineNum">      62 </span><span class="lineCov">        144 :             txt *= &quot;$color, &quot;</span></a>
+<a name="59"><span class="lineNum">      59 </span><span class="lineNoCov">          0 :     function to_string_path(path :: PathSolutionReader) :: String</span></a>
+<a name="60"><span class="lineNum">      60 </span><span class="lineNoCov">          0 :         txt = &quot;&quot;</span></a>
+<a name="61"><span class="lineNum">      61 </span><span class="lineNoCov">          0 :         for color in path.route</span></a>
+<a name="62"><span class="lineNum">      62 </span><span class="lineNoCov">          0 :             txt *= &quot;$color, &quot;</span></a>
 <a name="63"><span class="lineNum">      63 </span>            :         end</a>
-<a name="64"><span class="lineNum">      64 </span><span class="lineCov">         36 :         return chop(txt, tail = 1)</span></a>
+<a name="64"><span class="lineNum">      64 </span><span class="lineNoCov">          0 :         return chop(txt, tail = 2)</span></a>
 <a name="65"><span class="lineNum">      65 </span>            :     end</a>
 <a name="66"><span class="lineNum">      66 </span>            : </a>
 <a name="67"><span class="lineNum">      67 </span>            : end</a>

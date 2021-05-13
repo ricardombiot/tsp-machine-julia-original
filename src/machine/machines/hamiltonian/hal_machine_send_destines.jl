@@ -4,6 +4,7 @@ function send_destines!(machine :: HamiltonianMachine, origin :: Color)
     if action != nothing && action.valid
         parent_id = action.id
         km_destine_max = nothing
+        # $ O(N) $
         for (destine, weight) in Graf.get_destines(machine.graf, origin)
             if is_valid_destine(machine, action, destine)
                 #println("--> Destine $destine")

@@ -18,8 +18,8 @@ function recursive_review_owners_all_graph!(graph :: Graph, stage :: Int64)
     # in complete graphs is require one stage but in others graphs can required more stages
     # to be valid or invalid but in all cases is a polynomial (yes, expensive but polynomial)
     if graph.valid && graph.required_review_ownwers
-        review_owners_colors!(graph)
-        apply_node_deletes!(graph)
+        #review_owners_colors!(graph)
+        #apply_node_deletes!(graph)
 
         # $ O(N^3) $
         rebuild_owners(graph)
@@ -72,6 +72,7 @@ $ O(N^6/128) $
 =#
 function review_owners_nodes_and_relationships!(graph :: Graph)
     # $ O(step) * O(N^2) * O(N^3/128) = O(N^6/128) $
+    # $ O(N) * O(N^2) * O(N^4) = O(N^7) $
     if graph.valid && graph.required_review_ownwers
         step = Step(graph.next_step-1)
         stop_while = false
@@ -83,11 +84,17 @@ function review_owners_nodes_and_relationships!(graph :: Graph)
                 # $ O(N^3/128) $
                 if filter_by_intersection_owners!(node, graph.owners)
                     save_to_delete_node!(graph, node_id)
-                # $ O(N^3/128) $
-                elseif filter_by_unique_son_intersection_owners!(graph, node)
+                # $ O(N^4) $
+                elseif filter_by_sons_intersection_owners!(graph, node)
+                    save_to_delete_node!(graph, node_id)
+                # $ O(N^3) $
+                elseif filter_by_incoherence_colors(graph, node)
                     save_to_delete_node!(graph, node_id)
                 end
             end
+
+            # $ O(N^6) $
+            review_sons_filtering_by_parents_interection_owners!(graph, step)
 
             if step == Step(0) || !graph.valid
                 stop_while = true
@@ -106,48 +113,135 @@ function filter_by_intersection_owners!(node :: Node, owners :: OwnersByStep) ::
     return !node.owners.valid
 end
 
-#=
-IDEA: Si solo voy a un hijo entonces, es un color fijo dentro del camino,
-los owners que tenga no pueden contenter solapamientos incoherentes con el padre.
 
-$ O(N^3/128) $
-=#
-function filter_by_unique_son_intersection_owners!(graph :: Graph, node :: Node) :: Bool
-    # $ O(N) $
-    total_sons = length(node.sons)
-    have_unique_son = total_sons == 1
-    if have_unique_son
-        edge_id = first(values(node.sons))
-        son_node_id = edge_id.destine_id
-        son_node = get_node(graph, son_node_id)
+# $ O(N^6) $
+# Date inclusion 7/5/2021
+function review_sons_filtering_by_parents_interection_owners!(graph :: Graph, step :: Step)
+    last_step = Step(graph.next_step-1)
+    if step != last_step && graph.valid
+        # $ O(N^2) $ nodes by step
+        for node_id in graph.table_lines[Step(step)]
+            node = get_node(graph, node_id)
 
-        if length(son_node.parents) == 1
-            node.owners = deepcopy(son_node.owners)
-        else
-            # $ O(N^3/128) $
-            PathNode.intersect_owners!(node, son_node.owners)
+            if node.owners.valid
+                # $ O(N^4) $
+                if filter_by_parents_intersection_owners!(graph, node)
+                    #println("Filter by parents intersection")
+                    save_to_delete_node!(graph, node_id)
+                end
+            end
+        end
+    end
+end
+# $ O(N^4) $
+function filter_by_sons_intersection_owners!(graph :: Graph, node :: Node) :: Bool
+    last_step = Step(graph.next_step-1)
+    if node.step != last_step
+        owners_sons_union :: Union{OwnersByStep,Nothing} = nothing
+
+        # $ O(N) $
+        for (son_node_id, edge_id) in node.sons
+            son_node = get_node(graph, son_node_id)
+
+            if son_node.owners.valid
+                if owners_sons_union == nothing
+                    owners_sons_union = deepcopy(son_node.owners)
+                else
+                    # $ O(Steps) * O(N^2) = O(N^3) $
+                    Owners.union!(owners_sons_union, son_node.owners)
+                end
+            end
         end
 
-        #node.owners = deepcopy(son_node.owners)
-        #PathNode.intersect_owners!(node, son_node.owners)
-
-        #=if !Owners.isequal(node.owners, son_node.owners)
-            println("Not equal owners parent and son after intersect")
-        else
-            println("OK parent and son")
-        end
-        =#
-
-        if node.owners.valid
-            # $ O(N) $
-            remove_parents_edges_arent_owner_node!(graph, node)
-            return false
-        else
+        if owners_sons_union == nothing
             return true
+        elseif owners_sons_union.valid
+            # $ O(N^3) $
+            PathNode.intersect_owners!(node, owners_sons_union)
+            if !node.owners.valid
+                return true
+            else
+                # $ O(N) $
+                if node.step != Step(0)
+                    remove_parents_edges_arent_owner_node!(graph, node)
+                end
+
+                return false
+            end
+        else
+            return false
         end
     else
         return false
     end
+end
+
+
+
+# $ O(N^4) $
+function filter_by_parents_intersection_owners!(graph :: Graph, node :: Node) :: Bool
+    first_step = Step(0)
+    if node.step != first_step
+        owners_parents_union :: Union{OwnersByStep,Nothing} = nothing
+
+        # $ O(N) $
+        for (parent_node_id, edge_id) in node.parents
+            parent_node = get_node(graph, parent_node_id)
+
+            if parent_node.owners.valid
+                if owners_parents_union == nothing
+                    owners_parents_union = deepcopy(parent_node.owners)
+                else
+                    # $ O(Steps) * O(N^2) = O(N^3) $
+                    Owners.union!(owners_parents_union, parent_node.owners)
+                end
+            end
+        end
+
+        if owners_parents_union == nothing
+            return true
+        elseif owners_parents_union.valid
+            # $ O(N^3) $
+            PathNode.intersect_owners!(node, owners_parents_union)
+            if !node.owners.valid
+                return true
+            else
+                # $ O(N) $
+                if node.step != Step(0)
+                    remove_sons_edges_arent_owner_node!(graph, node)
+                end
+
+                return false
+            end
+        else
+            return false
+        end
+    else
+        return false
+    end
+end
+
+# $ O(N^3) $
+function filter_by_incoherence_colors(graph :: Graph, node :: Node) :: Bool
+    set_of_all_colors = SetColors()
+    set_conflict_colors = SetColors()
+
+    # $ O(Step) = O(N) $
+    for step in Step(0):Step(graph.next_step-1)
+        # $ O(N^2) $
+        colors_step = load_all_colors_node_step_at_review_owners(graph, step, node)
+
+        # $ O(N) $
+        if controller_incoherence_fixed_color_in_more_than_one_step!(graph.n, step, set_conflict_colors, colors_step)
+            return true
+        end
+        # $ O(N) $
+        if controller_incoherence_enough_color!(graph.n, step, set_of_all_colors, colors_step)
+            return true
+        end
+    end
+
+    return false
 end
 
 function remove_parents_edges_arent_owner_node!(graph :: Graph, node :: Node)
@@ -155,6 +249,17 @@ function remove_parents_edges_arent_owner_node!(graph :: Graph, node :: Node)
     for (origin_id, edge_id) in node.parents
         node_parent = get_node(graph, origin_id)
         if !PathNode.have_owner(node, node_parent)
+            delete_edge_by_id!(graph, edge_id)
+        end
+    end
+end
+
+
+function remove_sons_edges_arent_owner_node!(graph :: Graph, node :: Node)
+    # $ O(N) $
+    for (destine_id, edge_id) in node.sons
+        node_son = get_node(graph, destine_id)
+        if !PathNode.have_owner(node, node_son)
             delete_edge_by_id!(graph, edge_id)
         end
     end

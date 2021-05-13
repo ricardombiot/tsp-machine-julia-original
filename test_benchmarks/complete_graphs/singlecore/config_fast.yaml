@@ -1,0 +1,54 @@
+name_test: complete_graphs
+name_mode: singlecore
+name_config: fast
+
+singlecore: true
+threads: 1
+activate_log: true
+activate_log_iters: false
+
+n_start: 3
+n_end: 10
+iterations: 10
+
+plots:
+  time_vs_factorial:
+    name: "time_vs_factorial"
+    title: "Time VS N!"
+    target:
+      name: "Inc T"
+      serie: "time"
+    series:
+      - name: "Inc T n!"
+        serie: "n!"
+  time_vs_polynomial:
+    name: "time_vs_polynomial"
+    title: "Time VS Polynomials"
+    target:
+      name: "Inc T"
+      serie: "time"
+    series:
+      - name: "Inc T n^12"
+        serie: "n^12"
+      - name: "Inc T n^14"
+        serie: "n^14"
+  space_vs_factorial:
+    name: "space_vs_factorial"
+    title: "Space VS N!"
+    target:
+      name: "Inc S"
+      serie: "space"
+    series:
+      - name: "Inc S n!"
+        serie: "n!"
+  space_vs_polynomial:
+    name: "space_vs_polynomial"
+    title: "Space VS Polynomials"
+    target:
+      name: "Inc S"
+      serie: "space"
+    series:
+      - name: "Inc S n^12"
+        serie: "n^12"
+      - name: "Inc S n^14"
+        serie: "n^14"

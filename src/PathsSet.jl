@@ -9,6 +9,7 @@ module PathsSet
     include("graph/components/node_identity/node_identity.jl")
     include("graph/components/edge_identity/edge_identity.jl")
     include("graph/components/owners/owners_set.jl")
+    #include("graph/components/owners/owners_set_notbinary.jl")
     include("graph/components/owners/owners.jl")
     include("graph/components/node/node.jl")
     include("graph/components/edge/edge.jl")
@@ -21,6 +22,7 @@ module PathsSet
     include("actions/actions.jl")
     include("actions/database_actions.jl")
     include("actions/database_actions_disk.jl")
+    include("actions/database_actions_multithread.jl")
     include("actions/database_interface.jl")
     include("actions/database_memory_controller.jl")
     include("actions/database_memory_controller_disk.jl")
@@ -38,6 +40,7 @@ module PathsSet
 
     include("machine/machines/hamiltonian/hal_machine.jl")
     include("machine/machines/tsp/tsp_machine/tsp_machine.jl")
+    include("machine/machines/tsp/parallel_tsp_machine/parallel_tsp_machine.jl")
     include("machine/machines/tsp/tsp_machine_parallel.jl")
 
     include("machine/machines/tsp_disk/tsp_machine_disk_info.jl")
@@ -53,5 +56,6 @@ module PathsSet
 
     include("machine/testing/tsp_brute_force/tsp_brute_force.jl")
     include("machine/testing/tsp_brute_force/tsp_brute_force_parallel.jl")
+    include("machine/testing/space_inspector.jl")
 
 end # module

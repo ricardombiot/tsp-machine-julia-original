@@ -1,0 +1,16 @@
+#### Time K5
+Trial(1.146 ms)
+#### Time K6
+Trial(5.560 ms)
+#### Time K7
+Trial(32.684 ms)
+#### Time K8
+Trial(176.689 ms)
+#### Time K9
+Trial(835.223 ms)
+#### Time K10
+Trial(3.454 s)
+#### Time K11
+Trial(11.744 s)
+#### Time K12
+Trial(35.120 s)

@@ -4,7 +4,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>LCOV - on branch disk-version - src/graph/components/edge/edge.jl</title>
+  <title>LCOV - on branch improving-review - src/graph/components/edge/edge.jl</title>
   <link rel="stylesheet" type="text/css" href="../../../../gcov.css">
 </head>
 
@@ -28,16 +28,16 @@
           </tr>
           <tr>
             <td class="headerItem">Test:</td>
-            <td class="headerValue">on branch disk-version</td>
+            <td class="headerValue">on branch improving-review</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">8</td>
-            <td class="headerCovTableEntry">8</td>
-            <td class="headerCovTableEntryHi">100.0 %</td>
+            <td class="headerCovTableEntry">0</td>
+            <td class="headerCovTableEntry">10</td>
+            <td class="headerCovTableEntryLo">0.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2021-04-23 21:07:56</td>
+            <td class="headerValue">2021-05-02 14:19:06</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -73,24 +73,24 @@
 <a name="11"><span class="lineNum">      11 </span>            :     using Main.PathsSet.Owners: OwnersByStep</a>
 <a name="12"><span class="lineNum">      12 </span>            : </a>
 <a name="13"><span class="lineNum">      13 </span>            :     mutable struct Edge</a>
-<a name="14"><span class="lineNum">      14 </span><span class="lineCov">       1274 :         id :: EdgeId</span></a>
+<a name="14"><span class="lineNum">      14 </span>            :         id :: EdgeId</a>
 <a name="15"><span class="lineNum">      15 </span>            :     end</a>
 <a name="16"><span class="lineNum">      16 </span>            : </a>
-<a name="17"><span class="lineNum">      17 </span>            :     function new(origin_id :: NodeId, destine_id :: NodeId) :: Edge</a>
-<a name="18"><span class="lineNum">      18 </span><span class="lineCov">       1274 :         id = EdgeIdentity.new(origin_id, destine_id)</span></a>
-<a name="19"><span class="lineNum">      19 </span><span class="lineCov">       1274 :         Edge(id)</span></a>
+<a name="17"><span class="lineNum">      17 </span><span class="lineNoCov">          0 :     function new(origin_id :: NodeId, destine_id :: NodeId) :: Edge</span></a>
+<a name="18"><span class="lineNum">      18 </span><span class="lineNoCov">          0 :         id = EdgeIdentity.new(origin_id, destine_id)</span></a>
+<a name="19"><span class="lineNum">      19 </span><span class="lineNoCov">          0 :         Edge(id)</span></a>
 <a name="20"><span class="lineNum">      20 </span>            :     end</a>
 <a name="21"><span class="lineNum">      21 </span>            : </a>
-<a name="22"><span class="lineNum">      22 </span>            :     function build!(node_origin :: Node, node_destine :: Node) :: Edge</a>
-<a name="23"><span class="lineNum">      23 </span><span class="lineCov">       1274 :         PathNode.add_son!(node_origin, node_destine)</span></a>
-<a name="24"><span class="lineNum">      24 </span><span class="lineCov">       1274 :         PathNode.add_parent!(node_destine, node_origin)</span></a>
+<a name="22"><span class="lineNum">      22 </span><span class="lineNoCov">          0 :     function build!(node_origin :: Node, node_destine :: Node) :: Edge</span></a>
+<a name="23"><span class="lineNum">      23 </span><span class="lineNoCov">          0 :         PathNode.add_son!(node_origin, node_destine)</span></a>
+<a name="24"><span class="lineNum">      24 </span><span class="lineNoCov">          0 :         PathNode.add_parent!(node_destine, node_origin)</span></a>
 <a name="25"><span class="lineNum">      25 </span>            : </a>
-<a name="26"><span class="lineNum">      26 </span><span class="lineCov">       1274 :         return new(node_origin.id, node_destine.id)</span></a>
+<a name="26"><span class="lineNum">      26 </span><span class="lineNoCov">          0 :         return new(node_origin.id, node_destine.id)</span></a>
 <a name="27"><span class="lineNum">      27 </span>            :     end</a>
 <a name="28"><span class="lineNum">      28 </span>            : </a>
-<a name="29"><span class="lineNum">      29 </span>            :     function destroy!(node_origin :: Node, node_destine :: Node)</a>
-<a name="30"><span class="lineNum">      30 </span><span class="lineCov">      25512 :         PathNode.delete_son!(node_origin, node_destine)</span></a>
-<a name="31"><span class="lineNum">      31 </span><span class="lineCov">      25512 :         PathNode.delete_parent!(node_destine, node_origin)</span></a>
+<a name="29"><span class="lineNum">      29 </span><span class="lineNoCov">          0 :     function destroy!(node_origin :: Node, node_destine :: Node)</span></a>
+<a name="30"><span class="lineNum">      30 </span><span class="lineNoCov">          0 :         PathNode.delete_son!(node_origin, node_destine)</span></a>
+<a name="31"><span class="lineNum">      31 </span><span class="lineNoCov">          0 :         PathNode.delete_parent!(node_destine, node_origin)</span></a>
 <a name="32"><span class="lineNum">      32 </span>            :     end</a>
 <a name="33"><span class="lineNum">      33 </span>            : </a>
 <a name="34"><span class="lineNum">      34 </span>            : end</a>

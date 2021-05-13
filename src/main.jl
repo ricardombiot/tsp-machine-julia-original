@@ -44,6 +44,8 @@ using Main.PathsSet.DatabaseMemoryController
 using Main.PathsSet.DatabaseMemoryController: DBMemoryController
 using Main.PathsSet.DatabaseMemoryControllerDisk
 using Main.PathsSet.DatabaseMemoryControllerDisk: DBMemoryControllerDisk
+using Main.PathsSet.DatabaseActionsMultiThread
+using Main.PathsSet.DatabaseActionsMultiThread: DBActionsMultiThread
 
 using Main.PathsSet.ExecuteActions
 
@@ -69,6 +71,8 @@ using Main.PathsSet.HalMachine: HamiltonianMachine
 using Main.PathsSet.TSPMachine
 using Main.PathsSet.TSPMachine: TravellingSalesmanMachine
 using Main.PathsSet.TSPMachineParallel
+using Main.PathsSet.ParallelTSPMachine
+using Main.PathsSet.ParallelTSPMachine: TravellingSalesmanMachineParallel
 
 using Main.PathsSet.TSPMachineDisk
 using Main.PathsSet.TSPMachineDisk: TravellingSalesmanMachineDisk
@@ -89,3 +93,4 @@ using Main.PathsSet.TSPBruteForce: BruteMachine
 
 using Main.PathsSet.TSPBruteForceParallel
 using Main.PathsSet.TSPBruteForceParallel: BruteMachineParallel
+using Main.PathsSet.SpaceInspector

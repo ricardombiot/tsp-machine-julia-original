@@ -1,43 +1,24 @@
-function review_owners_colors!(graph :: Graph)
-    # $ O(N) $ steps
-    for step in Step(0):Step(graph.next_step-1)
-        if haskey(graph.table_lines, step)
-            nodes = graph.table_lines[step]
-            # $ O(N^2) $  nodes by step
-            for node_id in nodes
-                if have_incoherence_color(graph, node_id)
-                    save_to_delete_node!(graph, node_id)
-                end
+# O(N^2)
+function load_all_colors_node_step_at_review_owners(graph :: Graph, step :: Step, node :: Node) :: SetColors
+    colors :: SetColors = SetColors()
+
+    # $ O(N^2) $
+    for node_id in graph.table_lines[step]
+        if Owners.have(node.owners, step, node_id)
+            node_owner = PathGraph.get_node(graph, node_id)
+
+            if node_owner.owners.valid
+                push!(colors, node_owner.color)
             end
         end
     end
 
-    #apply_node_deletes!(graph)
+    return colors
 end
 
-function have_incoherence_color(graph :: Graph, node_id :: NodeId) :: Bool
-    set_of_all_colors = SetColors()
-    set_conflict_colors = SetColors()
-    node = get_node(graph, node_id)
-
-    for step in Step(0):Step(graph.next_step-1)
-        colors_step = load_all_colors_node_step(graph, step, node)
-
-        if controller_incoherence_fixed_color_in_more_than_one_step!(graph.n, step, set_conflict_colors, colors_step)
-            #println("Filter by k$(node_id.key) fixed color incoherence")
-            return true
-        end
-
-        if controller_incoherence_enough_color!(graph.n, step, set_of_all_colors, colors_step)
-            #println("Filter by k$(node_id.key) enough colors incoherence")
-            return true
-        end
-    end
-
-    return false
-end
-
+# $ O(N) $
 function controller_incoherence_enough_color!(n :: Color, step :: Step, set_of_all_colors :: SetColors,  colors_step :: SetColors) :: Bool
+    # $ O(N) $
     union!(set_of_all_colors, colors_step)
     number_of_possible_colors = length(set_of_all_colors)
     # No puedo filter el nodo join
@@ -49,27 +30,17 @@ function controller_incoherence_enough_color!(n :: Color, step :: Step, set_of_a
     end
 end
 
+# $ O(N) $
 function controller_incoherence_fixed_color_in_more_than_one_step!(n :: Color, step :: Step, set_conflict_colors :: SetColors,  colors_step :: SetColors) :: Bool
     if length(colors_step) == 1 && n > step+1
+        # $ O(N) $
         if issubset(colors_step, set_conflict_colors)
             return true
         else
+        # $ O(N) $
             union!(set_conflict_colors, colors_step)
         end
     end
 
     return false
-end
-
-function load_all_colors_node_step(graph :: Graph, step :: Step, node :: Node) :: SetColors
-    colors :: SetColors = SetColors()
-
-    for node_id in graph.table_lines[step]
-        if Owners.have(node.owners, step, node_id)
-            node_owner = PathGraph.get_node(graph, node_id)
-            push!(colors, node_owner.color)
-        end
-    end
-
-    return colors
 end

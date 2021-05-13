@@ -6,11 +6,11 @@ function test_dode_step_by_step()
    machine = HalMachine.new(graf, color_origin)
 
    println("## Calc. Dode step by step...")
-   for step_dont_display in 1:2
+   for step_dont_display in 1:9
       HalMachine.make_step!(machine)
    end
 
-   for step in 2:4
+   for step in 0:1
       HalMachine.make_step!(machine)
       line = TableTimeline.get_line(machine.timeline, machine.actual_km)
       for (origin, cell) in line

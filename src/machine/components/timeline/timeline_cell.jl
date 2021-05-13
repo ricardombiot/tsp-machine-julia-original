@@ -11,7 +11,7 @@ module Cell
     mutable struct TimelineCell
         km :: Km
         color :: Color
-        parents :: ActionsIdSet
+        parents :: ActionsIdSet  # $ O(N) $
         action_id :: Union{ActionId, Nothing}
 
         valid :: Bool

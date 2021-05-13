@@ -1,0 +1,11 @@
+#### Benchmark ###
+# Threads: 2
+# Iterations: 30
+#### Time K3
+24.833333333333332
+#### Time K4
+2.433333333333333
+#### Time K5
+9.7
+#### Time K6
+49.0

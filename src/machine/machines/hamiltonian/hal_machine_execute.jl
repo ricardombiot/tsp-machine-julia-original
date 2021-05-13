@@ -1,4 +1,6 @@
 function execute!(machine :: HamiltonianMachine)
+    # Hamiltonian: $ O(N) $
+    # TSP: $ O(B) $
     if make_step!(machine)
         #println("#KM: $(machine.actual_km)/$(machine.n)")
         execute!(machine)
@@ -19,6 +21,7 @@ end
 function execute_line!(machine :: HamiltonianMachine)
     line = TableTimeline.get_line(machine.timeline, machine.actual_km)
     if line != nothing
+        # $ O(N) $
         for (origin, cell) in line
             if is_valid_origin(machine, origin)
                 (is_valid, action_id) = TableTimeline.execute!(machine.timeline, machine.db, machine.actual_km, origin)
