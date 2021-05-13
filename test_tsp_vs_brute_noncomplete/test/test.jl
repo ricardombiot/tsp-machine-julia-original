@@ -24,17 +24,23 @@ function execute_tsp_machine_parallel(graf :: Grafo, n :: Color, id :: Int64, pa
         TSPMachineParallel.execute!(machine)
         time_execute = now() - time
 
-        graph_join = SolutionGraphReader.get_graph_join_origin(machine)
+        if SolutionGraphReader.have_solution(machine)
 
-        limit = factorial(n-1)
-        reader_exp = PathExpReader.new(graf.n, b_km, graph_join, limit, true)
-        PathExpReader.calc!(reader_exp)
+                graph_join = SolutionGraphReader.get_graph_join_origin(machine)
 
-        txt_solutions = PathExpReader.to_string_solutions(reader_exp)
-        println(txt_solutions)
+                limit = factorial(n-1)
+                reader_exp = PathExpReader.new(graf.n, b_km, graph_join, limit, true)
+                PathExpReader.calc!(reader_exp)
 
-        txt_time = "$time_execute"
-        write_result!(path_results, id, txt_solutions, txt_time)
+                txt_solutions = PathExpReader.to_string_solutions(reader_exp)
+                println(txt_solutions)
+
+                txt_time = "$time_execute"
+                write_result!(path_results, id, txt_solutions, txt_time)
+        else
+                txt_time = "$time_execute"
+                write_result!(path_results, id, "NON-HAMILTONIAN", txt_time)
+        end
 
         println("TSPMachine [$id] in $time_execute")
 end
@@ -49,12 +55,17 @@ function execute_tsp_brute_parallel(graf :: Grafo, n :: Color, id :: Int64, path
         TSPBruteForceParallel.execute!(machine)
         time_execute = now() - time
 
-        txt_solutions = TSPBruteForceParallel.to_string_solutions(machine)
+        if TSPBruteForceParallel.have_solution(machine)
+                txt_solutions = TSPBruteForceParallel.to_string_solutions(machine)
+                println(txt_solutions)
 
-        println(txt_solutions)
+                txt_time = "$time_execute"
+                write_result!(path_results, id, txt_solutions, txt_time)
+        else
+                txt_time = "$time_execute"
+                write_result!(path_results, id, "NON-HAMILTONIAN", txt_time)
+        end
 
-        txt_time = "$time_execute"
-        write_result!(path_results, id, txt_solutions, txt_time)
         println("TSPBrute [$id] in $time_execute")
 end
 
@@ -63,7 +74,7 @@ function main(args)
         total = parse(Int64,popfirst!(args))
 
 
-        path_graphs = "./../../../../test_tsp_vs_brute/data/grafs$n"
+        path_graphs = "./../../../../test_tsp_vs_brute_noncomplete/data/grafs$n"
 
         base_path = "./data/results$n"
         path_tsp_machine = prepare_folders_results(base_path, "tsp_machine_parallel")

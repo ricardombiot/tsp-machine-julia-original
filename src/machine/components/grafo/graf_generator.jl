@@ -24,13 +24,13 @@ module GrafGenerator
         g = Graf.new(n)
 
         list_values = collect(range(min,max,length=max-min+1))
-        list_values = map((x) -> Weight(x),list_values)
 
         for origen=0:n-1
             for destino=0:n-1
                 if origen != destino
                     peso = rand(list_values)
-                    if peso != Weight(0)
+                    if peso > 0
+                        peso = Weight(peso)
                         Graf.add!(g, origen, destino, peso)
                     end
                 end
@@ -66,7 +66,7 @@ module GrafGenerator
         for destine=1:n-2
             Graf.remove_bidirectional!(g, node_isolated,  destine)
         end
-        
+
         return g
     end
 

@@ -8,7 +8,7 @@ function main(args)
       create_directories(path)
 
       #total_graf = 20
-      min = 1
+      min = -9
       max = 10
 
       BuildGraf.generate(n, path, min, max, total_graf)

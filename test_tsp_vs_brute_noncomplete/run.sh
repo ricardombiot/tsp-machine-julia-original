@@ -1,11 +1,12 @@
 #!/bin/sh
 
-TOTAL_GRAF=100
+TOTAL_GRAF=10
 
 FILE_TIMES_TSP_MACHINE="./data/times_tsp_machine.csv"
 FILE_TIMES_TSP_BRUTE="./data/times_tsp_brute.csv"
 
-for n in {4..6}
+#for n in {4..6}
+for n in 12
 do
 	sh run_generator.sh $n $TOTAL_GRAF
 	sh run_test.sh $n $TOTAL_GRAF
