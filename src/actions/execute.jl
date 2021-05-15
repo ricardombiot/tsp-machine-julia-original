@@ -24,13 +24,18 @@ module ExecuteActions
         parents = Actions.get_parents(action)
         up_color = action.up_color
 
+        # $ O(N) $
         for parent_id in parents
             action_parent = DatabaseInterface.get_action(db, parent_id)
 
             if Actions.was_execute(action_parent)
                 dict_graphs = Actions.get_graph(action_parent)
+
+                # $ O(N) $
                 for (lenght, graph_parent) in dict_graphs
                     copy_graph = deepcopy(graph_parent)
+
+                    # $ O(N^10) $
                     PathGraph.up!(copy_graph, up_color, action.id)
 
                     if copy_graph.valid

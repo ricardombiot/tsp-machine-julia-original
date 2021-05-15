@@ -7,6 +7,7 @@ function join!(graph :: Graph, inmutable_graph_join :: Graph) :: Bool
         join_nodes!(graph, graph_join)
         join_lines!(graph, graph_join)
         join_color_nodes!(graph, graph_join)
+        # $ O(N^4) $
         join_edges!(graph, graph_join)
 
         return true
@@ -66,7 +67,7 @@ end
 
 # $ O(N^4) $
 function join_edges!(graph :: Graph, graph_join :: Graph)
-    # $ O(N^3 nodes) * O(N edges) = O(N^4) $
+    # $ O(N^3) nodes * O(N) edges = O(N^4) $
     for (edge_id, edge) in graph_join.table_edges
         if !haskey(graph.table_edges, edge_id)
             graph.table_edges[edge_id] = edge

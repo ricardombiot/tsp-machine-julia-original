@@ -2,12 +2,20 @@
 # Maximum theoretical $ O(N^9/128) $
 # Most probable during construction less than $ O(N^6/128) * O(N) $
 # Complete graphs during construction $ O(N^6/128) * O(1) $
-# $ O(N^6/128) * O(stages) $
+# $ O(stages) * O(N^6/128) $
+# $ O(Stages) * O(N^7) $
 function review_owners_all_graph!(graph :: Graph)
     recursive_review_owners_all_graph!(graph, 1)
 end
 
+# $ O(Stages) * O(N^7) $
 function recursive_review_owners_all_graph!(graph :: Graph, stage :: Int64)
+    if stage > graph.n
+        println("-> Expensive review more than N.")
+    elseif stage > 2
+        println("-> Expensive review more than 2 ( $stage > 2 ).")
+    end
+
     # Maximum cost of execute $ O(N^6/128) * O(stages) $
     # Theoretical If we would been execute it after remove each node $ O(N^3) * O(N^6/128) $
     # but in the practise we execute it at least deleting all nodes of a color
@@ -23,7 +31,7 @@ function recursive_review_owners_all_graph!(graph :: Graph, stage :: Int64)
 
         # $ O(N^3) $
         rebuild_owners(graph)
-        # $ O(N^6/128) $
+        # $ O(N^7) $
         review_owners_nodes_and_relationships!(graph)
 
         graph.required_review_ownwers = false
@@ -69,6 +77,7 @@ between the parent and son.
 Nota: All this incoherents can be produce in the join process.
 
 $ O(N^6/128) $
+$ O(N^7) $
 =#
 function review_owners_nodes_and_relationships!(graph :: Graph)
     # $ O(step) * O(N^2) * O(N^3/128) = O(N^6/128) $
@@ -76,7 +85,7 @@ function review_owners_nodes_and_relationships!(graph :: Graph)
     if graph.valid && graph.required_review_ownwers
         step = Step(graph.next_step-1)
         stop_while = false
-        # $ O(N steps) $
+        # $ O(N) steps $
         while !stop_while
             # $ O(N^2) $ nodes by step
             for node_id in graph.table_lines[Step(step)]
@@ -147,7 +156,7 @@ function filter_by_sons_intersection_owners!(graph :: Graph, node :: Node) :: Bo
                 if owners_sons_union == nothing
                     owners_sons_union = deepcopy(son_node.owners)
                 else
-                    # $ O(Steps) * O(N^2) = O(N^3) $
+                    # $ O(N) Steps * O(N^2) = O(N^3) $
                     Owners.union!(owners_sons_union, son_node.owners)
                 end
             end
@@ -192,7 +201,7 @@ function filter_by_parents_intersection_owners!(graph :: Graph, node :: Node) ::
                 if owners_parents_union == nothing
                     owners_parents_union = deepcopy(parent_node.owners)
                 else
-                    # $ O(Steps) * O(N^2) = O(N^3) $
+                    # $ O(N) Steps * O(N^2) = O(N^3) $
                     Owners.union!(owners_parents_union, parent_node.owners)
                 end
             end

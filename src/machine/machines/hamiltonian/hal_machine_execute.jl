@@ -24,6 +24,8 @@ function execute_line!(machine :: HamiltonianMachine)
         # $ O(N) $
         for (origin, cell) in line
             if is_valid_origin(machine, origin)
+                # Hamiltonian: $ O(N^11) $
+                # TSP: $ O(N^12) $
                 (is_valid, action_id) = TableTimeline.execute!(machine.timeline, machine.db, machine.actual_km, origin)
                 #println("Execute KM:$(machine.actual_km) Cell: $origin -> OP: $action_id ($is_valid)")
                 if is_valid

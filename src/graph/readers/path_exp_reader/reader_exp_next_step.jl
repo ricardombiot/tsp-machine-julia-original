@@ -70,7 +70,7 @@ function derive_fixed_next!(exp_solver :: PathSolutionExpReader, path :: PathSol
             end
 
             total_sons += 1
-            if max_count_total_sons < total_sons
+            if max_count_total_sons == total_sons-1
                 break
             end
         end
@@ -93,7 +93,7 @@ end
 
 function update_limit(exp_solver :: PathSolutionExpReader, total_sons :: Int64)
     if total_sons != 1
-        if total_sons == exp_solver.limit
+        if (total_sons-1) == exp_solver.limit
             exp_solver.limit = UInt128(0)
         else
             exp_solver.limit -= (total_sons-1)
