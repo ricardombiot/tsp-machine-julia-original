@@ -1,6 +1,6 @@
 module Graf
     using Main.PathsSet.Alias: Color, Weight
-    
+
     mutable struct Grafo
         count_aristas :: Int64
         n :: Color
@@ -116,8 +116,8 @@ module Graf
 
         for origen=0:graf.n-1
             for destino=0:graf.n-1
-                weight_a = get_weight(graf, origen,  destino)
-                weight_b = get_weight(graf, origen,  destino)
+                weight_a = get_weight(graf, Color(origen),  Color(destino))
+                weight_b = get_weight(graf, Color(origen),  Color(destino))
 
                 if weight_a != weight_b
                     return false

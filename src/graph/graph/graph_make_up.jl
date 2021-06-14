@@ -15,7 +15,7 @@ end
 
 # $ O(N^3) $
 function make_up!(graph :: Graph, color :: Color, action_id :: ActionId)
-    last_step = graph.next_step - 1
+    last_step = graph.next_step - Step(1)
     node = new_node(graph, color, action_id)
     graph.action_parent_id = action_id
     add_line!(graph)
@@ -25,7 +25,7 @@ function make_up!(graph :: Graph, color :: Color, action_id :: ActionId)
     # $ O(N) $
     add_all_nodes_last_step_as_parents!(graph, node, last_step)
 
-    graph.next_step += 1
+    graph.next_step += Step(1)
 end
 
 # $ O(N) $

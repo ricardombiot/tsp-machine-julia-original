@@ -51,7 +51,7 @@ end
 
 function free_memory!(machine :: HamiltonianMachine)
     if machine.actual_km > 1
-        clear_km = machine.actual_km - 1
+        clear_km = machine.actual_km - Km(1)
         DatabaseMemoryController.free_memory_actions_step!(machine.db_controller, clear_km, machine.db)
         TableTimeline.remove!(machine.timeline, clear_km)
         #println(" Free memory km: $(clear_km)")

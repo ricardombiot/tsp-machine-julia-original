@@ -61,4 +61,4 @@ function test_explore_solutions(n , b, machine, optimal_solution)
 end
 
 
-test_tsp_machine_grafo_completo(Color(5))
+test_tsp_machine_grafo_completo(Color(6))

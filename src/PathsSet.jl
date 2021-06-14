@@ -1,6 +1,8 @@
 module PathsSet
 
-    include("utils/alias.jl")
+    #include("utils/alias.jl")
+    include("utils/alias_32bits.jl")
+    #include("utils/alias_64bits.jl")
     include("utils/generator_ids.jl")
 
     include("fbset/FBSet128.jl")

@@ -30,6 +30,7 @@ function new_graph_owners(n :: Color, b :: Km) :: OwnersByStep
     b = b + 1
     n = n + 1
 
-    bbnnn = Int64(b^2*n^3)
+    #bbnnn = Int64(b^2*n^3)
+    bbnnn :: UniqueNodeKey = b^2*n^3
     return Owners.new(bbnnn)
 end

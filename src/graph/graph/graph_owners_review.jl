@@ -7,11 +7,13 @@ function review_owners_all_graph!(graph :: Graph)
 end
 
 function save_max_review_stages!(graph :: Graph, stage :: Int64)
+    #=
     if stage > graph.n
         println("-> Expensive review more than N.")
     elseif stage >= 1
         println("-> Stages: $stage >= 1.")
     end
+    =#
     graph.max_review_stages = max(graph.max_review_stages, stage)
 end
 
@@ -73,7 +75,7 @@ $ O(N^7) $
 function review_owners_nodes_and_relationships!(graph :: Graph)
     # $ O(N) * O(N^2) * O(N^4) = O(N^7) $
     if graph.valid && graph.required_review_ownwers
-        step = Step(graph.next_step-1)
+        step = graph.next_step - Step(1)
         stop_while = false
         # $ O(N) steps $
         while !stop_while
@@ -98,7 +100,7 @@ function review_owners_nodes_and_relationships!(graph :: Graph)
             if step == Step(0) || !graph.valid
                 stop_while = true
             else
-                step -= 1
+                step -= Step(1)
             end
         end
     end
@@ -116,7 +118,7 @@ end
 # $ O(N^6) $
 # Date inclusion 7/5/2021
 function review_sons_filtering_by_parents_interection_owners!(graph :: Graph, step :: Step)
-    last_step = Step(graph.next_step-1)
+    last_step = graph.next_step - Step(1)
     if step != last_step && graph.valid
         # $ O(N^2) $ nodes by step
         for node_id in graph.table_lines[Step(step)]
