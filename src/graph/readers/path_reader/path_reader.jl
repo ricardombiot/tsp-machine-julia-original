@@ -64,4 +64,13 @@ module PathReader
         return chop(txt, tail = 2)
     end
 
+    function to_string_path(path :: PathSolutionReader, map_names :: Dict{Color, String}) :: String
+        txt = ""
+        for color in path.route
+            name = map_names[color]
+            txt *= "$name($color), "
+        end
+        return chop(txt, tail = 2)
+    end
+
 end

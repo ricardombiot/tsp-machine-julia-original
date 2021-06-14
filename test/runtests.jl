@@ -90,7 +90,7 @@ end
 
 
     @testset "Hamiltonian-reduce3sat" begin
-        include("machine/hamiltonian/reduce3sat/test_reduce3sat.jl")
+        #include("machine/hamiltonian/reduce3sat/test_reduce3sat.jl")
 
         #include("machine/hamiltonian/reduce3sat/test_reduce3sat_steps.jl")
         #include("machine/hamiltonian/reduce3sat/test_reduce3sat_steps_unvalid.jl")
@@ -104,6 +104,8 @@ end
     end
 
     @testset "TSP" begin
+        include("machine/tsp/test_canary_islands.jl")
+
         #include("machine/tsp/test_tsp_machine.jl")
         #include("machine/tsp/test_tsp_machine_completo.jl")
         #include("machine/tsp/test_tsp_machine_parallel_completo.jl")

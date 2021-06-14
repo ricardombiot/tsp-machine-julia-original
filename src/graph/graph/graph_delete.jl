@@ -2,7 +2,7 @@
 # $ O(N^4) $
 function delete_node_by_color!(graph :: Graph, color :: Color)
     if graph.valid
-        # in each step only can produce a action by color (origin node),
+        # in each machine km, only can produce a action by color (origin node),
         # each action can produce $ O(N) $ nodes by color then
         # $ O(N^2) $ of each color
         for node_id in get_nodes_by_color(graph, color)
@@ -44,7 +44,7 @@ function make_validation_graph_by_owners!(graph :: Graph)
     graph.valid = graph.owners.valid
 end
 
-# $ O(N^4) $
+# Theoretical Maximum: $ O(N^3) nodes * O(N) = O(N^4) $
 function apply_node_deletes!(graph :: Graph)
     # It will be execute less than $ O(N^3) $ delete total nodes
     # before will detected that graph is unvalid and avoid

@@ -1,12 +1,12 @@
-# Maximum theoretical $ O(N^9/128) $
-# Most probable less than: $ O(N^7/128) $
+# Maximum theoretical $ O(N^10) $
+# Most probable less than: $ O(N^8) $
 function up!(graph :: Graph, color :: Color, action_id :: ActionId)
     # $ O(N^4) $ deleting all nodes
     delete_node_by_color!(graph, color)
 
-    # Maximum theoretical $ O(N^9/128) $
-    # Most probable: $ O(N^7/128) $
-    # $ O(N^6/128) * O(stages) $
+    # Maximum theoretical $ O(N^{10}) $
+    # Most probable less than N stages: $ O(N^8) $
+    # $ O(Stages) * O(N^7) $
     review_owners_all_graph!(graph)
 
     # $ O(N^3) $
@@ -22,15 +22,15 @@ function make_up!(graph :: Graph, color :: Color, action_id :: ActionId)
     # $ O(N^3) $
     add_node!(graph, node)
 
-    # $ O(N-2) $
+    # $ O(N) $
     add_all_nodes_last_step_as_parents!(graph, node, last_step)
 
     graph.next_step += 1
 end
 
-# $ O(N-2) $
+# $ O(N) $
 function add_all_nodes_last_step_as_parents!(graph :: Graph, node :: Node, last_step :: Step)
-    # $ O(N - Origin - itself) $ then $ O(N-2) $ parents by node
+    # $ O(N) - Origin - Itself $ then $ O(N-2) $ parents by node
     for parent_id in graph.table_lines[last_step]
         add_edge!(graph, parent_id, node.id)
     end

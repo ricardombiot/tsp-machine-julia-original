@@ -1,14 +1,21 @@
 # $ O(N^4) $
 function join!(graph :: Graph, inmutable_graph_join :: Graph) :: Bool
     if is_valid_join(graph, inmutable_graph_join)
+        # Expensive...
         graph_join = deepcopy(inmutable_graph_join)
 
+        # $ O(N^3) $
         union_owners!(graph, graph_join)
+        # $ O(N^4) $
         join_nodes!(graph, graph_join)
+        # $ O(N^2) $
         join_lines!(graph, graph_join)
+        # $ O(N^3) $
         join_color_nodes!(graph, graph_join)
         # $ O(N^4) $
         join_edges!(graph, graph_join)
+
+        join_max_stages_review!(graph, graph_join)
 
         return true
     else
@@ -16,9 +23,9 @@ function join!(graph :: Graph, inmutable_graph_join :: Graph) :: Bool
     end
 end
 
-# $ O(N^3/128) $
+# $ O(N^3) $
 function union_owners!(graph :: Graph, graph_join :: Graph)
-    # with fixed binary set $ O(steps) * O(N^2/128) $
+    # $ O(steps) * O(N^2) $
     Owners.union!(graph.owners, graph_join.owners)
 end
 
@@ -82,4 +89,8 @@ function is_valid_join(graph :: Graph, graph_join :: Graph)
     is_eq_action_parent = graph.action_parent_id == graph_join.action_parent_id
 
     is_both_valid && is_eq_step && is_eq_origin && is_eq_action_parent
+end
+
+function join_max_stages_review!(graph :: Graph, graph_join :: Graph)
+    graph.max_review_stages = max(graph.max_review_stages, graph_join.max_review_stages)
 end

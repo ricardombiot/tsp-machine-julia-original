@@ -1,33 +1,34 @@
 
-# Maximum theoretical $ O(N^9/128) $
-# Most probable during construction less than $ O(N^6/128) * O(N) $
-# Complete graphs during construction $ O(N^6/128) * O(1) $
-# $ O(stages) * O(N^6/128) $
+# Maximum theoretical $ O(N^{10}) $
+# Most probable less than N stages: $ O(N^8) $
 # $ O(Stages) * O(N^7) $
 function review_owners_all_graph!(graph :: Graph)
     recursive_review_owners_all_graph!(graph, 1)
 end
 
-# $ O(Stages) * O(N^7) $
-function recursive_review_owners_all_graph!(graph :: Graph, stage :: Int64)
+function save_max_review_stages!(graph :: Graph, stage :: Int64)
     if stage > graph.n
         println("-> Expensive review more than N.")
-    elseif stage > 2
-        println("-> Expensive review more than 2 ( $stage > 2 ).")
+    elseif stage >= 1
+        println("-> Stages: $stage >= 1.")
     end
+    graph.max_review_stages = max(graph.max_review_stages, stage)
+end
 
-    # Maximum cost of execute $ O(N^6/128) * O(stages) $
-    # Theoretical If we would been execute it after remove each node $ O(N^3) * O(N^6/128) $
+# Theoretical Maximum Cost of execution $ O(N^7) * O(stages) $
+function recursive_review_owners_all_graph!(graph :: Graph, stage :: Int64)
+    # Theoretical:
+    # If we would execute it after remove each node $ O(N^3) * O(N^7) = O(N^10) $
     # but in the practise we execute it at least deleting all nodes of a color
-    # each delete node can produce a propation deleting, and before of delete all graph will be
-    # detected the owners like invalid then wont produce none deletion.
+    # each delete node can produce a propation deleting, and before of delete all nodes of
+    # graph will detected this situation with the owners.
 
-    # In the practise the executions dependes of the deletes stages required
-    # in complete graphs is require one stage but in others graphs can required more stages
-    # to be valid or invalid but in all cases is a polynomial (yes, expensive but polynomial)
+    # It is important see that the number of executions dependes of the deletes stages required
+    # to be valid or invalid graph, that at the same time depends of the instance
+    # but in all cases follow a polynomial function.
+    # -yes, polynomial expensive function, but polynomial be-
     if graph.valid && graph.required_review_ownwers
-        #review_owners_colors!(graph)
-        #apply_node_deletes!(graph)
+        save_max_review_stages!(graph, stage)
 
         # $ O(N^3) $
         rebuild_owners(graph)
@@ -63,24 +64,13 @@ end
 
 #=
 Down to top
-1. Make the intersection of graph owners, with the owners of each node
-In others words, we will delete the node owners that dont exist now in the graph.
-
-Target: Avoid that the owners of nodes are incoherent with the actual nodes of graph.
-
-2. If a node only have a Son (all set of paths use this son node).
-Make intersect between the owners of parent node and the unique son.
-
-Target: We want avoid the existence of incoherent relationships into a paths,
-between the parent and son.
-
-Nota: All this incoherents can be produce in the join process.
-
-$ O(N^6/128) $
+1. filter_by_intersection_owners!
+2. filter_by_sons_intersection_owners!
+3. filter_by_incoherence_colors!
+4. review_sons_filtering_by_parents_interection_owners!
 $ O(N^7) $
 =#
 function review_owners_nodes_and_relationships!(graph :: Graph)
-    # $ O(step) * O(N^2) * O(N^3/128) = O(N^6/128) $
     # $ O(N) * O(N^2) * O(N^4) = O(N^7) $
     if graph.valid && graph.required_review_ownwers
         step = Step(graph.next_step-1)
@@ -90,14 +80,14 @@ function review_owners_nodes_and_relationships!(graph :: Graph)
             # $ O(N^2) $ nodes by step
             for node_id in graph.table_lines[Step(step)]
                 node = get_node(graph, node_id)
-                # $ O(N^3/128) $
+                # $ O(N^3) $
                 if filter_by_intersection_owners!(node, graph.owners)
                     save_to_delete_node!(graph, node_id)
                 # $ O(N^4) $
                 elseif filter_by_sons_intersection_owners!(graph, node)
                     save_to_delete_node!(graph, node_id)
                 # $ O(N^3) $
-                elseif filter_by_incoherence_colors(graph, node)
+                elseif filter_by_incoherence_colors!(graph, node)
                     save_to_delete_node!(graph, node_id)
                 end
             end
@@ -114,7 +104,7 @@ function review_owners_nodes_and_relationships!(graph :: Graph)
     end
 end
 
-# $ O(N^3/128) $
+# $ O(N^3) $
 function filter_by_intersection_owners!(node :: Node, owners :: OwnersByStep) :: Bool
     # with fixed binary set $ O(step) * O(N^2) / 128b $ (nodes by step)
     PathNode.intersect_owners!(node, owners)
@@ -185,8 +175,6 @@ function filter_by_sons_intersection_owners!(graph :: Graph, node :: Node) :: Bo
     end
 end
 
-
-
 # $ O(N^4) $
 function filter_by_parents_intersection_owners!(graph :: Graph, node :: Node) :: Bool
     first_step = Step(0)
@@ -231,7 +219,7 @@ function filter_by_parents_intersection_owners!(graph :: Graph, node :: Node) ::
 end
 
 # $ O(N^3) $
-function filter_by_incoherence_colors(graph :: Graph, node :: Node) :: Bool
+function filter_by_incoherence_colors!(graph :: Graph, node :: Node) :: Bool
     set_of_all_colors = SetColors()
     set_conflict_colors = SetColors()
 

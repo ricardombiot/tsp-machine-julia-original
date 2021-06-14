@@ -21,7 +21,7 @@ function controller_incoherence_enough_color!(n :: Color, step :: Step, set_of_a
     # $ O(N) $
     union!(set_of_all_colors, colors_step)
     number_of_possible_colors = length(set_of_all_colors)
-    # No puedo filter el nodo join
+    # I shouldn´t filter the return to origin node
     number_color_required_step = Int64(min(n, step+1))
     if number_of_possible_colors < number_color_required_step
         return true

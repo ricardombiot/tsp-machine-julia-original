@@ -19,8 +19,3 @@ function get_node(graph :: Graph, node_id :: NodeId) :: Union{Node,Nothing}
 
     return nothing
 end
-
-#=function push_owner_myself_as_owner_of_me!(node :: Node)
-    PathNode.push_owner!(node, node)
-end
-=#

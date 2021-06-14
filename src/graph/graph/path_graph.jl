@@ -40,6 +40,8 @@ module PathGraph
         nodes_to_delete :: NodesIdSet
         # flag that say if is required make a review of owners
         required_review_ownwers :: Bool
+        # info max stage review
+        max_review_stages :: Int64
         # flag that say if the graph is valid
         valid :: Bool
     end

@@ -83,9 +83,12 @@ function test_execute(instance, activate_log)
 end
 
 function cast_time_to_int64(ms :: Millisecond) :: Int64
-    ms = replace("$ms"," milliseconds" => "")
-    ms = replace("$ms"," millisecond" => "")
-    parse(Int64,"$ms")
+    ms_txt = "$ms"
+    ms_txt = replace(ms_txt," milliseconds" => "")
+    ms_txt = replace(ms_txt," millisecond" => "")
+    #ms = replace("$ms"," milliseconds" => "")
+    #ms = replace("$ms"," millisecond" => "")
+    parse(Int64,"$ms_txt")
 end
 
 function get_n_range(params)
