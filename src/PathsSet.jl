@@ -1,8 +1,11 @@
 module PathsSet
 
     #include("utils/alias.jl")
-    include("utils/alias_32bits.jl")
-    #include("utils/alias_64bits.jl")
+    # Was design with 64 bits...
+    include("utils/alias_64bits.jl")
+    # For reduce memory usage, we recomend use 32 bits...
+    #include("utils/alias_32bits.jl")
+
     include("utils/generator_ids.jl")
 
     include("fbset/FBSet128.jl")

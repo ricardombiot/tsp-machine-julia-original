@@ -33,11 +33,12 @@ end
 # $ O(N) $
 function controller_incoherence_fixed_color_in_more_than_one_step!(n :: Color, step :: Step, set_conflict_colors :: SetColors,  colors_step :: SetColors) :: Bool
     if length(colors_step) == 1 && n > step+1
-        # $ O(N) $
+        # colors_step only have one color
+        # $ O(N) $ (can remplace by one check)
         if issubset(colors_step, set_conflict_colors)
             return true
         else
-        # $ O(N) $
+        # $ O(N) $ (can remplace by one insert)
             union!(set_conflict_colors, colors_step)
         end
     end

@@ -13,7 +13,7 @@ end
     include("./fbset/test_fbset_sequence.jl")
 end
 =#
-
+#=
 @time @testset "Graphs" begin
     include("./graph/components/test_node_identify.jl")
     include("./graph/components/test_owners_set.jl")
@@ -41,11 +41,11 @@ end
     include("./utils/test_generator_ids.jl")
 end
 
-#=
+
 =#
 
 @time @testset "Machine" begin
-
+    #=
     @testset "Program(Grafo)" begin
         include("machine/components/grafo/test_graf.jl")
         include("machine/components/grafo/test_tsplib.jl")
@@ -56,7 +56,7 @@ end
         include("machine/components/timeline/test_timeline_cell.jl")
         include("machine/components/timeline/test_timeline_table.jl")
     end
-    #==#
+    =#
 
     #=
     @testset "TimelineDisk" begin
@@ -74,7 +74,7 @@ end
         #include("machine/hamiltonian/test_grafo_doc_example.jl")
         #include("machine/hamiltonian/test_grafo_dir_example.jl")
         #include("machine/hamiltonian/test_hal_machine.jl")
-        include("machine/hamiltonian/test_hal_machine_non_solution.jl")
+        #include("machine/hamiltonian/test_hal_machine_non_solution.jl")
 
         #include("machine/hamiltonian/test_grafo_dode.jl")
         #include("machine/hamiltonian/test_grafo_dode_exp.jl")
@@ -83,6 +83,7 @@ end
 
         #include("machine/hamiltonian/test_grafo_dode_reading_plot.jl")
 
+        include("machine/hamiltonian/test_grafo_slices.jl")
 
         # ONLY FOR DEBUGING
         #include("machine/hamiltonian/test_grafo_dode_steps.jl")

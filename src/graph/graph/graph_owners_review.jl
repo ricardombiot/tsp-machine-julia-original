@@ -170,6 +170,7 @@ function filter_by_sons_intersection_owners!(graph :: Graph, node :: Node) :: Bo
                 return false
             end
         else
+            # Reviewing 4/oct/2021 - If owners no valid then filter;
             return false
         end
     else
@@ -213,6 +214,7 @@ function filter_by_parents_intersection_owners!(graph :: Graph, node :: Node) ::
                 return false
             end
         else
+            # Reviewing 4/oct/2021 - If owners no valid then filter;
             return false
         end
     else

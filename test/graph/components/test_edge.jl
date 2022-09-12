@@ -1,6 +1,7 @@
 function test_build_edge()
     n = Color(10)
     b = Km(20)
+    # Review it testing during migration to Rust... ¿should be b^2*step*n^2?
     bbnn = UniqueNodeKey(b^2*n^2)
     owners_graph = Owners.new(bbnn)
 
