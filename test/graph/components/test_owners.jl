@@ -1,6 +1,7 @@
 function test_owners_push_and_pop_key_by_step()
     n= Color(4)
     b= Km(10)
+    # Review it testing during migration to Rust... ¿should be b^2*step*n^2?
     bbnn = UniqueNodeKey(b^2*n^2)
     owners = Owners.new(bbnn)
     node_id = NodeIdentity.new(n, b, Step(0), ActionId(1), nothing)

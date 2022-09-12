@@ -26,8 +26,8 @@ end
     include("./graph/test_graph_joins.jl")
     include("./graph/test_graph_multi_join.jl")
 end
-=#
-#=
+
+
 
 @time @testset "Actions" begin
     include("./actions/test_actions.jl")
@@ -70,11 +70,11 @@ end
 
 
     @testset "Hamiltonian" begin
-        include("machine/hamiltonian/test_grafo_simple.jl")
-        include("machine/hamiltonian/test_grafo_doc_example.jl")
+        #include("machine/hamiltonian/test_grafo_simple.jl")
+        #include("machine/hamiltonian/test_grafo_doc_example.jl")
         #include("machine/hamiltonian/test_grafo_dir_example.jl")
-        include("machine/hamiltonian/test_hal_machine.jl")
-        include("machine/hamiltonian/test_hal_machine_non_solution.jl")
+        #include("machine/hamiltonian/test_hal_machine.jl")
+        #include("machine/hamiltonian/test_hal_machine_non_solution.jl")
 
         #include("machine/hamiltonian/test_grafo_dode.jl")
         #include("machine/hamiltonian/test_grafo_dode_exp.jl")
@@ -83,6 +83,7 @@ end
 
         #include("machine/hamiltonian/test_grafo_dode_reading_plot.jl")
 
+        include("machine/hamiltonian/test_grafo_slices.jl")
 
         # ONLY FOR DEBUGING
         #include("machine/hamiltonian/test_grafo_dode_steps.jl")
@@ -104,6 +105,8 @@ end
     end
 
     @testset "TSP" begin
+        #include("machine/tsp/test_canary_islands.jl")
+
         #include("machine/tsp/test_tsp_machine.jl")
         #include("machine/tsp/test_tsp_machine_completo.jl")
         #include("machine/tsp/test_tsp_machine_parallel_completo.jl")

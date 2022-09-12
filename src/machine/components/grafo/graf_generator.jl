@@ -12,7 +12,7 @@ module GrafGenerator
         for origen=0:n-1
             for destino=0:n-1
                 if origen != destino
-                    Graf.add_bidirectional!(g, origen, destino, peso)
+                    Graf.add_bidirectional!(g, Color(origen), Color(destino), peso)
                 end
             end
         end
@@ -24,14 +24,14 @@ module GrafGenerator
         g = Graf.new(n)
 
         list_values = collect(range(min,max,length=max-min+1))
-        list_values = map((x) -> Weight(x),list_values)
 
         for origen=0:n-1
             for destino=0:n-1
                 if origen != destino
                     peso = rand(list_values)
-                    if peso != Weight(0)
-                        Graf.add!(g, origen, destino, peso)
+                    if peso > 0
+                        peso = Weight(peso)
+                        Graf.add!(g, Color(origen), Color(destino), peso)
                     end
                 end
             end
@@ -46,7 +46,7 @@ module GrafGenerator
         last_node = n-1
         # remove all edges except last_node & zero
         for destine=1:n-1
-            Graf.remove_bidirectional!(g, last_node,  destine)
+            Graf.remove_bidirectional!(g, Color(last_node),  Color(destine))
         end
 
         return g
@@ -58,15 +58,15 @@ module GrafGenerator
         last_node = Color(n-1)
         # remove all edges except last_node & zero and one
         for destine=2:n-1
-            Graf.remove_bidirectional!(g, last_node,  destine)
+            Graf.remove_bidirectional!(g, Color(last_node),  Color(destine))
         end
 
         node_isolated = Color(1)
         # remove all edges except with last_node & zero
         for destine=1:n-2
-            Graf.remove_bidirectional!(g, node_isolated,  destine)
+            Graf.remove_bidirectional!(g, Color(node_isolated),  Color(destine))
         end
-        
+
         return g
     end
 
@@ -100,7 +100,7 @@ module GrafGenerator
                 peso = Weight(lib.weights[origin, destine])
                 if ori != dest && peso > 0
                     #Graf.add_bidirectional!(g, ori, dest, peso)
-                    Graf.add!(g, ori, dest, peso)
+                    Graf.add!(g, Color(ori), Color(dest), peso)
                 end
             end
         end

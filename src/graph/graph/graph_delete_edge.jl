@@ -17,7 +17,7 @@ function delete_edge_by_id!(graph :: Graph, edge_id :: EdgeId)
             save_to_delete_node!(graph, node_destine)
         end
 
-        # node_origin have edge then is becauses isnt the last step
+        # when origin node have edge then is becauses isnt the last step
         if !PathNode.have_sons(node_origin)
             save_to_delete_node!(graph, node_origin)
         end

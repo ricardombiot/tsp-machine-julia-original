@@ -8,3 +8,4 @@
 /test_build_grafs_12/data
 /test_hamiltonian12/data
 /test_tsp_vs_brute/data
+/test_tsp_vs_brute_noncomplete/data

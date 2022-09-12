@@ -1,4 +1,5 @@
-# $ O(N^3) $
+# Theoretical Maximum: $ O(N^3) $
+# Init case: $ O(1) $
 function add_node!(graph :: Graph, node :: Node)
     if !haskey(graph.table_nodes, node.action_id)
         graph.table_nodes[node.action_id] = Dict{NodeId, Node}()
@@ -9,6 +10,7 @@ function add_node!(graph :: Graph, node :: Node)
     add_node_in_line!(graph, node)
 
     push_owner_myself_as_owner_of_me!(node)
+
     # $ O(N^3) $
     push_node_as_new_owner!(graph, node)
     push_owner_in_graph!(graph, node)
@@ -32,17 +34,20 @@ function push_owner_myself_as_owner_of_me!(node :: Node)
     PathNode.push_owner!(node, node)
 end
 
-function push_owner_in_graph!(graph :: Graph, node_owner :: Node)
-    Owners.push!(graph.owners, node_owner.step, node_owner.id)
-end
-
-# $ O(Steps) * O(N^2) = O(N^3) $ maximum numer of nodes in graph
+# $ O(Steps) * O(N^2) = O(N^3) $ maximum number of nodes in graph
 function push_node_as_new_owner!(graph :: Graph, node_owner :: Node)
-    # $ O(N) $ actions by step
+    # The cost will be proportional to length of graph then
+    # graph.step * $ O(N^2) $ by step, until $ O(N^3) $
+
+    # $ O(N) $ steps * $ O(N) $ actions by step
     for (action_id, table_nodes_action) in graph.table_nodes
         # $ O(N) $ nodes by action
         for (node_id, node) in table_nodes_action
             PathNode.push_owner!(node, node_owner)
         end
     end
+end
+
+function push_owner_in_graph!(graph :: Graph, node_owner :: Node)
+    Owners.push!(graph.owners, node_owner.step, node_owner.id)
 end

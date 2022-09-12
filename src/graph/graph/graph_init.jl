@@ -3,6 +3,7 @@ function init!(graph :: Graph, action_id :: ActionId)
     add_line!(graph)
     graph.next_step += 1
     graph.action_parent_id = action_id
+    # init case of add node is $ O(1) $ 
     add_node!(graph, node)
 end
 

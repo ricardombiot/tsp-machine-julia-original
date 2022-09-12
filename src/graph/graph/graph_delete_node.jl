@@ -1,4 +1,5 @@
 
+# $ O(N) $
 function delete_node!(graph :: Graph, node_id :: NodeId)
     if have_node(graph, node_id) && graph.valid
         node = get_node(graph, node_id)
@@ -11,7 +12,9 @@ function make_delete_node!(graph :: Graph, node :: Node)
     if graph.valid
         delete_node_of_line!(graph, node)
         delete_node_of_table_colors!(graph, node)
+        # $ O(N) $
         delete_edges_parents!(graph, node)
+        # $ O(N) $
         delete_edges_sons!(graph, node)
         delete_node_of_table_nodes!(graph, node)
     end

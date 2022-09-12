@@ -12,7 +12,7 @@ module Owners
         dict :: Dict{Step, OwnersFixedSet}
         # The last step
         max_step :: Step
-        # If any step have a empty step then is invalid
+        # If any step is empty, then is invalid
         valid :: Bool
     end
 
@@ -212,7 +212,7 @@ module Owners
         for step in Step(0):owners_a.max_step
             owners_step_set_a = get_step_set(owners_a, step)
             owners_step_set_b = get_step_set(owners_b, step)
-            
+
             if !OwnersSet.isequal(owners_step_set_a, owners_step_set_b)
                 return false
             end

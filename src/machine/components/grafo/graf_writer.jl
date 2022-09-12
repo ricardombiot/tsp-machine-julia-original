@@ -22,8 +22,8 @@ module GrafWriter
                     if origen == destino
                         write(io, "0")
                     else
-                        if Graf.have_arista(graf, origen, destino)
-                            weight = Graf.get_weight(graf, origen, destino)
+                        if Graf.have_arista(graf, Color(origen), Color(destino))
+                            weight = Graf.get_weight(graf, Color(origen), Color(destino))
                             write(io, "$weight")
                         else
                             write(io, "0")
@@ -60,8 +60,8 @@ module GrafWriter
                     if origen == destino
                         write(io, "0")
                     else
-                        if Graf.have_arista(graf, origen, destino)
-                            weight = Graf.get_weight(graf, origen, destino)
+                        if Graf.have_arista(graf, Color(origen), Color(destino))
+                            weight = Graf.get_weight(graf, Color(origen), Color(destino))
 
                             if weight == Weight(1)
                                 write(io, "1")
