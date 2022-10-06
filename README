@@ -1,5 +1,5 @@
-[Frozen Version: May2021]
-TSP Machine Julia (original)
+# TSP Machine Julia (original) [Frozen Version: May2021]
 
-Esta es la versión original del código cerrada en Mayo del 2021 cuando comenzamos a preparar la versión para el libro. 
-Advertencia: Esta versión incluye muchos spaiks y codigo muerto.
+Esta es la versión original del código cerrada cuando en Mayo del 2021, decidimos montar una [versión adaptada](https://github.com/ricardombiot/book-tsp-machine-julia) para el libro :blue_book: “P vs. NP - Abstracciones Exponenciales: Aplicación de las abstracciones exponenciales a los problemas HC & TSP”  ([Amazon](https://amzn.to/3CvudQZ), [Google](https://play.google.com/store/books/details?id=GEmJEAAAQBAJ))
+
+<sub>Advertencia: Esta versión incluye muchos spaiks y código muerto. </sub>
